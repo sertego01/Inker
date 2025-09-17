@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Inker</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span>Inker</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="auth-btn">Login</button>
+            </form>
+            <p>Don't have an account? <a href="register.html">Sign up here</a></p>
+            <p><a href="#" id="resetPasswordLink">Forgot your password?</a></p>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/database.js"></script>
+    <script>
+        // Handle login
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (!email || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            loginUser(email, password)
+                .then((userCredential) => {
+                    // Obtener información adicional del usuario desde Firestore
+                    return getUserData(userCredential.user.uid);
+                })
+                .then((userDoc) => {
+                    if (userDoc.exists) {
+                        const userData = userDoc.data();
+                        alert('Login successful');
+                        
+                        // Redirigir al dashboard según el tipo de usuario
+                        if (userData.userType === 'artist') {
+                            window.location.href = "dashboard-artist.html";
+                        } else {
+                            window.location.href = "dashboard-user.html";
+                        }
+                    } else {
+                        alert('Error: No user data found');
+                    }
+                })
+                .catch(error => {
+                    console.error("Login error:", error);
+                    alert('Error: ' + error.message);
+                });
+        });
+        
+        // Handle password reset
+        document.getElementById('resetPasswordLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = prompt("Please enter your email to reset your password:");
+            
+            if (email) {
+                resetPassword(email)
+                    .then(() => {
+                        alert('Password reset email sent');
+                    })
+                    .catch(error => {
+                        alert('Error: ' + error.message);
+                    });
+            }
+        });
+        
+        // Check if already authenticated
+        checkAuthState((user) => {
+            if (user) {
+                // If already authenticated, get user type and redirect
+                getUserData(user.uid)
+                    .then((userDoc) => {
+                        if (userDoc.exists) {
+                            const userData = userDoc.data();
+                            if (userData.userType === 'artist') {
+                                window.location.href = "dashboard-artist.html";
+                            } else {
+                                window.location.href = "dashboard-user.html";
+                            }
+                        }
+                    });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Dashboard - Inker</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span>Inker</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Find artist</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Messages</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" id="logoutBtn" class="nav-button">Logout</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="dashboard-sidebar">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <img src="../images/artist-avatar.png" alt="Avatar" id="artistAvatar">
+                    <label for="avatarUpload" class="avatar-upload-label">Change</label>
+                    <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                </div>
+                <h3 id="artistName">Loading...</h3>
+                <p id="artistStudio">Loading...</p>
+                <div class="artist-rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-value">5.0</span>
+                </div>
+            </div>
+            <nav class="dashboard-nav">
+                <a href="#profile" class="nav-item active">My Profile</a>
+                <a href="#portfolio" class="nav-item">Portfolio</a>
+                <a href="#appointments" class="nav-item">Appointments</a>
+                <a href="#availability" class="nav-item">Availability</a>
+                <a href="#statistics" class="nav-item">Statistics</a>
+            </nav>
+        </div>
+
+        <div class="dashboard-content">
+            <!-- Profile Section -->
+            <section id="profile" class="content-section active">
+                <h2>My Tattoo Artist Profile</h2>
+                <div class="profile-form">
+                    <div class="form-group">
+                        <label for="artistProfileName">Artist name</label>
+                        <input type="text" id="artistProfileName">
+                    </div>
+                    <div class="form-group">
+                        <label for="artistEmail">Email</label>
+                        <input type="email" id="artistEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="artistStudio">Studio or workplace</label>
+                        <input type="text" id="artistStudio">
+                    </div>
+                    <div class="form-group">
+                        <label for="artistLocation">Location</label>
+                        <input type="text" id="artistLocation" placeholder="City, Country">
+                    </div>
+                    <div class="form-group">
+                        <label for="artistStyles">Styles you work with (comma separated)</label>
+                        <input type="text" id="artistStyles" placeholder="Ex: Traditional, Realistic, Geometric">
+                    </div>
+                    <div class="form-group">
+                        <label for="artistBio">Biography</label>
+                        <textarea id="artistBio" rows="4" placeholder="Tell us about your experience and artistic approach..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="artistSocial">Social media (comma separated)</label>
+                        <input type="text" id="artistSocial" placeholder="@instagram, @twitter, etc.">
+                    </div>
+                    <button id="saveArtistProfileBtn" class="btn-primary">Save Changes</button>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section id="portfolio" class="content-section">
+                <h2>My Portfolio</h2>
+                <div class="portfolio-actions">
+                    <label for="portfolioUpload" class="btn-primary">Upload New Image</label>
+                    <input type="file" id="portfolioUpload" accept="image/*" multiple style="display: none;">
+                </div>
+                <div class="portfolio-grid">
+                    <p class="loading-text">Loading portfolio...</p>
+                </div>
+            </section>
+
+            <!-- Appointments Section -->
+            <section id="appointments" class="content-section">
+                <h2>Appointment Management</h2>
+                <div class="appointments-filters">
+                    <select id="appointmentFilter">
+                        <option value="upcoming">Upcoming</option>
+                        <option value="pending">Pending confirmation</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="appointments-list">
+                    <p class="loading-text">Loading appointments...</p>
+                </div>
+            </section>
+
+            <!-- Availability Section -->
+            <section id="availability" class="content-section">
+                <h2>My Availability</h2>
+                <div class="availability-settings">
+                    <p>Feature in development. Soon you'll be able to set your available schedules.</p>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section id="statistics" class="content-section">
+                <h2>Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Appointments this month</h3>
+                        <p class="stat-value">12</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Average rating</h3>
+                        <p class="stat-value">4.8</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Satisfied clients</h3>
+                        <p class="stat-value">45</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/database.js"></script>
+    <script src="../js/dashboard-artist.js"></script>
+</body>
+</html>

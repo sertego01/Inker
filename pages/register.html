@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Inker</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span>Inker</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2>Create Account</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="name">Full name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" minlength="6" required>
+                </div>
+                <div class="form-group">
+                    <label for="userType">User type</label>
+                    <select id="userType" required>
+                        <option value="">Select an option</option>
+                        <option value="user">User (Find tattoos)</option>
+                        <option value="artist">Tattoo Artist</option>
+                    </select>
+                </div>
+                
+                <!-- Additional fields for tattoo artists -->
+                <div id="artistFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="studio">Studio or workplace</label>
+                        <input type="text" id="studio">
+                    </div>
+                </div>
+                
+                <button type="submit" class="auth-btn">Create Account</button>
+            </form>
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/database.js"></script>
+    <script>
+        // Show or hide fields based on user type
+        document.getElementById('userType').addEventListener('change', function() {
+            const userType = this.value;
+            document.getElementById('artistFields').style.display = userType === 'artist' ? 'block' : 'none';
+        });
+
+        // Handle registration
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const userType = document.getElementById('userType').value;
+            
+            // Basic validations
+            if (!name || !email || !password || !userType) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters');
+                return;
+            }
+            
+            // Additional data based on user type
+            let additionalData = {};
+            if (userType === 'artist') {
+                additionalData = {
+                    studio: document.getElementById('studio').value
+                };
+            }
+            
+            // Register user
+            registerUser(email, password, {
+                name: name,
+                email: email,
+                userType: userType,
+                ...additionalData,
+                createdAt: new Date()
+            })
+            .then(() => {
+                alert('Account created successfully');
+                // Redirect to dashboard based on user type
+                if (userType === 'artist') {
+                    window.location.href = "dashboard-artist.html";
+                } else {
+                    window.location.href = "dashboard-user.html";
+                }
+            })
+            .catch(error => {
+                console.error("Registration error:", error);
+                alert('Error: ' + error.message);
+            });
+        });
+    </script>
+</body>
+</html>

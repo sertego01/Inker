@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Inker</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span>Inker</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Find artist</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Messages</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" id="logoutBtn" class="nav-button">Logout</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="dashboard-sidebar">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <img src="../images/user-avatar.png" alt="Avatar" id="userAvatar">
+                </div>
+                <h3 id="userName">Loading...</h3>
+                <p id="userEmail">Loading...</p>
+            </div>
+            <nav class="dashboard-nav">
+                <a href="#profile" class="nav-item active">My Profile</a>
+                <a href="#appointments" class="nav-item">My Appointments</a>
+                <a href="#favorites" class="nav-item">Favorites</a>
+                <a href="#recommendations" class="nav-item">Recommendations</a>
+            </nav>
+        </div>
+
+        <div class="dashboard-content">
+            <!-- Profile Section -->
+            <section id="profile" class="content-section active">
+                <h2>My Profile</h2>
+                <div class="profile-form">
+                    <div class="form-group">
+                        <label for="profileName">Full name</label>
+                        <input type="text" id="profileName">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileEmail">Email</label>
+                        <input type="email" id="profileEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileStyles">Styles I'm interested in (comma separated)</label>
+                        <input type="text" id="profileStyles" placeholder="Ex: Watercolor, Blackwork, Geometric">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileLocation">Location</label>
+                        <input type="text" id="profileLocation" placeholder="Your city">
+                    </div>
+                    <button id="saveProfileBtn" class="btn-primary">Save Changes</button>
+                </div>
+            </section>
+
+            <!-- Appointments Section -->
+            <section id="appointments" class="content-section">
+                <h2>My Scheduled Appointments</h2>
+                <div class="appointments-list">
+                    <p class="loading-text">Loading appointments...</p>
+                </div>
+            </section>
+
+            <!-- Favorites Section -->
+            <section id="favorites" class="content-section">
+                <h2>My Favorite Tattoo Artists</h2>
+                <div class="favorites-list">
+                    <p class="empty-state">You don't have any favorite tattoo artists yet.</p>
+                </div>
+            </section>
+
+            <!-- Recommendations Section -->
+            <section id="recommendations" class="content-section">
+                <h2>Recommended Tattoo Artists</h2>
+                <div class="recommendations-list">
+                    <p class="loading-text">Loading recommendations...</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/database.js"></script>
+    <script src="../js/dashboard-user.js"></script>
+</body>
+</html>

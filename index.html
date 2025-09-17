@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inker - Find your perfect tattoo artist</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span>Inker</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Find artist</a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/login.html" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/register.html" class="nav-button">Sign up</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find your perfect tattoo artist</h1>
+            <p>Connect with talented tattoo artists in your area. Browse styles, read reviews and book your next piece with confidence.</p>
+            <div class="search-bar">
+                <input type="text" placeholder="Search by style, artist or location...">
+                <button class="search-btn">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categorías/Styles -->
+    <section class="categories">
+        <h2>Explore by styles</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-icon">🎨</div>
+                <h3>Traditional</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🖼️</div>
+                <h3>Realistic</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🐉</div>
+                <h3>Japanese</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">⚫</div>
+                <h3>Blackwork</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🎨</div>
+                <h3>Watercolor</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">📐</div>
+                <h3>Geometric</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🏺</div>
+                <h3>Tribal</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">✨</div>
+                <h3>Neo-traditional</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">⚪</div>
+                <h3>Minimalist</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🤖</div>
+                <h3>Biomechanical</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artists Destacados -->
+    <section class="featured-artists">
+        <h2>Featured artists</h2>
+        <div class="artists-grid">
+            <!-- Los artistas se cargarán dinámicamente con JavaScript -->
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how-it-works">
+        <h2>How it works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Explore artists</h3>
+                <p>Find tattoo artists by style, location and ratings.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Book your appointment</h3>
+                <p>Select available date and time directly with the artist.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Enjoy your tattoo</h3>
+                <p>Attend your appointment and show off your new artwork.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Inker</h3>
+                <p>Connecting tattoo lovers with the best artists.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Artists</a></li>
+                    <li><a href="#">Styles</a></li>
+                    <li><a href="#">How it works</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Terms and Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow us</h4>
+                <div class="social-icons">
+                    <a href="#"><img src="images/facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="images/instagram-icon.png" alt="Instagram"></a>
+                    <a href="#"><img src="images/twitter-icon.png" alt="Twitter"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Inker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App (el core de Firebase) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+
+<!-- Firebase Authentication -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+<!-- Cloud Firestore -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<!-- Firebase Storage -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+
+<!-- Tus scripts -->
+<script src="js/config.js"></script>
+<script src="js/database.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
+<script>
+    // Verificar estado de autenticación y actualizar la navegación
+    checkAuthState((user) => {
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (user) {
+            // Usuario autenticado - mostrar enlace a dashboard y botón de cerrar sesión
+            getUserData(user.uid).then((userDoc) => {
+                if (userDoc.exists) {
+                    const userData = userDoc.data();
+                    const dashboardText = userData.userType === 'artist' ? 'Panel de Artista' : 'Mi Cuenta';
+                    
+                    // Reemplazar enlaces de login/register con dashboard y logout
+                    navMenu.innerHTML = `
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Find artist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/dashboard-${userData.userType}.html" class="nav-link">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" id="logoutBtn" class="nav-button">Logout</a>
+                        </li>
+                    `;
+                    
+                    // Agregar evento al botón de cerrar sesión
+                    document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                        e.preventDefault();
+                        logoutUser().then(() => {
+                            window.location.reload();
+                        });
+                    });
+                }
+            });
+        } else {
+            // Usuario no autenticado - mostrar enlaces normales
+            navMenu.innerHTML = `
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Find artist</a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/login.html" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/register.html" class="nav-button">Sign up</a>
+                </li>
+            `;
+        }
+    });
+</script>
+</body>
+</html>
