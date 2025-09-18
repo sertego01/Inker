@@ -6,6 +6,7 @@
     <title>Sign Up - Inker</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/auth.css">
+    <link rel="stylesheet" href="../css/contact-widget.css">
 </head>
 <body>
     <nav class="navbar">
@@ -13,45 +14,98 @@
             <a href="../index.html" class="nav-logo">
                 <span>Inker</span>
             </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="find-styles.html" class="nav-link">Find styles</a>
+                </li>
+                <li class="nav-item">
+                    <a href="find-artists.html" class="nav-link">Find artist</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="register.html" class="nav-button">Sign up</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
     </nav>
 
     <div class="auth-container">
         <div class="auth-card">
-            <h2>Create Account</h2>
+            <h2>Create your account</h2>
+            <p class="auth-subtitle">Join the Inker community today</p>
+            
             <form id="registerForm">
-                <div class="form-group">
-                    <label for="name">Full name</label>
-                    <input type="text" id="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" minlength="6" required>
-                </div>
-                <div class="form-group">
-                    <label for="userType">User type</label>
-                    <select id="userType" required>
-                        <option value="">Select an option</option>
-                        <option value="user">User (Find tattoos)</option>
-                        <option value="artist">Tattoo Artist</option>
-                    </select>
-                </div>
-                
-                <!-- Additional fields for tattoo artists -->
-                <div id="artistFields" style="display: none;">
-                    <div class="form-group">
-                        <label for="studio">Studio or workplace</label>
-                        <input type="text" id="studio">
+                <!-- User Type Selection -->
+                <div class="user-type-selection">
+                    <label class="user-type-label">I want to join as a...</label>
+                    <div class="user-type-buttons">
+                        <button type="button" class="user-type-btn active" data-type="user">
+                            <div class="user-type-content">
+                                <div class="user-type-title">Client</div>
+                                <div class="user-type-description">Looking for a tattoo artist</div>
+                            </div>
+                        </button>
+                        <button type="button" class="user-type-btn" data-type="artist">
+                            <div class="user-type-content">
+                                <div class="user-type-title">Artist</div>
+                                <div class="user-type-description">Showcase my work</div>
+                            </div>
+                        </button>
                     </div>
                 </div>
                 
-                <button type="submit" class="auth-btn">Create Account</button>
+                <div class="form-group">
+                    <label for="name">Full name</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-input-container">
+                        <input type="password" id="password" placeholder="Create a password" minlength="6" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword()">
+                            <span class="eye-icon">👁️</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm password</label>
+                    <div class="password-input-container">
+                        <input type="password" id="confirmPassword" placeholder="Confirm your password" minlength="6" required>
+                        <button type="button" class="password-toggle" onclick="toggleConfirmPassword()">
+                            <span class="eye-icon">👁️</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="auth-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="termsAgreement" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Privacy Policy</a>
+                    </label>
+                </div>
+                
+                <button type="submit" class="auth-btn">
+                    <span class="btn-icon">👤+</span>
+                    Create account
+                </button>
             </form>
-            <p>Already have an account? <a href="login.html">Login here</a></p>
+            
+            <p class="auth-switch">Already have an account? <a href="login.html">Sign in</a></p>
         </div>
     </div>
 
@@ -63,11 +117,49 @@
     <script src="../js/auth.js"></script>
     <script src="../js/database.js"></script>
     <script>
-        // Show or hide fields based on user type
-        document.getElementById('userType').addEventListener('change', function() {
-            const userType = this.value;
-            document.getElementById('artistFields').style.display = userType === 'artist' ? 'block' : 'none';
+        let selectedUserType = 'user'; // Default to user
+
+        // User type selection
+        document.querySelectorAll('.user-type-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.user-type-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                // Update selected user type
+                selectedUserType = this.dataset.type;
+                // Show/hide artist fields
+                document.getElementById('artistFields').style.display = selectedUserType === 'artist' ? 'block' : 'none';
+            });
         });
+
+        // Password toggle function
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = passwordInput.parentElement.querySelector('.eye-icon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.textContent = '👁️';
+            }
+        }
+
+        // Confirm password toggle function
+        function toggleConfirmPassword() {
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const eyeIcon = confirmPasswordInput.parentElement.querySelector('.eye-icon');
+            
+            if (confirmPasswordInput.type === 'password') {
+                confirmPasswordInput.type = 'text';
+                eyeIcon.textContent = '🙈';
+            } else {
+                confirmPasswordInput.type = 'password';
+                eyeIcon.textContent = '👁️';
+            }
+        }
 
         // Handle registration
         document.getElementById('registerForm').addEventListener('submit', function(e) {
@@ -76,10 +168,11 @@
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const userType = document.getElementById('userType').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const termsAgreed = document.getElementById('termsAgreement').checked;
             
             // Basic validations
-            if (!name || !email || !password || !userType) {
+            if (!name || !email || !password || !confirmPassword) {
                 alert('Please fill in all required fields');
                 return;
             }
@@ -89,26 +182,27 @@
                 return;
             }
             
-            // Additional data based on user type
-            let additionalData = {};
-            if (userType === 'artist') {
-                additionalData = {
-                    studio: document.getElementById('studio').value
-                };
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            if (!termsAgreed) {
+                alert('Please agree to the Terms of Service and Privacy Policy');
+                return;
             }
             
             // Register user
             registerUser(email, password, {
                 name: name,
                 email: email,
-                userType: userType,
-                ...additionalData,
+                userType: selectedUserType,
                 createdAt: new Date()
             })
             .then(() => {
                 alert('Account created successfully');
                 // Redirect to dashboard based on user type
-                if (userType === 'artist') {
+                if (selectedUserType === 'artist') {
                     window.location.href = "dashboard-artist.html";
                 } else {
                     window.location.href = "dashboard-user.html";
@@ -120,5 +214,7 @@
             });
         });
     </script>
+    <script src="../js/contact-widget.js"></script>
 </body>
+</html>
 </html>

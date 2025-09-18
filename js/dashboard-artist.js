@@ -217,6 +217,12 @@ function editPortfolioItem(button) {
     alert('Edit portfolio item feature will be implemented soon');
 }
 
+// Helper function for viewing artist profiles
+function viewArtistProfile(artistId) {
+    // Redirect to artist profile page
+    window.location.href = `artist-profile.html?id=${artistId}`;
+}
+
 // Load availability settings
 function loadAvailability() {
     const availabilitySection = document.querySelector('#availability .availability-settings');

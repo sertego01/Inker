@@ -14,77 +14,13 @@ document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", 
 
 // Load featured artists (sample data)
 document.addEventListener("DOMContentLoaded", () => {
-    const artistsGrid = document.querySelector('.artists-grid');
-    
-    // Sample data - will be replaced with Firebase data
-    const featuredArtists = [
-        {
-            name: "Alex Martinez",
-            style: "Realistic & Portraits",
-            image: "images/artist1.jpg",
-            rating: 4.9
-        },
-        {
-            name: "Carlos Vega",
-            style: "Geometric & Mandalas",
-            image: "images/artist2.jpg",
-            rating: 4.8
-        },
-        {
-            name: "Sarah Kim",
-            style: "Watercolor & Abstract",
-            image: "images/artist3.jpg",
-            rating: 4.7
-        },
-        {
-            name: "Mike Johnson",
-            style: "Traditional & Neo-traditional",
-            image: "images/artist4.jpg",
-            rating: 4.9
-        },
-        {
-            name: "Emma Wilson",
-            style: "Japanese & Blackwork",
-            image: "images/artist5.jpg",
-            rating: 4.8
-        },
-        {
-            name: "David Chen",
-            style: "Minimalist & Tribal",
-            image: "images/artist6.jpg",
-            rating: 4.6
-        }
-    ];
-    
-    // Generate HTML for artists
-    featuredArtists.forEach(artist => {
-        const artistCard = document.createElement('div');
-        artistCard.classList.add('artist-card');
-        
-        // Generate rating stars
-        let stars = '';
-        for (let i = 0; i < 5; i++) {
-            if (i < Math.floor(artist.rating)) {
-                stars += '★';
-            } else {
-                stars += '☆';
-            }
-        }
-        
-        artistCard.innerHTML = `
-            <img src="${artist.image}" alt="${artist.name}">
-            <div class="artist-info">
-                <h3 class="artist-name">${artist.name}</h3>
-                <p class="artist-style">${artist.style}</p>
-                <div class="artist-rating">
-                    <span>${stars}</span>
-                    <span>${artist.rating}</span>
-                </div>
-                <button class="view-profile-btn">View Profile</button>
-            </div>
-        `;
-        
-        artistsGrid.appendChild(artistCard);
+    // Add click event listeners to view profile buttons
+    document.querySelectorAll('.view-profile-btn').forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            const artistIds = ['sarah-chen', 'marcus-rodriguez', 'elena-volkov'];
+            const artistId = artistIds[index] || 'sarah-chen';
+            window.location.href = `pages/artist-profile.html?id=${artistId}`;
+        });
     });
 });
 

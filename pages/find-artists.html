@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Artists - Inker</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/find-artists.css">
+    <link rel="stylesheet" href="../css/contact-widget.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span>Inker</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="find-styles.html" class="nav-link">Find styles</a>
+                </li>
+                <li class="nav-item">
+                    <a href="find-artists.html" class="nav-link">Find artist</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="register.html" class="nav-button">Sign up</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search and Filter Section -->
+    <section class="search-section">
+        <div class="container">
+            <h1>Find Your Perfect Tattoo Artist</h1>
+            <p>Discover talented artists in your area and find the perfect match for your next tattoo</p>
+            
+            <div class="search-filters">
+                <div class="search-bar">
+                    <input type="text" id="artistSearch" placeholder="Search artists, styles, or locations...">
+                    <button class="search-btn" onclick="searchArtists()">Search</button>
+                </div>
+                
+                <div class="filter-controls">
+                    <div class="filters-left">
+                        <div class="filters-dropdown">
+                            <button class="filters-btn" onclick="toggleFilters()">
+                                Filters
+                                <span class="dropdown-arrow">▼</span>
+                            </button>
+                            <div class="filters-dropdown-content" id="filterDropdown">
+                                <div class="filter-group">
+                                    <label>Style</label>
+                                    <select id="styleFilter" onchange="filterByStyle()">
+                                        <option value="">All Styles</option>
+                                        <option value="Traditional">Traditional</option>
+                                        <option value="Realistic">Realistic</option>
+                                        <option value="Japanese">Japanese</option>
+                                        <option value="Blackwork">Blackwork</option>
+                                        <option value="Watercolor">Watercolor</option>
+                                        <option value="Geometric">Geometric</option>
+                                        <option value="Tribal">Tribal</option>
+                                        <option value="Neo-traditional">Neo-traditional</option>
+                                        <option value="Minimalist">Minimalist</option>
+                                        <option value="Biomechanical">Biomechanical</option>
+                                        <option value="Puntillismo">Puntillismo</option>
+                                        <option value="Henna">Henna</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="filter-group">
+                                    <label>Location</label>
+                                    <select id="locationFilter" onchange="filterByLocation()">
+                                        <option value="">All Locations</option>
+                                        <option value="Los Angeles">Los Angeles, CA</option>
+                                        <option value="Austin">Austin, TX</option>
+                                        <option value="Portland">Portland, OR</option>
+                                        <option value="New York">New York, NY</option>
+                                        <option value="Miami">Miami, FL</option>
+                                        <option value="San Francisco">San Francisco, CA</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="filter-actions">
+                                    <button class="clear-filters-btn" onclick="clearFilters()">Clear All</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sort-controls">
+                        <span>Sort by:</span>
+                        <select id="sortBy" onchange="sortArtists()">
+                            <option value="relevance">Relevance</option>
+                            <option value="name">Name</option>
+                            <option value="rating">Rating</option>
+                            <option value="location">Location</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="artists-count" id="artistsCount">Found 12 artists</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artists Grid -->
+    <section class="artists-section">
+        <div class="container">
+            <div class="artists-grid" id="artistsGrid">
+                <!-- Artists will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    
+    <!-- Tus scripts -->
+    <script src="../js/config.js"></script>
+    <script src="../js/database.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/find-artists.js"></script>
+    <script src="../js/contact-widget.js"></script>
+    <script>
+        // Esperar a que el DOM esté listo y Firebase esté inicializado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar estado de autenticación y actualizar la navegación
+            checkAuthState((user) => {
+                console.log('Auth state changed:', user ? 'User logged in' : 'User logged out');
+                const navMenu = document.querySelector('.nav-menu');
+                
+                if (user) {
+                    // Usuario autenticado - mostrar enlace a dashboard y botón de cerrar sesión
+                    getUserData(user.uid).then((userDoc) => {
+                        if (userDoc.exists) {
+                            const userData = userDoc.data();
+                            console.log('User data loaded:', userData.userType);
+                            
+                            // Reemplazar enlaces de login/register con dashboard y logout
+                            navMenu.innerHTML = `
+                                <li class="nav-item">
+                                    <a href="find-styles.html" class="nav-link">Find styles</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="find-artists.html" class="nav-link">Find artist</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Messages</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="dashboard-${userData.userType}.html" class="nav-link">Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" id="logoutBtn" class="nav-button">Logout</a>
+                                </li>
+                            `;
+                            
+                            // Agregar evento al botón de cerrar sesión
+                            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                                e.preventDefault();
+                                logoutUser().then(() => {
+                                    console.log('User logged out successfully');
+                                    // Recargar la página para mostrar el menú de no autenticado
+                                    window.location.reload();
+                                }).catch((error) => {
+                                    console.error('Error al cerrar sesión:', error);
+                                    alert('Error al cerrar sesión. Por favor, intenta de nuevo.');
+                                });
+                            });
+                        }
+                    }).catch((error) => {
+                        console.error('Error al obtener datos del usuario:', error);
+                    });
+                } else {
+                    // Usuario no autenticado - mantener menú original
+                    navMenu.innerHTML = `
+                        <li class="nav-item">
+                            <a href="find-styles.html" class="nav-link">Find styles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="find-artists.html" class="nav-link">Find artist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="login.html" class="nav-link">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="register.html" class="nav-button">Sign up</a>
+                        </li>
+                    `;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

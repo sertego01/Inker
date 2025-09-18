@@ -275,7 +275,8 @@ function setupEventListeners() {
 
 // Helper functions for user dashboard
 function viewArtistProfile(artistId) {
-    alert(`Viewing profile for artist: ${artistId}. This feature will be implemented soon.`);
+    // Redirect to artist profile page
+    window.location.href = `artist-profile.html?id=${artistId}`;
 }
 
 function removeFavorite(artistId) {
