@@ -33,66 +33,6 @@
     font-size: 1rem;
 }
 
-/* User Type Selection */
-.user-type-selection {
-    margin-bottom: 30px;
-}
-
-.user-type-label {
-    display: block;
-    margin-bottom: 15px;
-    color: white;
-    font-weight: 500;
-    font-size: 1rem;
-}
-
-.user-type-buttons {
-    display: flex;
-    gap: 12px;
-}
-
-.user-type-btn {
-    flex: 1;
-    padding: 20px;
-    border: 1px solid #4b5563;
-    border-radius: 12px;
-    background: #111827;
-    color: white;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-    text-align: center;
-}
-
-.user-type-btn:hover {
-    border-color: #8b5cf6;
-    background: #1f2937;
-}
-
-.user-type-btn.active {
-    border-color: #8b5cf6;
-    background-color: rgb(168 85 247 / var(--tw-bg-opacity, .1));;
-    color: white;
-}
-
-.user-type-content {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.user-type-title {
-    font-weight: 600;
-    font-size: 1rem;
-    color: white;
-}
-
-.user-type-description {
-    font-size: 0.85rem;
-    color: #9ca3af;
-    font-weight: 400;
-}
 
 .form-group {
     margin-bottom: 20px;
@@ -311,13 +251,95 @@
         font-size: 2rem;
     }
     
-    .user-type-buttons {
-        flex-direction: column;
-    }
     
     .auth-options {
         flex-direction: column;
         gap: 15px;
         align-items: flex-start;
+    }
+}
+
+/* User Type Selection Styles */
+.user-type-selection {
+    margin-bottom: 30px;
+}
+
+.user-type-label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 500;
+    color: #e5e7eb;
+    font-size: 1rem;
+}
+
+.user-type-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.user-type-btn {
+    flex: 1;
+    padding: 20px;
+    background-color: #374151;
+    border: 2px solid #4b5563;
+    border-radius: 12px;
+    color: #e5e7eb;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-type-btn:hover {
+    background-color: #4b5563;
+    border-color: #6b7280;
+    transform: translateY(-2px);
+}
+
+.user-type-btn.active {
+    background-color: rgb(168 85 247 / var(--tw-bg-opacity, .2));;
+    border-color: #8b5cf6;
+    color: white;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.user-type-content {
+    text-align: center;
+}
+
+.user-type-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.user-type-description {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.3;
+}
+
+/* Responsive adjustments for user type selection */
+@media screen and (max-width: 480px) {
+    .user-type-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .user-type-btn {
+        min-height: 70px;
+        padding: 15px;
+    }
+    
+    .user-type-title {
+        font-size: 1rem;
+    }
+    
+    .user-type-description {
+        font-size: 0.85rem;
     }
 }

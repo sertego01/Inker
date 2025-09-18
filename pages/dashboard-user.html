@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/contact-widget.css">
+    <link rel="stylesheet" href="../css/notifications.css">
 </head>
 <body>
     <nav class="navbar">
@@ -16,19 +17,19 @@
             </a>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="find-styles.html" class="nav-link">Find styles</a>
+                    <a href="find-styles.html" class="nav-link" data-nav="find-styles">Find styles</a>
                 </li>
                 <li class="nav-item">
-                    <a href="find-artists.html" class="nav-link">Find artist</a>
+                    <a href="find-artists.html" class="nav-link" data-nav="find-artist">Find artist</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Messages</a>
+                    <a href="#" class="nav-link" data-nav="messages">Messages</a>
                 </li>
                 <li class="nav-item">
-                    <a href="dashboard-user.html" class="nav-link">Dashboard</a>
+                    <a href="dashboard-user.html" class="nav-link" data-nav="dashboard">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" id="logoutBtn" class="nav-button">Logout</a>
+                    <a href="#" id="logoutBtn" class="nav-button" data-nav="logout">Logout</a>
                 </li>
             </ul>
             <div class="hamburger">
@@ -49,10 +50,10 @@
                 <p id="userEmail">Loading...</p>
             </div>
             <nav class="dashboard-nav">
-                <a href="#profile" class="nav-item active">My Profile</a>
-                <a href="#appointments" class="nav-item">My Appointments</a>
-                <a href="#favorites" class="nav-item">Favorites</a>
-                <a href="#recommendations" class="nav-item">Recommendations</a>
+                <a href="#profile" class="nav-item active" data-i18n="dashboard.my-profile">My Profile</a>
+                <a href="#appointments" class="nav-item" data-i18n="dashboard.my-appointments">My Appointments</a>
+                <a href="#favorites" class="nav-item" data-i18n="dashboard.favorites">Favorites</a>
+                <a href="#recommendations" class="nav-item" data-i18n="dashboard.recommendations">Recommendations</a>
             </nav>
         </div>
 
@@ -115,6 +116,40 @@
     <script src="../js/auth.js"></script>
     <script src="../js/database.js"></script>
     <script src="../js/dashboard-user.js"></script>
+    <script src="../js/i18n.js"></script>
     <script src="../js/contact-widget.js"></script>
+    <script src="../js/notifications.js"></script>
+    
+    <script>
+        // Actualizar menú basado en idioma guardado
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = localStorage.getItem('language') || 'en';
+            const translations = {
+                en: {
+                    'find-styles': 'Find styles',
+                    'find-artist': 'Find artist',
+                    'messages': 'Messages',
+                    'dashboard': 'Dashboard',
+                    'logout': 'Logout'
+                },
+                es: {
+                    'find-styles': 'Buscar estilos',
+                    'find-artist': 'Buscar tatuador',
+                    'messages': 'Mensajes',
+                    'dashboard': 'Panel',
+                    'logout': 'Cerrar sesión'
+                }
+            };
+            
+            // Actualizar enlaces del menú
+            const navLinks = document.querySelectorAll('.nav-link, .nav-button');
+            navLinks.forEach(link => {
+                const dataNav = link.getAttribute('data-nav');
+                if (dataNav && translations[currentLang][dataNav]) {
+                    link.textContent = translations[currentLang][dataNav];
+                }
+            });
+        });
+    </script>
 </body>
 </html>

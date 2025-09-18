@@ -85,7 +85,7 @@
     padding: 0 20px;
 }
 
-.nav-item {
+.dashboard-nav .nav-item {
     display: block;
     padding: 12px 15px;
     color: #bdc3c7;
@@ -95,7 +95,7 @@
     transition: all 0.3s;
 }
 
-.nav-item:hover, .nav-item.active {
+.dashboard-nav .nav-item:hover, .dashboard-nav .nav-item.active {
     background-color: #374151;
     color: white;
 }

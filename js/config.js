@@ -22,7 +22,14 @@ function initializeFirebase() {
         // Inicializar servicios de Firebase
         auth = firebase.auth();
         db = firebase.firestore();
-        storage = firebase.storage();
+        
+        // Inicializar storage solo si está disponible
+        if (firebase.storage) {
+            storage = firebase.storage();
+        } else {
+            console.warn('Firebase Storage not available');
+            storage = null;
+        }
         
         // Configuración de persistencia de autenticación
         auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/auth.css">
     <link rel="stylesheet" href="../css/contact-widget.css">
+    <link rel="stylesheet" href="../css/notifications.css">
 </head>
 <body>
     <nav class="navbar">
@@ -16,16 +17,16 @@
             </a>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="find-styles.html" class="nav-link">Find styles</a>
+                    <a href="find-styles.html" class="nav-link" data-nav="find-styles">Find styles</a>
                 </li>
                 <li class="nav-item">
-                    <a href="find-artists.html" class="nav-link">Find artist</a>
+                    <a href="find-artists.html" class="nav-link" data-nav="find-artist">Find artist</a>
                 </li>
                 <li class="nav-item">
-                    <a href="login.html" class="nav-link">Login</a>
+                    <a href="login.html" class="nav-link" data-nav="login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a href="register.html" class="nav-button">Sign up</a>
+                    <a href="register.html" class="nav-button" data-nav="signup">Sign up</a>
                 </li>
             </ul>
             <div class="hamburger">
@@ -38,32 +39,19 @@
 
     <div class="auth-container">
         <div class="auth-card">
-            <h2>Welcome back</h2>
-            <p class="auth-subtitle">Sign in to your account to continue</p>
+            <h2 data-i18n="auth.welcome-back">Welcome back</h2>
+            <p class="auth-subtitle" data-i18n="auth.signin-subtitle">Sign in to your account to continue</p>
             
             <form id="loginForm">
-                <!-- User Type Selection -->
-                <div class="user-type-selection">
-                    <label class="user-type-label">I am a...</label>
-                    <div class="user-type-buttons">
-                        <button type="button" class="user-type-btn active" data-type="user">
-                            Client
-                        </button>
-                        <button type="button" class="user-type-btn" data-type="artist">
-                            Artist
-                        </button>
-                    </div>
+                <div class="form-group">
+                    <label for="email" data-i18n="auth.email">Email address</label>
+                    <input type="email" id="email" placeholder="Enter your email" data-i18n="auth.email-placeholder" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="email" id="email" placeholder="Enter your email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password" data-i18n="auth.password">Password</label>
                     <div class="password-input-container">
-                        <input type="password" id="password" placeholder="Enter your password" required>
+                        <input type="password" id="password" placeholder="Enter your password" data-i18n="auth.password-placeholder" required>
                         <button type="button" class="password-toggle" onclick="togglePassword()">
                             <span class="eye-icon">👁️</span>
                         </button>
@@ -74,18 +62,18 @@
                     <label class="checkbox-container">
                         <input type="checkbox" id="rememberMe">
                         <span class="checkmark"></span>
-                        Remember me
+                        <span data-i18n="auth.remember-me">Remember me</span>
                     </label>
-                    <a href="#" id="resetPasswordLink" class="forgot-password">Forgot password?</a>
+                    <a href="#" id="resetPasswordLink" class="forgot-password" data-i18n="auth.forgot-password">Forgot password?</a>
                 </div>
                 
                 <button type="submit" class="auth-btn">
                     <span class="btn-icon">→</span>
-                    Sign in
+                    <span data-i18n="auth.signin-button">Sign in</span>
                 </button>
             </form>
             
-            <p class="auth-switch">Don't have an account? <a href="register.html">Sign up</a></p>
+            <p class="auth-switch"><span data-i18n="auth.no-account">Don't have an account?</span> <a href="register.html" data-i18n="auth.signup-link">Sign up</a></p>
         </div>
     </div>
 
@@ -93,28 +81,29 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/database.js"></script>
+    <script src="../js/email-config.js"></script>
+    <script src="../js/email-verification.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/error-messages.js"></script>
     <script>
-        let selectedUserType = 'user'; // Default to user
 
-        // User type selection
-        document.querySelectorAll('.user-type-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Remove active class from all buttons
-                document.querySelectorAll('.user-type-btn').forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
-                this.classList.add('active');
-                // Update selected user type
-                selectedUserType = this.dataset.type;
-            });
-        });
+        // Wait for notifications to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ensure notifications are loaded
+            if (typeof window.Notifications === 'undefined') {
+                console.error('Notifications not loaded');
+                return;
+            }
 
-        // Password toggle function
-        function togglePassword() {
+
+        // Password toggle function (global scope)
+        window.togglePassword = function() {
             const passwordInput = document.getElementById('password');
-            const eyeIcon = document.querySelector('.eye-icon');
+            const eyeIcon = passwordInput.parentElement.querySelector('.eye-icon');
             
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
@@ -123,7 +112,7 @@
                 passwordInput.type = 'password';
                 eyeIcon.textContent = '👁️';
             }
-        }
+        };
 
         // Handle login
         document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -133,7 +122,7 @@
             const password = document.getElementById('password').value;
             
             if (!email || !password) {
-                alert('Please fill in all fields');
+                window.Notifications.warning('Missing Information', 'Please fill in all fields');
                 return;
             }
             
@@ -145,7 +134,7 @@
                 .then((userDoc) => {
                     if (userDoc.exists) {
                         const userData = userDoc.data();
-                        alert('Login successful');
+                        window.Notifications.success('Login Successful', 'Welcome back!');
                         
                         // Redirigir al dashboard según el tipo de usuario
                         if (userData.userType === 'artist') {
@@ -154,31 +143,167 @@
                             window.location.href = "dashboard-user.html";
                         }
                     } else {
-                        alert('Error: No user data found');
+                        window.Notifications.error('Login Error', 'No user data found');
                     }
                 })
                 .catch(error => {
                     console.error("Login error:", error);
-                    alert('Error: ' + error.message);
+                    
+                    if (error.message === 'EMAIL_NOT_VERIFIED') {
+                        // Show email verification message
+                        showEmailVerificationMessage(email);
+                    } else {
+                        window.ErrorMessages.showErrorNotification(error, 'Login Error');
+                    }
                 });
         });
         
         // Handle password reset
         document.getElementById('resetPasswordLink').addEventListener('click', function(e) {
             e.preventDefault();
-            const email = prompt("Please enter your email to reset your password:");
-            
-            if (email) {
-                resetPassword(email)
-                    .then(() => {
-                        alert('Password reset email sent');
-                    })
-                    .catch(error => {
-                        alert('Error: ' + error.message);
-                    });
-            }
+            window.Notifications.prompt("Please enter your email to reset your password:", "Password Reset").then(email => {
+                if (email) {
+                    resetPassword(email)
+                        .then(() => {
+                            window.Notifications.success('Password Reset', 'Password reset email sent');
+                        })
+                        .catch(error => {
+                            window.ErrorMessages.showErrorNotification(error, 'Password Reset Error');
+                        });
+                }
+            });
         });
         
+        // Function to show email verification message
+        function showEmailVerificationMessage(email) {
+            console.log('=== SHOWING EMAIL VERIFICATION MESSAGE ===');
+            console.log('Email:', email);
+            
+            // Create modal overlay
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+                backdrop-filter: blur(10px);
+            `;
+
+            modal.innerHTML = `
+                <div style="
+                    background: linear-gradient(135deg, #1f2937, #374151);
+                    border-radius: 20px;
+                    padding: 40px;
+                    max-width: 500px;
+                    width: 90%;
+                    text-align: center;
+                    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+                    border: 1px solid rgba(139, 92, 246, 0.3);
+                ">
+                    <div style="
+                        background: linear-gradient(135deg, #8b5cf6, #ec4899);
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 0 auto 20px;
+                        font-size: 2.5rem;
+                    ">📧</div>
+                    
+                    <h2 style="color: white; margin-bottom: 15px; font-size: 1.8rem;">Email Verification Required</h2>
+                    
+                    <p style="color: #d1d5db; margin-bottom: 25px; line-height: 1.6;">
+                        Please check your email <strong style="color: #8b5cf6;">${email}</strong> and click the verification link to activate your account before logging in.
+                    </p>
+                    
+                    <div style="
+                        background: rgba(139, 92, 246, 0.1);
+                        border: 1px solid rgba(139, 92, 246, 0.3);
+                        border-radius: 10px;
+                        padding: 15px;
+                        margin-bottom: 25px;
+                    ">
+                        <p style="color: #e5e7eb; margin: 0; font-size: 0.9rem;">
+                            💡 <strong>Tip:</strong> Check your spam folder if you don't see the email in your inbox.
+                        </p>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; justify-content: center;">
+                        <button onclick="resendVerificationEmail('${email}')" style="
+                            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+                            color: white;
+                            border: none;
+                            padding: 12px 24px;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            font-weight: 600;
+                            flex: 1;
+                        ">Resend Email</button>
+                        
+                        <button onclick="this.closest('.modal').remove()" style="
+                            background: #6b7280;
+                            color: white;
+                            border: none;
+                            padding: 12px 24px;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            font-weight: 600;
+                            flex: 1;
+                        ">Close</button>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('modal');
+            document.body.appendChild(modal);
+            console.log('Modal added to DOM');
+
+            // Close on background click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+            
+            console.log('=== EMAIL VERIFICATION MESSAGE SHOWN ===');
+        }
+
+        // Function to resend verification email
+        async function resendVerificationEmail(email) {
+            try {
+                // Find user by email
+                const userQuery = await db.collection('users').where('email', '==', email).get();
+                
+                if (userQuery.empty) {
+                    window.ErrorMessages.showErrorNotification('USER_NOT_FOUND', 'User Not Found');
+                    return;
+                }
+
+                const userData = userQuery.docs[0].data();
+                const userId = userQuery.docs[0].id;
+
+                // Resend verification email
+                await window.emailVerification.resendVerificationEmail(userId, email, userData.name);
+                
+                window.Notifications.success('Email Sent', 'Verification email sent successfully! Please check your inbox.');
+                
+                // Close modal
+                document.querySelector('.modal').remove();
+                
+            } catch (error) {
+                console.error('Error resending verification:', error);
+                window.ErrorMessages.showErrorNotification('NETWORK_ERROR', 'Email Error');
+            }
+        }
+
         // Check if already authenticated
         checkAuthState((user) => {
             if (user) {
@@ -196,7 +321,9 @@
                     });
             }
         });
+        }); // End DOMContentLoaded
     </script>
+    <script src="../js/i18n.js"></script>
     <script src="../js/contact-widget.js"></script>
 </body>
 </html>

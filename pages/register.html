@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/auth.css">
     <link rel="stylesheet" href="../css/contact-widget.css">
+    <link rel="stylesheet" href="../css/notifications.css">
 </head>
 <body>
     <nav class="navbar">
@@ -16,16 +17,16 @@
             </a>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="find-styles.html" class="nav-link">Find styles</a>
+                    <a href="find-styles.html" class="nav-link" data-nav="find-styles">Find styles</a>
                 </li>
                 <li class="nav-item">
-                    <a href="find-artists.html" class="nav-link">Find artist</a>
+                    <a href="find-artists.html" class="nav-link" data-nav="find-artist">Find artist</a>
                 </li>
                 <li class="nav-item">
-                    <a href="login.html" class="nav-link">Login</a>
+                    <a href="login.html" class="nav-link" data-nav="login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a href="register.html" class="nav-button">Sign up</a>
+                    <a href="register.html" class="nav-button" data-nav="signup">Sign up</a>
                 </li>
             </ul>
             <div class="hamburger">
@@ -38,8 +39,8 @@
 
     <div class="auth-container">
         <div class="auth-card">
-            <h2>Create your account</h2>
-            <p class="auth-subtitle">Join the Inker community today</p>
+            <h2 data-i18n="auth.create-account">Create your account</h2>
+            <p class="auth-subtitle" data-i18n="auth.signup-subtitle">Join the Inker community today</p>
             
             <form id="registerForm">
                 <!-- User Type Selection -->
@@ -62,19 +63,19 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="name">Full name</label>
-                    <input type="text" id="name" placeholder="Enter your full name" required>
+                    <label for="name" data-i18n="auth.full-name">Full name</label>
+                    <input type="text" id="name" placeholder="Enter your full name" data-i18n="auth.full-name-placeholder" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <label for="email" data-i18n="auth.email">Email address</label>
+                    <input type="email" id="email" placeholder="Enter your email" data-i18n="auth.email-placeholder" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password" data-i18n="auth.password">Password</label>
                     <div class="password-input-container">
-                        <input type="password" id="password" placeholder="Create a password" minlength="6" required>
+                        <input type="password" id="password" placeholder="Create a password" data-i18n="auth.password-placeholder" minlength="6" required>
                         <button type="button" class="password-toggle" onclick="togglePassword()">
                             <span class="eye-icon">👁️</span>
                         </button>
@@ -82,9 +83,9 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="confirmPassword">Confirm password</label>
+                    <label for="confirmPassword" data-i18n="auth.confirm-password">Confirm password</label>
                     <div class="password-input-container">
-                        <input type="password" id="confirmPassword" placeholder="Confirm your password" minlength="6" required>
+                        <input type="password" id="confirmPassword" placeholder="Confirm your password" data-i18n="auth.confirm-password-placeholder" minlength="6" required>
                         <button type="button" class="password-toggle" onclick="toggleConfirmPassword()">
                             <span class="eye-icon">👁️</span>
                         </button>
@@ -101,11 +102,11 @@
                 
                 <button type="submit" class="auth-btn">
                     <span class="btn-icon">👤+</span>
-                    Create account
+                    <span data-i18n="auth.create-account-button">Create account</span>
                 </button>
             </form>
             
-            <p class="auth-switch">Already have an account? <a href="login.html">Sign in</a></p>
+            <p class="auth-switch"><span data-i18n="auth.have-account">Already have an account?</span> <a href="login.html" data-i18n="auth.signin-link">Sign in</a></p>
         </div>
     </div>
 
@@ -113,10 +114,22 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/database.js"></script>
+    <script src="../js/email-config.js"></script>
+    <script src="../js/email-verification.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/error-messages.js"></script>
     <script>
+        // Wait for notifications to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ensure notifications are loaded
+            if (typeof window.Notifications === 'undefined') {
+                console.error('Notifications not loaded');
+                return;
+            }
         let selectedUserType = 'user'; // Default to user
 
         // User type selection
@@ -133,8 +146,8 @@
             });
         });
 
-        // Password toggle function
-        function togglePassword() {
+        // Password toggle function (global scope)
+        window.togglePassword = function() {
             const passwordInput = document.getElementById('password');
             const eyeIcon = passwordInput.parentElement.querySelector('.eye-icon');
             
@@ -145,10 +158,10 @@
                 passwordInput.type = 'password';
                 eyeIcon.textContent = '👁️';
             }
-        }
+        };
 
-        // Confirm password toggle function
-        function toggleConfirmPassword() {
+        // Confirm password toggle function (global scope)
+        window.toggleConfirmPassword = function() {
             const confirmPasswordInput = document.getElementById('confirmPassword');
             const eyeIcon = confirmPasswordInput.parentElement.querySelector('.eye-icon');
             
@@ -159,7 +172,7 @@
                 confirmPasswordInput.type = 'password';
                 eyeIcon.textContent = '👁️';
             }
-        }
+        };
 
         // Handle registration
         document.getElementById('registerForm').addEventListener('submit', function(e) {
@@ -173,22 +186,22 @@
             
             // Basic validations
             if (!name || !email || !password || !confirmPassword) {
-                alert('Please fill in all required fields');
+                window.Notifications.warning('Missing Information', 'Please fill in all required fields');
                 return;
             }
             
             if (password.length < 6) {
-                alert('Password must be at least 6 characters');
+                window.Notifications.warning('Password Too Short', 'Password must be at least 6 characters');
                 return;
             }
             
             if (password !== confirmPassword) {
-                alert('Passwords do not match');
+                window.Notifications.warning('Password Mismatch', 'Passwords do not match');
                 return;
             }
             
             if (!termsAgreed) {
-                alert('Please agree to the Terms of Service and Privacy Policy');
+                window.Notifications.warning('Terms Required', 'Please agree to the Terms of Service and Privacy Policy');
                 return;
             }
             
@@ -200,21 +213,18 @@
                 createdAt: new Date()
             })
             .then(() => {
-                alert('Account created successfully');
-                // Redirect to dashboard based on user type
-                if (selectedUserType === 'artist') {
-                    window.location.href = "dashboard-artist.html";
-                } else {
-                    window.location.href = "dashboard-user.html";
-                }
+                window.Notifications.success('Account Created', 'Account created successfully! Please check your email and click the verification link to activate your account. You will then be able to log in.');
+                // Redirect to login page
+                window.location.href = "login.html";
             })
             .catch(error => {
                 console.error("Registration error:", error);
-                alert('Error: ' + error.message);
+                window.ErrorMessages.showErrorNotification(error, 'Registration Error');
             });
         });
+        }); // End DOMContentLoaded
     </script>
+    <script src="../js/i18n.js"></script>
     <script src="../js/contact-widget.js"></script>
 </body>
-</html>
 </html>

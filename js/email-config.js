@@ -7,6 +7,9 @@ const EMAILJS_CONFIG = {
     templateId: 'template_deywvwg',         // e.g., 'template_xyz789'
     publicKey: 'OLjNklFkD2lEBeiLE',           // e.g., 'user_abcdef123456'
     
+    // Email verification template (you need to create this in EmailJS)
+    verificationTemplateId: 'template_gh3xig2', // e.g., 'template_verification123'
+    
     // Your email address where messages will be sent
     recipientEmail: 'sergioteja15@gmail.com',
     
@@ -20,6 +23,15 @@ const EMAILJS_CONFIG = {
         inquiry_type: '{{inquiry_type}}',
         timestamp: '{{timestamp}}',
         page_url: '{{page_url}}'
+    },
+    
+    // Verification email template variables
+    verificationParams: {
+        to_email: '{{user_email}}',
+        user_name: '{{user_name}}',
+        verification_link: '{{verification_link}}',
+        app_name: 'Inker',
+        support_email: 'sergioteja15@gmail.com'
     }
 };
 

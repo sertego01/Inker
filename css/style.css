@@ -32,6 +32,7 @@ ul {
 }
 
 .nav-container {
+    position: relative;
     width: 100%;
     padding: 0 20px;
     display: flex;
@@ -40,6 +41,46 @@ ul {
     height: 70px;
     background-color: #1F2937;
     color: white;
+}
+
+/* Language Selector */
+.language-selector {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 10;
+}
+
+.language-option {
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    color: #9ca3af;
+}
+
+.language-option:hover {
+    color: #8b5cf6;
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.language-option.active {
+    color: #8b5cf6;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+}
+
+.language-separator {
+    color: #6b7280;
+    font-weight: 300;
+    font-size: 0.9rem;
 }
 
 .nav-logo {

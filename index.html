@@ -6,6 +6,7 @@
     <title>Inker - Find your perfect tattoo artist</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/contact-widget.css">
+    <link rel="stylesheet" href="css/notifications.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -17,16 +18,16 @@
             </a>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="pages/find-styles.html" class="nav-link">Find styles</a>
+                    <a href="pages/find-styles.html" class="nav-link" data-nav="find-styles">Find styles</a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/find-artists.html" class="nav-link">Find artist</a>
+                    <a href="pages/find-artists.html" class="nav-link" data-nav="find-artist">Find artist</a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/login.html" class="nav-link">Login</a>
+                    <a href="pages/login.html" class="nav-link" data-nav="login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/register.html" class="nav-button">Sign up</a>
+                    <a href="pages/register.html" class="nav-button" data-nav="signup">Sign up</a>
                 </li>
             </ul>
             <div class="hamburger">
@@ -50,21 +51,21 @@
         
         <!-- Features Section -->
         <div class="features-container">
-            <div class="feature-card">
+            <div class="feature-card" data-feature="browse-styles">
                 <div class="feature-icon">
                     <div class="palette-icon">🎨</div>
                 </div>
                 <h3>Browse Styles</h3>
                 <p>Explore different tattoo styles and find artists who specialize in them</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card" data-feature="find-near">
                 <div class="feature-icon">
                     <div class="location-icon">📍</div>
                 </div>
                 <h3>Find Near You</h3>
                 <p>Discover talented artists in your local area or search by city</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card" data-feature="most-popular">
                 <div class="feature-icon">
                     <div class="trending-icon">📈</div>
                 </div>
@@ -80,16 +81,16 @@
             <h2>Popular Tattoo Styles</h2>
             <p>Explore different artistic styles and find your perfect match</p>
             <div class="styles-grid">
-                <button class="style-button" data-style="Traditional">Traditional</button>
-                <button class="style-button" data-style="Realistic">Realistic</button>
-                <button class="style-button" data-style="Japanese">Japanese</button>
-                <button class="style-button" data-style="Blackwork">Blackwork</button>
-                <button class="style-button" data-style="Watercolor">Watercolor</button>
-                <button class="style-button" data-style="Geometric">Geometric</button>
-                <button class="style-button" data-style="Tribal">Tribal</button>
-                <button class="style-button" data-style="Neo-traditional">Neo-traditional</button>
-                <button class="style-button" data-style="Minimalist">Minimalist</button>
-                <button class="style-button" data-style="Biomechanical">Biomechanical</button>
+                <button class="style-button" data-style="traditional">Traditional</button>
+                <button class="style-button" data-style="realistic">Realistic</button>
+                <button class="style-button" data-style="japanese">Japanese</button>
+                <button class="style-button" data-style="blackwork">Blackwork</button>
+                <button class="style-button" data-style="watercolor">Watercolor</button>
+                <button class="style-button" data-style="geometric">Geometric</button>
+                <button class="style-button" data-style="tribal">Tribal</button>
+                <button class="style-button" data-style="neotraditional">Neo-traditional</button>
+                <button class="style-button" data-style="minimalist">Minimalist</button>
+                <button class="style-button" data-style="biomechanical">Biomechanical</button>
             </div>
         </div>
     </section>
@@ -165,17 +166,17 @@
     <section class="how-it-works">
         <h2>How it works</h2>
         <div class="steps">
-            <div class="step">
+            <div class="step" data-step="step1">
                 <div class="step-number">1</div>
                 <h3>Explore artists</h3>
                 <p>Find tattoo artists by style, location and ratings.</p>
             </div>
-            <div class="step">
+            <div class="step" data-step="step2">
                 <div class="step-number">2</div>
                 <h3>Book your appointment</h3>
                 <p>Select available date and time directly with the artist.</p>
             </div>
-            <div class="step">
+            <div class="step" data-step="step3">
                 <div class="step-number">3</div>
                 <h3>Enjoy your tattoo</h3>
                 <p>Attend your appointment and show off your new artwork.</p>
@@ -187,12 +188,12 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-left">
-                <a href="#">Terms and Conditions</a>
+                <a href="#" data-footer="terms">Terms and Conditions</a>
                 <span class="separator">|</span>
-                <a href="#">Privacy Policy</a>
+                <a href="#" data-footer="privacy">Privacy Policy</a>
             </div>
             <div class="footer-center">
-                <p>&copy; 2025 Inker. All rights reserved.</p>
+                <p data-footer="copyright">&copy; 2025 Inker. All rights reserved.</p>
             </div>
             <div class="footer-right">
                 <div class="social-icons">
@@ -223,6 +224,8 @@
     <script src="js/main.js"></script>
     <script src="js/email-config.js"></script>
     <script src="js/contact-widget.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/i18n.js"></script>
     <script>
         // Esperar a que Firebase esté completamente cargado
         document.addEventListener('DOMContentLoaded', function() {
@@ -239,21 +242,39 @@
                             console.log('User data loaded:', userData.userType);
                             
                             // Reemplazar enlaces de login/register con dashboard y logout
+                            const currentLang = localStorage.getItem('language') || 'en';
+                            const translations = {
+                                en: {
+                                    'find-styles': 'Find styles',
+                                    'find-artist': 'Find artist',
+                                    'messages': 'Messages',
+                                    'dashboard': 'Dashboard',
+                                    'logout': 'Logout'
+                                },
+                                es: {
+                                    'find-styles': 'Buscar estilos',
+                                    'find-artist': 'Buscar tatuador',
+                                    'messages': 'Mensajes',
+                                    'dashboard': 'Panel',
+                                    'logout': 'Cerrar sesión'
+                                }
+                            };
+                            
                             navMenu.innerHTML = `
                                 <li class="nav-item">
-                                    <a href="pages/find-styles.html" class="nav-link">Find styles</a>
+                                    <a href="pages/find-styles.html" class="nav-link" data-nav="find-styles">${translations[currentLang]['find-styles']}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/find-artists.html" class="nav-link">Find artist</a>
+                                    <a href="pages/find-artists.html" class="nav-link" data-nav="find-artist">${translations[currentLang]['find-artist']}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">Messages</a>
+                                    <a href="#" class="nav-link" data-nav="messages">${translations[currentLang]['messages']}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/dashboard-${userData.userType}.html" class="nav-link">Dashboard</a>
+                                    <a href="pages/dashboard-${userData.userType}.html" class="nav-link" data-nav="dashboard">${translations[currentLang]['dashboard']}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" id="logoutBtn" class="nav-button">Logout</a>
+                                    <a href="#" id="logoutBtn" class="nav-button" data-nav="logout">${translations[currentLang]['logout']}</a>
                                 </li>
                             `;
                             
@@ -275,18 +296,34 @@
                     });
                 } else {
                     // Usuario no autenticado - mantener menú original
+                    const currentLang = localStorage.getItem('language') || 'en';
+                    const translations = {
+                        en: {
+                            'find-styles': 'Find styles',
+                            'find-artist': 'Find artist',
+                            'login': 'Login',
+                            'signup': 'Sign up'
+                        },
+                        es: {
+                            'find-styles': 'Buscar estilos',
+                            'find-artist': 'Buscar tatuador',
+                            'login': 'Iniciar sesión',
+                            'signup': 'Registrarse'
+                        }
+                    };
+                    
                     navMenu.innerHTML = `
                         <li class="nav-item">
-                            <a href="pages/find-styles.html" class="nav-link">Find styles</a>
+                            <a href="pages/find-styles.html" class="nav-link" data-nav="find-styles">${translations[currentLang]['find-styles']}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/find-artists.html" class="nav-link">Find artist</a>
+                            <a href="pages/find-artists.html" class="nav-link" data-nav="find-artist">${translations[currentLang]['find-artist']}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/login.html" class="nav-link">Login</a>
+                            <a href="pages/login.html" class="nav-link" data-nav="login">${translations[currentLang]['login']}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/register.html" class="nav-button">Sign up</a>
+                            <a href="pages/register.html" class="nav-button" data-nav="signup">${translations[currentLang]['signup']}</a>
                         </li>
                     `;
                 }

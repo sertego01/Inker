@@ -17,16 +17,16 @@
             </a>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="find-styles.html" class="nav-link">Find styles</a>
+                    <a href="find-styles.html" class="nav-link" data-nav="find-styles">Find styles</a>
                 </li>
                 <li class="nav-item">
-                    <a href="find-artists.html" class="nav-link">Find artist</a>
+                    <a href="find-artists.html" class="nav-link" data-nav="find-artist">Find artist</a>
                 </li>
                 <li class="nav-item">
-                    <a href="login.html" class="nav-link">Login</a>
+                    <a href="login.html" class="nav-link" data-nav="login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a href="register.html" class="nav-button">Sign up</a>
+                    <a href="register.html" class="nav-button" data-nav="signup">Sign up</a>
                 </li>
             </ul>
             <div class="hamburger">
@@ -40,20 +40,20 @@
     <!-- Search and Filter Section -->
     <section class="search-section">
         <div class="container">
-            <h1>Find Your Perfect Tattoo Artist</h1>
-            <p>Discover talented artists in your area and find the perfect match for your next tattoo</p>
+            <h1 data-nav="find-artist-title">Find Your Perfect Tattoo Artist</h1>
+            <p data-nav="find-artist-subtitle">Discover talented artists in your area and find the perfect match for your next tattoo</p>
             
             <div class="search-filters">
                 <div class="search-bar">
-                    <input type="text" id="artistSearch" placeholder="Search artists, styles, or locations...">
-                    <button class="search-btn" onclick="searchArtists()">Search</button>
+                    <input type="text" id="artistSearch" placeholder="Search artists, styles, or locations..." data-nav="search-artists-placeholder">
+                    <button class="search-btn" onclick="searchArtists()" data-nav="search-btn">Search</button>
                 </div>
                 
                 <div class="filter-controls">
                     <div class="filters-left">
                         <div class="filters-dropdown">
-                            <button class="filters-btn" onclick="toggleFilters()">
-                                Filters
+                            <button class="filters-btn" onclick="toggleFilters()" data-nav="filters-btn">
+                                <span data-nav="filters-text">Filters</span>
                                 <span class="dropdown-arrow">▼</span>
                             </button>
                             <div class="filters-dropdown-content" id="filterDropdown">
@@ -133,6 +133,7 @@
     <script src="../js/auth.js"></script>
     <script src="../js/find-artists.js"></script>
     <script src="../js/contact-widget.js"></script>
+    <script src="../js/i18n.js"></script>
     <script>
         // Esperar a que el DOM esté listo y Firebase esté inicializado
         document.addEventListener('DOMContentLoaded', function() {
@@ -149,21 +150,39 @@
                             console.log('User data loaded:', userData.userType);
                             
                             // Reemplazar enlaces de login/register con dashboard y logout
+                            const currentLang = localStorage.getItem('language') || 'en';
+                            const translations = {
+                                en: {
+                                    'find-styles': 'Find styles',
+                                    'find-artist': 'Find artist',
+                                    'messages': 'Messages',
+                                    'dashboard': 'Dashboard',
+                                    'logout': 'Logout'
+                                },
+                                es: {
+                                    'find-styles': 'Buscar estilos',
+                                    'find-artist': 'Buscar tatuador',
+                                    'messages': 'Mensajes',
+                                    'dashboard': 'Panel',
+                                    'logout': 'Cerrar sesión'
+                                }
+                            };
+                            
                             navMenu.innerHTML = `
                                 <li class="nav-item">
-                                    <a href="find-styles.html" class="nav-link">Find styles</a>
+                                    <a href="find-styles.html" class="nav-link" data-nav="find-styles">${translations[currentLang]['find-styles']}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="find-artists.html" class="nav-link">Find artist</a>
+                                    <a href="find-artists.html" class="nav-link" data-nav="find-artist">${translations[currentLang]['find-artist']}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">Messages</a>
+                                    <a href="#" class="nav-link" data-nav="messages">${translations[currentLang]['messages']}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="dashboard-${userData.userType}.html" class="nav-link">Dashboard</a>
+                                    <a href="dashboard-${userData.userType}.html" class="nav-link" data-nav="dashboard">${translations[currentLang]['dashboard']}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" id="logoutBtn" class="nav-button">Logout</a>
+                                    <a href="#" id="logoutBtn" class="nav-button" data-nav="logout">${translations[currentLang]['logout']}</a>
                                 </li>
                             `;
                             
@@ -185,18 +204,34 @@
                     });
                 } else {
                     // Usuario no autenticado - mantener menú original
+                    const currentLang = localStorage.getItem('language') || 'en';
+                    const translations = {
+                        en: {
+                            'find-styles': 'Find styles',
+                            'find-artist': 'Find artist',
+                            'login': 'Login',
+                            'signup': 'Sign up'
+                        },
+                        es: {
+                            'find-styles': 'Buscar estilos',
+                            'find-artist': 'Buscar tatuador',
+                            'login': 'Iniciar sesión',
+                            'signup': 'Registrarse'
+                        }
+                    };
+                    
                     navMenu.innerHTML = `
                         <li class="nav-item">
-                            <a href="find-styles.html" class="nav-link">Find styles</a>
+                            <a href="find-styles.html" class="nav-link" data-nav="find-styles">${translations[currentLang]['find-styles']}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="find-artists.html" class="nav-link">Find artist</a>
+                            <a href="find-artists.html" class="nav-link" data-nav="find-artist">${translations[currentLang]['find-artist']}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="login.html" class="nav-link">Login</a>
+                            <a href="login.html" class="nav-link" data-nav="login">${translations[currentLang]['login']}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="register.html" class="nav-button">Sign up</a>
+                            <a href="register.html" class="nav-button" data-nav="signup">${translations[currentLang]['signup']}</a>
                         </li>
                     `;
                 }

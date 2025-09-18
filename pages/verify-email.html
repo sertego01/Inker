@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email - Inker</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <link rel="stylesheet" href="../css/contact-widget.css">
+    <link rel="stylesheet" href="../css/notifications.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span>Inker</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="find-styles.html" class="nav-link">Find styles</a>
+                </li>
+                <li class="nav-item">
+                    <a href="find-artists.html" class="nav-link">Find artist</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="register.html" class="nav-button">Sign up</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div id="verification-content">
+                <!-- Loading state -->
+                <div id="loading-state" class="verification-state">
+                    <div class="loading-spinner"></div>
+                    <h2>Verifying your email...</h2>
+                    <p>Please wait while we verify your email address.</p>
+                </div>
+
+                <!-- Success state -->
+                <div id="success-state" class="verification-state" style="display: none;">
+                    <div class="success-icon">✅</div>
+                    <h2>Email Verified Successfully!</h2>
+                    <p>Your email has been verified. Please log in to access your account.</p>
+                    <div style="
+                        background: rgba(34, 197, 94, 0.1);
+                        border: 1px solid rgba(34, 197, 94, 0.3);
+                        border-radius: 10px;
+                        padding: 15px;
+                        margin-bottom: 25px;
+                    ">
+                        <p style="color: #e5e7eb; margin: 0; font-size: 0.9rem;">
+                            🎉 <strong>Success!</strong> Your account is now active. You can log in with your email and password.
+                        </p>
+                    </div>
+                    <button onclick="redirectToDashboard()" class="auth-btn">
+                        <span class="btn-icon">→</span>
+                        Go to Login
+                    </button>
+                </div>
+
+                <!-- Error state -->
+                <div id="error-state" class="verification-state" style="display: none;">
+                    <div class="error-icon">❌</div>
+                    <h2>Verification Failed</h2>
+                    <p id="error-message">There was an error verifying your email. Please try again.</p>
+                    <div class="verification-actions">
+                        <button onclick="resendVerification()" class="auth-btn" style="margin-right: 10px;">
+                            <span class="btn-icon">📧</span>
+                            Resend Email
+                        </button>
+                        <button onclick="goToLogin()" class="auth-btn" style="background: #6b7280;">
+                            <span class="btn-icon">←</span>
+                            Back to Login
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+
+    <!-- Scripts -->
+    <script src="../js/config.js"></script>
+    <script src="../js/database.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/email-config.js"></script>
+    <script src="../js/email-verification.js"></script>
+    <script src="../js/contact-widget.js"></script>
+    <script src="../js/notifications.js"></script>
+
+    <script>
+        // Wait for Firebase to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            const email = urlParams.get('email');
+
+            if (!token || !email) {
+                showError('Invalid verification link. Please check your email and try again.');
+                return;
+            }
+
+            // Verify the email
+            verifyEmail(token, email);
+        });
+
+        async function verifyEmail(token, email) {
+            try {
+                // Wait for Firebase to be initialized
+                await waitForFirebase();
+                
+                // Debug: Check verification status before verification
+                console.log('=== BEFORE VERIFICATION ===');
+                await window.emailVerification.debugVerificationStatus(email);
+                
+                // Verify the email token
+                await window.emailVerification.verifyEmailToken(token, email);
+                
+                // Debug: Check verification status after verification
+                console.log('=== AFTER VERIFICATION ===');
+                await window.emailVerification.debugVerificationStatus(email);
+                
+                // Sign out the user to force them to login again
+                if (auth.currentUser) {
+                    await auth.signOut();
+                }
+                
+                // Show success state
+                showSuccess();
+                
+            } catch (error) {
+                console.error('Verification error:', error);
+                showError(error.message);
+            }
+        }
+
+        function showSuccess() {
+            document.getElementById('loading-state').style.display = 'none';
+            document.getElementById('error-state').style.display = 'none';
+            document.getElementById('success-state').style.display = 'block';
+        }
+
+        function showError(message) {
+            document.getElementById('loading-state').style.display = 'none';
+            document.getElementById('success-state').style.display = 'none';
+            document.getElementById('error-state').style.display = 'block';
+            document.getElementById('error-message').textContent = message;
+        }
+
+        function redirectToDashboard() {
+            // Always redirect to login after verification
+            // User needs to log in again after email verification
+            window.location.href = 'login.html';
+        }
+
+        async function resendVerification() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const email = urlParams.get('email');
+                
+                if (!email) {
+                    alert('Email not found. Please try registering again.');
+                    return;
+                }
+
+                // Get user data
+                const userQuery = await db.collection('users').where('email', '==', email).get();
+                
+                if (userQuery.empty) {
+                    alert('User not found. Please try registering again.');
+                    return;
+                }
+
+                const userData = userQuery.docs[0].data();
+                const userId = userQuery.docs[0].id;
+
+                // Resend verification email
+                await window.emailVerification.resendVerificationEmail(userId, email, userData.name);
+                
+                alert('Verification email sent successfully! Please check your inbox.');
+                
+            } catch (error) {
+                console.error('Error resending verification:', error);
+                alert('Error sending verification email. Please try again later.');
+            }
+        }
+
+        function goToLogin() {
+            window.location.href = 'login.html';
+        }
+
+        // Wait for Firebase to be ready
+        function waitForFirebase() {
+            return new Promise((resolve) => {
+                const checkFirebase = () => {
+                    if (typeof auth !== 'undefined' && typeof db !== 'undefined') {
+                        resolve();
+                    } else {
+                        setTimeout(checkFirebase, 100);
+                    }
+                };
+                checkFirebase();
+            });
+        }
+    </script>
+
+    <style>
+        .verification-state {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #374151;
+            border-top: 4px solid #8b5cf6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-icon, .error-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .verification-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .verification-actions .auth-btn {
+            flex: 1;
+            max-width: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .verification-actions {
+                flex-direction: column;
+            }
+            
+            .verification-actions .auth-btn {
+                max-width: none;
+            }
+        }
+    </style>
+</body>
+</html>
