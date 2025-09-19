@@ -151,8 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Set default sort to name');
     }
     
-    // Sort artists by name by default
-    sortArtists();
     setupEventListeners();
     
     // Check if there's a style parameter in the URL
@@ -168,7 +166,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Apply style filter from URL
         applyStyleFilterFromURL(styleParam);
     } else {
-        console.log('No style parameter found');
+        console.log('No style parameter found, applying default sort');
+        // Sort artists by name by default only if no URL filter
+        sortArtists();
     }
 });
 
