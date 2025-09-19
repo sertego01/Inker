@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Styles - Inker</title>
+    <title>Inker</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/find-styles.css">
     <link rel="stylesheet" href="../css/contact-widget.css">
@@ -17,16 +17,13 @@
             </a>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="find-styles.html" class="nav-link" data-nav="find-styles">Find styles</a>
+                    <a href="find-styles.html" class="nav-link" data-nav="find-styles">Styles</a>
                 </li>
                 <li class="nav-item">
-                    <a href="find-artists.html" class="nav-link" data-nav="find-artist">Find artist</a>
+                    <a href="find-artists.html" class="nav-link" data-nav="find-artist">Artist</a>
                 </li>
                 <li class="nav-item">
-                    <a href="login.html" class="nav-link" data-nav="login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a href="register.html" class="nav-button" data-nav="signup">Sign up</a>
+                    <a href="login.html" class="nav-button" data-nav="login">Login</a>
                 </li>
             </ul>
             <div class="hamburger">
@@ -48,56 +45,6 @@
                     <input type="text" id="styleSearch" placeholder="Search styles, techniques, or characteristics..." data-nav="search-styles-placeholder">
                     <button class="search-btn" onclick="searchStyles()" data-nav="search-btn">Search</button>
                 </div>
-                
-                <div class="filter-controls">
-                    <div class="filters-left">
-                        <div class="filters-dropdown">
-                            <button class="filters-btn" onclick="toggleFilters()" data-nav="filters-btn">
-                                <span data-nav="filters-text">Filters</span>
-                                <span class="dropdown-arrow">▼</span>
-                            </button>
-                            <div class="filters-dropdown-content" id="filterDropdown">
-                                <div class="filter-group">
-                                    <label>Difficulty Level</label>
-                                    <select id="difficultyFilter" onchange="filterByDifficulty()">
-                                        <option value="">All Levels</option>
-                                        <option value="Beginner">Beginner</option>
-                                        <option value="Intermediate">Intermediate</option>
-                                        <option value="Advanced">Advanced</option>
-                                        <option value="Expert">Expert</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="filter-group">
-                                    <label>Popularity</label>
-                                    <select id="popularityFilter" onchange="filterByPopularity()">
-                                        <option value="">All Popularity</option>
-                                        <option value="Trending">Trending</option>
-                                        <option value="Popular">Popular</option>
-                                        <option value="Classic">Classic</option>
-                                        <option value="Rare">Rare</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="filter-actions">
-                                    <button class="clear-filters-btn" onclick="clearFilters()">Clear All</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="sort-controls">
-                        <span>Sort by:</span>
-                        <select id="sortBy" onchange="sortStyles()">
-                            <option value="relevance">Relevance</option>
-                            <option value="name">Name</option>
-                            <option value="popularity">Popularity</option>
-                            <option value="difficulty">Difficulty</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="artists-count" id="stylesCount">Found 12 styles</div>
             </div>
         </div>
     </section>
@@ -143,15 +90,15 @@
                             const currentLang = localStorage.getItem('language') || 'en';
                             const translations = {
                                 en: {
-                                    'find-styles': 'Find styles',
-                                    'find-artist': 'Find artist',
+                                    'find-styles': 'Styles',
+                                    'find-artist': 'Artist',
                                     'messages': 'Messages',
                                     'dashboard': 'Dashboard',
                                     'logout': 'Logout'
                                 },
                                 es: {
-                                    'find-styles': 'Buscar estilos',
-                                    'find-artist': 'Buscar tatuador',
+                                    'find-styles': 'Estilos',
+                                    'find-artist': 'Tatuadores',
                                     'messages': 'Mensajes',
                                     'dashboard': 'Panel',
                                     'logout': 'Cerrar sesión'
@@ -197,16 +144,14 @@
                     const currentLang = localStorage.getItem('language') || 'en';
                     const translations = {
                         en: {
-                            'find-styles': 'Find styles',
-                            'find-artist': 'Find artist',
-                            'login': 'Login',
-                            'signup': 'Sign up'
+                            'find-styles': 'Styles',
+                            'find-artist': 'Artist',
+                            'login': 'Login'
                         },
                         es: {
-                            'find-styles': 'Buscar estilos',
-                            'find-artist': 'Buscar tatuador',
-                            'login': 'Iniciar sesión',
-                            'signup': 'Registrarse'
+                            'find-styles': 'Estilos',
+                            'find-artist': 'Tatuadores',
+                            'login': 'Iniciar sesión'
                         }
                     };
                     
@@ -218,10 +163,7 @@
                             <a href="find-artists.html" class="nav-link" data-nav="find-artist">${translations[currentLang]['find-artist']}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="login.html" class="nav-link" data-nav="login">${translations[currentLang]['login']}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="register.html" class="nav-button" data-nav="signup">${translations[currentLang]['signup']}</a>
+                            <a href="login.html" class="nav-button" data-nav="login">${translations[currentLang]['login']}</a>
                         </li>
                     `;
                 }

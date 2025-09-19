@@ -73,7 +73,7 @@ Message:
 El widget aparece en todas las páginas:
 - ✅ `index.html` - Página principal
 - ✅ `pages/find-artists.html` - Buscar artistas
-- ✅ `pages/find-styles.html` - Buscar estilos
+- ✅ `pages/find-styles.html` - Estilos
 - ✅ `pages/artist-profile.html` - Perfil de artista
 - ✅ `pages/login.html` - Iniciar sesión
 - ✅ `pages/register.html` - Registrarse

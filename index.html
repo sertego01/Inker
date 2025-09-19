@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inker - Find your perfect tattoo artist</title>
+    <title>Inker</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/contact-widget.css">
     <link rel="stylesheet" href="css/notifications.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="index-page">
     <!-- Barra de navegación -->
     <nav class="navbar">
         <div class="nav-container">
@@ -18,16 +18,13 @@
             </a>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="pages/find-styles.html" class="nav-link" data-nav="find-styles">Find styles</a>
+                    <a href="pages/find-styles.html" class="nav-link" data-nav="find-styles">Styles</a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/find-artists.html" class="nav-link" data-nav="find-artist">Find artist</a>
+                    <a href="pages/find-artists.html" class="nav-link" data-nav="find-artist">Artist</a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/login.html" class="nav-link" data-nav="login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a href="pages/register.html" class="nav-button" data-nav="signup">Sign up</a>
+                    <a href="pages/login.html" class="nav-button" data-nav="login">Login</a>
                 </li>
             </ul>
             <div class="hamburger">
@@ -53,21 +50,21 @@
         <div class="features-container">
             <div class="feature-card" data-feature="browse-styles">
                 <div class="feature-icon">
-                    <div class="palette-icon">🎨</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette h-12 w-12 text-purple-500 mx-auto mb-4"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>
                 </div>
                 <h3>Browse Styles</h3>
                 <p>Explore different tattoo styles and find artists who specialize in them</p>
             </div>
             <div class="feature-card" data-feature="find-near">
                 <div class="feature-icon">
-                    <div class="location-icon">📍</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-12 w-12 text-pink-500 mx-auto mb-4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </div>
                 <h3>Find Near You</h3>
                 <p>Discover talented artists in your local area or search by city</p>
             </div>
             <div class="feature-card" data-feature="most-popular">
                 <div class="feature-icon">
-                    <div class="trending-icon">📈</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-12 w-12 text-blue-500 mx-auto mb-4"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
                 </div>
                 <h3>Most Popular</h3>
                 <p>Check out the most liked and highly-rated artists</p>
@@ -76,7 +73,7 @@
     </section>
 
     <!-- Popular Tattoo Styles -->
-    <section class="popular-styles">
+    <section id="browse-styles" class="popular-styles">
         <div class="container">
             <h2>Popular Tattoo Styles</h2>
             <p>Explore different artistic styles and find your perfect match</p>
@@ -96,18 +93,37 @@
     </section>
 
     <!-- Tatuadores en Tendencia -->
-    <section class="trending-artists">
+    <section id="most-popular" class="trending-artists">
         <div class="container">
             <h2>Featured Artists</h2>
             <p>Discover some of our most talented and popular artists</p>
-            <div class="artists-grid">
+        <div class="artists-grid">
+                <div class="artist-card">
+                    <div class="artist-image">
+                        <img src="images/artist4.jpg" alt="David War">
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">David War</h3>
+                        <p class="artist-style">Japanese</p>
+                        <div class="artist-details">
+                            <div class="artist-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-4 w-4 mr-1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                <span>Seattle, WA</span>
+                            </div>
+                            <div class="artist-rating">
+                                <span class="star-icon">⭐</span>
+                                <span>1654</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="artist-card">
                     <div class="artist-image">
                         <img src="images/artist1.jpg" alt="Sarah Chen">
                     </div>
                     <div class="artist-info">
                         <h3 class="artist-name">Sarah Chen</h3>
-                        <p class="artist-style">Watercolor & Realistic</p>
+                        <p class="artist-style">Watercolor</p>
                         <div class="artist-details">
                             <div class="artist-location">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-4 w-4 mr-1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
@@ -115,7 +131,7 @@
                             </div>
                             <div class="artist-rating">
                                 <span class="star-icon">⭐</span>
-                                <span>1245</span>
+                                <span>1456</span>
                             </div>
                         </div>
                     </div>
@@ -126,7 +142,7 @@
                     </div>
                     <div class="artist-info">
                         <h3 class="artist-name">Marcus Rodriguez</h3>
-                        <p class="artist-style">Traditional & Neo-traditional</p>
+                        <p class="artist-style">Traditional</p>
                         <div class="artist-details">
                             <div class="artist-location">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-4 w-4 mr-1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
@@ -134,7 +150,7 @@
                             </div>
                             <div class="artist-rating">
                                 <span class="star-icon">⭐</span>
-                                <span>987</span>
+                                <span>1245</span>
                             </div>
                         </div>
                     </div>
@@ -145,7 +161,7 @@
                     </div>
                     <div class="artist-info">
                         <h3 class="artist-name">Elena Volkov</h3>
-                        <p class="artist-style">Blackwork & Geometric</p>
+                        <p class="artist-style">Blackwork</p>
                         <div class="artist-details">
                             <div class="artist-location">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-4 w-4 mr-1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
@@ -153,7 +169,7 @@
                             </div>
                             <div class="artist-rating">
                                 <span class="star-icon">⭐</span>
-                                <span>1456</span>
+                                <span>1123</span>
                             </div>
                         </div>
                     </div>
@@ -163,7 +179,7 @@
     </section>
 
     <!-- How it works -->
-    <section class="how-it-works">
+    <section id="find-near" class="how-it-works">
         <h2>How it works</h2>
         <div class="steps">
             <div class="step" data-step="step1">
@@ -218,117 +234,162 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
 
 <!-- Tus scripts -->
-    <script src="js/config.js"></script>
-    <script src="js/database.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/main.js"></script>
+<script src="js/config.js"></script>
+<script src="js/database.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
     <script src="js/email-config.js"></script>
     <script src="js/contact-widget.js"></script>
     <script src="js/notifications.js"></script>
     <script src="js/i18n.js"></script>
-    <script>
+<script>
         // Esperar a que Firebase esté completamente cargado
         document.addEventListener('DOMContentLoaded', function() {
-            // Verificar estado de autenticación y actualizar la navegación
-            checkAuthState((user) => {
+    // Verificar estado de autenticación y actualizar la navegación
+    checkAuthState((user) => {
                 console.log('Auth state changed:', user ? 'User logged in' : 'User logged out');
-                const navMenu = document.querySelector('.nav-menu');
-                
-                if (user) {
-                    // Usuario autenticado - mostrar enlace a dashboard y botón de cerrar sesión
-                    getUserData(user.uid).then((userDoc) => {
-                        if (userDoc.exists) {
-                            const userData = userDoc.data();
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (user) {
+            // Usuario autenticado - mostrar enlace a dashboard y botón de cerrar sesión
+            getUserData(user.uid).then((userDoc) => {
+                if (userDoc.exists) {
+                    const userData = userDoc.data();
                             console.log('User data loaded:', userData.userType);
-                            
-                            // Reemplazar enlaces de login/register con dashboard y logout
+                    
+                    // Reemplazar enlaces de login/register con dashboard y logout
                             const currentLang = localStorage.getItem('language') || 'en';
                             const translations = {
                                 en: {
-                                    'find-styles': 'Find styles',
-                                    'find-artist': 'Find artist',
+                                    'find-styles': 'Styles',
+                                    'find-artist': 'Artist',
                                     'messages': 'Messages',
                                     'dashboard': 'Dashboard',
                                     'logout': 'Logout'
                                 },
                                 es: {
-                                    'find-styles': 'Buscar estilos',
-                                    'find-artist': 'Buscar tatuador',
+                                    'find-styles': 'Estilos',
+                                    'find-artist': 'Tatuadores',
                                     'messages': 'Mensajes',
                                     'dashboard': 'Panel',
                                     'logout': 'Cerrar sesión'
                                 }
                             };
                             
-                            navMenu.innerHTML = `
-                                <li class="nav-item">
+                    navMenu.innerHTML = `
+                        <li class="nav-item">
                                     <a href="pages/find-styles.html" class="nav-link" data-nav="find-styles">${translations[currentLang]['find-styles']}</a>
-                                </li>
-                                <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                                     <a href="pages/find-artists.html" class="nav-link" data-nav="find-artist">${translations[currentLang]['find-artist']}</a>
-                                </li>
-                                <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                                     <a href="#" class="nav-link" data-nav="messages">${translations[currentLang]['messages']}</a>
-                                </li>
-                                <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                                     <a href="pages/dashboard-${userData.userType}.html" class="nav-link" data-nav="dashboard">${translations[currentLang]['dashboard']}</a>
-                                </li>
-                                <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                                     <a href="#" id="logoutBtn" class="nav-button" data-nav="logout">${translations[currentLang]['logout']}</a>
-                                </li>
-                            `;
-                            
-                            // Agregar evento al botón de cerrar sesión
-                            document.getElementById('logoutBtn').addEventListener('click', function(e) {
-                                e.preventDefault();
-                                logoutUser().then(() => {
+                        </li>
+                    `;
+                    
+                    // Agregar evento al botón de cerrar sesión
+                    document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                        e.preventDefault();
+                        logoutUser().then(() => {
                                     console.log('User logged out successfully');
                                     // Recargar la página para mostrar el menú de no autenticado
-                                    window.location.reload();
+                            window.location.reload();
                                 }).catch((error) => {
                                     console.error('Error al cerrar sesión:', error);
                                     alert('Error al cerrar sesión. Por favor, intenta de nuevo.');
-                                });
-                            });
-                        }
+                        });
+                    });
+                }
                     }).catch((error) => {
                         console.error('Error al obtener datos del usuario:', error);
-                    });
-                } else {
+            });
+        } else {
                     // Usuario no autenticado - mantener menú original
                     const currentLang = localStorage.getItem('language') || 'en';
                     const translations = {
                         en: {
-                            'find-styles': 'Find styles',
-                            'find-artist': 'Find artist',
-                            'login': 'Login',
-                            'signup': 'Sign up'
+                            'find-styles': 'Styles',
+                            'find-artist': 'Artist',
+                            'login': 'Login'
                         },
                         es: {
-                            'find-styles': 'Buscar estilos',
-                            'find-artist': 'Buscar tatuador',
-                            'login': 'Iniciar sesión',
-                            'signup': 'Registrarse'
+                            'find-styles': 'Estilos',
+                            'find-artist': 'Tatuadores',
+                            'login': 'Iniciar sesión'
                         }
                     };
                     
-                    navMenu.innerHTML = `
-                        <li class="nav-item">
+            navMenu.innerHTML = `
+                <li class="nav-item">
                             <a href="pages/find-styles.html" class="nav-link" data-nav="find-styles">${translations[currentLang]['find-styles']}</a>
-                        </li>
-                        <li class="nav-item">
+                </li>
+                <li class="nav-item">
                             <a href="pages/find-artists.html" class="nav-link" data-nav="find-artist">${translations[currentLang]['find-artist']}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/login.html" class="nav-link" data-nav="login">${translations[currentLang]['login']}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/register.html" class="nav-button" data-nav="signup">${translations[currentLang]['signup']}</a>
-                        </li>
-                    `;
-                }
+                </li>
+                <li class="nav-item">
+                            <a href="pages/login.html" class="nav-button" data-nav="login">${translations[currentLang]['login']}</a>
+                </li>
+            `;
+        }
             });
         });
-    </script>
+
+        // Feature container navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const featureCards = document.querySelectorAll('.feature-card');
+            
+            featureCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const feature = this.getAttribute('data-feature');
+                    const targetSection = document.getElementById(feature);
+                    
+                    if (targetSection) {
+                        // Smooth scroll to the target section
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Add a subtle highlight effect
+                        targetSection.style.transition = 'all 0.3s ease';
+                        targetSection.style.backgroundColor = 'rgba(139, 92, 246, 0.1)';
+                        
+                        // Remove highlight after 2 seconds
+                        setTimeout(() => {
+                            targetSection.style.backgroundColor = '';
+                        }, 2000);
+                    }
+                });
+                
+                // Add hover effect
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.2)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+                });
+            });
+
+            // Handle style button clicks
+            const styleButtons = document.querySelectorAll('.style-button');
+            styleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const styleId = this.getAttribute('data-style');
+                    // Navigate to find-styles page with the style parameter
+                    window.location.href = `pages/find-styles.html?style=${styleId}`;
+                });
+            });
+    });
+</script>
 </body>
 </html>

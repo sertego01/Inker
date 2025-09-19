@@ -30,7 +30,7 @@ function getAllArtists(limit = 10) {
     return db.collection('artists').limit(limit).get();
 }
 
-// Buscar tatuadores por estilo
+// Tatuadoreses por estilo
 function getArtistsByStyle(style, limit = 10) {
     return db.collection('artists')
         .where('styles', 'array-contains', style)
@@ -38,7 +38,7 @@ function getArtistsByStyle(style, limit = 10) {
         .get();
 }
 
-// Buscar tatuadores por ubicación (búsqueda básica por ciudad)
+// Tatuadoreses por ubicación (búsqueda básica por ciudad)
 function getArtistsByLocation(location, limit = 10) {
     return db.collection('artists')
         .where('city', '==', location.toLowerCase())

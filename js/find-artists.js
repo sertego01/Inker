@@ -140,8 +140,36 @@ let filteredArtists = [...allArtists];
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
-    loadArtists();
+    console.log('=== DOM CONTENT LOADED ===');
+    console.log('Current URL:', window.location.href);
+    console.log('Search params:', window.location.search);
+    
+    // Set default sort to name
+    const sortBySelect = document.getElementById('sortBy');
+    if (sortBySelect) {
+        sortBySelect.value = 'name';
+        console.log('Set default sort to name');
+    }
+    
+    // Sort artists by name by default
+    sortArtists();
     setupEventListeners();
+    
+    // Check if there's a style parameter in the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const styleParam = urlParams.get('style');
+    
+    console.log('URL params:', window.location.search);
+    console.log('Style param:', styleParam);
+    console.log('Style param type:', typeof styleParam);
+    
+    if (styleParam) {
+        console.log('Calling applyStyleFilterFromURL with:', styleParam);
+        // Apply style filter from URL
+        applyStyleFilterFromURL(styleParam);
+    } else {
+        console.log('No style parameter found');
+    }
 });
 
 // Setup event listeners
@@ -201,7 +229,7 @@ function createArtistCard(artist) {
         </div>
         <div class="artist-info">
             <h3 class="artist-name">${artist.name}</h3>
-            <p class="artist-style">${artist.style}</p>
+            <p class="artist-style">${artist.styles[0]}</p>
             <div class="artist-details">
                 <div class="artist-location">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-4 w-4 mr-1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
@@ -229,6 +257,11 @@ function searchArtists() {
     const styleFilter = document.getElementById('styleFilter').value;
     const locationFilter = document.getElementById('locationFilter').value;
     
+    console.log('=== SEARCH ARTISTS ===');
+    console.log('Search term:', searchTerm);
+    console.log('Style filter:', styleFilter);
+    console.log('Location filter:', locationFilter);
+    
     filteredArtists = allArtists.filter(artist => {
         const matchesSearch = !searchTerm || 
             artist.name.toLowerCase().includes(searchTerm) ||
@@ -236,12 +269,16 @@ function searchArtists() {
             artist.style.toLowerCase().includes(searchTerm) ||
             artist.styles.some(style => style.toLowerCase().includes(searchTerm));
         
-        const matchesStyle = !styleFilter || artist.styles.includes(styleFilter);
+        // Use the same logic as filterByStyle - check primary style only
+        const matchesStyle = !styleFilter || artist.styles[0] === styleFilter;
         const matchesLocation = !locationFilter || artist.location.includes(locationFilter);
+        
+        console.log(`Artist: ${artist.name}, Search: ${matchesSearch}, Style: ${matchesStyle}, Location: ${matchesLocation}`);
         
         return matchesSearch && matchesStyle && matchesLocation;
     });
     
+    console.log('Final filtered count:', filteredArtists.length);
     loadArtists();
 }
 
@@ -272,7 +309,30 @@ document.addEventListener('click', function(event) {
 
 // Filter by style
 function filterByStyle() {
-    searchArtists();
+    const styleFilter = document.getElementById('styleFilter');
+    const selectedStyle = styleFilter ? styleFilter.value : '';
+    
+    console.log('=== FILTER BY STYLE ===');
+    console.log('Selected style:', selectedStyle);
+    console.log('All artists count:', allArtists.length);
+    
+    if (selectedStyle) {
+        // Filter artists based on their primary style (first in the array)
+        filteredArtists = allArtists.filter(artist => {
+            const primaryStyle = artist.styles[0];
+            const match = primaryStyle === selectedStyle;
+            console.log(`Artist: ${artist.name}, Primary style: "${primaryStyle}", Selected: "${selectedStyle}", Match: ${match}`);
+            return match;
+        });
+    } else {
+        // Show all artists if no style selected
+        filteredArtists = [...allArtists];
+        console.log('No style selected, showing all artists');
+    }
+    
+    console.log('Filtered artists count:', filteredArtists.length);
+    console.log('Filtered artists:', filteredArtists.map(a => a.name));
+    loadArtists();
 }
 
 // Filter by location
@@ -292,11 +352,10 @@ function clearFilters() {
 function sortArtists() {
     const sortBy = document.getElementById('sortBy').value;
     
+    console.log('Sorting artists by:', sortBy);
+    
     filteredArtists.sort((a, b) => {
         switch (sortBy) {
-            case 'relevance':
-                // Default order (as loaded)
-                return 0;
             case 'name':
                 return a.name.localeCompare(b.name);
             case 'rating':
@@ -304,11 +363,81 @@ function sortArtists() {
             case 'location':
                 return a.location.localeCompare(b.location);
             default:
-                return 0;
+                // Default to name sorting
+                return a.name.localeCompare(b.name);
         }
     });
     
+    console.log('Sorted artists:', filteredArtists.map(a => a.name));
     loadArtists();
+}
+
+// Apply style filter from URL parameter
+function applyStyleFilterFromURL(styleId) {
+    console.log('=== APPLY STYLE FILTER FROM URL ===');
+    console.log('Style ID received:', styleId);
+    console.log('Style ID type:', typeof styleId);
+    console.log('All artists count:', allArtists.length);
+    
+    // Check if styleId is valid
+    if (!styleId || styleId === 'undefined') {
+        console.log('Invalid styleId, showing all artists');
+        filteredArtists = [...allArtists];
+        loadArtists();
+        return;
+    }
+    
+    // Map style IDs to style names (must match exactly with select options)
+    const styleMap = {
+        'traditional': 'Traditional',
+        'realistic': 'Realistic',
+        'japanese': 'Japanese',
+        'blackwork': 'Blackwork',
+        'watercolor': 'Watercolor',
+        'geometric': 'Geometric',
+        'tribal': 'Tribal',
+        'neotraditional': 'Neo-traditional',
+        'minimalist': 'Minimalist',
+        'biomechanical': 'Biomechanical',
+        'puntillismo': 'Puntillismo',
+        'dotwork': 'Puntillismo',
+        'henna': 'Henna'
+    };
+    
+    const styleName = styleMap[styleId] || styleId;
+    console.log('Mapped style name:', styleName);
+    
+    // Update the style filter select
+    const styleFilter = document.getElementById('styleFilter');
+    console.log('Style filter element found:', !!styleFilter);
+    if (styleFilter) {
+        styleFilter.value = styleName;
+        console.log('Set style filter to:', styleName);
+        console.log('Style filter value after setting:', styleFilter.value);
+    }
+    
+    // Filter artists based on their primary style (first in the array)
+    console.log('Filtering artists with style:', styleName);
+    filteredArtists = allArtists.filter(artist => {
+        const primaryStyle = artist.styles[0];
+        const match = primaryStyle === styleName;
+        console.log(`Artist ${artist.name} primary style: ${primaryStyle}, looking for: ${styleName}, match: ${match}`);
+        return match;
+    });
+    
+    console.log('Filtered artists count:', filteredArtists.length);
+    console.log('Filtered artists:', filteredArtists.map(a => a.name));
+    
+    // Update the search input to show the filter
+    const searchInput = document.getElementById('artistSearch');
+    if (searchInput) {
+        searchInput.value = styleName;
+    }
+    
+    // Reload the artists with the filter applied
+    console.log('Calling loadArtists()...');
+    loadArtists();
+    console.log('=== END APPLY STYLE FILTER FROM URL ===');
 }
 
 // Logout function

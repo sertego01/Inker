@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inker</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/contact-widget.css">
+    <link rel="stylesheet" href="../css/notifications.css">
+    <style>
+        .terms-container {
+            max-width: 800px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+            color: #e5e7eb;
+        }
+
+        .terms-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .terms-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .terms-header p {
+            font-size: 1.2rem;
+            color: #9ca3af;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .terms-content {
+            background: #374151;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #4b5563;
+        }
+
+        .terms-section {
+            margin-bottom: 40px;
+        }
+
+        .terms-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #8b5cf6;
+            border-bottom: 2px solid #4b5563;
+            padding-bottom: 10px;
+        }
+
+        .terms-section h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            color: #f3f4f6;
+        }
+
+        .terms-section p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #d1d5db;
+        }
+
+        .terms-section ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .terms-section li {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 8px;
+            color: #d1d5db;
+        }
+
+        .highlight {
+            background: rgba(139, 92, 246, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #8b5cf6;
+            margin: 20px 0;
+        }
+
+        .highlight p {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            background: rgba(236, 72, 153, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ec4899;
+            margin: 20px 0;
+        }
+
+        .contact-info h3 {
+            color: #ec4899;
+            margin-top: 0;
+        }
+
+        .last-updated {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #4b5563;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        @media screen and (max-width: 768px) {
+            .terms-container {
+                margin: 80px auto 30px;
+                padding: 0 15px;
+            }
+
+            .terms-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .terms-content {
+                padding: 25px;
+            }
+
+            .terms-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .terms-section h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span>Inker</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="find-styles.html" class="nav-link" data-nav="find-styles">Styles</a>
+                </li>
+                <li class="nav-item">
+                    <a href="find-artists.html" class="nav-link" data-nav="find-artist">Artist</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-button" data-nav="login">Login</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="terms-container">
+        <a href="../index.html" class="back-button">← Back to Home</a>
+        
+        <div class="terms-header">
+            <h1>Terms and Conditions</h1>
+            <p>Please read these terms and conditions carefully before using our platform</p>
+        </div>
+
+        <div class="terms-content">
+            <div class="terms-section">
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accessing and using Inker, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>2. Use License</h2>
+                <p>Permission is granted to temporarily download one copy of the materials on Inker for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
+                <ul>
+                    <li>modify or copy the materials</li>
+                    <li>use the materials for any commercial purpose or for any public display</li>
+                    <li>attempt to reverse engineer any software contained on the website</li>
+                    <li>remove any copyright or other proprietary notations from the materials</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>3. User Accounts</h2>
+                <h3>3.1 Account Creation</h3>
+                <p>To access certain features of our platform, you must create an account. You agree to provide accurate, current, and complete information during the registration process.</p>
+                
+                <h3>3.2 Account Security</h3>
+                <p>You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.</p>
+                
+                <h3>3.3 Account Termination</h3>
+                <p>We reserve the right to suspend or terminate your account at any time for violation of these terms or for any other reason at our sole discretion.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>4. Content and Intellectual Property</h2>
+                <h3>4.1 User Content</h3>
+                <p>You retain ownership of any content you upload to our platform, including tattoo designs, photos, and other materials. By uploading content, you grant us a non-exclusive, royalty-free license to use, display, and distribute your content on our platform.</p>
+                
+                <h3>4.2 Platform Content</h3>
+                <p>All content on our platform, including text, graphics, logos, and software, is the property of Inker or its content suppliers and is protected by copyright and other intellectual property laws.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>5. Prohibited Uses</h2>
+                <p>You may not use our platform:</p>
+                <ul>
+                    <li>For any unlawful purpose or to solicit others to perform unlawful acts</li>
+                    <li>To violate any international, federal, provincial, or state regulations, rules, laws, or local ordinances</li>
+                    <li>To infringe upon or violate our intellectual property rights or the intellectual property rights of others</li>
+                    <li>To harass, abuse, insult, harm, defame, slander, disparage, intimidate, or discriminate</li>
+                    <li>To submit false or misleading information</li>
+                    <li>To upload or transmit viruses or any other type of malicious code</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>6. Privacy Policy</h2>
+                <p>Your privacy is important to us. Our Privacy Policy explains how we collect, use, and protect your information when you use our service. By using our service, you agree to the collection and use of information in accordance with our Privacy Policy.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>7. Disclaimers</h2>
+                <div class="highlight">
+                    <p><strong>Important:</strong> Inker is a platform that connects clients with tattoo artists. We do not provide tattoo services directly and are not responsible for the quality, safety, or outcome of any tattoo work performed by artists on our platform.</p>
+                </div>
+                <p>The information on this platform is provided on an "as is" basis. To the fullest extent permitted by law, this Company:</p>
+                <ul>
+                    <li>excludes all representations and warranties relating to this platform and its contents</li>
+                    <li>excludes all liability for damages arising out of or in connection with your use of this platform</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>8. Limitation of Liability</h2>
+                <p>In no event shall Inker, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your use of the platform.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>9. Indemnification</h2>
+                <p>You agree to defend, indemnify, and hold harmless Inker and its licensee and licensors, and their employees, contractors, agents, officers and directors, from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses (including but not limited to attorney's fees).</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>10. Governing Law</h2>
+                <p>These terms shall be interpreted and governed by the laws of the jurisdiction in which Inker operates, without regard to its conflict of law provisions.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>11. Changes to Terms</h2>
+                <p>We reserve the right, at our sole discretion, to modify or replace these terms at any time. If a revision is material, we will try to provide at least 30 days notice prior to any new terms taking effect.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>12. Contact Information</h2>
+                <div class="contact-info">
+                    <h3>Questions about these Terms?</h3>
+                    <p>If you have any questions about these Terms and Conditions, please contact us:</p>
+                    <ul>
+                        <li>Email: legal@inker.com</li>
+                        <li>Phone: +1 (555) 123-4567</li>
+                        <li>Address: 123 Tattoo Street, Art District, City, State 12345</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="last-updated">
+            <p>Last updated: December 2024</p>
+        </div>
+    </div>
+
+    <!-- Contact Widget -->
+    <div id="contactWidget" class="contact-widget">
+        <div class="contact-button" onclick="toggleContactForm()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Contact Form Modal -->
+    <div id="contactModal" class="contact-modal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Contact Us</h3>
+                <button class="contact-close" onclick="toggleContactForm()">&times;</button>
+            </div>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="contactName">Name</label>
+                    <input type="text" id="contactName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Email</label>
+                    <input type="email" id="contactEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactSubject">Subject</label>
+                    <input type="text" id="contactSubject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactMessage">Message</label>
+                    <textarea id="contactMessage" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="contact-submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="../js/email-config.js"></script>
+    <script src="../js/contact-widget.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/i18n.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

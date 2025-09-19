@@ -28,26 +28,20 @@
 .search-filters {
     max-width: 1000px;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .search-bar {
     display: flex;
+    width: 100%;
     max-width: 700px;
-    margin: 0 auto 20px;
     background: #2D2D44;
     border-radius: 12px;
     padding: 12px 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     border: 1px solid #3A3A5C;
-}
-
-.search-bar::before {
-    content: "🔍";
-    margin-right: 12px;
-    color: #9ca3af;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
 }
 
 .search-bar input {
@@ -239,42 +233,7 @@
     color: white;
 }
 
-.sort-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: white;
-    font-size: 0.9rem;
-}
 
-.sort-controls select {
-    padding: 10px 15px;
-    border: 1px solid #3A3A5C;
-    border-radius: 8px;
-    background: #2D2D44;
-    color: white;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-width: 120px;
-}
-
-.sort-controls select:focus {
-    outline: none;
-    border-color: #8b5cf6;
-    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1);
-}
-
-.artists-count {
-    color: white;
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin-top: 20px;
-    text-align: left;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 /* Styles Section */
 .styles-section {
@@ -285,9 +244,9 @@
 
 .styles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 30px;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -331,71 +290,33 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 15px;
+    padding: 20px 15px;
     text-align: center;
-    background: #8b5cf6;
+    background: linear-gradient(to top, rgba(139, 92, 246, 0.98) 0%, rgba(139, 92, 246, 0.95) 15%, rgba(139, 92, 246, 0.9) 30%, rgba(139, 92, 246, 0.8) 60%, rgba(139, 92, 246, 0.5) 85%, transparent 100%);
     z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 120px;
+    height: 140px;
 }
 
 .style-name {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 700;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     color: white;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .style-description {
     color: white !important;
-    margin-bottom: 8px;
-    font-size: 0.9rem !important;
+    margin-bottom: 0;
+    font-size: 1rem !important;
     font-weight: 500;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    line-height: 1.4;
 }
 
-.style-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0;
-}
-
-.style-difficulty {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 4px;
-    margin-bottom: 0;
-    color: #e5e7eb;
-    font-size: 0.85rem;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.style-difficulty svg {
-    width: 16px;
-    height: 16px;
-    color: #e5e7eb;
-    flex-shrink: 0;
-}
-
-.style-popularity {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-bottom: 0;
-    gap: 4px;
-    color: #e5e7eb;
-    font-size: 0.85rem;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.star-icon {
-    font-size: 0.8rem;
-}
 
 /* No Results Message */
 .no-results {
@@ -407,6 +328,13 @@
 }
 
 /* Responsive Design */
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+    .styles-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .search-section h1 {
         font-size: 2rem;
@@ -416,17 +344,18 @@
         font-size: 0.9rem;
     }
     
-    .filter-controls {
+    .search-filters {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
+        gap: 15px;
     }
     
-    .filter-controls select {
-        min-width: 200px;
+    .search-bar {
+        max-width: none;
     }
     
     .styles-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
 }
@@ -447,5 +376,10 @@
     
     .search-btn {
         width: 100%;
+    }
+    
+    .styles-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 }

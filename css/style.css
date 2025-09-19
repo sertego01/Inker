@@ -111,8 +111,19 @@ ul {
     color: #8b5cf6;
 }
 
+/* Estilos específicos para la página index */
+body.index-page .nav-link {
+    font-weight: 700 !important;
+    color: #ffffff !important;
+}
+
+/* Test para verificar que el selector funciona */
+body.index-page .nav-link:hover {
+    color: #8b5cf6 !important;
+}
+
 .nav-button {
-    background-color: #8b5cf6;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);;
     color: white;
     padding: 8px 16px;
     border-radius: 4px;
@@ -154,8 +165,9 @@ ul {
 }
 
 .hero-content h1 {
-    font-size: 6rem;
+    font-size: 5rem;
     margin-bottom: 30px;
+    margin-top: 50px;
     color: white;
     font-weight: 800;
     line-height: 1.2;
@@ -169,11 +181,11 @@ ul {
 }
 
 .hero-content p {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     margin-bottom: 40px;
     color: #e5e7eb;
     line-height: 1.6;
-    max-width: 600px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -228,26 +240,46 @@ ul {
 
 /* Features Container */
 .features-container {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 60px auto 0;
     padding: 0 20px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 35px;
 }
 
 .feature-card {
     background: #374151;
     border-radius: 12px;
-    padding: 20px;
+    padding: 25px 20px;
     text-align: center;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     border: 1px solid #4b5563;
-    aspect-ratio: 1;
+    aspect-ratio: 1.2;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.feature-card:hover::before {
+    left: 100%;
 }
 
 .feature-card:hover {
@@ -256,11 +288,30 @@ ul {
     border-color: #8b5cf6;
 }
 
+.feature-card:active {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
 .feature-icon {
     margin-bottom: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.feature-icon svg {
+    width: 3rem;
+    height: 3rem;
+    color: rgb(168, 85, 247);
+}
+
+.feature-icon svg.lucide-map-pin {
+    color: rgb(236, 72, 153);
+}
+
+.feature-icon svg.lucide-trending-up {
+    color: rgb(59, 130, 246);
 }
 
 .palette-icon,
@@ -387,9 +438,9 @@ ul {
 
 .artists-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    max-width: 1000px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -434,12 +485,12 @@ ul {
     right: 0;
     padding: 15px;
     text-align: center;
-    background: #8b5cf6;
+    background: linear-gradient(to top, rgba(139, 92, 246, 0.98) 0%, rgba(139, 92, 246, 0.95) 15%, rgba(139, 92, 246, 0.9) 30%, rgba(139, 92, 246, 0.8) 60%, rgba(139, 92, 246, 0.5) 85%, transparent 100%);
     z-index: 2;
     height: 120px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 .artist-info p {
@@ -473,7 +524,7 @@ ul {
 
 .artist-style {
     color: white !important;
-    margin-bottom: 30px!important;
+    margin-bottom: 10px!important;
     font-size: 0.9rem !important;
     font-weight: 500;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
@@ -483,7 +534,7 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0;
+    margin: 0 15px 15px 15px;
 }
 
 .artist-location {
@@ -513,6 +564,11 @@ ul {
     color: #e5e7eb;
     font-size: 0.85rem;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.stars {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
 }
 
 .star-icon {
@@ -717,14 +773,15 @@ ul {
     
     .features-container {
         grid-template-columns: 1fr;
-        gap: 15px;
+        gap: 25px;
         margin-top: 40px;
         padding: 0 15px;
     }
     
     .feature-card {
+        max-width: 100%;
+        aspect-ratio: 1.6;
         padding: 20px;
-        aspect-ratio: 1;
     }
     
     .styles-grid {
@@ -750,7 +807,11 @@ ul {
 @media screen and (max-width: 968px) and (min-width: 769px) {
     .features-container {
         grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
+        gap: 30px;
+    }
+    
+    .feature-card {
+        aspect-ratio: 1.5;
     }
     
     .styles-grid {
@@ -768,6 +829,6 @@ ul {
     .artists-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 25px;
-        max-width: 700px;
+        max-width: 800px;
     }
 }

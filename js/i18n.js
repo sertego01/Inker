@@ -7,8 +7,8 @@ class I18n {
         this.translations = {
             en: {
                 // Navigation
-                'nav.find-styles': 'Find styles',
-                'nav.find-artist': 'Find artist',
+                'nav.find-styles': 'Styles',
+                'nav.find-artist': 'Artist',
                 'nav.login': 'Login',
                 'nav.signup': 'Sign up',
                 'nav.messages': 'Messages',
@@ -113,13 +113,17 @@ class I18n {
                 'search-artists-placeholder': 'Search artists, styles, or locations...',
                 'search-btn': 'Search',
                 'filters-text': 'Filters',
+                'sort-by': 'Sort by:',
+                'sort-name': 'Name',
+                'sort-rating': 'Rating',
+                'sort-location': 'Location',
                 'find-artist-title': 'Find Your Perfect Tattoo Artist',
                 'find-artist-subtitle': 'Discover talented artists in your area and find the perfect match for your next tattoo'
             },
             es: {
                 // Navigation
-                'nav.find-styles': 'Buscar estilos',
-                'nav.find-artist': 'Buscar tatuador',
+                'nav.find-styles': 'Estilos',
+                'nav.find-artist': 'Tatuadores',
                 'nav.login': 'Iniciar sesión',
                 'nav.signup': 'Registrarse',
                 'nav.messages': 'Mensajes',
@@ -220,10 +224,14 @@ class I18n {
                 // Search Pages
                 'discover-styles-title': 'Descubre Estilos de Tatuajes',
                 'discover-styles-subtitle': 'Explora diferentes estilos artísticos y encuentra la combinación perfecta para tu próximo tatuaje',
-                'search-styles-placeholder': 'Buscar estilos, técnicas o características...',
-                'search-artists-placeholder': 'Buscar tatuadores, estilos o ubicaciones...',
+                'search-styles-placeholder': 'Estilos, técnicas o características...',
+                'search-artists-placeholder': 'Tatuadoreses, estilos o ubicaciones...',
                 'search-btn': 'Buscar',
                 'filters-text': 'Filtros',
+                'sort-by': 'Ordenar por:',
+                'sort-name': 'Nombre',
+                'sort-rating': 'Valoración',
+                'sort-location': 'Ubicación',
                 'find-artist-title': 'Encuentra tu Tatuador Perfecto',
                 'find-artist-subtitle': 'Descubre tatuadores talentosos en tu área y encuentra la combinación perfecta para tu próximo tatuaje'
             }

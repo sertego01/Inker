@@ -132,6 +132,31 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
 });
 
+// Check for style parameter after page is fully loaded
+window.addEventListener('load', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const styleParam = urlParams.get('style');
+    
+    console.log('URL params:', window.location.search);
+    console.log('Style param:', styleParam);
+    
+    if (styleParam) {
+        // Find the style with the matching ID
+        const targetStyle = allStyles.find(style => style.id === styleParam);
+        console.log('Target style found:', targetStyle);
+        
+        if (targetStyle) {
+            // Wait a bit for the page to load, then show the modal
+            setTimeout(() => {
+                console.log('Opening modal for style:', targetStyle.name);
+                showStyleDetails(targetStyle);
+            }, 500);
+        } else {
+            console.log('Style not found for ID:', styleParam);
+        }
+    }
+});
+
 // Setup event listeners
 function setupEventListeners() {
     const searchInput = document.getElementById('styleSearch');
@@ -160,22 +185,21 @@ function debounce(func, wait) {
 // Load styles into the grid
 function loadStyles() {
     const stylesGrid = document.getElementById('stylesGrid');
-    const stylesCount = document.getElementById('stylesCount');
     
     stylesGrid.innerHTML = '';
     
     if (filteredStyles.length === 0) {
         stylesGrid.innerHTML = '<div class="no-results">No styles found matching your criteria.</div>';
-        stylesCount.textContent = 'Found 0 styles';
         return;
     }
     
-    filteredStyles.forEach(style => {
+    // Always sort by name
+    const sortedStyles = [...filteredStyles].sort((a, b) => a.name.localeCompare(b.name));
+    
+    sortedStyles.forEach(style => {
         const styleCard = createStyleCard(style);
         stylesGrid.appendChild(styleCard);
     });
-    
-    stylesCount.textContent = `Found ${filteredStyles.length} styles`;
 }
 
 // Create style card HTML
@@ -190,16 +214,6 @@ function createStyleCard(style) {
         <div class="style-info">
             <h3 class="style-name">${style.name}</h3>
             <p class="style-description">${style.description}</p>
-            <div class="style-details">
-                <div class="style-difficulty">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-4 w-4 mr-1"><path d="m22 7-8.5 8.5-5-5L2 17"></path><path d="M16 7h6v6"></path></svg>
-                    <span>${style.difficulty}</span>
-                </div>
-                <div class="style-popularity">
-                    <span class="star-icon">⭐</span>
-                    <span>${style.popularity}</span>
-                </div>
-            </div>
         </div>
     `;
     
@@ -261,29 +275,12 @@ function showStyleDetails(style) {
                     animation: rotate 20s linear infinite;
                 "></div>
                 
-                <button onclick="this.closest('.modal').remove()" style="
-                    position: absolute;
-                    top: 20px;
-                    right: 20px;
-                    background: rgba(255, 255, 255, 0.2);
-                    border: none;
-                    color: white;
-                    font-size: 24px;
-                    cursor: pointer;
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    transition: all 0.3s ease;
-                    backdrop-filter: blur(10px);
-                " onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">×</button>
                 
                 <h2 style="
                     color: white; 
                     margin: 0 0 10px 0; 
                     font-size: 2.5rem; 
+                    text-align: center;
                     font-weight: 800;
                     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
                     position: relative;
@@ -294,6 +291,7 @@ function showStyleDetails(style) {
                     color: rgba(255, 255, 255, 0.9); 
                     margin: 0; 
                     font-size: 1.2rem;
+                    text-align: center;
                     position: relative;
                     z-index: 1;
                 ">${style.description}</p>
@@ -373,67 +371,13 @@ function showStyleDetails(style) {
                     ">${style.history}</p>
                 </div>
                 
-                <!-- Stats Cards -->
-                <div style="
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                    gap: 20px;
-                    margin-bottom: 30px;
-                ">
-                    <div style="
-                        background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-                        padding: 20px;
-                        border-radius: 15px;
-                        text-align: center;
-                        box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
-                        transition: transform 0.3s ease;
-                    " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                        <div style="
-                            color: white; 
-                            font-weight: 700; 
-                            font-size: 0.9rem;
-                            margin-bottom: 8px;
-                            text-transform: uppercase;
-                            letter-spacing: 1px;
-                        ">Difficulty Level</div>
-                        <div style="
-                            color: #e5e7eb; 
-                            font-size: 1.3rem;
-                            font-weight: 600;
-                        ">${style.difficulty}</div>
-                    </div>
-                    
-                    <div style="
-                        background: linear-gradient(135deg, #ec4899, #be185d);
-                        padding: 20px;
-                        border-radius: 15px;
-                        text-align: center;
-                        box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
-                        transition: transform 0.3s ease;
-                    " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                        <div style="
-                            color: white; 
-                            font-weight: 700; 
-                            font-size: 0.9rem;
-                            margin-bottom: 8px;
-                            text-transform: uppercase;
-                            letter-spacing: 1px;
-                        ">Popularity</div>
-                        <div style="
-                            color: #e5e7eb; 
-                            font-size: 1.3rem;
-                            font-weight: 600;
-                        ">${style.popularity}</div>
-                    </div>
-                </div>
-                
                 <!-- Action Buttons -->
                 <div style="
                     display: flex;
                     gap: 15px;
                     justify-content: center;
                 ">
-                    <button onclick="this.closest('.modal').remove()" style="
+                    <button onclick="closeStyleModal()" style="
                         background: linear-gradient(135deg, #6b7280, #4b5563);
                         color: white;
                         border: none;
@@ -580,27 +524,12 @@ function clearFilters() {
     searchStyles();
 }
 
-// Sort styles
-function sortStyles() {
-    const sortBy = document.getElementById('sortBy').value;
-    
-    filteredStyles.sort((a, b) => {
-        switch (sortBy) {
-            case 'relevance':
-                // Default order (as loaded)
-                return 0;
-            case 'name':
-                return a.name.localeCompare(b.name);
-            case 'popularity':
-                const popularityOrder = { 'Trending': 4, 'Popular': 3, 'Classic': 2, 'Rare': 1 };
-                return popularityOrder[b.popularity] - popularityOrder[a.popularity];
-            case 'difficulty':
-                const difficultyOrder = { 'Expert': 4, 'Advanced': 3, 'Intermediate': 2, 'Beginner': 1 };
-                return difficultyOrder[b.difficulty] - difficultyOrder[a.difficulty];
-            default:
-                return 0;
-        }
-    });
-    
-    loadStyles();
+
+// Function to close the style modal
+function closeStyleModal() {
+    const modal = document.querySelector('.modal');
+    if (modal) {
+        modal.remove();
+    }
 }
+

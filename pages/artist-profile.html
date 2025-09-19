@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artist Profile - Inker</title>
+    <title>Inker</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/artist-profile.css">
     <link rel="stylesheet" href="../css/contact-widget.css">
@@ -17,16 +17,13 @@
             </a>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="find-styles.html" class="nav-link">Find styles</a>
+                    <a href="find-styles.html" class="nav-link">Styles</a>
                 </li>
                 <li class="nav-item">
-                    <a href="find-artists.html" class="nav-link">Find artist</a>
+                    <a href="find-artists.html" class="nav-link">Artist</a>
                 </li>
                 <li class="nav-item">
-                    <a href="login.html" class="nav-link">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a href="register.html" class="nav-button">Sign up</a>
+                    <a href="login.html" class="nav-button">Login</a>
                 </li>
             </ul>
             <div class="hamburger">
@@ -316,10 +313,10 @@
                             // Reemplazar enlaces de login/register con dashboard y logout
                             navMenu.innerHTML = `
                                 <li class="nav-item">
-                                    <a href="find-styles.html" class="nav-link">Find styles</a>
+                                    <a href="find-styles.html" class="nav-link">Styles</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="find-artists.html" class="nav-link">Find artist</a>
+                                    <a href="find-artists.html" class="nav-link">Artist</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">Messages</a>
@@ -352,16 +349,13 @@
                     // Usuario no autenticado - mantener menú original
                     navMenu.innerHTML = `
                         <li class="nav-item">
-                            <a href="find-styles.html" class="nav-link">Find styles</a>
+                            <a href="find-styles.html" class="nav-link">Styles</a>
                         </li>
                         <li class="nav-item">
-                            <a href="find-artists.html" class="nav-link">Find artist</a>
+                            <a href="find-artists.html" class="nav-link">Artist</a>
                         </li>
                         <li class="nav-item">
-                            <a href="login.html" class="nav-link">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="register.html" class="nav-button">Sign up</a>
+                            <a href="login.html" class="nav-button">Login</a>
                         </li>
                     `;
                 }

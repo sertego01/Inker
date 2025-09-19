@@ -41,15 +41,6 @@
     border: 1px solid #3A3A5C;
 }
 
-.search-bar::before {
-    content: "🔍";
-    margin-right: 12px;
-    color: #9ca3af;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-}
-
 .search-bar input {
     flex: 1;
     padding: 0;
@@ -286,9 +277,9 @@
 
 .artists-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-    max-width: 1000px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -334,12 +325,12 @@
     right: 0;
     padding: 15px;
     text-align: center;
-    background: #8b5cf6;
+    background: linear-gradient(to top, rgba(139, 92, 246, 0.98) 0%, rgba(139, 92, 246, 0.95) 15%, rgba(139, 92, 246, 0.9) 30%, rgba(139, 92, 246, 0.8) 60%, rgba(139, 92, 246, 0.5) 85%, transparent 100%);
     z-index: 2;
+    height: 120px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 120px;
+    justify-content: flex-end;
 }
 
 .artist-name {
@@ -352,7 +343,7 @@
 
 .artist-style {
     color: white !important;
-    margin-bottom: 8px;
+    margin-bottom: 10px!important;
     font-size: 0.9rem !important;
     font-weight: 500;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
@@ -362,7 +353,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0;
+    margin: 0 15px 15px 15px;
 }
 
 .artist-location {
@@ -408,6 +399,15 @@
 }
 
 /* Responsive Design */
+/* Tablet responsive */
+@media screen and (max-width: 968px) and (min-width: 769px) {
+    .artists-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        max-width: 800px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .search-section h1 {
         font-size: 2rem;
@@ -435,6 +435,7 @@
     .artists-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+        max-width: 400px;
     }
 }
 
