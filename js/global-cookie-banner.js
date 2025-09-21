@@ -1,0 +1,102 @@
+// Global Cookie Banner - Include this in all pages
+(function() {
+    'use strict';
+    
+    // Check if cookie banner already exists
+    if (document.getElementById('cookieConsent')) {
+        return;
+    }
+    
+    // Create cookie banner HTML
+    const cookieBannerHTML = `
+        <!-- Cookie Consent Banner -->
+        <div id="cookieConsent" class="cookie-consent">
+            <div class="cookie-consent-content">
+                <div class="cookie-consent-text">
+                    <h3 data-i18n="cookies.title">Cookie Policy</h3>
+                    <p data-i18n="cookies.message">We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
+                </div>
+                <div class="cookie-consent-buttons">
+                    <button id="acceptAllCookies" class="cookie-btn cookie-btn-primary" data-i18n="cookies.accept-all">Accept All</button>
+                    <button id="acceptNecessaryCookies" class="cookie-btn cookie-btn-secondary" data-i18n="cookies.accept-necessary">Accept Necessary Only</button>
+                    <button id="cookieSettings" class="cookie-btn cookie-btn-tertiary" data-i18n="cookies.settings">Cookie Settings</button>
+                    <button id="learnMoreCookies" class="cookie-btn cookie-btn-tertiary" data-i18n="cookies.learn-more">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cookie Settings Modal -->
+        <div id="cookieSettingsModal" class="cookie-settings-modal">
+            <div class="cookie-settings-content">
+                <div class="cookie-settings-header">
+                    <h2 data-i18n="cookies.title">Cookie Settings</h2>
+                    <button id="closeCookieSettings" class="cookie-settings-close" data-i18n="cookies.close">&times;</button>
+                </div>
+                
+                <div class="cookie-settings-description">
+                    <p data-i18n="cookies.message">We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. You can customize your cookie preferences below.</p>
+                </div>
+                
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3 class="cookie-category-title" data-i18n="cookies.necessary">Necessary Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-necessary" checked disabled>
+                            <span class="cookie-slider"></span>
+                        </label>
+                    </div>
+                    <p class="cookie-category-description" data-i18n="cookies.necessary-desc">These cookies are essential for the website to function properly. They cannot be disabled.</p>
+                </div>
+                
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3 class="cookie-category-title" data-i18n="cookies.analytics">Analytics Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-analytics">
+                            <span class="cookie-slider"></span>
+                        </label>
+                    </div>
+                    <p class="cookie-category-description" data-i18n="cookies.analytics-desc">These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously.</p>
+                </div>
+                
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3 class="cookie-category-title" data-i18n="cookies.functional">Functional Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-functional">
+                            <span class="cookie-slider"></span>
+                        </label>
+                    </div>
+                    <p class="cookie-category-description" data-i18n="cookies.functional-desc">These cookies enable enhanced functionality and personalization, such as remembering your preferences.</p>
+                </div>
+                
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <h3 class="cookie-category-title" data-i18n="cookies.marketing">Marketing Cookies</h3>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-marketing">
+                            <span class="cookie-slider"></span>
+                        </label>
+                    </div>
+                    <p class="cookie-category-description" data-i18n="cookies.marketing-desc">These cookies are used to track visitors across websites to display relevant and engaging advertisements.</p>
+                </div>
+                
+                <div class="cookie-settings-footer">
+                    <button id="saveCookiePreferences" class="cookie-btn cookie-btn-primary" data-i18n="cookies.save-preferences">Save Preferences</button>
+                    <button id="closeCookieSettings" class="cookie-btn cookie-btn-secondary" data-i18n="cookies.close">Close</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Insert cookie banner before closing body tag
+    document.addEventListener('DOMContentLoaded', function() {
+        // Insert the HTML before the closing body tag
+        document.body.insertAdjacentHTML('beforeend', cookieBannerHTML);
+        
+        // Initialize cookie consent if the script is available
+        if (typeof CookieConsent !== 'undefined') {
+            window.cookieConsent = new CookieConsent();
+        }
+    });
+})();

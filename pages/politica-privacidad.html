@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inker</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/contact-widget.css">
+    <link rel="stylesheet" href="../css/notifications.css">
+    <link rel="stylesheet" href="../css/cookie-consent.css">
+    <style>
+        .terms-container {
+            max-width: 800px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+            color: #e5e7eb;
+        }
+
+        .terms-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .terms-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .terms-header p {
+            font-size: 1.2rem;
+            color: #9ca3af;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .terms-content {
+            padding: 40px;
+        }
+
+        .terms-section {
+            margin-bottom: 40px;
+        }
+
+        .terms-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #8b5cf6;
+            border-bottom: 2px solid #4b5563;
+            padding-bottom: 10px;
+        }
+
+        .terms-section h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            color: #f3f4f6;
+        }
+
+        .terms-section p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #d1d5db;
+        }
+
+        .terms-section ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .terms-section li {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 8px;
+            color: #d1d5db;
+        }
+
+        .highlight {
+            background: rgba(139, 92, 246, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #8b5cf6;
+            margin: 20px 0;
+        }
+
+        .highlight p {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            background: rgba(236, 72, 153, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ec4899;
+            margin: 20px 0;
+        }
+
+        .contact-info h3 {
+            color: #ec4899;
+            margin-top: 0;
+        }
+
+        .last-updated {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #4b5563;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        @media screen and (max-width: 768px) {
+            .terms-container {
+                margin: 80px auto 30px;
+                padding: 0 15px;
+            }
+
+            .terms-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .terms-content {
+                padding: 25px;
+            }
+
+            .terms-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .terms-section h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span>Inker</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="find-styles.html" class="nav-link" data-nav="find-styles">Estilos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="find-artists.html" class="nav-link" data-nav="find-artist">Tatuadores</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-button" data-nav="login">Iniciar Sesión</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="terms-container">
+        <div class="terms-header">
+            <h1 data-i18n="privacy.title">Política de Privacidad</h1>
+            <p data-i18n="privacy.last-updated">Última actualización: Diciembre 2024</p>
+        </div>
+
+        <div class="terms-content">
+            <section class="terms-section">
+                <h2 data-i18n="privacy.introduction.title">1. Introducción</h2>
+                <p data-i18n="privacy.introduction.content">Bienvenido a Inker, la plataforma líder que conecta artistas de tatuajes con clientes. Esta Política de Privacidad explica cómo recopilamos, utilizamos, divulgamos y protegemos su información cuando visita nuestro sitio web o utiliza nuestros servicios. Por favor, lea esta política de privacidad cuidadosamente. Si no está de acuerdo con los términos de esta política de privacidad, no acceda al sitio.</p>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.information-collection.title">2. Información que Recopilamos</h2>
+                
+                <h3 data-i18n="privacy.information-collection.personal.title">Información Personal</h3>
+                <p data-i18n="privacy.information-collection.personal.content">Podemos recopilar información personal que usted nos proporcione voluntariamente cuando se registre para una cuenta, cree un perfil o utilice nuestros servicios, incluyendo:</p>
+                <ul>
+                    <li data-i18n="privacy.information-collection.personal.name">Nombre e información de contacto</li>
+                    <li data-i18n="privacy.information-collection.personal.email">Dirección de correo electrónico</li>
+                    <li data-i18n="privacy.information-collection.personal.phone">Número de teléfono</li>
+                    <li data-i18n="privacy.information-collection.personal.location">Información de ubicación</li>
+                    <li data-i18n="privacy.information-collection.personal.profile">Información del perfil y preferencias</li>
+                    <li data-i18n="privacy.information-collection.personal.portfolio">Imágenes del portafolio y descripciones</li>
+                </ul>
+
+                <h3 data-i18n="privacy.information-collection.automatic.title">Información Recopilada Automáticamente</h3>
+                <p data-i18n="privacy.information-collection.automatic.content">Recopilamos automáticamente cierta información cuando visita nuestro sitio web, incluyendo:</p>
+                <ul>
+                    <li data-i18n="privacy.information-collection.automatic.ip">Dirección IP e información del dispositivo</li>
+                    <li data-i18n="privacy.information-collection.automatic.browser">Tipo y versión del navegador</li>
+                    <li data-i18n="privacy.information-collection.automatic.pages">Páginas visitadas y tiempo invertido</li>
+                    <li data-i18n="privacy.information-collection.automatic.referrer">Sitio web de referencia</li>
+                    <li data-i18n="privacy.information-collection.automatic.cookies">Cookies y tecnologías de seguimiento similares</li>
+                </ul>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.information-use.title">3. Cómo Utilizamos Su Información</h2>
+                <p data-i18n="privacy.information-use.content">Utilizamos la información que recopilamos para:</p>
+                <ul>
+                    <li data-i18n="privacy.information-use.provide">Proporcionar, operar y mantener nuestros servicios</li>
+                    <li data-i18n="privacy.information-use.communicate">Comunicarnos con usted sobre nuestros servicios</li>
+                    <li data-i18n="privacy.information-use.personalize">Personalizar su experiencia y contenido</li>
+                    <li data-i18n="privacy.information-use.analytics">Analizar patrones de uso y mejorar nuestros servicios</li>
+                    <li data-i18n="privacy.information-use.marketing">Enviar comunicaciones de marketing (con su consentimiento)</li>
+                    <li data-i18n="privacy.information-use.legal">Cumplir con obligaciones legales</li>
+                </ul>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.information-sharing.title">4. Compartir y Divulgar Información</h2>
+                <p data-i18n="privacy.information-sharing.content">No vendemos, intercambiamos o transferimos de otra manera su información personal a terceros sin su consentimiento, excepto en las siguientes circunstancias:</p>
+                <ul>
+                    <li data-i18n="privacy.information-sharing.service">Con proveedores de servicios que nos ayudan a operar nuestro sitio web</li>
+                    <li data-i18n="privacy.information-sharing.legal">Cuando sea requerido por ley o para proteger nuestros derechos</li>
+                    <li data-i18n="privacy.information-sharing.business">En conexión con una transferencia de negocio o fusión</li>
+                    <li data-i18n="privacy.information-sharing.consent">Con su consentimiento explícito</li>
+                </ul>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.data-security.title">5. Seguridad de Datos</h2>
+                <p data-i18n="privacy.data-security.content">Implementamos medidas de seguridad técnicas y organizativas apropiadas para proteger su información personal contra acceso no autorizado, alteración, divulgación o destrucción. Sin embargo, ningún método de transmisión por internet o almacenamiento electrónico es 100% seguro.</p>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.cookies.title">6. Cookies y Tecnologías de Seguimiento</h2>
+                <p data-i18n="privacy.cookies.content">Utilizamos cookies y tecnologías de seguimiento similares para mejorar su experiencia de navegación, analizar el tráfico del sitio y personalizar el contenido. Puede controlar la configuración de cookies a través de las preferencias de su navegador o nuestro banner de consentimiento de cookies.</p>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.user-rights.title">7. Sus Derechos</h2>
+                <p data-i18n="privacy.user-rights.content">Dependiendo de su ubicación, puede tener los siguientes derechos con respecto a su información personal:</p>
+                <ul>
+                    <li data-i18n="privacy.user-rights.access">Derecho a acceder a su información personal</li>
+                    <li data-i18n="privacy.user-rights.rectify">Derecho a rectificar información inexacta</li>
+                    <li data-i18n="privacy.user-rights.erase">Derecho a borrar su información personal</li>
+                    <li data-i18n="privacy.user-rights.portability">Derecho a la portabilidad de datos</li>
+                    <li data-i18n="privacy.user-rights.object">Derecho a objetar el procesamiento</li>
+                    <li data-i18n="privacy.user-rights.withdraw">Derecho a retirar el consentimiento</li>
+                </ul>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.data-retention.title">8. Retención de Datos</h2>
+                <p data-i18n="privacy.data-retention.content">Retenemos su información personal solo durante el tiempo necesario para cumplir con los propósitos descritos en esta política de privacidad, a menos que se requiera o permita un período de retención más largo por ley.</p>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.children.title">9. Privacidad de Menores</h2>
+                <p data-i18n="privacy.children.content">Nuestros servicios no están destinados a niños menores de 13 años. No recopilamos conscientemente información personal de niños menores de 13 años. Si es padre o tutor y cree que su hijo nos ha proporcionado información personal, por favor contáctenos.</p>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.changes.title">10. Cambios a Esta Política de Privacidad</h2>
+                <p data-i18n="privacy.changes.content">Podemos actualizar esta política de privacidad de vez en cuando. Le notificaremos de cualquier cambio publicando la nueva política de privacidad en esta página y actualizando la fecha de "Última actualización". Su uso continuo de nuestros servicios después de cualquier modificación constituye la aceptación de la política de privacidad actualizada.</p>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.contact.title">11. Contáctanos</h2>
+                <p data-i18n="privacy.contact.content">Si tiene alguna pregunta sobre esta política de privacidad o nuestras prácticas de privacidad, por favor contáctenos en:</p>
+                <div class="contact-info">
+                    <p><strong data-i18n="privacy.contact.email">Email:</strong> privacy@inker.com</p>
+                    <p><strong data-i18n="privacy.contact.address">Dirección:</strong> Calle Tatuaje 123, Ciudad Tinta, CT 12345</p>
+                    <p><strong data-i18n="privacy.contact.phone">Teléfono:</strong> +1 (555) 123-4567</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/config.js"></script>
+    <script src="../js/database.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/email-config.js"></script>
+    <script src="../js/contact-widget.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/i18n.js"></script>
+    <script src="../js/cookie-consent.js"></script>
+    <script src="../js/global-cookie-banner.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

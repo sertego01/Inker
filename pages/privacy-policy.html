@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inker</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/contact-widget.css">
+    <link rel="stylesheet" href="../css/notifications.css">
+    <link rel="stylesheet" href="../css/cookie-consent.css">
+    <style>
+        .terms-container {
+            max-width: 800px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+            color: #e5e7eb;
+        }
+
+        .terms-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .terms-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .terms-header p {
+            font-size: 1.2rem;
+            color: #9ca3af;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .terms-content {
+            padding: 40px;
+        }
+
+        .terms-section {
+            margin-bottom: 40px;
+        }
+
+        .terms-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #8b5cf6;
+            border-bottom: 2px solid #4b5563;
+            padding-bottom: 10px;
+        }
+
+        .terms-section h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            color: #f3f4f6;
+        }
+
+        .terms-section p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #d1d5db;
+        }
+
+        .terms-section ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .terms-section li {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 8px;
+            color: #d1d5db;
+        }
+
+        .highlight {
+            background: rgba(139, 92, 246, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #8b5cf6;
+            margin: 20px 0;
+        }
+
+        .highlight p {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            background: rgba(236, 72, 153, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ec4899;
+            margin: 20px 0;
+        }
+
+        .contact-info h3 {
+            color: #ec4899;
+            margin-top: 0;
+        }
+
+        .last-updated {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #4b5563;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        @media screen and (max-width: 768px) {
+            .terms-container {
+                margin: 80px auto 30px;
+                padding: 0 15px;
+            }
+
+            .terms-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .terms-content {
+                padding: 25px;
+            }
+
+            .terms-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .terms-section h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span>Inker</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="find-styles.html" class="nav-link" data-nav="find-styles">Styles</a>
+                </li>
+                <li class="nav-item">
+                    <a href="find-artists.html" class="nav-link" data-nav="find-artist">Artist</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-button" data-nav="login">Login</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="terms-container">
+        <div class="terms-header">
+            <h1 data-i18n="privacy.title">Privacy Policy</h1>
+            <p data-i18n="privacy.last-updated">Last updated: December 2024</p>
+        </div>
+
+        <div class="terms-content">
+            <section class="terms-section">
+                <h2 data-i18n="privacy.introduction.title">1. Introduction</h2>
+                <p data-i18n="privacy.introduction.content">Welcome to Inker, the premier platform connecting tattoo artists with clients. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.</p>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.information-collection.title">2. Information We Collect</h2>
+                
+                <h3 data-i18n="privacy.information-collection.personal.title">Personal Information</h3>
+                <p data-i18n="privacy.information-collection.personal.content">We may collect personal information that you voluntarily provide to us when you register for an account, create a profile, or use our services, including:</p>
+                <ul>
+                    <li data-i18n="privacy.information-collection.personal.name">Name and contact information</li>
+                    <li data-i18n="privacy.information-collection.personal.email">Email address</li>
+                    <li data-i18n="privacy.information-collection.personal.phone">Phone number</li>
+                    <li data-i18n="privacy.information-collection.personal.location">Location information</li>
+                    <li data-i18n="privacy.information-collection.personal.profile">Profile information and preferences</li>
+                    <li data-i18n="privacy.information-collection.personal.portfolio">Portfolio images and descriptions</li>
+                </ul>
+
+                <h3 data-i18n="privacy.information-collection.automatic.title">Automatically Collected Information</h3>
+                <p data-i18n="privacy.information-collection.automatic.content">We automatically collect certain information when you visit our website, including:</p>
+                <ul>
+                    <li data-i18n="privacy.information-collection.automatic.ip">IP address and device information</li>
+                    <li data-i18n="privacy.information-collection.automatic.browser">Browser type and version</li>
+                    <li data-i18n="privacy.information-collection.automatic.pages">Pages visited and time spent</li>
+                    <li data-i18n="privacy.information-collection.automatic.referrer">Referring website</li>
+                    <li data-i18n="privacy.information-collection.automatic.cookies">Cookies and similar tracking technologies</li>
+                </ul>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.information-use.title">3. How We Use Your Information</h2>
+                <p data-i18n="privacy.information-use.content">We use the information we collect to:</p>
+                <ul>
+                    <li data-i18n="privacy.information-use.provide">Provide, operate, and maintain our services</li>
+                    <li data-i18n="privacy.information-use.communicate">Communicate with you about our services</li>
+                    <li data-i18n="privacy.information-use.personalize">Personalize your experience and content</li>
+                    <li data-i18n="privacy.information-use.analytics">Analyze usage patterns and improve our services</li>
+                    <li data-i18n="privacy.information-use.marketing">Send marketing communications (with your consent)</li>
+                    <li data-i18n="privacy.information-use.legal">Comply with legal obligations</li>
+                </ul>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.information-sharing.title">4. Information Sharing and Disclosure</h2>
+                <p data-i18n="privacy.information-sharing.content">We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except in the following circumstances:</p>
+                <ul>
+                    <li data-i18n="privacy.information-sharing.service">With service providers who assist us in operating our website</li>
+                    <li data-i18n="privacy.information-sharing.legal">When required by law or to protect our rights</li>
+                    <li data-i18n="privacy.information-sharing.business">In connection with a business transfer or merger</li>
+                    <li data-i18n="privacy.information-sharing.consent">With your explicit consent</li>
+                </ul>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.data-security.title">5. Data Security</h2>
+                <p data-i18n="privacy.data-security.content">We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet or electronic storage is 100% secure.</p>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.cookies.title">6. Cookies and Tracking Technologies</h2>
+                <p data-i18n="privacy.cookies.content">We use cookies and similar tracking technologies to enhance your browsing experience, analyze site traffic, and personalize content. You can control cookie settings through your browser preferences or our cookie consent banner.</p>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.user-rights.title">7. Your Rights</h2>
+                <p data-i18n="privacy.user-rights.content">Depending on your location, you may have the following rights regarding your personal information:</p>
+                <ul>
+                    <li data-i18n="privacy.user-rights.access">Right to access your personal information</li>
+                    <li data-i18n="privacy.user-rights.rectify">Right to rectify inaccurate information</li>
+                    <li data-i18n="privacy.user-rights.erase">Right to erase your personal information</li>
+                    <li data-i18n="privacy.user-rights.portability">Right to data portability</li>
+                    <li data-i18n="privacy.user-rights.object">Right to object to processing</li>
+                    <li data-i18n="privacy.user-rights.withdraw">Right to withdraw consent</li>
+                </ul>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.data-retention.title">8. Data Retention</h2>
+                <p data-i18n="privacy.data-retention.content">We retain your personal information only for as long as necessary to fulfill the purposes outlined in this privacy policy, unless a longer retention period is required or permitted by law.</p>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.children.title">9. Children's Privacy</h2>
+                <p data-i18n="privacy.children.content">Our services are not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us.</p>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.changes.title">10. Changes to This Privacy Policy</h2>
+                <p data-i18n="privacy.changes.content">We may update this privacy policy from time to time. We will notify you of any changes by posting the new privacy policy on this page and updating the "Last updated" date. Your continued use of our services after any modifications constitutes acceptance of the updated privacy policy.</p>
+            </section>
+
+            <section class="terms-section">
+                <h2 data-i18n="privacy.contact.title">11. Contact Us</h2>
+                <p data-i18n="privacy.contact.content">If you have any questions about this privacy policy or our privacy practices, please contact us at:</p>
+                <div class="contact-info">
+                    <p><strong data-i18n="privacy.contact.email">Email:</strong> privacy@inker.com</p>
+                    <p><strong data-i18n="privacy.contact.address">Address:</strong> 123 Tattoo Street, Ink City, IC 12345</p>
+                    <p><strong data-i18n="privacy.contact.phone">Phone:</strong> +1 (555) 123-4567</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/config.js"></script>
+    <script src="../js/database.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/email-config.js"></script>
+    <script src="../js/contact-widget.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/i18n.js"></script>
+    <script src="../js/cookie-consent.js"></script>
+    <script src="../js/global-cookie-banner.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

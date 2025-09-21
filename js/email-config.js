@@ -10,6 +10,9 @@ const EMAILJS_CONFIG = {
     // Email verification template (you need to create this in EmailJS)
     verificationTemplateId: 'template_gh3xig2', // e.g., 'template_verification123'
     
+    // Password reset template (you need to create this in EmailJS)
+    resetPasswordTemplateId: 'template_reset_password', // e.g., 'template_reset123'
+    
     // Your email address where messages will be sent
     recipientEmail: 'sergioteja15@gmail.com',
     
@@ -32,6 +35,16 @@ const EMAILJS_CONFIG = {
         verification_link: '{{verification_link}}',
         app_name: 'Inker',
         support_email: 'sergioteja15@gmail.com'
+    },
+    
+    // Password reset email template variables
+    resetPasswordParams: {
+        to_email: '{{user_email}}',
+        user_name: '{{user_name}}',
+        reset_link: '{{reset_link}}',
+        app_name: 'Inker',
+        support_email: 'sergioteja15@gmail.com',
+        expiration_time: '{{expiration_time}}'
     }
 };
 

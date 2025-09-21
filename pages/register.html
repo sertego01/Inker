@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/auth.css">
     <link rel="stylesheet" href="../css/contact-widget.css">
     <link rel="stylesheet" href="../css/notifications.css">
+    <link rel="stylesheet" href="../css/cookie-consent.css">
 </head>
 <body>
     <nav class="navbar">
@@ -42,18 +43,18 @@
             <form id="registerForm">
                 <!-- User Type Selection -->
                 <div class="user-type-selection">
-                    <label class="user-type-label">I want to join as a...</label>
+                    <label class="user-type-label" data-i18n="auth.user-type-label">I want to join as a...</label>
                     <div class="user-type-buttons">
                         <button type="button" class="user-type-btn active" data-type="user">
                             <div class="user-type-content">
-                                <div class="user-type-title">Client</div>
-                                <div class="user-type-description">Looking for a tattoo artist</div>
+                                <div class="user-type-title" data-i18n="auth.user-type-client">Client</div>
+                                <div class="user-type-description" data-i18n="auth.user-type-client-desc">Looking for a tattoo artist</div>
                             </div>
                         </button>
                         <button type="button" class="user-type-btn" data-type="artist">
                             <div class="user-type-content">
-                                <div class="user-type-title">Artist</div>
-                                <div class="user-type-description">Showcase my work</div>
+                                <div class="user-type-title" data-i18n="auth.user-type-artist">Artist</div>
+                                <div class="user-type-description" data-i18n="auth.user-type-artist-desc">Showcase my work</div>
                             </div>
                         </button>
                     </div>
@@ -74,7 +75,7 @@
                     <div class="password-input-container">
                         <input type="password" id="password" placeholder="Create a password" data-i18n="auth.password-placeholder" minlength="6" required>
                         <button type="button" class="password-toggle" onclick="togglePassword()">
-                            <span class="eye-icon">👁️</span>
+                            <img src="../images/ojo.png" alt="Show password" class="eye-icon">
                         </button>
                     </div>
                 </div>
@@ -84,7 +85,7 @@
                     <div class="password-input-container">
                         <input type="password" id="confirmPassword" placeholder="Confirm your password" data-i18n="auth.confirm-password-placeholder" minlength="6" required>
                         <button type="button" class="password-toggle" onclick="toggleConfirmPassword()">
-                            <span class="eye-icon">👁️</span>
+                            <img src="../images/ojo.png" alt="Show password" class="eye-icon">
                         </button>
                     </div>
                 </div>
@@ -105,6 +106,27 @@
             <p class="auth-switch"><span data-i18n="auth.have-account">Already have an account?</span> <a href="login.html" data-i18n="auth.signin-link">Sign in</a></p>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="pages/terms-conditions.html" data-footer="terms">Terms and Conditions</a>
+                <span class="separator">|</span>
+                <a href="pages/privacy-policy.html" data-footer="privacy">Privacy Policy</a>
+            </div>
+            <div class="footer-center">
+                <p data-footer="copyright">&copy; 2025 Inker. All rights reserved.</p>
+            </div>
+            <div class="footer-right">
+                <div class="social-icons">
+                    <a href="#"><img src="../images/facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="../images/instagram-icon.png" alt="Instagram"></a>
+                    <a href="#"><img src="../images/twitter-icon.png" alt="Twitter"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
@@ -149,10 +171,12 @@
             
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                eyeIcon.textContent = '🙈';
+                eyeIcon.src = '../images/invisible.png';
+                eyeIcon.alt = 'Hide password';
             } else {
                 passwordInput.type = 'password';
-                eyeIcon.textContent = '👁️';
+                eyeIcon.src = '../images/ojo.png';
+                eyeIcon.alt = 'Show password';
             }
         };
 
@@ -163,10 +187,12 @@
             
             if (confirmPasswordInput.type === 'password') {
                 confirmPasswordInput.type = 'text';
-                eyeIcon.textContent = '🙈';
+                eyeIcon.src = '../images/invisible.png';
+                eyeIcon.alt = 'Hide password';
             } else {
                 confirmPasswordInput.type = 'password';
-                eyeIcon.textContent = '👁️';
+                eyeIcon.src = '../images/ojo.png';
+                eyeIcon.alt = 'Show password';
             }
         };
 
@@ -222,5 +248,7 @@
     </script>
     <script src="../js/i18n.js"></script>
     <script src="../js/contact-widget.js"></script>
+    <script src="../js/cookie-consent.js"></script>
+    <script src="../js/global-cookie-banner.js"></script>
 </body>
 </html>

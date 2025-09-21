@@ -128,6 +128,20 @@ function changePassword(newPassword) {
     });
 }
 
+// Cambiar contraseña con código de verificación (para reset)
+function changePasswordWithCode(newPassword, code) {
+    return waitForFirebaseAuth().then(() => {
+        return auth.confirmPasswordReset(code, newPassword);
+    });
+}
+
+// Verificar código de reset de contraseña
+function verifyPasswordResetCode(code) {
+    return waitForFirebaseAuth().then(() => {
+        return auth.verifyPasswordResetCode(code);
+    });
+}
+
 // Cambiar email
 function changeEmail(newEmail) {
     return waitForFirebaseAuth().then(() => {
