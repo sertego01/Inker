@@ -1,6 +1,6 @@
 # 🎨 Inker - Tattoo Artist Platform
 
-A modern web application that connects tattoo enthusiasts with talented artists. Built with HTML, CSS, JavaScript, and Firebase.
+A modern web application that connects tattoo enthusiasts with talented artists.  Built with HTML, CSS, JavaScript, and Firebase.
 
 ![Inker Logo](https://img.shields.io/badge/Inker-Tattoo%20Platform-purple?style=for-the-badge&logo=firebase)
 
