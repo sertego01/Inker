@@ -18,7 +18,7 @@ const EMAILJS_CONFIG = {
     
     // Email template variables (customize as needed)
     templateParams: {
-        to_email: 'sergioteja15@gmail.com',
+        to_email: '{{to_email}}',
         from_name: '{{from_name}}',
         from_email: '{{from_email}}',
         subject: '{{subject}}',

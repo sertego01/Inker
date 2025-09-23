@@ -429,7 +429,18 @@ class I18n {
                 'dashboard.artist-style-watercolor': 'Watercolor',
                 'dashboard.artist-style-traditional': 'Traditional',
                 'dashboard.artist-style-geometric': 'Geometric',
-                'dashboard.artist-style-japanese': 'Japanese'
+                'dashboard.artist-style-japanese': 'Japanese',
+                // Email verification
+                'verify.title': 'Verify Email Address',
+                'verify.subtitle': 'We are verifying your email address...',
+                'verify.verifying': 'Verifying...',
+                'verify.success': 'Email verified successfully!',
+                'verify.go-to-login': 'Go to Login',
+                'verify.go-to-home': 'Go to Home',
+                'verify.details-title': 'Verification Details',
+                'verify.email-label': 'Email:',
+                'verify.token-label': 'Token:',
+                'verify.status-label': 'Status:'
             },
             es: {
                 // Navigation
@@ -855,7 +866,18 @@ class I18n {
                 'dashboard.artist-style-watercolor': 'Acuarela',
                 'dashboard.artist-style-traditional': 'Tradicional',
                 'dashboard.artist-style-geometric': 'Geométrico',
-                'dashboard.artist-style-japanese': 'Japonés'
+                'dashboard.artist-style-japanese': 'Japonés',
+                // Email verification
+                'verify.title': 'Verificar Correo Electrónico',
+                'verify.subtitle': 'Estamos verificando tu correo electrónico...',
+                'verify.verifying': 'Verificando...',
+                'verify.success': '¡Correo verificado exitosamente!',
+                'verify.go-to-login': 'Ir a Iniciar Sesión',
+                'verify.go-to-home': 'Ir al Inicio',
+                'verify.details-title': 'Detalles de Verificación',
+                'verify.email-label': 'Correo:',
+                'verify.token-label': 'Token:',
+                'verify.status-label': 'Estado:'
             }
         };
         

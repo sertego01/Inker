@@ -25,7 +25,7 @@ async function sendVerificationEmail(userEmail, userName, verificationToken) {
         emailjs.init(config.publicKey);
 
         // Create verification link
-        const verificationLink = `${window.location.origin}/pages/verify-email.html?token=${verificationToken}&email=${encodeURIComponent(userEmail)}`;
+        const verificationLink = `${window.location.origin}/Inker/pages/verify-email.html?token=${verificationToken}&email=${encodeURIComponent(userEmail)}`;
 
         // Send verification email
         const result = await emailjs.send(
@@ -33,6 +33,7 @@ async function sendVerificationEmail(userEmail, userName, verificationToken) {
             config.verificationTemplateId,
             {
                 to_email: userEmail,
+                user_email: userEmail,
                 user_name: userName,
                 verification_link: verificationLink,
                 app_name: config.verificationParams.app_name,
