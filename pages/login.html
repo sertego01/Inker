@@ -110,11 +110,40 @@
     <script>
 
         // Wait for notifications to load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
             // Ensure notifications are loaded
             if (typeof window.Notifications === 'undefined') {
                 console.error('Notifications not loaded');
                 return;
+            }
+
+            // Check if this is an email verification link
+            const urlParams = new URLSearchParams(window.location.search);
+            const isVerification = urlParams.get('verify');
+            const token = urlParams.get('token');
+            const email = urlParams.get('email');
+
+            if (isVerification === 'true' && token && email) {
+                try {
+                    // Initialize Firebase first
+                    await initializeFirebase();
+                    
+                    // Verify the email
+                    const isVerified = await window.emailVerification.verifyEmailToken(token, email);
+                    
+                    if (isVerified) {
+                        // Show success notification
+                        showVerificationSuccess();
+                        
+                        // Clean URL parameters
+                        window.history.replaceState({}, document.title, window.location.pathname);
+                    } else {
+                        showVerificationError();
+                    }
+                } catch (error) {
+                    console.error('Error verifying email:', error);
+                    showVerificationError();
+                }
             }
 
 
@@ -396,6 +425,143 @@
                     });
             }
         });
+
+        // Function to show verification success notification
+        function showVerificationSuccess() {
+            // Create a beautiful success notification
+            const notification = document.createElement('div');
+            notification.className = 'verification-success-notification';
+            notification.innerHTML = `
+                <div class="verification-success-content">
+                    <div class="verification-success-icon">✅</div>
+                    <div class="verification-success-text">
+                        <h3>¡Email Verificado!</h3>
+                        <p>Tu correo electrónico ha sido verificado correctamente. Ya puedes iniciar sesión.</p>
+                    </div>
+                    <button class="verification-success-close" onclick="this.parentElement.parentElement.remove()">×</button>
+                </div>
+            `;
+            
+            // Add styles
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                color: white;
+                padding: 20px;
+                border-radius: 12px;
+                box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+                z-index: 10000;
+                max-width: 400px;
+                animation: slideInRight 0.5s ease-out;
+            `;
+            
+            // Add animation styles
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInRight {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+                .verification-success-content {
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 15px;
+                }
+                .verification-success-icon {
+                    font-size: 24px;
+                    flex-shrink: 0;
+                }
+                .verification-success-text h3 {
+                    margin: 0 0 8px 0;
+                    font-size: 18px;
+                    font-weight: 600;
+                }
+                .verification-success-text p {
+                    margin: 0;
+                    font-size: 14px;
+                    opacity: 0.9;
+                    line-height: 1.4;
+                }
+                .verification-success-close {
+                    background: none;
+                    border: none;
+                    color: white;
+                    font-size: 20px;
+                    cursor: pointer;
+                    padding: 0;
+                    margin-left: auto;
+                    opacity: 0.7;
+                    transition: opacity 0.2s;
+                }
+                .verification-success-close:hover {
+                    opacity: 1;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.style.animation = 'slideInRight 0.5s ease-out reverse';
+                    setTimeout(() => notification.remove(), 500);
+                }
+            }, 5000);
+        }
+
+        // Function to show verification error notification
+        function showVerificationError() {
+            // Create a beautiful error notification
+            const notification = document.createElement('div');
+            notification.className = 'verification-error-notification';
+            notification.innerHTML = `
+                <div class="verification-error-content">
+                    <div class="verification-error-icon">❌</div>
+                    <div class="verification-error-text">
+                        <h3>Error de Verificación</h3>
+                        <p>No se pudo verificar tu correo electrónico. El enlace puede haber expirado o ser inválido.</p>
+                    </div>
+                    <button class="verification-error-close" onclick="this.parentElement.parentElement.remove()">×</button>
+                </div>
+            `;
+            
+            // Add styles
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+                color: white;
+                padding: 20px;
+                border-radius: 12px;
+                box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+                z-index: 10000;
+                max-width: 400px;
+                animation: slideInRight 0.5s ease-out;
+            `;
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Auto remove after 7 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.style.animation = 'slideInRight 0.5s ease-out reverse';
+                    setTimeout(() => notification.remove(), 500);
+                }
+            }, 7000);
+        }
+
         }); // End DOMContentLoaded
     </script>
     <script src="../js/i18n.js"></script>
