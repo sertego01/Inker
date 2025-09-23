@@ -94,7 +94,7 @@
                     <label class="checkbox-container">
                         <input type="checkbox" id="termsAgreement" required>
                         <span class="checkmark"></span>
-                        I agree to the <a href="#" class="terms-link">&nbsp;Terms of Service&nbsp;</a>&nbsp;and&nbsp;<a href="#" class="terms-link"> Privacy Policy</a>
+                        I agree to the <a href="terms-conditions.html" class="terms-link">&nbsp;Terms of Service&nbsp;</a>&nbsp;and&nbsp;<a href="privacy-policy.html" class="terms-link"> Privacy Policy</a>
                     </label>
                 </div>
                 
@@ -195,6 +195,108 @@
                 eyeIcon.alt = 'Show password';
             }
         };
+
+        // Add validation listeners for real-time feedback
+        function addValidationListeners() {
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            
+            // Name validation
+            nameInput.addEventListener('blur', function() {
+                validateField(this);
+            });
+            
+            nameInput.addEventListener('input', function() {
+                if (this.classList.contains('error')) {
+                    validateField(this);
+                }
+            });
+            
+            // Email validation
+            emailInput.addEventListener('blur', function() {
+                validateField(this);
+            });
+            
+            emailInput.addEventListener('input', function() {
+                if (this.classList.contains('error')) {
+                    validateField(this);
+                }
+            });
+            
+            // Password validation
+            passwordInput.addEventListener('blur', function() {
+                validateField(this);
+            });
+            
+            passwordInput.addEventListener('input', function() {
+                if (this.classList.contains('error')) {
+                    validateField(this);
+                }
+            });
+            
+            // Confirm password validation
+            confirmPasswordInput.addEventListener('blur', function() {
+                validateField(this);
+            });
+            
+            confirmPasswordInput.addEventListener('input', function() {
+                if (this.classList.contains('error')) {
+                    validateField(this);
+                }
+            });
+        }
+        
+        // Validate individual field
+        function validateField(field) {
+            const value = field.value.trim();
+            const fieldType = field.type;
+            const fieldId = field.id;
+            const container = field.closest('.password-input-container') || field.closest('.form-group');
+            
+            // Remove previous validation classes
+            field.classList.remove('error', 'valid');
+            if (container) {
+                container.classList.remove('error', 'valid');
+            }
+            
+            // Only validate if field has content
+            if (value === '') {
+                return;
+            }
+            
+            let isValid = false;
+            
+            if (fieldId === 'name') {
+                isValid = value.length >= 2;
+            } else if (fieldType === 'email') {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                isValid = emailRegex.test(value);
+            } else if (fieldType === 'password') {
+                if (fieldId === 'password') {
+                    isValid = value.length >= 6;
+                } else if (fieldId === 'confirmPassword') {
+                    const passwordValue = document.getElementById('password').value;
+                    isValid = value === passwordValue && value.length >= 6;
+                }
+            }
+            
+            if (isValid) {
+                field.classList.add('valid');
+                if (container) {
+                    container.classList.add('valid');
+                }
+            } else {
+                field.classList.add('error');
+                if (container) {
+                    container.classList.add('error');
+                }
+            }
+        }
+        
+        // Initialize validation listeners
+        addValidationListeners();
 
         // Handle registration
         document.getElementById('registerForm').addEventListener('submit', function(e) {

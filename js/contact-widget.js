@@ -2,6 +2,16 @@
 
 // EmailJS configuration will be loaded from email-config.js
 
+// Get correct image path based on current location
+function getImagePath() {
+    const currentPath = window.location.pathname;
+    if (currentPath.includes('/pages/')) {
+        return '../images/comentario.png';
+    } else {
+        return 'images/comentario.png';
+    }
+}
+
 // Contact form data
 let contactFormData = {
     name: '',
@@ -18,7 +28,7 @@ function initContactWidget() {
     contactButton.className = 'contact-widget';
     contactButton.innerHTML = `
         <button class="contact-button" onclick="openContactModal()">
-            <span class="contact-icon">💬</span>
+            <img src="${getImagePath()}" alt="Contact" class="contact-icon">
         </button>
     `;
     

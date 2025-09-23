@@ -110,11 +110,11 @@ class CookieConsent {
             settingsBtn.addEventListener('click', () => this.showSettingsModal());
         }
         
-        // Learn more button
-        const learnMoreBtn = document.getElementById('learnMoreCookies');
-        if (learnMoreBtn) {
-            learnMoreBtn.addEventListener('click', () => this.showSettingsModal());
-        }
+        // Learn more button - now it's a link, no event listener needed
+        // const learnMoreBtn = document.getElementById('learnMoreCookies');
+        // if (learnMoreBtn) {
+        //     learnMoreBtn.addEventListener('click', () => this.showSettingsModal());
+        // }
         
         // Close settings modal
         const closeBtn = document.getElementById('closeCookieSettings');

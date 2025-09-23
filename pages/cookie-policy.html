@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Policy - Inker</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/contact-widget.css">
+    <link rel="stylesheet" href="../css/notifications.css">
+    <link rel="stylesheet" href="../css/cookie-consent.css">
+    <style>
+        .terms-container {
+            max-width: 800px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+            color: #e5e7eb;
+        }
+
+        .terms-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .terms-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .terms-header p {
+            font-size: 1.2rem;
+            color: #9ca3af;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .terms-content {
+            padding: 40px;
+        }
+
+        .terms-section {
+            margin-bottom: 40px;
+        }
+
+        .terms-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #8b5cf6;
+            border-bottom: 2px solid #4b5563;
+            padding-bottom: 10px;
+        }
+
+        .terms-section h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            color: #f3f4f6;
+        }
+
+        .terms-section p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #d1d5db;
+        }
+
+        .terms-section ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .terms-section li {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 8px;
+            color: #d1d5db;
+        }
+
+        .highlight {
+            background: rgba(139, 92, 246, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #8b5cf6;
+            margin: 20px 0;
+        }
+
+        .highlight p {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            background: rgba(236, 72, 153, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ec4899;
+            margin: 20px 0;
+        }
+
+        .contact-info h3 {
+            color: #ec4899;
+            margin-top: 0;
+        }
+
+        .last-updated {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #4b5563;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .cookie-category {
+            background: rgba(139, 92, 246, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #8b5cf6;
+            margin: 20px 0;
+        }
+
+        .cookie-category h3 {
+            color: #8b5cf6;
+            margin-top: 0;
+        }
+
+        .cookie-category strong {
+            color: white;
+            font-weight: 600;
+        }
+
+        .browser-instructions {
+            background: rgba(16, 185, 129, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #10b981;
+            margin: 20px 0;
+        }
+
+        .browser-instructions h4 {
+            color: #10b981;
+            margin-top: 0;
+        }
+
+        .cookie-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #4b5563;
+        }
+
+        .cookie-actions .cookie-btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .cookie-actions .cookie-btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+        }
+
+        .cookie-actions .cookie-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .cookie-actions .cookie-btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+
+        .cookie-actions .cookie-btn-secondary:hover {
+            background: #9ca3af;
+            transform: translateY(-2px);
+        }
+
+        @media screen and (max-width: 768px) {
+            .terms-container {
+                margin: 80px auto 30px;
+                padding: 0 15px;
+            }
+
+            .terms-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .terms-content {
+                padding: 25px;
+            }
+
+            .terms-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .terms-section h3 {
+                font-size: 1.2rem;
+            }
+
+            .cookie-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cookie-actions .cookie-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span>Inker</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="find-styles.html" class="nav-link" data-nav="find-styles">Styles</a>
+                </li>
+                <li class="nav-item">
+                    <a href="find-artists.html" class="nav-link" data-nav="find-artist">Artist</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-button" data-nav="login">Login</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="terms-container">
+        <div class="terms-header">
+            <h1 data-i18n="cookie-policy.title">Cookie Policy</h1>
+            <p data-i18n="cookie-policy.subtitle">Learn about how we use cookies to enhance your browsing experience</p>
+        </div>
+
+        <div class="terms-content">
+            
+            <div class="terms-section">
+                <h2 data-i18n="cookie-policy.what-are-cookies.title">What are Cookies?</h2>
+                <p data-i18n="cookie-policy.what-are-cookies.content">Cookies are small text files that are stored on your device when you visit our website. They help us provide you with a better experience by remembering your preferences and understanding how you use our site.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2 data-i18n="cookie-policy.how-we-use.title">How We Use Cookies</h2>
+                <p data-i18n="cookie-policy.how-we-use.intro">We use cookies to:</p>
+                <ul>
+                    <li data-i18n="cookie-policy.how-we-use.remember">Remember your login status and preferences</li>
+                    <li data-i18n="cookie-policy.how-we-use.analyze">Analyze how our website is used to improve performance</li>
+                    <li data-i18n="cookie-policy.how-we-use.personalize">Provide personalized content and recommendations</li>
+                    <li data-i18n="cookie-policy.how-we-use.security">Ensure website security and prevent fraud</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2 data-i18n="cookie-policy.types.title">Types of Cookies We Use</h2>
+                
+                <div class="cookie-category">
+                    <h3>🍪 <span data-i18n="cookie-policy.necessary.title">Necessary Cookies</span></h3>
+                    <p><strong data-i18n="cookie-policy.necessary.purpose">Purpose:</strong> <span data-i18n="cookie-policy.necessary.purpose-desc">Essential for the website to function properly</span></p>
+                    <p><strong data-i18n="cookie-policy.necessary.examples">Examples:</strong> <span data-i18n="cookie-policy.necessary.examples-desc">Login sessions, security tokens, user preferences</span></p>
+                    <p><strong data-i18n="cookie-policy.necessary.duration">Duration:</strong> <span data-i18n="cookie-policy.necessary.duration-desc">Session or up to 1 year</span></p>
+                    <p><strong data-i18n="cookie-policy.necessary.disabled">Can be disabled:</strong> <span data-i18n="cookie-policy.necessary.disabled-desc">No - these are required for basic functionality</span></p>
+                </div>
+
+                <div class="cookie-category">
+                    <h3>📊 <span data-i18n="cookie-policy.analytics.title">Analytics Cookies</span></h3>
+                    <p><strong data-i18n="cookie-policy.necessary.purpose">Purpose:</strong> <span data-i18n="cookie-policy.analytics.purpose-desc">Help us understand how visitors use our website</span></p>
+                    <p><strong data-i18n="cookie-policy.necessary.examples">Examples:</strong> <span data-i18n="cookie-policy.analytics.examples-desc">Page views, time spent, popular content, error tracking</span></p>
+                    <p><strong data-i18n="cookie-policy.necessary.duration">Duration:</strong> <span data-i18n="cookie-policy.analytics.duration-desc">Up to 2 years</span></p>
+                    <p><strong data-i18n="cookie-policy.necessary.disabled">Can be disabled:</strong> <span data-i18n="cookie-policy.analytics.disabled-desc">Yes - you can opt out in settings</span></p>
+                </div>
+
+                <div class="cookie-category">
+                    <h3>⚙️ <span data-i18n="cookie-policy.functional.title">Functional Cookies</span></h3>
+                    <p><strong data-i18n="cookie-policy.necessary.purpose">Purpose:</strong> <span data-i18n="cookie-policy.functional.purpose-desc">Enable enhanced features and personalization</span></p>
+                    <p><strong data-i18n="cookie-policy.necessary.examples">Examples:</strong> <span data-i18n="cookie-policy.functional.examples-desc">Language preferences, theme settings, saved searches</span></p>
+                    <p><strong data-i18n="cookie-policy.necessary.duration">Duration:</strong> <span data-i18n="cookie-policy.functional.duration-desc">Up to 1 year</span></p>
+                    <p><strong data-i18n="cookie-policy.necessary.disabled">Can be disabled:</strong> <span data-i18n="cookie-policy.functional.disabled-desc">Yes - but some features may not work properly</span></p>
+                </div>
+
+                <div class="cookie-category">
+                    <h3>📢 <span data-i18n="cookie-policy.marketing.title">Marketing Cookies</span></h3>
+                    <p><strong data-i18n="cookie-policy.necessary.purpose">Purpose:</strong> <span data-i18n="cookie-policy.marketing.purpose-desc">Used to display relevant advertisements</span></p>
+                    <p><strong data-i18n="cookie-policy.necessary.examples">Examples:</strong> <span data-i18n="cookie-policy.marketing.examples-desc">Ad targeting, conversion tracking, remarketing</span></p>
+                    <p><strong data-i18n="cookie-policy.necessary.duration">Duration:</strong> <span data-i18n="cookie-policy.marketing.duration-desc">Up to 1 year</span></p>
+                    <p><strong data-i18n="cookie-policy.necessary.disabled">Can be disabled:</strong> <span data-i18n="cookie-policy.marketing.disabled-desc">Yes - you can opt out in settings</span></p>
+                </div>
+            </div>
+
+            <div class="terms-section">
+                <h2 data-i18n="cookie-policy.third-party.title">Third-Party Cookies</h2>
+                <p data-i18n="cookie-policy.third-party.intro">We may use third-party services that set their own cookies:</p>
+                <ul>
+                    <li><strong data-i18n="cookie-policy.third-party.google">Google Analytics:</strong> <span data-i18n="cookie-policy.third-party.google-desc">For website analytics and performance monitoring</span></li>
+                    <li><strong data-i18n="cookie-policy.third-party.firebase">Firebase:</strong> <span data-i18n="cookie-policy.third-party.firebase-desc">For authentication and database services</span></li>
+                    <li><strong data-i18n="cookie-policy.third-party.social">Social Media:</strong> <span data-i18n="cookie-policy.third-party.social-desc">For social sharing and login features</span></li>
+                </ul>
+                <p data-i18n="cookie-policy.third-party.note">These third parties have their own privacy policies and cookie practices.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2 data-i18n="cookie-policy.managing.title">Managing Your Cookie Preferences</h2>
+                <p data-i18n="cookie-policy.managing.intro">You can control cookies in several ways:</p>
+                
+                <h3 data-i18n="cookie-policy.managing.website.title">Through Our Website</h3>
+                <p data-i18n="cookie-policy.managing.website.desc">Use our cookie settings panel to customize your preferences. You can:</p>
+                <ul>
+                    <li data-i18n="cookie-policy.managing.website.accept-all">Accept all cookies</li>
+                    <li data-i18n="cookie-policy.managing.website.accept-necessary">Accept only necessary cookies</li>
+                    <li data-i18n="cookie-policy.managing.website.customize">Customize which types of cookies to allow</li>
+                    <li data-i18n="cookie-policy.managing.website.change">Change your preferences at any time</li>
+                </ul>
+
+                <h3 data-i18n="cookie-policy.managing.browser.title">Through Your Browser</h3>
+                <p data-i18n="cookie-policy.managing.browser.desc">Most browsers allow you to:</p>
+                <ul>
+                    <li data-i18n="cookie-policy.managing.browser.view">View and delete cookies</li>
+                    <li data-i18n="cookie-policy.managing.browser.block">Block cookies from specific websites</li>
+                    <li data-i18n="cookie-policy.managing.browser.third-party">Block third-party cookies</li>
+                    <li data-i18n="cookie-policy.managing.browser.notifications">Set up notifications when cookies are set</li>
+                </ul>
+
+                <div class="browser-instructions">
+                    <h4 data-i18n="cookie-policy.managing.browser-instructions.title">Browser-Specific Instructions:</h4>
+                    <ul>
+                        <li><strong data-i18n="cookie-policy.managing.browser-instructions.chrome">Chrome:</strong> <span data-i18n="cookie-policy.managing.browser-instructions.chrome-desc">Settings > Privacy and security > Cookies and other site data</span></li>
+                        <li><strong data-i18n="cookie-policy.managing.browser-instructions.firefox">Firefox:</strong> <span data-i18n="cookie-policy.managing.browser-instructions.firefox-desc">Options > Privacy & Security > Cookies and Site Data</span></li>
+                        <li><strong data-i18n="cookie-policy.managing.browser-instructions.safari">Safari:</strong> <span data-i18n="cookie-policy.managing.browser-instructions.safari-desc">Preferences > Privacy > Manage Website Data</span></li>
+                        <li><strong data-i18n="cookie-policy.managing.browser-instructions.edge">Edge:</strong> <span data-i18n="cookie-policy.managing.browser-instructions.edge-desc">Settings > Cookies and site permissions > Cookies and site data</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="terms-section">
+                <h2 data-i18n="cookie-policy.impact.title">Impact of Disabling Cookies</h2>
+                <p data-i18n="cookie-policy.impact.intro">If you choose to disable certain cookies, some features of our website may not work properly:</p>
+                <ul>
+                    <li data-i18n="cookie-policy.impact.login">You may need to log in repeatedly</li>
+                    <li data-i18n="cookie-policy.impact.preferences">Your preferences may not be saved</li>
+                    <li data-i18n="cookie-policy.impact.content">Some personalized content may not be available</li>
+                    <li data-i18n="cookie-policy.impact.performance">Website performance may be affected</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2 data-i18n="cookie-policy.updates.title">Updates to This Policy</h2>
+                <p data-i18n="cookie-policy.updates.content">We may update this Cookie Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes by posting the updated policy on our website.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2 data-i18n="cookie-policy.contact.title">Contact Us</h2>
+                <p data-i18n="cookie-policy.contact.intro">If you have any questions about our use of cookies or this Cookie Policy, please contact us:</p>
+                <ul>
+                    <li><span data-i18n="cookie-policy.contact.email">Email:</span> privacy@inker.com</li>
+                    <li><span data-i18n="cookie-policy.contact.phone">Phone:</span> +1 (555) 123-4567</li>
+                    <li><span data-i18n="cookie-policy.contact.address">Address:</span> 123 Ink Street, New York, NY 10001</li>
+                </ul>
+            </div>
+
+            <div class="cookie-actions">
+                <button onclick="window.history.back()" class="cookie-btn cookie-btn-secondary" data-i18n="cookie-policy.actions.go-back">Go Back</button>
+                <button onclick="openCookieSettings()" class="cookie-btn cookie-btn-primary" data-i18n="cookie-policy.actions.settings">Cookie Settings</button>
+            </div>
+        </div>
+
+        <div class="last-updated">
+            <p data-i18n="cookie-policy.last-updated">Last updated: January 2025</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="terms-conditions.html" data-footer="terms">Terms and Conditions</a>
+                <span class="separator">|</span>
+                <a href="privacy-policy.html" data-footer="privacy">Privacy Policy</a>
+            </div>
+            <div class="footer-center">
+                <p data-footer="copyright">&copy; 2025 Inker. All rights reserved.</p>
+            </div>
+            <div class="footer-right">
+                <div class="social-icons">
+                    <a href="#"><img src="../images/facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="../images/instagram-icon.png" alt="Instagram"></a>
+                    <a href="#"><img src="../images/twitter-icon.png" alt="Twitter"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/cookie-consent.js"></script>
+    <script src="../js/contact-widget.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/i18n.js"></script>
+    <script src="../js/global-cookie-banner.js"></script>
+
+    <script>
+        // Function to open cookie settings
+        function openCookieSettings() {
+            if (window.cookieConsent) {
+                window.cookieConsent.showSettingsModal();
+            }
+        }
+    </script>
+</body>
+</html>

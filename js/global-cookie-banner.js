@@ -20,7 +20,7 @@
                     <button id="acceptAllCookies" class="cookie-btn cookie-btn-primary" data-i18n="cookies.accept-all">Accept All</button>
                     <button id="acceptNecessaryCookies" class="cookie-btn cookie-btn-secondary" data-i18n="cookies.accept-necessary">Accept Necessary Only</button>
                     <button id="cookieSettings" class="cookie-btn cookie-btn-tertiary" data-i18n="cookies.settings">Cookie Settings</button>
-                    <button id="learnMoreCookies" class="cookie-btn cookie-btn-tertiary" data-i18n="cookies.learn-more">Learn More</button>
+                    <a href="cookie-policy.html" class="cookie-btn cookie-btn-tertiary" data-i18n="cookies.learn-more">Learn More</a>
                 </div>
             </div>
         </div>

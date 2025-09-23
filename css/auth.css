@@ -97,6 +97,16 @@
     box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1);
 }
 
+.password-input-container.error {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.password-input-container.valid {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
 .password-toggle {
     position: absolute;
     right: 15px;
@@ -565,21 +575,23 @@
     text-decoration: underline;
 }
 
-/* Form validation styles */
-.form-group input:invalid {
-    border-color: #ef4444;
-}
-
-.form-group input:valid {
-    border-color: #10b981;
-}
-
-.form-group input:focus:invalid {
+/* Form validation styles - only apply when field has content and is invalid/valid */
+.form-group input.error {
     border-color: #ef4444;
     box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
-.form-group input:focus:valid {
+.form-group input.valid {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.form-group input:focus.error {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.form-group input:focus.valid {
     border-color: #10b981;
     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }

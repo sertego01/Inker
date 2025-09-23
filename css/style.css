@@ -9,8 +9,10 @@ body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     color: #333;
-    background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+    background: #111827;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 a {
@@ -636,6 +638,7 @@ body.index-page .nav-link:hover {
     background-color: #1F2937;
     color: #fff;
     padding: 20px 0;
+    margin-top: auto;
 }
 
 .footer-content {
@@ -997,4 +1000,9 @@ body.index-page .nav-link:hover {
         gap: 25px;
         max-width: 800px;
     }
+}
+
+/* Sticky Footer Styles */
+main, .hero, .features, .about, .contact, .dashboard-container {
+    flex: 1;
 }

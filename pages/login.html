@@ -134,6 +134,76 @@
             }
         };
 
+        // Add validation listeners for real-time feedback
+        function addValidationListeners() {
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            
+            // Email validation
+            emailInput.addEventListener('blur', function() {
+                validateField(this);
+            });
+            
+            emailInput.addEventListener('input', function() {
+                if (this.classList.contains('error')) {
+                    validateField(this);
+                }
+            });
+            
+            // Password validation
+            passwordInput.addEventListener('blur', function() {
+                validateField(this);
+            });
+            
+            passwordInput.addEventListener('input', function() {
+                if (this.classList.contains('error')) {
+                    validateField(this);
+                }
+            });
+        }
+        
+        // Validate individual field
+        function validateField(field) {
+            const value = field.value.trim();
+            const fieldType = field.type;
+            const container = field.closest('.password-input-container') || field.closest('.form-group');
+            
+            // Remove previous validation classes
+            field.classList.remove('error', 'valid');
+            if (container) {
+                container.classList.remove('error', 'valid');
+            }
+            
+            // Only validate if field has content
+            if (value === '') {
+                return;
+            }
+            
+            let isValid = false;
+            
+            if (fieldType === 'email') {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                isValid = emailRegex.test(value);
+            } else if (fieldType === 'password') {
+                isValid = value.length >= 6;
+            }
+            
+            if (isValid) {
+                field.classList.add('valid');
+                if (container) {
+                    container.classList.add('valid');
+                }
+            } else {
+                field.classList.add('error');
+                if (container) {
+                    container.classList.add('error');
+                }
+            }
+        }
+        
+        // Initialize validation listeners
+        addValidationListeners();
+
         // Handle login
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();

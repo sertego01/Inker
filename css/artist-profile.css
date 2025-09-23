@@ -385,8 +385,10 @@
 }
 
 .contact-icon {
-    font-size: 1.5rem;
+    width: 24px;
+    height: 24px;
     margin-top: 5px;
+    filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(246deg) brightness(97%) contrast(97%);
 }
 
 .contact-item h4 {
