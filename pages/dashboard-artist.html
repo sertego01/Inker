@@ -8,8 +8,11 @@
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/contact-widget.css">
     <link rel="stylesheet" href="../css/notifications.css">
+    <link rel="stylesheet" href="../css/cookie-consent.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="../index.html" class="nav-logo">
@@ -21,6 +24,9 @@
                 </li>
                 <li class="nav-item">
                     <a href="find-artists.html" class="nav-link" data-nav="find-artist">Artist</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-nav="map">Map</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-nav="messages">Messages</a>
@@ -40,140 +46,725 @@
         </div>
     </nav>
 
+    <!-- Dashboard Container -->
     <div class="dashboard-container">
-        <div class="dashboard-sidebar">
-            <div class="user-profile">
+        <!-- Welcome Block - Full Width -->
+        <div class="welcome-block">
                 <div class="user-avatar">
-                    <img src="../images/artist-avatar.png" alt="Avatar" id="artistAvatar">
-                    <label for="avatarUpload" class="avatar-upload-label">Change</label>
-                    <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                <img src="../images/artist-avatar.png" alt="Artist Avatar" id="artistAvatar">
                 </div>
-                <h3 id="artistName">Loading...</h3>
-                <p id="artistStudio">Loading...</p>
-                <div class="artist-rating">
-                    <span class="stars">★★★★★</span>
-                    <span class="rating-value">5.0</span>
-                </div>
+            <div class="welcome-text">
+                <h1 id="welcomeMessage" data-i18n="dashboard.welcome-back-artist">Welcome back!</h1>
+                <p id="welcomeSubtext" data-i18n="dashboard.ready-to-manage">Ready to manage your tattoo business?</p>
             </div>
-            <nav class="dashboard-nav">
-                <a href="#profile" class="nav-item active" data-i18n="dashboard.my-profile">My Profile</a>
-                <a href="#portfolio" class="nav-item" data-i18n="dashboard.portfolio">Portfolio</a>
-                <a href="#appointments" class="nav-item" data-i18n="dashboard.my-appointments">Appointments</a>
-                <a href="#availability" class="nav-item" data-i18n="dashboard.availability">Availability</a>
-                <a href="#statistics" class="nav-item" data-i18n="dashboard.statistics">Statistics</a>
-            </nav>
         </div>
 
+        <!-- Dashboard Content Container -->
         <div class="dashboard-content">
-            <!-- Profile Section -->
-            <section id="profile" class="content-section active">
-                <h2>My Tattoo Artist Profile</h2>
-                <div class="profile-form">
-                    <div class="form-group">
-                        <label for="artistProfileName">Artist name</label>
-                        <input type="text" id="artistProfileName">
+            <!-- Left Side - Navigation Only -->
+            <div class="dashboard-left">
+                <!-- Navigation Menu -->
+                <nav class="dashboard-sidebar">
+                    <ul class="sidebar-nav">
+                        <li class="nav-item active">
+                            <a href="#overview" class="nav-link" data-section="overview">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                    <path d="M9 9h6v6H9z"></path>
+                                </svg>
+                                <span data-i18n="dashboard.overview">Overview</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#appointments" class="nav-link" data-section="appointments">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span data-i18n="dashboard.appointments">Appointments</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#portfolio" class="nav-link" data-section="portfolio">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                                <span data-i18n="dashboard.portfolio">Portfolio</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#reviews" class="nav-link" data-section="reviews">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
+                                </svg>
+                                <span data-i18n="dashboard.reviews">Reviews</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#profile" class="nav-link" data-section="profile">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span data-i18n="dashboard.profile">Profile</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#settings" class="nav-link" data-section="settings">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                </svg>
+                                <span data-i18n="dashboard.settings">Settings</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Right Side - Main Content -->
+            <div class="dashboard-main">
+                <!-- Overview Section (Default Active) -->
+                <section id="overview" class="content-section active">
+                    <div class="section-header">
+                        <h2 class="section-title" data-i18n="dashboard.overview-title">Overview</h2>
                     </div>
-                    <div class="form-group">
-                        <label for="artistEmail">Email</label>
-                        <input type="email" id="artistEmail">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-top-row">
+                                <img src="../images/calendario.png" alt="Calendar" class="stat-icon stat-icon-calendar">
+                                <p class="stat-value">127</p>
+                            </div>
+                            <h3 data-i18n="dashboard.total-bookings">Total Bookings</h3>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-top-row">
+                                <img src="../images/estrella.png" alt="Star" class="stat-icon stat-icon-star">
+                                <p class="stat-value">4.8</p>
+                            </div>
+                            <h3 data-i18n="dashboard.average-rating">Average Rating</h3>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-top-row">
+                                <img src="../images/me-gusta.png" alt="Like" class="stat-icon stat-icon-like">
+                                <p class="stat-value">2,456</p>
+                            </div>
+                            <h3 data-i18n="dashboard.total-likes">Total Likes</h3>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-top-row">
+                                <img src="../images/visualizar.png" alt="Views" class="stat-icon stat-icon-views">
+                                <p class="stat-value">8,923</p>
+                            </div>
+                            <h3 data-i18n="dashboard.profile-views">Profile Views</h3>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="artistStudio">Studio or workplace</label>
-                        <input type="text" id="artistStudio">
+                </section>
+
+                <!-- Appointments Section -->
+                <section id="appointments" class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title" data-i18n="dashboard.your-appointments">Your Appointments</h2>
+                        <select id="appointmentFilter" class="filter-select">
+                            <option value="all" data-i18n="dashboard.all-status">All Status</option>
+                            <option value="pending" data-i18n="dashboard.pending">Pending</option>
+                            <option value="confirmed" data-i18n="dashboard.confirmed">Confirmed</option>
+                            <option value="completed" data-i18n="dashboard.completed">Completed</option>
+                            <option value="cancelled" data-i18n="dashboard.cancelled">Cancelled</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label for="artistLocation">Location</label>
-                        <input type="text" id="artistLocation" placeholder="City, Country">
+                    <div class="appointments-list">
+                        <!-- Appointment Card 1 -->
+                        <div class="appointment-card">
+                            <div class="appointment-header">
+                                <h3 class="client-name">John Smith</h3>
+                                <div class="status-badge confirmed">
+                                    <span data-i18n="dashboard.status-confirmed">confirmed</span>
+                                </div>
+                            </div>
+                            <div class="appointment-content">
+                                <div class="appointment-info">
+                                    <p class="tattoo-description">Watercolor Flower Tattoo</p>
+                                    <p class="appointment-date">2024-03-15 at 2:00 PM</p>
+                                </div>
+                                <div class="appointment-actions">
+                                    <button class="btn-confirm" data-i18n="dashboard.confirm">Confirm</button>
+                                    <button class="btn-cancel" data-i18n="dashboard.cancel">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Appointment Card 2 -->
+                        <div class="appointment-card">
+                            <div class="appointment-header">
+                                <h3 class="client-name">Maria Garcia</h3>
+                                <div class="status-badge pending">
+                                    <span data-i18n="dashboard.status-pending">pending</span>
+                                </div>
+                            </div>
+                            <div class="appointment-content">
+                                <div class="appointment-info">
+                                    <p class="tattoo-description">Traditional Eagle Design</p>
+                                    <p class="appointment-date">2024-04-02 at 11:00 AM</p>
+                                </div>
+                                <div class="appointment-actions">
+                                    <button class="btn-confirm" data-i18n="dashboard.confirm">Confirm</button>
+                                    <button class="btn-cancel" data-i18n="dashboard.cancel">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Appointment Card 3 -->
+                        <div class="appointment-card">
+                            <div class="appointment-header">
+                                <h3 class="client-name">Alex Johnson</h3>
+                                <div class="status-badge completed">
+                                    <span data-i18n="dashboard.status-completed">completed</span>
+                                </div>
+                            </div>
+                            <div class="appointment-content">
+                                <div class="appointment-info">
+                                    <p class="tattoo-description">Geometric Mandala</p>
+                                    <p class="appointment-date">2024-02-28 at 3:30 PM</p>
+                                </div>
+                                <div class="appointment-actions">
+                                    <button class="btn-confirm" disabled>Confirm</button>
+                                    <button class="btn-cancel" disabled>Cancel</button>
                     </div>
-                    <div class="form-group">
-                        <label for="artistStyles">Styles you work with (comma separated)</label>
-                        <input type="text" id="artistStyles" placeholder="Ex: Traditional, Realistic, Geometric">
                     </div>
-                    <div class="form-group">
-                        <label for="artistBio">Biography</label>
-                        <textarea id="artistBio" rows="4" placeholder="Tell us about your experience and artistic approach..."></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="artistSocial">Social media (comma separated)</label>
-                        <input type="text" id="artistSocial" placeholder="@instagram, @twitter, etc.">
-                    </div>
-                    <button id="saveArtistProfileBtn" class="btn-primary">Save Changes</button>
                 </div>
             </section>
 
             <!-- Portfolio Section -->
             <section id="portfolio" class="content-section">
-                <h2>My Portfolio</h2>
-                <div class="portfolio-actions">
-                    <label for="portfolioUpload" class="btn-primary">Upload New Image</label>
-                    <input type="file" id="portfolioUpload" accept="image/*" multiple style="display: none;">
+                    <div class="section-header">
+                        <h2 class="section-title" data-i18n="dashboard.portfolio-title">Portfolio</h2>
+                        <button class="btn-primary" data-i18n="dashboard.upload-photo">Upload Photo</button>
                 </div>
                 <div class="portfolio-grid">
-                    <p class="loading-text">Loading portfolio...</p>
+                        <!-- Portfolio Item 1 -->
+                        <div class="portfolio-item">
+                            <div class="portfolio-image">
+                                <img src="../images/watercolor.jpg" alt="Watercolor Tattoo">
+                            </div>
+                            <div class="portfolio-info">
+                                <h3 data-i18n="dashboard.portfolio-watercolor">Watercolor Rose</h3>
+                                <p data-i18n="dashboard.portfolio-style">Watercolor Style</p>
+                                <div class="portfolio-actions">
+                                    <button class="btn-view" data-i18n="dashboard.view">View</button>
+                                    <button class="btn-remove">×</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Portfolio Item 2 -->
+                        <div class="portfolio-item">
+                            <div class="portfolio-image">
+                                <img src="../images/geometric.jpg" alt="Geometric Tattoo">
+                            </div>
+                            <div class="portfolio-info">
+                                <h3 data-i18n="dashboard.portfolio-geometric">Sacred Geometry</h3>
+                                <p data-i18n="dashboard.portfolio-style">Geometric Style</p>
+                                <div class="portfolio-actions">
+                                    <button class="btn-view" data-i18n="dashboard.view">View</button>
+                                    <button class="btn-remove">×</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Portfolio Item 3 -->
+                        <div class="portfolio-item">
+                            <div class="portfolio-image">
+                                <img src="../images/japanese.jpg" alt="Japanese Tattoo">
+                            </div>
+                            <div class="portfolio-info">
+                                <h3 data-i18n="dashboard.portfolio-japanese">Dragon & Cherry Blossom</h3>
+                                <p data-i18n="dashboard.portfolio-style">Japanese Style</p>
+                                <div class="portfolio-actions">
+                                    <button class="btn-view" data-i18n="dashboard.view">View</button>
+                                    <button class="btn-remove">×</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Portfolio Item 4 -->
+                        <div class="portfolio-item">
+                            <div class="portfolio-image">
+                                <img src="../images/traditional.jpg" alt="Traditional Tattoo">
+                            </div>
+                            <div class="portfolio-info">
+                                <h3 data-i18n="dashboard.portfolio-traditional">Traditional Eagle</h3>
+                                <p data-i18n="dashboard.portfolio-style">Traditional Style</p>
+                                <div class="portfolio-actions">
+                                    <button class="btn-view" data-i18n="dashboard.view">View</button>
+                                    <button class="btn-remove">×</button>
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </section>
 
-            <!-- Appointments Section -->
-            <section id="appointments" class="content-section">
-                <h2>Appointment Management</h2>
-                <div class="appointments-filters">
-                    <select id="appointmentFilter">
-                        <option value="upcoming">Upcoming</option>
-                        <option value="pending">Pending confirmation</option>
-                        <option value="completed">Completed</option>
-                        <option value="cancelled">Cancelled</option>
-                    </select>
+                <!-- Reviews Section -->
+                <section id="reviews" class="content-section">
+                    <h2 class="section-title" data-i18n="dashboard.reviews-title">Client Reviews</h2>
+                    <div class="reviews-list">
+                        <!-- Review 1 -->
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4 class="reviewer-name">Sarah Chen</h4>
+                                    <div class="review-rating">
+                                        <span class="stars">★★★★★</span>
+                                        <span class="rating-date">2 days ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="review-text">"Amazing work! The watercolor effect is exactly what I wanted. Very professional and clean studio."</p>
+                        </div>
+
+                        <!-- Review 2 -->
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4 class="reviewer-name">Mike Rodriguez</h4>
+                                    <div class="review-rating">
+                                        <span class="stars">★★★★★</span>
+                                        <span class="rating-date">1 week ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="review-text">"Great artist! Very detailed and patient. The geometric design came out perfect."</p>
+                        </div>
+
+                        <!-- Review 3 -->
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4 class="reviewer-name">Emma Thompson</h4>
+                                    <div class="review-rating">
+                                        <span class="stars">★★★★☆</span>
+                                        <span class="rating-date">2 weeks ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="review-text">"Good experience overall. The artist was professional and the tattoo looks great."</p>
                 </div>
-                <div class="appointments-list">
-                    <p class="loading-text">Loading appointments...</p>
                 </div>
             </section>
 
-            <!-- Availability Section -->
-            <section id="availability" class="content-section">
-                <h2>My Availability</h2>
-                <div class="availability-settings">
-                    <p>Feature in development. Soon you'll be able to set your available schedules.</p>
+                <!-- Profile Section -->
+                <section id="profile" class="content-section">
+                    <h2 class="section-title" data-i18n="dashboard.profile-settings">Profile Settings</h2>
+                    <div class="profile-form">
+                        <div class="form-group">
+                            <label for="profileName" data-i18n="dashboard.artist-name">Artist Name</label>
+                            <input type="text" id="profileName" placeholder="Enter your artist name" data-i18n-placeholder="dashboard.enter-artist-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="profileStudio" data-i18n="dashboard.studio">Studio</label>
+                            <input type="text" id="profileStudio" placeholder="Your studio name" data-i18n-placeholder="dashboard.enter-studio-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="profileLocation" data-i18n="dashboard.location">Location</label>
+                            <input type="text" id="profileLocation" placeholder="Your city" data-i18n-placeholder="dashboard.your-city-placeholder">
+                        </div>
+                        <div class="form-group">
+                            <label for="profileInstagram" data-i18n="dashboard.instagram">Instagram</label>
+                            <input type="text" id="profileInstagram" placeholder="@yourusername" data-i18n-placeholder="dashboard.instagram-placeholder">
+                        </div>
+                        <div class="form-group">
+                            <label for="profileBio" data-i18n="dashboard.biography">Biography</label>
+                            <textarea id="profileBio" rows="4" placeholder="Tell us about your experience..." data-i18n-placeholder="dashboard.enter-biography"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="dashboard.specialties">Specialties</label>
+                            <div class="styles-checkboxes">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="style-watercolor" value="Watercolor">
+                                    <label for="style-watercolor" data-i18n="dashboard.style-watercolor">Watercolor</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="style-traditional" value="Traditional">
+                                    <label for="style-traditional" data-i18n="dashboard.style-traditional">Traditional</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="style-geometric" value="Geometric">
+                                    <label for="style-geometric" data-i18n="dashboard.style-geometric">Geometric</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="style-japanese" value="Japanese">
+                                    <label for="style-japanese" data-i18n="dashboard.style-japanese">Japanese</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="style-realistic" value="Realistic">
+                                    <label for="style-realistic" data-i18n="dashboard.style-realistic">Realistic</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="style-minimalist" value="Minimalist">
+                                    <label for="style-minimalist" data-i18n="dashboard.style-minimalist">Minimalist</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="style-neo-traditional" value="Neo-Traditional">
+                                    <label for="style-neo-traditional" data-i18n="dashboard.style-neo-traditional">Neo-Traditional</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="style-dotwork" value="Dotwork">
+                                    <label for="style-dotwork" data-i18n="dashboard.style-dotwork">Dotwork</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="style-blackwork" value="Blackwork">
+                                    <label for="style-blackwork" data-i18n="dashboard.style-blackwork">Blackwork</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="style-biomechanical" value="Biomechanical">
+                                    <label for="style-biomechanical" data-i18n="dashboard.style-biomechanical">Biomechanical</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="style-tribal" value="Tribal">
+                                    <label for="style-tribal" data-i18n="dashboard.style-tribal">Tribal</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="style-henna" value="Henna">
+                                    <label for="style-henna" data-i18n="dashboard.style-henna">Henna</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-save" data-i18n="dashboard.save-changes">Save Changes</button>
                 </div>
             </section>
 
-            <!-- Statistics Section -->
-            <section id="statistics" class="content-section">
-                <h2>Statistics</h2>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>Appointments this month</h3>
-                        <p class="stat-value">12</p>
+                <!-- Settings Section -->
+                <section id="settings" class="content-section">
+                    <h2 class="section-title" data-i18n="dashboard.settings-title">Settings</h2>
+                    <div class="settings-form">
+                        <div class="setting-item">
+                            <label for="notifications" data-i18n="dashboard.email-notifications">Email Notifications</label>
+                            <input type="checkbox" id="notifications" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label for="language" data-i18n="dashboard.language">Language</label>
+                            <select id="language">
+                                <option value="en">English</option>
+                                <option value="es">Español</option>
+                            </select>
                     </div>
-                    <div class="stat-card">
-                        <h3>Average rating</h3>
-                        <p class="stat-value">4.8</p>
+                        <div class="setting-item">
+                            <label for="theme" data-i18n="dashboard.theme">Theme</label>
+                            <select id="theme">
+                                <option value="dark" data-i18n="dashboard.dark-theme">Dark</option>
+                                <option value="light" data-i18n="dashboard.light-theme">Light</option>
+                            </select>
                     </div>
-                    <div class="stat-card">
-                        <h3>Satisfied clients</h3>
-                        <p class="stat-value">45</p>
                     </div>
+                </section>
                 </div>
-            </section>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="terms-conditions.html" data-footer="terms">Terms and Conditions</a>
+                <span class="separator">|</span>
+                <a href="privacy-policy.html" data-footer="privacy">Privacy Policy</a>
+            </div>
+            <div class="footer-center">
+                <p data-footer="copyright">&copy; 2025 Inker. All rights reserved.</p>
+            </div>
+            <div class="footer-right">
+                <div class="social-icons">
+                    <a href="#"><img src="../images/facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="../images/instagram-icon.png" alt="Instagram"></a>
+                    <a href="#"><img src="../images/twitter-icon.png" alt="Twitter"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/database.js"></script>
-    <script src="../js/dashboard-artist.js"></script>
     <script src="../js/i18n.js"></script>
+    <script src="../js/dashboard-artist.js"></script>
     <script src="../js/contact-widget.js"></script>
     <script src="../js/notifications.js"></script>
+    <script src="../js/cookie-consent.js"></script>
+    <script src="../js/global-cookie-banner.js"></script>
     
     <script>
-        // Actualizar menú basado en idioma guardado
+        // Dashboard functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+
+                // Close mobile menu when clicking on a link
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
+
+            // Logout functionality
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (confirm('Are you sure you want to logout?')) {
+                        logoutUser().then(() => {
+                            window.location.href = '../index.html';
+                        }).catch(error => {
+                            console.error('Logout error:', error);
+                        });
+                    }
+                });
+            }
+
+            // Sidebar navigation (dashboard sections)
+            const dashboardNavLinks = document.querySelectorAll('.dashboard-sidebar .nav-link');
+            const sections = document.querySelectorAll('.content-section');
+
+            dashboardNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all nav items and sections
+                    dashboardNavLinks.forEach(l => l.parentElement.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+                    
+                    // Add active class to clicked nav item
+                    this.parentElement.classList.add('active');
+                    
+                    // Show corresponding section
+                    const targetSection = this.getAttribute('data-section');
+                    const targetElement = document.getElementById(targetSection);
+                    if (targetElement) {
+                        targetElement.classList.add('active');
+                    }
+                });
+            });
+
+            // Appointment filter functionality
+            const appointmentFilter = document.getElementById('appointmentFilter');
+            if (appointmentFilter) {
+                appointmentFilter.addEventListener('change', function() {
+                    const selectedStatus = this.value;
+                    const appointmentCards = document.querySelectorAll('.appointment-card');
+                    
+                    appointmentCards.forEach(card => {
+                        const statusBadge = card.querySelector('.status-badge span');
+                        const cardStatus = statusBadge ? statusBadge.textContent.toLowerCase() : '';
+                        
+                        if (selectedStatus === 'all' || cardStatus === selectedStatus) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // Appointment actions
+            const confirmBtns = document.querySelectorAll('.btn-confirm');
+            const cancelBtns = document.querySelectorAll('.btn-cancel');
+
+            confirmBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    alert('Appointment confirmed!');
+                });
+            });
+
+            cancelBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (confirm('Are you sure you want to cancel this appointment?')) {
+                        this.closest('.appointment-card').remove();
+                    }
+                });
+            });
+
+            // Profile save button
+            const saveBtn = document.querySelector('.btn-save');
+            if (saveBtn) {
+                saveBtn.addEventListener('click', async function() {
+                    try {
+                        const currentUser = await getCurrentUser();
+                        if (currentUser) {
+                            // Get form data
+                            const name = document.getElementById('profileName').value.trim();
+                            const studio = document.getElementById('profileStudio').value.trim();
+                            const location = document.getElementById('profileLocation').value.trim();
+                            const bio = document.getElementById('profileBio').value.trim();
+                            
+                            // Get selected styles
+                            const selectedStyles = [];
+                            const styleCheckboxes = document.querySelectorAll('.styles-checkboxes input[type="checkbox"]:checked');
+                            styleCheckboxes.forEach(checkbox => {
+                                selectedStyles.push(checkbox.value);
+                            });
+                            
+                            // Update user data in database
+                            await updateUserData(currentUser.uid, {
+                                name: name,
+                                studio: studio,
+                                location: location,
+                                bio: bio,
+                                specialties: selectedStyles
+                            });
+                            
+                            // Update welcome message
+                            const welcomeMessage = document.getElementById('welcomeMessage');
+                            if (welcomeMessage) {
+                                const displayName = name || 'Artist';
+                                welcomeMessage.textContent = `Welcome back, ${displayName}!`;
+                                welcomeMessage.dataset.originalName = displayName;
+                            }
+                            
+                            alert('Profile updated successfully!');
+                        }
+                    } catch (error) {
+                        console.error('Error updating profile:', error);
+                        alert('Error updating profile. Please try again.');
+                    }
+                });
+            }
+
+            // Load user data from database
+            async function loadUserData() {
+                try {
+                    const currentUser = await getCurrentUser();
+                    console.log('Current user:', currentUser);
+                    
+                    if (currentUser) {
+                        const userDoc = await getUserData(currentUser.uid);
+                        console.log('User document:', userDoc);
+                        
+                        if (userDoc.exists()) {
+                            const userData = userDoc.data();
+                            console.log('User data:', userData);
+                            
+                            // Update profile form
+                            const profileNameInput = document.getElementById('profileName');
+                            const profileStudioInput = document.getElementById('profileStudio');
+                            const profileLocationInput = document.getElementById('profileLocation');
+                            const profileBioInput = document.getElementById('profileBio');
+                            
+                            if (profileNameInput && userData.name) {
+                                profileNameInput.value = userData.name;
+                            }
+                            
+                            if (profileStudioInput && userData.studio) {
+                                profileStudioInput.value = userData.studio;
+                            }
+                            
+                            if (profileLocationInput && userData.location) {
+                                profileLocationInput.value = userData.location;
+                            }
+                            
+                            if (profileBioInput && userData.bio) {
+                                profileBioInput.value = userData.bio;
+                            }
+                            
+                            // Update welcome message
+                            const welcomeMessage = document.getElementById('welcomeMessage');
+                            if (welcomeMessage) {
+                                const displayName = userData.name || userData.email || 'Artist';
+                                welcomeMessage.textContent = `Welcome back, ${displayName}!`;
+                                
+                                // Store the original name for later updates
+                                welcomeMessage.dataset.originalName = displayName;
+                            }
+                            
+                            // Update specialties checkboxes
+                            if (userData.specialties && Array.isArray(userData.specialties)) {
+                                userData.specialties.forEach(style => {
+                                    const checkbox = document.getElementById(`style-${style.toLowerCase()}`);
+                                    if (checkbox) {
+                                        checkbox.checked = true;
+                                    }
+                                });
+                            }
+                        } else {
+                            console.log('No user data found, using defaults');
+                            // Set default welcome message if no data exists
+                            const welcomeMessage = document.getElementById('welcomeMessage');
+                            if (welcomeMessage) {
+                                welcomeMessage.textContent = 'Welcome back, Artist!';
+                                welcomeMessage.dataset.originalName = 'Artist';
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error loading user data:', error);
+                    // Set default welcome message on error
+                    const welcomeMessage = document.getElementById('welcomeMessage');
+                    if (welcomeMessage) {
+                        welcomeMessage.textContent = 'Welcome back, Artist!';
+                        welcomeMessage.dataset.originalName = 'Artist';
+                    }
+                }
+            }
+
+            // Load user data on page load
+            loadUserData();
+
+            // Initialize i18n system
+            document.addEventListener('DOMContentLoaded', function() {
+                if (typeof I18n !== 'undefined') {
+                    window.i18n = new I18n();
+                }
+            });
+
+            // Remove portfolio items
+            const removePortfolioBtns = document.querySelectorAll('.btn-remove');
+            removePortfolioBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (confirm('Remove this item from portfolio?')) {
+                        this.closest('.portfolio-item').remove();
+                    }
+                });
+            });
+
+            // View portfolio buttons
+            const viewPortfolioBtns = document.querySelectorAll('.btn-view');
+            viewPortfolioBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    alert('Portfolio viewer coming soon!');
+                });
+            });
+
+            // Language selector functionality
+            const languageSelect = document.getElementById('language');
+            if (languageSelect) {
+                // Set current language
+                const currentLang = localStorage.getItem('language') || 'en';
+                languageSelect.value = currentLang;
+
+                languageSelect.addEventListener('change', function() {
+                    const selectedLang = this.value;
+                    localStorage.setItem('language', selectedLang);
+                    location.reload(); // Reload to apply language changes
+                });
+            }
+
+            // Update navigation text based on language
             const currentLang = localStorage.getItem('language') || 'en';
             const translations = {
                 en: {
@@ -187,12 +778,12 @@
                     'find-styles': 'Estilos',
                     'find-artist': 'Tatuadores',
                     'messages': 'Mensajes',
-                    'dashboard': 'Panel',
+                    'dashboard': 'Perfil',
                     'logout': 'Cerrar sesión'
                 }
             };
             
-            // Actualizar enlaces del menú
+            // Update navigation links
             const navLinks = document.querySelectorAll('.nav-link, .nav-button');
             navLinks.forEach(link => {
                 const dataNav = link.getAttribute('data-nav');

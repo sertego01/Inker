@@ -26,6 +26,9 @@
                     <a href="find-artists.html" class="nav-link" data-nav="find-artist">Artist</a>
                 </li>
                 <li class="nav-item">
+                    <a href="#" class="nav-link" data-nav="map">Map</a>
+                </li>
+                <li class="nav-item">
                     <a href="#" class="nav-link" data-nav="messages">Messages</a>
                 </li>
                 <li class="nav-item">
@@ -45,74 +48,76 @@
 
     <!-- Dashboard Container -->
     <div class="dashboard-container">
-        <!-- Left Side - Welcome Block and Navigation -->
-        <div class="dashboard-left">
-            <!-- Welcome Block -->
-            <div class="welcome-block">
-                <div class="user-avatar">
-                    <img src="../images/user-avatar.png" alt="User Avatar" id="userAvatar">
-                </div>
-                <div class="welcome-text">
-                    <h1 id="welcomeMessage" data-i18n="dashboard.welcome-back">Welcome back!</h1>
-                    <p id="welcomeSubtext" data-i18n="dashboard.ready-to-find">Ready to find your next tattoo artist?</p>
-                </div>
+        <!-- Welcome Block - Full Width -->
+        <div class="welcome-block">
+            <div class="user-avatar">
+                <img src="../images/user-avatar.png" alt="User Avatar" id="userAvatar">
             </div>
-
-            <!-- Navigation Menu -->
-            <nav class="dashboard-sidebar">
-                <ul class="sidebar-nav">
-                    <li class="nav-item active">
-                        <a href="#appointments" class="nav-link" data-section="appointments">
-                            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                <line x1="3" y1="10" x2="21" y2="10"></line>
-                            </svg>
-                            <span data-i18n="dashboard.appointments">Appointments</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#favorites" class="nav-link" data-section="favorites">
-                            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                            </svg>
-                            <span data-i18n="dashboard.favorite-artists">Favorite Artists</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#saved-designs" class="nav-link" data-section="saved-designs">
-                            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                            </svg>
-                            <span data-i18n="dashboard.saved-designs">Saved Designs</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#profile" class="nav-link" data-section="profile">
-                            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="12" cy="7" r="4"></circle>
-                            </svg>
-                            <span data-i18n="dashboard.profile">Profile</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#settings" class="nav-link" data-section="settings">
-                            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                            </svg>
-                            <span data-i18n="dashboard.settings">Settings</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <div class="welcome-text">
+                <h1 id="welcomeMessage" data-i18n="dashboard.welcome-back">Welcome back!</h1>
+                <p id="welcomeSubtext" data-i18n="dashboard.ready-to-find">Ready to find your next tattoo artist?</p>
+            </div>
         </div>
 
-        <!-- Right Side - Main Content -->
-        <div class="dashboard-main">
+        <!-- Dashboard Content Container -->
+        <div class="dashboard-content">
+            <!-- Left Side - Navigation Only -->
+            <div class="dashboard-left">
+                <!-- Navigation Menu -->
+                <nav class="dashboard-sidebar">
+                    <ul class="sidebar-nav">
+                        <li class="nav-item active">
+                            <a href="#appointments" class="nav-link" data-section="appointments">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span data-i18n="dashboard.appointments">Appointments</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#favorites" class="nav-link" data-section="favorites">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                                <span data-i18n="dashboard.favorite-artists">Favorite Artists</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#saved-designs" class="nav-link" data-section="saved-designs">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                </svg>
+                                <span data-i18n="dashboard.saved-designs">Saved Designs</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#profile" class="nav-link" data-section="profile">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span data-i18n="dashboard.profile">Profile</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#settings" class="nav-link" data-section="settings">
+                                <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                </svg>
+                                <span data-i18n="dashboard.settings">Settings</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Right Side - Main Content -->
+            <div class="dashboard-main">
             <!-- Appointments Section (Default Active) -->
             <section id="appointments" class="content-section active">
                 <div class="section-header">
@@ -129,64 +134,80 @@
                     <!-- Appointment Card 1 -->
                     <div class="appointment-card">
                         <div class="appointment-header">
-                            <h3 class="artist-name">Sarah Chen</h3>
+                            <h3 class="client-name">Sarah Chen</h3>
                             <div class="status-badge confirmed">
                                 <span data-i18n="dashboard.status-confirmed">confirmed</span>
                             </div>
                         </div>
-                        <p class="tattoo-description">Watercolor Flower Tattoo</p>
-                        <p class="appointment-date">2024-03-15 at 2:00 PM</p>
-                        <div class="appointment-actions">
-                            <button class="btn-reschedule" data-i18n="dashboard.reschedule">Reschedule</button>
-                            <button class="btn-cancel" data-i18n="dashboard.cancel">Cancel</button>
+                        <div class="appointment-content">
+                            <div class="appointment-info">
+                                <p class="tattoo-description">Watercolor Flower Tattoo</p>
+                                <p class="appointment-date">2024-03-15 at 2:00 PM</p>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn-reschedule" data-i18n="dashboard.reschedule">Reschedule</button>
+                                <button class="btn-cancel" data-i18n="dashboard.cancel">Cancel</button>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Appointment Card 2 -->
                     <div class="appointment-card">
                         <div class="appointment-header">
-                            <h3 class="artist-name">Marcus Rodriguez</h3>
+                            <h3 class="client-name">Marcus Rodriguez</h3>
                             <div class="status-badge pending">
                                 <span data-i18n="dashboard.status-pending">pending</span>
                             </div>
                         </div>
-                        <p class="tattoo-description">Traditional Eagle Design</p>
-                        <p class="appointment-date">2024-04-02 at 11:00 AM</p>
-                        <div class="appointment-actions">
-                            <button class="btn-reschedule" data-i18n="dashboard.reschedule">Reschedule</button>
-                            <button class="btn-cancel" data-i18n="dashboard.cancel">Cancel</button>
+                        <div class="appointment-content">
+                            <div class="appointment-info">
+                                <p class="tattoo-description">Traditional Eagle Design</p>
+                                <p class="appointment-date">2024-04-02 at 11:00 AM</p>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn-reschedule" data-i18n="dashboard.reschedule">Reschedule</button>
+                                <button class="btn-cancel" data-i18n="dashboard.cancel">Cancel</button>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Appointment Card 3 -->
                     <div class="appointment-card">
                         <div class="appointment-header">
-                            <h3 class="artist-name">Emma Thompson</h3>
+                            <h3 class="client-name">Emma Thompson</h3>
                             <div class="status-badge completed">
                                 <span data-i18n="dashboard.status-completed">completed</span>
                             </div>
                         </div>
-                        <p class="tattoo-description">Geometric Mandala</p>
-                        <p class="appointment-date">2024-02-28 at 3:30 PM</p>
-                        <div class="appointment-actions">
-                            <button class="btn-reschedule" disabled>Reschedule</button>
-                            <button class="btn-cancel" disabled>Cancel</button>
+                        <div class="appointment-content">
+                            <div class="appointment-info">
+                                <p class="tattoo-description">Geometric Mandala</p>
+                                <p class="appointment-date">2024-02-28 at 3:30 PM</p>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn-reschedule" disabled>Reschedule</button>
+                                <button class="btn-cancel" disabled>Cancel</button>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Appointment Card 4 -->
                     <div class="appointment-card">
                         <div class="appointment-header">
-                            <h3 class="artist-name">Alex Johnson</h3>
+                            <h3 class="client-name">Alex Johnson</h3>
                             <div class="status-badge cancelled">
                                 <span data-i18n="dashboard.status-cancelled">cancelled</span>
                             </div>
                         </div>
-                        <p class="tattoo-description">Japanese Cherry Blossom</p>
-                        <p class="appointment-date">2024-03-10 at 1:00 PM</p>
-                        <div class="appointment-actions">
-                            <button class="btn-reschedule" disabled>Reschedule</button>
-                            <button class="btn-cancel" disabled>Cancel</button>
+                        <div class="appointment-content">
+                            <div class="appointment-info">
+                                <p class="tattoo-description">Japanese Cherry Blossom</p>
+                                <p class="appointment-date">2024-03-10 at 1:00 PM</p>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn-reschedule" disabled>Reschedule</button>
+                                <button class="btn-cancel" disabled>Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -458,6 +479,7 @@
                 </div>
                 </div>
             </section>
+            </div>
         </div>
     </div>
 
@@ -703,22 +725,6 @@
                 }
             }
 
-            // Update welcome message when name changes
-            const profileNameInput = document.getElementById('profileName');
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            
-            if (profileNameInput && welcomeMessage) {
-                profileNameInput.addEventListener('input', function() {
-                    const newName = this.value.trim();
-                    if (newName) {
-                        welcomeMessage.textContent = `Welcome back, ${newName}!`;
-                    } else {
-                        // Fallback to original name from DB or default
-                        const originalName = welcomeMessage.dataset.originalName || 'User';
-                        welcomeMessage.textContent = `Welcome back, ${originalName}!`;
-                    }
-                });
-            }
 
             // Load user data on page load
             loadUserData();
@@ -786,7 +792,7 @@
                     'find-styles': 'Estilos',
                     'find-artist': 'Tatuadores',
                     'messages': 'Mensajes',
-                    'dashboard': 'Panel',
+                    'dashboard': 'Perfil',
                     'logout': 'Cerrar sesión'
                 }
             };

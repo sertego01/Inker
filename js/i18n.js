@@ -12,6 +12,7 @@ class I18n {
                 'nav.login': 'Login',
                 'nav.signup': 'Sign up',
                 'nav.messages': 'Messages',
+                'nav.map': 'Map',
                 'nav.dashboard': 'Dashboard',
                 'nav.logout': 'Logout',
                 
@@ -45,6 +46,28 @@ class I18n {
                 'styles.biomechanical': 'Biomechanical',
                 'styles.dotwork': 'Dotwork',
                 'styles.henna': 'Henna',
+                'styles.puntillismo': 'Puntillismo',
+                
+                // Filters
+                'filters.style': 'Style',
+                'filters.country': 'Country',
+                'filters.region': 'Region/State',
+                'filters.city': 'City',
+                'filters.all-styles': 'All Styles',
+                'filters.all-countries': 'All Countries',
+                'filters.all-regions': 'All Regions',
+                'filters.all-cities': 'All Cities',
+                'filters.clear-all': 'Clear All',
+                'filters.sort-by': 'Sort by:',
+                'filters.sort-name': 'Name',
+                'filters.sort-rating': 'Rating',
+                'filters.sort-location': 'Location',
+                
+                // Countries
+                'countries.spain': 'Spain',
+                'countries.united-kingdom': 'United Kingdom',
+                'countries.france': 'France',
+                'countries.germany': 'Germany',
                 
                 // Featured Artists
                 'artists.title': 'Featured Artists',
@@ -374,8 +397,9 @@ class I18n {
                 'dashboard.confirmed': 'Confirmed',
                 'dashboard.completed': 'Completed',
                 'dashboard.cancelled': 'Cancelled',
-                'dashboard.reschedule': 'Reschedule',
+                'dashboard.confirm': 'Confirm',
                 'dashboard.cancel': 'Cancel',
+                'dashboard.reschedule': 'Reschedule',
                 'dashboard.favorite-artists-title': 'Favorite Artists',
                 'dashboard.saved-designs-title': 'Saved Designs',
                 'dashboard.view-design': 'View Design',
@@ -430,6 +454,36 @@ class I18n {
                 'dashboard.artist-style-traditional': 'Traditional',
                 'dashboard.artist-style-geometric': 'Geometric',
                 'dashboard.artist-style-japanese': 'Japanese',
+                
+                // Dashboard Artist Page
+                'dashboard.welcome-back-artist': 'Welcome back!',
+                'dashboard.ready-to-manage': 'Ready to manage your tattoo business?',
+                'dashboard.overview': 'Overview',
+                'dashboard.overview-title': 'Overview',
+                'dashboard.portfolio-title': 'Portfolio',
+                'dashboard.reviews': 'Reviews',
+                'dashboard.reviews-title': 'Client Reviews',
+                'dashboard.upload-photo': 'Upload Photo',
+                'dashboard.total-bookings': 'Total Bookings',
+                'dashboard.average-rating': 'Average Rating',
+                'dashboard.total-likes': 'Total Likes',
+                'dashboard.profile-views': 'Profile Views',
+                'dashboard.artist-name': 'Artist Name',
+                'dashboard.studio': 'Studio',
+                'dashboard.instagram': 'Instagram',
+                'dashboard.biography': 'Biography',
+                'dashboard.specialties': 'Specialties',
+                'dashboard.enter-artist-name': 'Enter your artist name',
+                'dashboard.enter-studio-name': 'Enter your studio name',
+                'dashboard.instagram-placeholder': '@yourusername',
+                'dashboard.enter-biography': 'Tell us about your experience...',
+                'dashboard.portfolio-watercolor': 'Watercolor Rose',
+                'dashboard.portfolio-geometric': 'Sacred Geometry',
+                'dashboard.portfolio-japanese': 'Dragon & Cherry Blossom',
+                'dashboard.portfolio-traditional': 'Traditional Eagle',
+                'dashboard.portfolio-style': 'Style',
+                'dashboard.view': 'View',
+                
                 // Email verification
                 'verify.title': 'Verify Email Address',
                 'verify.subtitle': 'We are verifying your email address...',
@@ -449,7 +503,8 @@ class I18n {
                 'nav.login': 'Iniciar sesión',
                 'nav.signup': 'Registrarse',
                 'nav.messages': 'Mensajes',
-                'nav.dashboard': 'Panel',
+                'nav.map': 'Mapa',
+                'nav.dashboard': 'Perfil',
                 'nav.logout': 'Cerrar sesión',
                 
                 // Hero Section
@@ -482,6 +537,28 @@ class I18n {
                 'styles.biomechanical': 'Biomecánico',
                 'styles.dotwork': 'Puntillismo',
                 'styles.henna': 'Henna',
+                'styles.puntillismo': 'Puntillismo',
+                
+                // Filters
+                'filters.style': 'Estilo',
+                'filters.country': 'País',
+                'filters.region': 'Región/Estado',
+                'filters.city': 'Ciudad',
+                'filters.all-styles': 'Todos los Estilos',
+                'filters.all-countries': 'Todos los Países',
+                'filters.all-regions': 'Todas las Regiones',
+                'filters.all-cities': 'Todas las Ciudades',
+                'filters.clear-all': 'Limpiar Todo',
+                'filters.sort-by': 'Ordenar por:',
+                'filters.sort-name': 'Nombre',
+                'filters.sort-rating': 'Valoración',
+                'filters.sort-location': 'Ubicación',
+                
+                // Countries
+                'countries.spain': 'España',
+                'countries.united-kingdom': 'Reino Unido',
+                'countries.france': 'Francia',
+                'countries.germany': 'Alemania',
                 
                 // Featured Artists
                 'artists.title': 'Tatuadores Destacados',
@@ -811,8 +888,9 @@ class I18n {
                 'dashboard.confirmed': 'Confirmado',
                 'dashboard.completed': 'Completado',
                 'dashboard.cancelled': 'Cancelado',
-                'dashboard.reschedule': 'Reprogramar',
+                'dashboard.confirm': 'Confirmar',
                 'dashboard.cancel': 'Cancelar',
+                'dashboard.reschedule': 'Reprogramar',
                 'dashboard.favorite-artists-title': 'Tatuadores Favoritos',
                 'dashboard.saved-designs-title': 'Diseños Guardados',
                 'dashboard.view-design': 'Ver Diseño',
@@ -867,6 +945,36 @@ class I18n {
                 'dashboard.artist-style-traditional': 'Tradicional',
                 'dashboard.artist-style-geometric': 'Geométrico',
                 'dashboard.artist-style-japanese': 'Japonés',
+                
+                // Dashboard Artist Page
+                'dashboard.welcome-back-artist': '¡Bienvenido de vuelta!',
+                'dashboard.ready-to-manage': '¿Listo para gestionar tu negocio de tatuajes?',
+                'dashboard.overview': 'Resumen',
+                'dashboard.overview-title': 'Resumen',
+                'dashboard.portfolio-title': 'Portafolio',
+                'dashboard.reviews': 'Reseñas',
+                'dashboard.reviews-title': 'Reseñas de Clientes',
+                'dashboard.upload-photo': 'Subir Foto',
+                'dashboard.total-bookings': 'Reservas Totales',
+                'dashboard.average-rating': 'Calificación Promedio',
+                'dashboard.total-likes': 'Me Gusta Totales',
+                'dashboard.profile-views': 'Vistas del Perfil',
+                'dashboard.artist-name': 'Nombre del Artista',
+                'dashboard.studio': 'Estudio',
+                'dashboard.instagram': 'Instagram',
+                'dashboard.biography': 'Biografía',
+                'dashboard.specialties': 'Especialidades',
+                'dashboard.enter-artist-name': 'Ingresa tu nombre de artista',
+                'dashboard.enter-studio-name': 'Ingresa el nombre de tu estudio',
+                'dashboard.instagram-placeholder': '@tunombredeusuario',
+                'dashboard.enter-biography': 'Cuéntanos sobre tu experiencia...',
+                'dashboard.portfolio-watercolor': 'Rosa Acuarela',
+                'dashboard.portfolio-geometric': 'Geometría Sagrada',
+                'dashboard.portfolio-japanese': 'Dragón y Flor de Cerezo',
+                'dashboard.portfolio-traditional': 'Águila Tradicional',
+                'dashboard.portfolio-style': 'Estilo',
+                'dashboard.view': 'Ver',
+                
                 // Email verification
                 'verify.title': 'Verificar Correo Electrónico',
                 'verify.subtitle': 'Estamos verificando tu correo electrónico...',
@@ -979,6 +1087,22 @@ class I18n {
         
         // Actualizar páginas de búsqueda
         this.updateSearchPages();
+        
+        // Traducir opciones de estilos
+        this.translateStyleOptions();
+
+        // Notificar a la app que el idioma cambió para que páginas específicas
+        // (como la de artistas) puedan refrescar textos dinámicos personalizados
+        if (typeof window !== 'undefined' && window.dispatchEvent) {
+            try {
+                window.dispatchEvent(new Event('languageChanged'));
+            } catch (e) {
+                // Fallback para navegadores antiguos
+                const evt = document.createEvent('Event');
+                evt.initEvent('languageChanged', true, true);
+                window.dispatchEvent(evt);
+            }
+        }
     }
     
     updateSpecificElements() {
@@ -1031,6 +1155,7 @@ class I18n {
             'login': this.translate('nav.login'),
             'signup': this.translate('nav.signup'),
             'messages': this.translate('nav.messages'),
+            'map': this.translate('nav.map'),
             'dashboard': this.translate('nav.dashboard'),
             'logout': this.translate('nav.logout')
         };
@@ -1172,6 +1297,79 @@ class I18n {
         filtersText.forEach(span => {
             span.textContent = this.translate('filters-text');
         });
+        
+        // Traducir elementos de filtros
+        this.updateFilterElements();
+    }
+    
+    updateFilterElements() {
+        // Traducir labels de filtros
+        const filterLabels = document.querySelectorAll('[data-i18n^="filters."]');
+        filterLabels.forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (key && key.startsWith('filters.')) {
+                element.textContent = this.translate(key);
+            }
+        });
+        
+        // Traducir opciones de estilos
+        const styleOptions = document.querySelectorAll('#styleFilter option[data-i18n^="styles."]');
+        styleOptions.forEach(option => {
+            const key = option.getAttribute('data-i18n');
+            if (key && key.startsWith('styles.')) {
+                option.textContent = this.translate(key);
+            }
+        });
+        
+        // Traducir opciones de ordenamiento
+        const sortOptions = document.querySelectorAll('#sortBy option[data-i18n^="filters.sort-"]');
+        sortOptions.forEach(option => {
+            const key = option.getAttribute('data-i18n');
+            if (key && key.startsWith('filters.sort-')) {
+                option.textContent = this.translate(key);
+            }
+        });
+        
+        // Traducir opciones de filtros de ubicación
+        const locationOptions = document.querySelectorAll('#countryFilter option[data-i18n^="filters.all-"], #regionFilter option[data-i18n^="filters.all-"], #cityFilter option[data-i18n^="filters.all-"]');
+        locationOptions.forEach(option => {
+            const key = option.getAttribute('data-i18n');
+            if (key && key.startsWith('filters.all-')) {
+                option.textContent = this.translate(key);
+            }
+        });
+        
+        // Traducir opciones de estilos que no tienen data-i18n pero tienen valores específicos
+        this.translateStyleOptions();
+    }
+    
+    translateStyleOptions() {
+        const styleFilter = document.getElementById('styleFilter');
+        if (!styleFilter) return;
+        
+        // Mapeo de valores a claves de traducción
+        const styleValueToKey = {
+            'Traditional': 'styles.traditional',
+            'Realistic': 'styles.realistic',
+            'Japanese': 'styles.japanese',
+            'Blackwork': 'styles.blackwork',
+            'Watercolor': 'styles.watercolor',
+            'Geometric': 'styles.geometric',
+            'Tribal': 'styles.tribal',
+            'Neo-traditional': 'styles.neotraditional',
+            'Minimalist': 'styles.minimalist',
+            'Biomechanical': 'styles.biomechanical',
+            'Puntillismo': 'styles.puntillismo',
+            'Henna': 'styles.henna'
+        };
+        
+        const options = styleFilter.querySelectorAll('option');
+        options.forEach(option => {
+            const value = option.value;
+            if (value && styleValueToKey[value]) {
+                option.textContent = this.translate(styleValueToKey[value]);
+            }
+        });
     }
     
     translate(key) {
@@ -1191,6 +1389,13 @@ function initI18n() {
     }
     console.log('Initializing i18n...');
     window.i18n = new I18n();
+    
+    // Traducir opciones de estilos después de un pequeño delay para asegurar que el DOM esté listo
+    setTimeout(() => {
+        if (window.i18n && window.i18n.translateStyleOptions) {
+            window.i18n.translateStyleOptions();
+        }
+    }, 100);
 }
 
 // Inicializar cuando el DOM esté listo

@@ -24,6 +24,9 @@
                     <a href="find-artists.html" class="nav-link" data-nav="find-artist">Artist</a>
                 </li>
                 <li class="nav-item">
+                    <a href="#" class="nav-link" data-nav="map">Map</a>
+                </li>
+                <li class="nav-item">
                     <a href="login.html" class="nav-button" data-nav="login">Login</a>
                 </li>
             </ul>
@@ -56,50 +59,58 @@
                             </button>
                             <div class="filters-dropdown-content" id="filterDropdown">
                                 <div class="filter-group">
-                                    <label>Style</label>
+                                    <label data-i18n="filters.style">Style</label>
                                     <select id="styleFilter" onchange="filterByStyle()">
-                                        <option value="">All Styles</option>
-                                        <option value="Traditional">Traditional</option>
-                                        <option value="Realistic">Realistic</option>
-                                        <option value="Japanese">Japanese</option>
-                                        <option value="Blackwork">Blackwork</option>
-                                        <option value="Watercolor">Watercolor</option>
-                                        <option value="Geometric">Geometric</option>
-                                        <option value="Tribal">Tribal</option>
-                                        <option value="Neo-traditional">Neo-traditional</option>
-                                        <option value="Minimalist">Minimalist</option>
-                                        <option value="Biomechanical">Biomechanical</option>
-                                        <option value="Puntillismo">Puntillismo</option>
-                                        <option value="Henna">Henna</option>
+                                        <option value="" data-i18n="filters.all-styles">All Styles</option>
+                                        <option value="Traditional" data-i18n="styles.traditional">Traditional</option>
+                                        <option value="Realistic" data-i18n="styles.realistic">Realistic</option>
+                                        <option value="Japanese" data-i18n="styles.japanese">Japanese</option>
+                                        <option value="Blackwork" data-i18n="styles.blackwork">Blackwork</option>
+                                        <option value="Watercolor" data-i18n="styles.watercolor">Watercolor</option>
+                                        <option value="Geometric" data-i18n="styles.geometric">Geometric</option>
+                                        <option value="Tribal" data-i18n="styles.tribal">Tribal</option>
+                                        <option value="Neo-traditional" data-i18n="styles.neotraditional">Neo-traditional</option>
+                                        <option value="Minimalist" data-i18n="styles.minimalist">Minimalist</option>
+                                        <option value="Biomechanical" data-i18n="styles.biomechanical">Biomechanical</option>
+                                        <option value="Puntillismo" data-i18n="styles.puntillismo">Puntillismo</option>
+                                        <option value="Henna" data-i18n="styles.henna">Henna</option>
                                     </select>
                                 </div>
                                 
                                 <div class="filter-group">
-                                    <label>Location</label>
-                                    <select id="locationFilter" onchange="filterByLocation()">
-                                        <option value="">All Locations</option>
-                                        <option value="Los Angeles">Los Angeles, CA</option>
-                                        <option value="Austin">Austin, TX</option>
-                                        <option value="Portland">Portland, OR</option>
-                                        <option value="New York">New York, NY</option>
-                                        <option value="Miami">Miami, FL</option>
-                                        <option value="San Francisco">San Francisco, CA</option>
+                                    <label data-i18n="filters.country">Country</label>
+                                    <select id="countryFilter" onchange="filterByCountry()">
+                                        <option value="" data-i18n="filters.all-countries">All Countries</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="filter-group">
+                                    <label data-i18n="filters.region">Region/State</label>
+                                    <select id="regionFilter" onchange="filterByRegion()">
+                                        <option value="" data-i18n="filters.all-regions">All Regions</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="filter-group">
+                                    <label data-i18n="filters.city">City</label>
+                                    <select id="cityFilter" onchange="filterByCity()">
+                                        <option value="" data-i18n="filters.all-cities">All Cities</option>
                                     </select>
                                 </div>
                                 
                                 <div class="filter-actions">
-                                    <button class="clear-filters-btn" onclick="clearFilters()">Clear All</button>
+                                    <button class="clear-filters-btn" onclick="clearFilters()" data-i18n="filters.clear-all">Clear All</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
                     <div class="sort-controls">
-                        <span data-nav="sort-by">Sort by:</span>
+                        <span data-i18n="filters.sort-by">Sort by:</span>
                         <select id="sortBy" onchange="sortArtists()">
-                            <option value="name" selected data-nav="sort-name">Name</option>
-                            <option value="rating" data-nav="sort-rating">Rating</option>
-                            <option value="location" data-nav="sort-location">Location</option>
+                            <option value="name" selected data-i18n="filters.sort-name">Name</option>
+                            <option value="rating" data-i18n="filters.sort-rating">Rating</option>
+                            <option value="location" data-i18n="filters.sort-location">Location</option>
                         </select>
                     </div>
                 </div>
@@ -181,7 +192,7 @@
                                     'find-styles': 'Estilos',
                                     'find-artist': 'Tatuadores',
                                     'messages': 'Mensajes',
-                                    'dashboard': 'Panel',
+                                    'dashboard': 'Perfil',
                                     'logout': 'Cerrar sesión'
                                 }
                             };

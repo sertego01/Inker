@@ -40,13 +40,21 @@ function displayArtistProfile(userData, artistData) {
     }
     
     // Fill profile form
-    document.getElementById('artistProfileName').value = artistData.name || userData.name || '';
-    document.getElementById('artistEmail').value = userData.email || '';
-    document.getElementById('artistStudio').value = artistData.studio || '';
-    document.getElementById('artistLocation').value = artistData.location || '';
-    document.getElementById('artistStyles').value = artistData.styles ? artistData.styles.join(', ') : '';
-    document.getElementById('artistBio').value = artistData.bio || '';
-    document.getElementById('artistSocial').value = artistData.socialMedia ? artistData.socialMedia.join(', ') : '';
+    document.getElementById('profileName').value = artistData.name || userData.name || '';
+    document.getElementById('profileStudio').value = artistData.studio || '';
+    document.getElementById('profileLocation').value = artistData.location || '';
+    document.getElementById('profileInstagram').value = artistData.instagram || '';
+    document.getElementById('profileBio').value = artistData.bio || '';
+    
+    // Load selected styles
+    if (artistData.styles) {
+        artistData.styles.forEach(style => {
+            const checkbox = document.querySelector(`input[value="${style}"]`);
+            if (checkbox) {
+                checkbox.checked = true;
+            }
+        });
+    }
 }
 
 function loadArtistAppointments(artistId) {
@@ -146,13 +154,21 @@ function setupEventListeners() {
     // Save artist profile
     document.getElementById('saveArtistProfileBtn').addEventListener('click', function() {
         const userId = getCurrentUser().uid;
+        const instagram = document.getElementById('profileInstagram').value;
+        
+        // Validar Instagram
+        if (!validateInstagram(instagram)) {
+            alert('Por favor, ingresa un nombre de usuario de Instagram válido (solo letras, números, puntos y guiones bajos)');
+            return;
+        }
+        
         const updatedData = {
-            name: document.getElementById('artistProfileName').value,
-            studio: document.getElementById('artistStudio').value,
-            location: document.getElementById('artistLocation').value,
-            styles: document.getElementById('artistStyles').value.split(',').map(s => s.trim()),
-            bio: document.getElementById('artistBio').value,
-            socialMedia: document.getElementById('artistSocial').value.split(',').map(s => s.trim()),
+            name: document.getElementById('profileName').value,
+            studio: document.getElementById('profileStudio').value,
+            location: document.getElementById('profileLocation').value,
+            instagram: instagram,
+            bio: document.getElementById('profileBio').value,
+            styles: getSelectedStyles(),
             updatedAt: new Date()
         };
         
@@ -371,13 +387,21 @@ function setupEventListeners() {
     // Save artist profile
     document.getElementById('saveArtistProfileBtn').addEventListener('click', function() {
         const userId = getCurrentUser().uid;
+        const instagram = document.getElementById('profileInstagram').value;
+        
+        // Validar Instagram
+        if (!validateInstagram(instagram)) {
+            alert('Por favor, ingresa un nombre de usuario de Instagram válido (solo letras, números, puntos y guiones bajos)');
+            return;
+        }
+        
         const updatedData = {
-            name: document.getElementById('artistProfileName').value,
-            studio: document.getElementById('artistStudio').value,
-            location: document.getElementById('artistLocation').value,
-            styles: document.getElementById('artistStyles').value.split(',').map(s => s.trim()),
-            bio: document.getElementById('artistBio').value,
-            socialMedia: document.getElementById('artistSocial').value.split(',').map(s => s.trim()),
+            name: document.getElementById('profileName').value,
+            studio: document.getElementById('profileStudio').value,
+            location: document.getElementById('profileLocation').value,
+            instagram: instagram,
+            bio: document.getElementById('profileBio').value,
+            styles: getSelectedStyles(),
             updatedAt: new Date()
         };
         
@@ -428,6 +452,32 @@ function setupEventListeners() {
     document.getElementById('appointmentFilter').addEventListener('change', function() {
         alert(`Filtering appointments by: ${this.value}. This feature will be implemented soon.`);
     });
+}
+
+function getSelectedStyles() {
+    const checkboxes = document.querySelectorAll('.styles-checkboxes input[type="checkbox"]:checked');
+    return Array.from(checkboxes).map(checkbox => checkbox.value);
+}
+
+function validateInstagram(instagram) {
+    if (!instagram) return true; // Instagram es opcional
+    
+    // Remover @ si está presente
+    const cleanInstagram = instagram.replace(/^@/, '');
+    
+    // Validar formato: solo letras, números, puntos y guiones bajos
+    const instagramRegex = /^[a-zA-Z0-9._]+$/;
+    
+    if (!instagramRegex.test(cleanInstagram)) {
+        return false;
+    }
+    
+    // Debe tener entre 1 y 30 caracteres
+    if (cleanInstagram.length < 1 || cleanInstagram.length > 30) {
+        return false;
+    }
+    
+    return true;
 }
 
 // Make functions globally available
