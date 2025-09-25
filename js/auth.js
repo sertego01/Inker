@@ -166,14 +166,20 @@ function getCurrentUser() {
 // Función para proteger rutas - redirigir si no está autenticado
 function requireAuth() {
     return new Promise((resolve, reject) => {
-        checkAuthState((user) => {
-            if (user) {
-                resolve(user);
-            } else {
-                // Redirigir a login si no está autenticado
-                window.location.href = "login.html";
-                reject(new Error("Usuario no autenticado"));
-            }
+        // Esperar a que Firebase esté inicializado
+        waitForFirebaseAuth().then(() => {
+            checkAuthState((user) => {
+                if (user) {
+                    resolve(user);
+                } else {
+                    // Redirigir a login si no está autenticado
+                    window.location.href = "login.html";
+                    reject(new Error("Usuario no autenticado"));
+                }
+            });
+        }).catch(error => {
+            console.error("Error waiting for Firebase auth:", error);
+            reject(error);
         });
     });
 }

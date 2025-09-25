@@ -395,7 +395,10 @@ function showStyleDetails(style) {
                     
                     <button onclick="
                         // Find artists with this style
-                        window.location.href = 'find-artists.html?style=${style.id}';
+                        // Only add pages/ if we're not already in the pages folder
+                        const isInPagesFolder = window.location.pathname.includes('/pages/');
+                        const basePath = isInPagesFolder ? '' : 'pages/';
+                        window.location.href = basePath + 'find-artists.html?style=${style.id}';
                     " style="
                         background: linear-gradient(135deg, #8b5cf6, #ec4899);
                         color: white;

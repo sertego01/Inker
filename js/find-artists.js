@@ -656,7 +656,10 @@ function createArtistCard(artist) {
     
     // Add click event to view profile
     card.addEventListener('click', () => {
-        window.location.href = `artist-profile.html?id=${artist.id}`;
+        // Only add pages/ if we're not already in the pages folder
+        const isInPagesFolder = window.location.pathname.includes('/pages/');
+        const basePath = isInPagesFolder ? '' : 'pages/';
+        window.location.href = `${basePath}artist-profile.html?id=${artist.id}`;
     });
     
     return card;

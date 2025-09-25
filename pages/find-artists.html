@@ -17,18 +17,7 @@
                 <span>Inker</span>
             </a>
             <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="find-styles.html" class="nav-link" data-nav="find-styles">Styles</a>
-                </li>
-                <li class="nav-item">
-                    <a href="find-artists.html" class="nav-link" data-nav="find-artist">Artist</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-nav="map">Map</a>
-                </li>
-                <li class="nav-item">
-                    <a href="login.html" class="nav-button" data-nav="login">Login</a>
-                </li>
+                <!-- Header will be populated by header-manager.js -->
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -163,104 +152,22 @@
     <script src="../js/i18n.js"></script>
     <script src="../js/cookie-consent.js"></script>
     <script src="../js/global-cookie-banner.js"></script>
+    <script src="../js/header-manager.js"></script>
     <script>
-        // Esperar a que el DOM esté listo y Firebase esté inicializado
-        document.addEventListener('DOMContentLoaded', function() {
-            // Verificar estado de autenticación y actualizar la navegación
-            checkAuthState((user) => {
-                console.log('Auth state changed:', user ? 'User logged in' : 'User logged out');
-                const navMenu = document.querySelector('.nav-menu');
-                
-                if (user) {
-                    // Usuario autenticado - mostrar enlace a dashboard y botón de cerrar sesión
-                    getUserData(user.uid).then((userDoc) => {
-                        if (userDoc.exists) {
-                            const userData = userDoc.data();
-                            console.log('User data loaded:', userData.userType);
-                            
-                            // Reemplazar enlaces de login/register con dashboard y logout
-                            const currentLang = localStorage.getItem('language') || 'en';
-                            const translations = {
-                                en: {
-                                    'find-styles': 'Styles',
-                                    'find-artist': 'Artist',
-                                    'messages': 'Messages',
-                                    'dashboard': 'Dashboard',
-                                    'logout': 'Logout'
-                                },
-                                es: {
-                                    'find-styles': 'Estilos',
-                                    'find-artist': 'Tatuadores',
-                                    'messages': 'Mensajes',
-                                    'dashboard': 'Perfil',
-                                    'logout': 'Cerrar sesión'
-                                }
-                            };
-                            
-                            navMenu.innerHTML = `
-                                <li class="nav-item">
-                                    <a href="find-styles.html" class="nav-link" data-nav="find-styles">${translations[currentLang]['find-styles']}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="find-artists.html" class="nav-link" data-nav="find-artist">${translations[currentLang]['find-artist']}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link" data-nav="messages">${translations[currentLang]['messages']}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="dashboard-${userData.userType}.html" class="nav-link" data-nav="dashboard">${translations[currentLang]['dashboard']}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" id="logoutBtn" class="nav-button" data-nav="logout">${translations[currentLang]['logout']}</a>
-                                </li>
-                            `;
-                            
-                            // Agregar evento al botón de cerrar sesión
-                            document.getElementById('logoutBtn').addEventListener('click', function(e) {
-                                e.preventDefault();
-                                logoutUser().then(() => {
-                                    console.log('User logged out successfully');
-                                    // Recargar la página para mostrar el menú de no autenticado
-                                    window.location.reload();
-                                }).catch((error) => {
-                                    console.error('Error al cerrar sesión:', error);
-                                    alert('Error al cerrar sesión. Por favor, intenta de nuevo.');
-                                });
-                            });
-                        }
-                    }).catch((error) => {
-                        console.error('Error al obtener datos del usuario:', error);
-                    });
-                } else {
-                    // Usuario no autenticado - mantener menú original
-                    const currentLang = localStorage.getItem('language') || 'en';
-                    const translations = {
-                        en: {
-                            'find-styles': 'Styles',
-                            'find-artist': 'Artist',
-                            'login': 'Login'
-                        },
-                        es: {
-                            'find-styles': 'Estilos',
-                            'find-artist': 'Tatuadores',
-                            'login': 'Iniciar sesión'
-                        }
-                    };
-                    
-                    navMenu.innerHTML = `
-                        <li class="nav-item">
-                            <a href="find-styles.html" class="nav-link" data-nav="find-styles">${translations[currentLang]['find-styles']}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="find-artists.html" class="nav-link" data-nav="find-artist">${translations[currentLang]['find-artist']}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="login.html" class="nav-button" data-nav="login">${translations[currentLang]['login']}</a>
-                        </li>
-                    `;
-                }
-            });
-        });
+        // Header is now managed by header-manager.js
+        // Force header update after a delay to ensure it loads
+        setTimeout(() => {
+            if (window.headerManager) {
+                window.headerManager.forceUpdate();
+            } else {
+                console.log('Header manager not found, retrying...');
+                setTimeout(() => {
+                    if (window.headerManager) {
+                        window.headerManager.forceUpdate();
+                    }
+                }, 500);
+            }
+        }, 200);
     </script>
 </body>
 </html>

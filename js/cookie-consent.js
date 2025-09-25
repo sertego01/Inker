@@ -240,10 +240,15 @@ class CookieConsent {
     }
 }
 
-// Initialize cookie consent when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    window.cookieConsent = new CookieConsent();
-});
+// Initialize cookie consent when DOM is loaded - Solo si no hay un sistema de inicialización centralizado
+if (typeof window.initApp === 'undefined') {
+    document.addEventListener('DOMContentLoaded', () => {
+        // Wait a bit to avoid conflicts with other scripts
+        setTimeout(() => {
+            window.cookieConsent = new CookieConsent();
+        }, 300);
+    });
+}
 
 // Export for use in other scripts
 window.CookieConsent = CookieConsent;

@@ -236,7 +236,10 @@ function editPortfolioItem(button) {
 // Helper function for viewing artist profiles
 function viewArtistProfile(artistId) {
     // Redirect to artist profile page
-    window.location.href = `artist-profile.html?id=${artistId}`;
+    // Only add pages/ if we're not already in the pages folder
+    const isInPagesFolder = window.location.pathname.includes('/pages/');
+    const basePath = isInPagesFolder ? '' : 'pages/';
+    window.location.href = `${basePath}artist-profile.html?id=${artistId}`;
 }
 
 // Load availability settings

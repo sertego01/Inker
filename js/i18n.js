@@ -7,6 +7,7 @@ class I18n {
         this.translations = {
             en: {
                 // Navigation
+                'nav.blog': 'Blog',
                 'nav.find-styles': 'Styles',
                 'nav.find-artist': 'Artist',
                 'nav.login': 'Login',
@@ -68,6 +69,56 @@ class I18n {
                 'countries.united-kingdom': 'United Kingdom',
                 'countries.france': 'France',
                 'countries.germany': 'Germany',
+                
+                // Artist Profile
+                'artist-profile.book-appointment': 'Book Appointment',
+                'artist-profile.message': 'Message',
+                'artist-profile.like': 'Like',
+                'artist-profile.share': 'Share',
+                'artist-profile.more': 'More',
+                'artist-profile.years-experience': 'Years Experience',
+                'artist-profile.likes': 'Likes',
+                'artist-profile.hourly-rate': 'Hourly Rate',
+                'artist-profile.availability': 'March 15, 2024',
+                'artist-profile.specialties': 'Specialties',
+                'artist-profile.location': 'Location',
+                'artist-profile.contact': 'Contact',
+                'artist-profile.map-placeholder': 'Map would be integrated here',
+                'artist-profile.social-media': 'Social Media & Website',
+                'artist-profile.portfolio': 'Portfolio',
+                'artist-profile.reviews': 'Reviews (89)',
+                'artist-profile.view': 'View',
+                'artist-profile.studio-info': 'Studio Information',
+                'artist-profile.address': 'Address',
+                'artist-profile.phone': 'Phone',
+                'artist-profile.email': 'Email',
+                'artist-profile.instagram': 'Instagram',
+                'artist-profile.website': 'Website',
+                'artist-profile.rating': 'Rating',
+                'artist-profile.review-count': 'reviews',
+                'artist-profile.studio-name': 'Ink & Canvas Studio',
+                'artist-profile.bio': 'Specialized in watercolor and realistic tattoos with over 8 years of experience. I love creating unique, custom pieces that tell your story.',
+                'artist-profile.rating-text': '4.9 (89 reviews)',
+                'artist-profile.specialty-watercolor': 'Watercolor',
+                'artist-profile.specialty-realistic': 'Realistic',
+                'artist-profile.specialty-traditional': 'Traditional',
+                'artist-profile.specialty-japanese': 'Japanese',
+                'artist-profile.specialty-blackwork': 'Blackwork',
+                'artist-profile.specialty-geometric': 'Geometric',
+                'artist-profile.specialty-minimalist': 'Minimalist',
+                'artist-profile.specialty-portraits': 'Portraits',
+                'artist-profile.specialty-neo-traditional': 'Neo-Traditional',
+                'artist-profile.specialty-american': 'American',
+                'artist-profile.specialty-tribal': 'Tribal',
+                'artist-profile.specialty-puntillismo': 'Dotwork',
+                'artist-profile.specialty-dotwork': 'Dotwork',
+                'artist-profile.specialty-henna': 'Henna',
+                'artist-profile.specialty-cultural': 'Cultural',
+                'artist-profile.specialty-temporary': 'Temporary',
+                'artist-profile.specialty-biomechanical': 'Biomechanical',
+                'artist-profile.specialty-sci-fi': 'Sci-Fi',
+                'artist-profile.specialty-mandalas': 'Mandalas',
+                'artist-profile.specialty-sacred': 'Sacred',
                 
                 // Featured Artists
                 'artists.title': 'Featured Artists',
@@ -498,6 +549,7 @@ class I18n {
             },
             es: {
                 // Navigation
+                'nav.blog': 'Blog',
                 'nav.find-styles': 'Estilos',
                 'nav.find-artist': 'Tatuadores',
                 'nav.login': 'Iniciar sesión',
@@ -559,6 +611,56 @@ class I18n {
                 'countries.united-kingdom': 'Reino Unido',
                 'countries.france': 'Francia',
                 'countries.germany': 'Alemania',
+                
+                // Artist Profile
+                'artist-profile.book-appointment': 'Reservar Cita',
+                'artist-profile.message': 'Mensaje',
+                'artist-profile.like': 'Me Gusta',
+                'artist-profile.share': 'Compartir',
+                'artist-profile.more': 'Más',
+                'artist-profile.years-experience': 'Años de Experiencia',
+                'artist-profile.likes': 'Me Gustas',
+                'artist-profile.hourly-rate': 'Tarifa por Hora',
+                'artist-profile.availability': '15 de Marzo, 2024',
+                'artist-profile.specialties': 'Especialidades',
+                'artist-profile.location': 'Ubicación',
+                'artist-profile.contact': 'Contacto',
+                'artist-profile.map-placeholder': 'Aquí se integraría el mapa',
+                'artist-profile.social-media': 'Redes Sociales y Sitio Web',
+                'artist-profile.portfolio': 'Portafolio',
+                'artist-profile.reviews': 'Reseñas (89)',
+                'artist-profile.view': 'Ver',
+                'artist-profile.studio-info': 'Información del Estudio',
+                'artist-profile.address': 'Dirección',
+                'artist-profile.phone': 'Teléfono',
+                'artist-profile.email': 'Correo',
+                'artist-profile.instagram': 'Instagram',
+                'artist-profile.website': 'Sitio Web',
+                'artist-profile.rating': 'Calificación',
+                'artist-profile.review-count': 'reseñas',
+                'artist-profile.studio-name': 'Estudio Ink & Canvas',
+                'artist-profile.bio': 'Especializado en tatuajes de acuarela y realistas con más de 8 años de experiencia. Me encanta crear piezas únicas y personalizadas que cuenten tu historia.',
+                'artist-profile.rating-text': '4.9 (89 reseñas)',
+                'artist-profile.specialty-watercolor': 'Acuarela',
+                'artist-profile.specialty-realistic': 'Realista',
+                'artist-profile.specialty-traditional': 'Tradicional',
+                'artist-profile.specialty-japanese': 'Japonés',
+                'artist-profile.specialty-blackwork': 'Blackwork',
+                'artist-profile.specialty-geometric': 'Geométrico',
+                'artist-profile.specialty-minimalist': 'Minimalista',
+                'artist-profile.specialty-portraits': 'Retratos',
+                'artist-profile.specialty-neo-traditional': 'Neo-Tradicional',
+                'artist-profile.specialty-american': 'Americano',
+                'artist-profile.specialty-tribal': 'Tribal',
+                'artist-profile.specialty-puntillismo': 'Dotwork',
+                'artist-profile.specialty-dotwork': 'Dotwork',
+                'artist-profile.specialty-henna': 'Henna',
+                'artist-profile.specialty-cultural': 'Cultural',
+                'artist-profile.specialty-temporary': 'Temporal',
+                'artist-profile.specialty-biomechanical': 'Biomecánico',
+                'artist-profile.specialty-sci-fi': 'Ciencia Ficción',
+                'artist-profile.specialty-mandalas': 'Mandalas',
+                'artist-profile.specialty-sacred': 'Sagrado',
                 
                 // Featured Artists
                 'artists.title': 'Tatuadores Destacados',
@@ -1150,6 +1252,7 @@ class I18n {
     
     updateNavigation() {
         const navLinks = {
+            'blog': this.translate('nav.blog'),
             'find-styles': this.translate('nav.find-styles'),
             'find-artist': this.translate('nav.find-artist'),
             'login': this.translate('nav.login'),
@@ -1395,11 +1498,13 @@ function initI18n() {
         if (window.i18n && window.i18n.translateStyleOptions) {
             window.i18n.translateStyleOptions();
         }
-    }, 100);
+    }, 500);
 }
 
-// Inicializar cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', initI18n);
+// Inicializar cuando el DOM esté listo - Solo si no hay un sistema de inicialización centralizado
+if (typeof window.initApp === 'undefined') {
+    document.addEventListener('DOMContentLoaded', initI18n);
+}
 
 // También inicializar si el DOM ya está listo
 if (document.readyState !== 'loading') {

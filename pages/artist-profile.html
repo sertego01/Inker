@@ -3,31 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inker</title>
+    <title>Artist Profile - Inker</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/artist-profile.css">
     <link rel="stylesheet" href="../css/contact-widget.css">
+    <link rel="stylesheet" href="../css/cookie-consent.css">
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Barra de navegación -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="../index.html" class="nav-logo">
                 <span>Inker</span>
             </a>
             <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="find-styles.html" class="nav-link">Styles</a>
-                </li>
-                <li class="nav-item">
-                    <a href="find-artists.html" class="nav-link">Artist</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Map</a>
-                </li>
-                <li class="nav-item">
-                    <a href="login.html" class="nav-button">Login</a>
-                </li>
+                <!-- Header will be populated by header-manager.js -->
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -37,333 +27,328 @@
         </div>
     </nav>
 
-    <!-- Artist Profile Section -->
-    <section class="artist-profile-section">
-        <div class="profile-container">
-            <!-- Artist Header -->
-            <div class="artist-header">
-                <div class="artist-avatar">
-                    <img src="../images/artist1.jpg" alt="Artist Avatar" id="artistAvatar">
-                </div>
-                <div class="artist-info">
-                    <h1 id="artistName">Alex Rivera</h1>
-                    <p id="artistStudio">Ink Studio</p>
-                    <p id="artistLocation">📍 New York, NY</p>
-                    <div class="artist-rating">
-                        <span class="stars">★★★★★</span>
-                        <span class="rating-text">4.9 (127 reviews)</span>
+    <!-- Main Content -->
+    <main class="artist-profile-main">
+        <div class="container">
+            <!-- Artist Header Card -->
+            <div class="artist-header-card">
+                <div class="artist-profile-info">
+                    <div class="artist-avatar">
+                        <img src="../images/artist1.jpg" alt="Sarah Chen" id="artistAvatar">
                     </div>
-                    <div class="artist-styles">
-                        <span class="style-tag">Traditional</span>
-                        <span class="style-tag">Realistic</span>
-                        <span class="style-tag">Blackwork</span>
+                    <div class="artist-details">
+                        <h1 class="artist-name" id="artistName">Sarah Chen</h1>
+                        <div class="rating">
+                            <span class="star-icon">⭐</span>
+                            <span id="artistRating">4.9 (89 reviews)</span>
+                        </div>
+                        <p class="artist-bio" id="artistBio" data-i18n="artist-profile.bio">
+                            Specialized in watercolor and realistic tattoos with over 8 years of experience. 
+                            I love creating unique, custom pieces that tell your story.
+                        </p>
+                    </div>
+                    <div class="artist-actions">
+                        <div class="social-actions">
+                            <button class="btn-social btn-message" title="Message">
+                                <img src="../images/charlando.png" alt="Message" width="20" height="20" style="filter: brightness(0) invert(1);">
+                            </button>
+                            <button class="btn-social btn-like" title="Like">
+                                <img src="../images/me-gusta.png" alt="Like" width="20" height="20" style="filter: brightness(0) invert(1);">
+                            </button>
+                            <button class="btn-social btn-share" title="Share">
+                                <img src="../images/compartir.png" alt="Share" width="20" height="20" style="filter: brightness(0) invert(1);">
+                            </button>
+                            <button class="btn-social btn-more" title="More options">
+                                <img src="../images/mas.png" alt="More" width="20" height="20" style="filter: brightness(0) invert(1);">
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="artist-actions">
-                    <button class="btn-primary" id="bookAppointmentBtn">Book Appointment</button>
-                    <button class="btn-secondary" id="favoriteBtn">❤️ Add to Favorites</button>
-                    <button class="btn-secondary" id="shareBtn">📤 Share</button>
+                
+                <!-- Artist Statistics -->
+                <div class="artist-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="yearsExperience">8</div>
+                        <div class="stat-label" data-i18n="artist-profile.years-experience">Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="likes">1245</div>
+                        <div class="stat-label" data-i18n="artist-profile.likes">Likes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="hourlyRate">$150-300/hr</div>
+                        <div class="stat-label" data-i18n="artist-profile.hourly-rate">Hourly Rate</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="availability">Available</div>
+                        <div class="stat-label" data-i18n="artist-profile.availability">March 15, 2024</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Artist Content -->
-            <div class="artist-content">
-                <!-- About Section -->
-                <div class="content-card">
-                    <h2>About</h2>
-                    <p id="artistBio">With over 8 years of experience in the tattoo industry, Alex specializes in traditional and realistic styles. Known for attention to detail and creating meaningful pieces that tell a story. Based in New York, Alex works at Ink Studio and has completed over 500+ tattoos.</p>
+            <!-- Specialties Section -->
+            <section class="specialties-section">
+                <h2 class="section-title-2" data-i18n="artist-profile.specialties">Specialties</h2>
+                <div class="specialties-grid" id="specialtiesGrid">
+                    <span class="specialty-tag watercolor" data-i18n="artist-profile.specialty-watercolor">Watercolor</span>
+                    <span class="specialty-tag realistic" data-i18n="artist-profile.specialty-realistic">Realistic</span>
+                    <span class="specialty-tag traditional" data-i18n="artist-profile.specialty-traditional">Traditional</span>
+                    <span class="specialty-tag japanese" data-i18n="artist-profile.specialty-japanese">Japanese</span>
                 </div>
+            </section>
 
-                <!-- Portfolio Section -->
-                <div class="content-card">
-                    <h2>Portfolio</h2>
-                    <div class="portfolio-grid" id="portfolioGrid">
-                        <div class="portfolio-item">
-                            <img src="../images/artist1.jpg" alt="Portfolio work 1">
-                            <div class="portfolio-overlay">
-                                <button class="portfolio-btn" onclick="openImageModal(this)">View</button>
-                            </div>
-                        </div>
-                        <div class="portfolio-item">
-                            <img src="../images/artist2.jpg" alt="Portfolio work 2">
-                            <div class="portfolio-overlay">
-                                <button class="portfolio-btn" onclick="openImageModal(this)">View</button>
-                            </div>
-                        </div>
-                        <div class="portfolio-item">
-                            <img src="../images/artist3.jpg" alt="Portfolio work 3">
-                            <div class="portfolio-overlay">
-                                <button class="portfolio-btn" onclick="openImageModal(this)">View</button>
-                            </div>
-                        </div>
-                        <div class="portfolio-item">
-                            <img src="../images/artist4.jpg" alt="Portfolio work 4">
-                            <div class="portfolio-overlay">
-                                <button class="portfolio-btn" onclick="openImageModal(this)">View</button>
-                            </div>
-                        </div>
-                        <div class="portfolio-item">
-                            <img src="../images/artist5.jpg" alt="Portfolio work 5">
-                            <div class="portfolio-overlay">
-                                <button class="portfolio-btn" onclick="openImageModal(this)">View</button>
-                            </div>
-                        </div>
-                        <div class="portfolio-item">
-                            <img src="../images/artist6.jpg" alt="Portfolio work 6">
-                            <div class="portfolio-overlay">
-                                <button class="portfolio-btn" onclick="openImageModal(this)">View</button>
+            <!-- Location & Contact Section -->
+            <section class="location-contact-section">
+                <div class="location-contact-grid">
+                    <div class="studio-card">
+                        <h2 class="section-title" data-i18n="artist-profile.location">Ubicación</h2>
+                        <h3 class="studio-name" id="studioName" data-i18n="artist-profile.studio-name">Ink & Canvas Studio</h3>
+                        <p class="studio-address" id="studioAddress">123 Art District, Los Angeles, CA 90013</p>
+                        <div class="map-container">
+                            <div class="map-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <p data-i18n="artist-profile.map-placeholder">Map would be integrated here</p>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Availability Section -->
-                <div class="content-card">
-                    <h2>Availability</h2>
-                    <div class="availability-info">
-                        <div class="availability-status">
-                            <span class="status-indicator available"></span>
-                            <span>Currently accepting appointments</span>
+                    <div class="social-card">
+                        <h2 class="section-title" data-i18n="artist-profile.contact">Contacto</h2>
+                        <h3 class="social-title" data-i18n="artist-profile.social-media">Social Media & Website</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link instagram">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                                <span id="instagramHandle" data-i18n="artist-profile.instagram">@sarahchen_tattoo</span>
+                            </a>
+                            <a href="#" class="social-link website">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M2 12h20"></path>
+                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                </svg>
+                                <span id="website" data-i18n="artist-profile.website">www.sarahchentattoo.com</span>
+                            </a>
                         </div>
-                        <div class="working-hours">
-                            <h3>Working Hours</h3>
-                            <div class="hours-list">
-                                <div class="hour-item">
-                                    <span class="day">Monday - Friday</span>
-                                    <span class="time">9:00 AM - 6:00 PM</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio & Reviews Section -->
+            <section class="portfolio-reviews-section">
+                <div class="section-header">
+                    <div class="section-tabs">
+                        <button class="tab-button active" data-tab="portfolio" data-i18n="artist-profile.portfolio">Portfolio</button>
+                        <button class="tab-button" data-tab="reviews" data-i18n="artist-profile.reviews">Reviews (89)</button>
+                    </div>
+                </div>
+                
+                <div class="tab-content">
+                    <div class="tab-panel active" id="portfolioPanel">
+                        <div class="portfolio-grid" id="portfolioGrid">
+                            <div class="portfolio-item">
+                                <img src="../images/watercolor.jpg" alt="Watercolor Tattoo">
+                                <div class="portfolio-overlay">
+                                    <button class="btn-view" data-i18n="artist-profile.view">View</button>
                                 </div>
-                                <div class="hour-item">
-                                    <span class="day">Saturday</span>
-                                    <span class="time">10:00 AM - 4:00 PM</span>
+                            </div>
+                            <div class="portfolio-item">
+                                <img src="../images/realistic.jpg" alt="Realistic Tattoo">
+                                <div class="portfolio-overlay">
+                                    <button class="btn-view" data-i18n="artist-profile.view">View</button>
                                 </div>
-                                <div class="hour-item">
-                                    <span class="day">Sunday</span>
-                                    <span class="time">Closed</span>
+                            </div>
+                            <div class="portfolio-item">
+                                <img src="../images/traditional.jpg" alt="Traditional Tattoo">
+                                <div class="portfolio-overlay">
+                                    <button class="btn-view" data-i18n="artist-profile.view">View</button>
+                                </div>
+                            </div>
+                            <div class="portfolio-item">
+                                <img src="../images/japanese.jpg" alt="Japanese Tattoo">
+                                <div class="portfolio-overlay">
+                                    <button class="btn-view" data-i18n="artist-profile.view">View</button>
+                                </div>
+                            </div>
+                            <div class="portfolio-item">
+                                <img src="../images/geometric.jpg" alt="Geometric Tattoo">
+                                <div class="portfolio-overlay">
+                                    <button class="btn-view" data-i18n="artist-profile.view">View</button>
+                                </div>
+                            </div>
+                            <div class="portfolio-item">
+                                <img src="../images/minimalist.jpg" alt="Minimalist Tattoo">
+                                <div class="portfolio-overlay">
+                                    <button class="btn-view" data-i18n="artist-profile.view">View</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Reviews Section -->
-                <div class="content-card">
-                    <h2>Reviews</h2>
-                    <div class="reviews-summary">
-                        <div class="rating-breakdown">
-                            <div class="rating-item">
-                                <span>5★</span>
-                                <div class="rating-bar">
-                                    <div class="rating-fill" style="width: 85%"></div>
-                                </div>
-                                <span>85%</span>
-                            </div>
-                            <div class="rating-item">
-                                <span>4★</span>
-                                <div class="rating-bar">
-                                    <div class="rating-fill" style="width: 12%"></div>
-                                </div>
-                                <span>12%</span>
-                            </div>
-                            <div class="rating-item">
-                                <span>3★</span>
-                                <div class="rating-bar">
-                                    <div class="rating-fill" style="width: 2%"></div>
-                                </div>
-                                <span>2%</span>
-                            </div>
-                            <div class="rating-item">
-                                <span>2★</span>
-                                <div class="rating-bar">
-                                    <div class="rating-fill" style="width: 1%"></div>
-                                </div>
-                                <span>1%</span>
-                            </div>
-                            <div class="rating-item">
-                                <span>1★</span>
-                                <div class="rating-bar">
-                                    <div class="rating-fill" style="width: 0%"></div>
-                                </div>
-                                <span>0%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="reviews-list" id="reviewsList">
-                        <div class="review-item">
-                            <div class="review-header">
-                                <div class="reviewer-info">
-                                    <img src="../images/user-avatar.png" alt="Reviewer" class="reviewer-avatar">
-                                    <div>
-                                        <h4>Sarah Johnson</h4>
-                                        <span class="review-date">2 weeks ago</span>
+                    
+                    <div class="tab-panel" id="reviewsPanel">
+                        <div class="reviews-list" id="reviewsList">
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <div class="reviewer-avatar">JM</div>
+                                        <div class="reviewer-details">
+                                            <div class="reviewer-name">Jessica Martinez</div>
+                                            <div class="review-date">February 15, 2024</div>
+                                        </div>
+                                    </div>
+                                    <div class="review-rating">
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
                                     </div>
                                 </div>
-                                <div class="review-rating">★★★★★</div>
+                                <div class="review-text">
+                                    Sarah is absolutely amazing! She created the most beautiful watercolor tattoo for me. 
+                                    Her attention to detail and artistic vision is incredible.
+                                </div>
                             </div>
-                            <p class="review-text">Amazing work! Alex was very professional and the tattoo exceeded my expectations. The attention to detail is incredible.</p>
-                        </div>
-                        <div class="review-item">
-                            <div class="review-header">
-                                <div class="reviewer-info">
-                                    <img src="../images/user-avatar.png" alt="Reviewer" class="reviewer-avatar">
-                                    <div>
-                                        <h4>Mike Chen</h4>
-                                        <span class="review-date">1 month ago</span>
+                            
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <div class="reviewer-avatar">MJ</div>
+                                        <div class="reviewer-details">
+                                            <div class="reviewer-name">Michael Johnson</div>
+                                            <div class="review-date">February 10, 2024</div>
+                                        </div>
+                                    </div>
+                                    <div class="review-rating">
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
                                     </div>
                                 </div>
-                                <div class="review-rating">★★★★★</div>
+                                <div class="review-text">
+                                    Professional, clean, and incredibly talented. Sarah made me feel comfortable throughout 
+                                    the entire process. Highly recommend!
+                                </div>
                             </div>
-                            <p class="review-text">Great experience from start to finish. Clean studio, professional service, and beautiful results. Highly recommended!</p>
-                        </div>
-                        <div class="review-item">
-                            <div class="review-header">
-                                <div class="reviewer-info">
-                                    <img src="../images/user-avatar.png" alt="Reviewer" class="reviewer-avatar">
-                                    <div>
-                                        <h4>Emma Davis</h4>
-                                        <span class="review-date">2 months ago</span>
+                            
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <div class="reviewer-avatar">ED</div>
+                                        <div class="reviewer-details">
+                                            <div class="reviewer-name">Emily Davis</div>
+                                            <div class="review-date">February 5, 2024</div>
+                                        </div>
+                                    </div>
+                                    <div class="review-rating">
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">☆</span>
                                     </div>
                                 </div>
-                                <div class="review-rating">★★★★☆</div>
+                                <div class="review-text">
+                                    Great experience overall. The tattoo turned out exactly as I envisioned. 
+                                    Sarah is very skilled and the studio is beautiful.
+                                </div>
                             </div>
-                            <p class="review-text">Very happy with my tattoo. Alex took the time to understand what I wanted and delivered exactly that. Will definitely come back!</p>
                         </div>
                     </div>
                 </div>
+            </section>
+        </div>
+    </main>
 
-                <!-- Contact Section -->
-                <div class="content-card">
-                    <h2>Contact & Location</h2>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <img src="../images/comentario.png" alt="Location" class="contact-icon">
-                            <div>
-                                <h4>Studio Address</h4>
-                                <p>123 Ink Street, New York, NY 10001</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <img src="../images/comentario.png" alt="Phone" class="contact-icon">
-                            <div>
-                                <h4>Phone</h4>
-                                <p>+1 (555) 123-4567</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <img src="../images/comentario.png" alt="Email" class="contact-icon">
-                            <div>
-                                <h4>Email</h4>
-                                <p>alex@inkstudio.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <img src="../images/comentario.png" alt="Social Media" class="contact-icon">
-                            <div>
-                                <h4>Social Media</h4>
-                                <div class="social-links">
-                                    <a href="#" class="social-link">
-                                        <img src="../images/instagram-icon.png" alt="Instagram">
-                                    </a>
-                                    <a href="#" class="social-link">
-                                        <img src="../images/facebook-icon.png" alt="Facebook">
-                                    </a>
-                                    <a href="#" class="social-link">
-                                        <img src="../images/twitter-icon.png" alt="Twitter">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="terms-conditions.html" data-footer="terms">Terms and Conditions</a>
+                <span class="separator">|</span>
+                <a href="privacy-policy.html" data-footer="privacy">Privacy Policy</a>
+            </div>
+            <div class="footer-center">
+                <p data-footer="copyright">&copy; 2025 Inker. All rights reserved.</p>
+            </div>
+            <div class="footer-right">
+                <div class="social-icons">
+                    <a href="#"><img src="../images/facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="../images/instagram-icon.png" alt="Instagram"></a>
+                    <a href="#"><img src="../images/twitter-icon.png" alt="Twitter"></a>
                 </div>
             </div>
         </div>
-    </section>
+    </footer>
 
-    <!-- Image Modal -->
-    <div id="imageModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <img id="modalImage" src="" alt="Portfolio Image">
+    <!-- Contact Widget -->
+    <div class="contact-widget">
+        <button class="contact-button" id="contactBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Cookie Consent -->
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-content">
+            <p data-cookie="message">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+            <div class="cookie-buttons">
+                <button class="cookie-btn accept" data-cookie="accept">Accept</button>
+                <button class="cookie-btn decline" data-cookie="decline">Decline</button>
+                <a href="cookie-policy.html" class="cookie-link" data-cookie="learn-more">Learn More</a>
+            </div>
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
     
-    <!-- Tus scripts -->
+    <!-- Scripts -->
     <script src="../js/config.js"></script>
     <script src="../js/database.js"></script>
     <script src="../js/auth.js"></script>
+    <script src="../js/i18n.js"></script>
     <script src="../js/artist-profile.js"></script>
     <script src="../js/contact-widget.js"></script>
+    <script src="../js/cookie-consent.js"></script>
+    <script src="../js/global-cookie-banner.js"></script>
+    <script src="../js/header-manager.js"></script>
     <script>
         // Esperar a que el DOM esté listo y Firebase esté inicializado
         document.addEventListener('DOMContentLoaded', function() {
-            // Verificar estado de autenticación y actualizar la navegación
-            checkAuthState((user) => {
-                console.log('Auth state changed:', user ? 'User logged in' : 'User logged out');
-                const navMenu = document.querySelector('.nav-menu');
-                
-                if (user) {
-                    // Usuario autenticado - mostrar enlace a dashboard y botón de cerrar sesión
-                    getUserData(user.uid).then((userDoc) => {
-                        if (userDoc.exists) {
-                            const userData = userDoc.data();
-                            console.log('User data loaded:', userData.userType);
-                            
-                            // Reemplazar enlaces de login/register con dashboard y logout
-                            navMenu.innerHTML = `
-                                <li class="nav-item">
-                                    <a href="find-styles.html" class="nav-link">Styles</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="find-artists.html" class="nav-link">Artist</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">Messages</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="dashboard-${userData.userType}.html" class="nav-link">Dashboard</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" id="logoutBtn" class="nav-button">Logout</a>
-                                </li>
-                            `;
-                            
-                            // Agregar evento al botón de cerrar sesión
-                            document.getElementById('logoutBtn').addEventListener('click', function(e) {
-                                e.preventDefault();
-                                logoutUser().then(() => {
-                                    console.log('User logged out successfully');
-                                    // Recargar la página para mostrar el menú de no autenticado
-                                    window.location.reload();
-                                }).catch((error) => {
-                                    console.error('Error al cerrar sesión:', error);
-                                    alert('Error al cerrar sesión. Por favor, intenta de nuevo.');
-                                });
-                            });
-                        }
-                    }).catch((error) => {
-                        console.error('Error al obtener datos del usuario:', error);
-                    });
-                } else {
-                    // Usuario no autenticado - mantener menú original
-                    navMenu.innerHTML = `
-                        <li class="nav-item">
-                            <a href="find-styles.html" class="nav-link">Styles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="find-artists.html" class="nav-link">Artist</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="login.html" class="nav-button">Login</a>
-                        </li>
-                    `;
-                }
-            });
+            // Inicializar sistema de traducción
+            if (window.i18n) {
+                window.i18n.updateLanguage();
+            }
+            
+            // Header is now managed by header-manager.js
         });
     </script>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <div class="modal-backdrop" onclick="closeImageModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeImageModal()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
 </body>
 </html>

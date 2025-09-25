@@ -19,7 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.addEventListener('click', () => {
             const artistIds = ['sarah-chen', 'marcus-rodriguez', 'elena-volkov'];
             const artistId = artistIds[index] || 'sarah-chen';
-            window.location.href = `pages/artist-profile.html?id=${artistId}`;
+            // Only add pages/ if we're not already in the pages folder
+            const isInPagesFolder = window.location.pathname.includes('/pages/');
+            const basePath = isInPagesFolder ? '' : 'pages/';
+            window.location.href = `${basePath}artist-profile.html?id=${artistId}`;
         });
     });
 });
@@ -45,24 +48,37 @@ searchInput.addEventListener('keypress', (e) => {
 
 
 
-// Test code to verify Firebase connection
+// Test code to verify Firebase connection - Only run on index.html
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Connecting to Firebase...');
-    
-    // Check authentication state
-    checkAuthState((user) => {
-        if (user) {
-            console.log('User authenticated:', user.email);
-        } else {
-            console.log('User not authenticated');
-        }
-    });
-    
-    // Test Firestore connection
-    db.collection('test').add({
-        test: 'Connection successful',
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    })
-    .then(() => console.log('Firestore connection successful'))
-    .catch(error => console.error('Error connecting to Firestore:', error));
+    // Only run Firebase test on index.html to avoid conflicts
+    if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) {
+        console.log('Connecting to Firebase...');
+        
+        // Wait for Firebase to be initialized before testing
+        const testFirebaseConnection = () => {
+            if (typeof db !== 'undefined' && db) {
+                // Check authentication state
+                checkAuthState((user) => {
+                    if (user) {
+                        console.log('User authenticated:', user.email);
+                    } else {
+                        console.log('User not authenticated');
+                    }
+                });
+                
+                // Test Firestore connection
+                db.collection('test').add({
+                    test: 'Connection successful',
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                })
+                .then(() => console.log('Firestore connection successful'))
+                .catch(error => console.error('Error connecting to Firestore:', error));
+            } else {
+                // Retry after a short delay
+                setTimeout(testFirebaseConnection, 100);
+            }
+        };
+        
+        testFirebaseConnection();
+    }
 });

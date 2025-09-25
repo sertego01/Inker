@@ -89,14 +89,19 @@
         </div>
     `;
     
-    // Insert cookie banner before closing body tag
-    document.addEventListener('DOMContentLoaded', function() {
-        // Insert the HTML before the closing body tag
-        document.body.insertAdjacentHTML('beforeend', cookieBannerHTML);
-        
-        // Initialize cookie consent if the script is available
-        if (typeof CookieConsent !== 'undefined') {
-            window.cookieConsent = new CookieConsent();
-        }
-    });
+    // Insert cookie banner before closing body tag - Solo si no hay un sistema de inicialización centralizado
+    if (typeof window.initApp === 'undefined') {
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait a bit to avoid conflicts with other scripts
+            setTimeout(() => {
+                // Insert the HTML before the closing body tag
+                document.body.insertAdjacentHTML('beforeend', cookieBannerHTML);
+                
+                // Initialize cookie consent if the script is available
+                if (typeof CookieConsent !== 'undefined') {
+                    window.cookieConsent = new CookieConsent();
+                }
+            }, 200);
+        });
+    }
 })();
