@@ -77,7 +77,7 @@ class HeaderManager {
             { href: '#', dataNav: 'blog', text: 'Blog' },
             { href: `${basePath}pages/find-styles.html`, dataNav: 'find-styles', text: 'Styles' },
             { href: `${basePath}pages/find-artists.html`, dataNav: 'find-artist', text: 'Artist' },
-            { href: '#', dataNav: 'map', text: 'Map' }
+            { href: `${basePath}pages/map.html`, dataNav: 'map', text: 'Map' }
         ];
 
         // Add common items
