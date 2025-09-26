@@ -19,16 +19,17 @@ class HeaderManager {
     waitForFirebase() {
         return new Promise((resolve) => {
             let attempts = 0;
-            const maxAttempts = 50; // 5 seconds max
+            const maxAttempts = 100; // 10 seconds max
             
             const checkFirebase = () => {
                 attempts++;
                 if (typeof auth !== 'undefined' && auth) {
+                    console.log('Firebase auth found, proceeding with auth');
                     resolve();
                 } else if (attempts < maxAttempts) {
                     setTimeout(checkFirebase, 100);
                 } else {
-                    console.warn('Firebase auth not available after 5 seconds, proceeding without auth');
+                    console.warn('Firebase auth not available after 10 seconds, proceeding without auth');
                     resolve(); // Continue without auth
                 }
             };
@@ -44,9 +45,17 @@ class HeaderManager {
             return;
         }
 
+        // Check current auth state immediately
+        const currentUser = auth.currentUser;
+        if (currentUser) {
+            console.log('Header Manager - User already logged in:', currentUser.email);
+            this.currentUser = currentUser;
+            this.updateHeader();
+        }
+
         // Listen for auth state changes
         auth.onAuthStateChanged((user) => {
-            console.log('Header Manager - Auth state changed:', user ? 'User logged in' : 'User logged out');
+            console.log('Header Manager - Auth state changed:', user ? `User logged in: ${user.email}` : 'User logged out');
             this.currentUser = user;
             this.updateHeader();
         });

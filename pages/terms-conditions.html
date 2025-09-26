@@ -164,18 +164,7 @@
                 <span>Inker</span>
             </a>
             <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="find-styles.html" class="nav-link" data-nav="find-styles">Styles</a>
-                </li>
-                <li class="nav-item">
-                    <a href="find-artists.html" class="nav-link" data-nav="find-artist">Artist</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-nav="map">Map</a>
-                </li>
-                <li class="nav-item">
-                    <a href="login.html" class="nav-button" data-nav="login">Login</a>
-                </li>
+                <!-- Header will be populated by header-manager.js -->
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -336,31 +325,62 @@
         </div>
     </div>
 
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/database.js"></script>
+    <script src="../js/auth.js"></script>
     <script src="../js/email-config.js"></script>
     <script src="../js/contact-widget.js"></script>
     <script src="../js/notifications.js"></script>
     <script src="../js/i18n.js"></script>
     <script src="../js/cookie-consent.js"></script>
+    <script src="../js/global-cookie-banner.js"></script>
+    <script src="../js/header-manager.js"></script>
+    <script src="../js/main.js"></script>
     <script>
+        // Force header update after a delay to ensure it loads
+        setTimeout(() => {
+            if (window.headerManager) {
+                console.log('Forcing header update...');
+                window.headerManager.forceUpdate();
+            } else {
+                console.log('Header manager not found, retrying...');
+                setTimeout(() => {
+                    if (window.headerManager) {
+                        console.log('Header manager found on retry, forcing update...');
+                        window.headerManager.forceUpdate();
+                    } else {
+                        console.log('Header manager still not found after retry');
+                    }
+                }, 1000);
+            }
+        }, 500);
+
         // Mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.querySelector('.hamburger');
             const navMenu = document.querySelector('.nav-menu');
 
-            hamburger.addEventListener('click', function() {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-
-            // Close mobile menu when clicking on a link
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
                 });
-            });
+
+                // Close mobile menu when clicking on a link
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
         });
     </script>
 
