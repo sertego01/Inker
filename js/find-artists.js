@@ -703,12 +703,15 @@ function toggleFilters() {
     const filterDropdown = document.getElementById('filterDropdown');
     const filtersBtn = document.querySelector('.filters-btn');
     
-    if (filterDropdown.classList.contains('show')) {
-        filterDropdown.classList.remove('show');
-        filtersBtn.classList.remove('active');
-    } else {
-        filterDropdown.classList.add('show');
-        filtersBtn.classList.add('active');
+    // Only execute if both elements exist (i.e., we're on the find-artists page)
+    if (filterDropdown && filtersBtn) {
+        if (filterDropdown.classList.contains('show')) {
+            filterDropdown.classList.remove('show');
+            filtersBtn.classList.remove('active');
+        } else {
+            filterDropdown.classList.add('show');
+            filtersBtn.classList.add('active');
+        }
     }
 }
 
@@ -717,9 +720,12 @@ document.addEventListener('click', function(event) {
     const filterDropdown = document.getElementById('filterDropdown');
     const filtersBtn = document.querySelector('.filters-btn');
     
-    if (!filtersBtn.contains(event.target) && !filterDropdown.contains(event.target)) {
-        filterDropdown.classList.remove('show');
-        filtersBtn.classList.remove('active');
+    // Only execute if both elements exist (i.e., we're on the find-artists page)
+    if (filterDropdown && filtersBtn) {
+        if (!filtersBtn.contains(event.target) && !filterDropdown.contains(event.target)) {
+            filterDropdown.classList.remove('show');
+            filtersBtn.classList.remove('active');
+        }
     }
 });
 

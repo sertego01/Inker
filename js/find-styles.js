@@ -160,6 +160,10 @@ window.addEventListener('load', () => {
 // Setup event listeners
 function setupEventListeners() {
     const searchInput = document.getElementById('styleSearch');
+    
+    // Only setup listeners if we're on the find-styles page
+    if (!searchInput) return;
+    
     searchInput.addEventListener('input', debounce(searchStyles, 300));
     
     searchInput.addEventListener('keypress', (e) => {
@@ -185,6 +189,9 @@ function debounce(func, wait) {
 // Load styles into the grid
 function loadStyles() {
     const stylesGrid = document.getElementById('stylesGrid');
+    
+    // Only execute if we're on the find-styles page
+    if (!stylesGrid) return;
     
     stylesGrid.innerHTML = '';
     
@@ -465,9 +472,16 @@ function showStyleDetails(style) {
 
 // Search styles function
 function searchStyles() {
-    const searchTerm = document.getElementById('styleSearch').value.toLowerCase().trim();
-    const difficultyFilter = document.getElementById('difficultyFilter').value;
-    const popularityFilter = document.getElementById('popularityFilter').value;
+    const searchInput = document.getElementById('styleSearch');
+    const difficultyFilter = document.getElementById('difficultyFilter');
+    const popularityFilter = document.getElementById('popularityFilter');
+    
+    // Only execute if we're on the find-styles page
+    if (!searchInput) return;
+    
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const difficultyValue = difficultyFilter ? difficultyFilter.value : '';
+    const popularityValue = popularityFilter ? popularityFilter.value : '';
     
     filteredStyles = allStyles.filter(style => {
         const matchesSearch = !searchTerm || 
@@ -475,8 +489,8 @@ function searchStyles() {
             style.description.toLowerCase().includes(searchTerm) ||
             style.characteristics.some(char => char.toLowerCase().includes(searchTerm));
         
-        const matchesDifficulty = !difficultyFilter || style.difficulty === difficultyFilter;
-        const matchesPopularity = !popularityFilter || style.popularity === popularityFilter;
+        const matchesDifficulty = !difficultyValue || style.difficulty === difficultyValue;
+        const matchesPopularity = !popularityValue || style.popularity === popularityValue;
         
         return matchesSearch && matchesDifficulty && matchesPopularity;
     });
@@ -489,12 +503,15 @@ function toggleFilters() {
     const filterDropdown = document.getElementById('filterDropdown');
     const filtersBtn = document.querySelector('.filters-btn');
     
-    if (filterDropdown.classList.contains('show')) {
-        filterDropdown.classList.remove('show');
-        filtersBtn.classList.remove('active');
-    } else {
-        filterDropdown.classList.add('show');
-        filtersBtn.classList.add('active');
+    // Only execute if both elements exist (i.e., we're on the find-styles page)
+    if (filterDropdown && filtersBtn) {
+        if (filterDropdown.classList.contains('show')) {
+            filterDropdown.classList.remove('show');
+            filtersBtn.classList.remove('active');
+        } else {
+            filterDropdown.classList.add('show');
+            filtersBtn.classList.add('active');
+        }
     }
 }
 
@@ -503,9 +520,12 @@ document.addEventListener('click', function(event) {
     const filterDropdown = document.getElementById('filterDropdown');
     const filtersBtn = document.querySelector('.filters-btn');
     
-    if (!filtersBtn.contains(event.target) && !filterDropdown.contains(event.target)) {
-        filterDropdown.classList.remove('show');
-        filtersBtn.classList.remove('active');
+    // Only execute if both elements exist (i.e., we're on the find-styles page)
+    if (filterDropdown && filtersBtn) {
+        if (!filtersBtn.contains(event.target) && !filterDropdown.contains(event.target)) {
+            filterDropdown.classList.remove('show');
+            filtersBtn.classList.remove('active');
+        }
     }
 });
 
@@ -521,9 +541,16 @@ function filterByPopularity() {
 
 // Clear all filters
 function clearFilters() {
-    document.getElementById('difficultyFilter').value = '';
-    document.getElementById('popularityFilter').value = '';
-    document.getElementById('styleSearch').value = '';
+    const difficultyFilter = document.getElementById('difficultyFilter');
+    const popularityFilter = document.getElementById('popularityFilter');
+    const styleSearch = document.getElementById('styleSearch');
+    
+    // Only execute if we're on the find-styles page
+    if (!styleSearch) return;
+    
+    if (difficultyFilter) difficultyFilter.value = '';
+    if (popularityFilter) popularityFilter.value = '';
+    styleSearch.value = '';
     searchStyles();
 }
 
