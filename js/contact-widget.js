@@ -294,17 +294,20 @@ ${data.message}
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    // Load EmailJS if not already loaded
-    if (typeof emailjs === 'undefined') {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
-        script.onload = () => {
+    // Wait a bit to ensure email-config.js is loaded
+    setTimeout(() => {
+        // Load EmailJS if not already loaded
+        if (typeof emailjs === 'undefined') {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+            script.onload = () => {
+                initContactWidget();
+            };
+            document.head.appendChild(script);
+        } else {
             initContactWidget();
-        };
-        document.head.appendChild(script);
-    } else {
-        initContactWidget();
-    }
+        }
+    }, 100);
 });
 
 // Export functions for global access
