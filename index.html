@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inker</title>
+    <link rel="icon" href="images/favicon.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/contact-widget.css">
     <link rel="stylesheet" href="css/notifications.css">
@@ -15,6 +16,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="nav-logo">
+                <img src="images/favicon.png" alt="Inker Logo" class="nav-logo-img">
                 <span>Inker</span>
             </a>
             <ul class="nav-menu">
@@ -30,6 +32,12 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <!-- Background Images Container -->
+        <div class="hero-background">
+            <div class="bg-image bg-left"></div>
+            <div class="bg-image bg-right"></div>
+        </div>
+        
         <div class="hero-content">
             <h1>Find Your Perfect <br><span class="gradient-text">Tattoo Artist</span></h1>
             <p>Connect with talented tattoo artists in your area. Browse styles, read reviews and book your next piece with confidence.</p>
@@ -87,6 +95,11 @@
 
     <!-- Tatuadores en Tendencia -->
     <section id="most-popular" class="trending-artists">
+        <div class="trending-artists-background">
+            <div class="bg-image bg-left-med">
+                <img src="images/hilosMed.png" alt="Background Threads" class="hilos-med-image">
+            </div>
+        </div>
         <div class="container">
             <h2>Featured Artists</h2>
             <p>Discover some of our most talented and popular artists</p>
@@ -98,16 +111,6 @@
                     <div class="artist-info">
                         <h3 class="artist-name">Elena Martínez</h3>
                         <p class="artist-style">Blackwork</p>
-                        <div class="artist-details">
-                            <div class="artist-location">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-4 w-4 mr-1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                <span>Avilés, Asturias</span>
-                            </div>
-                            <div class="artist-rating">
-                                <span class="star-icon">⭐</span>
-                                <span>4.8</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="artist-card">
@@ -117,16 +120,6 @@
                     <div class="artist-info">
                         <h3 class="artist-name">Carmen García</h3>
                         <p class="artist-style">Watercolor</p>
-                        <div class="artist-details">
-                            <div class="artist-location">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-4 w-4 mr-1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                <span>Oviedo, Asturias</span>
-                            </div>
-                            <div class="artist-rating">
-                                <span class="star-icon">⭐</span>
-                                <span>4.7</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="artist-card">
@@ -136,16 +129,6 @@
                     <div class="artist-info">
                         <h3 class="artist-name">Sofía Martínez</h3>
                         <p class="artist-style">Biomechanical</p>
-                        <div class="artist-details">
-                            <div class="artist-location">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-4 w-4 mr-1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                <span>Mieres, Asturias</span>
-                            </div>
-                            <div class="artist-rating">
-                                <span class="star-icon">⭐</span>
-                                <span>4.6</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="artist-card">
@@ -155,16 +138,6 @@
                     <div class="artist-info">
                         <h3 class="artist-name">Marie Dubois</h3>
                         <p class="artist-style">Watercolor</p>
-                        <div class="artist-details">
-                            <div class="artist-location">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-4 w-4 mr-1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                <span>Paris, France</span>
-                            </div>
-                            <div class="artist-rating">
-                                <span class="star-icon">⭐</span>
-                                <span>4.2</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -176,19 +149,88 @@
         <h2>How it works</h2>
         <div class="steps">
             <div class="step" data-step="step1">
-                <div class="step-number">1</div>
+                <div class="step-number">
+                    <img src="images/lupa.png" alt="Step 1" class="step-icon">
+                </div>
                 <h3>Explore artists</h3>
                 <p>Find tattoo artists by style, location and ratings.</p>
             </div>
             <div class="step" data-step="step2">
-                <div class="step-number">2</div>
+                <div class="step-number">
+                    <img src="images/idea.png" alt="Step 2" class="step-icon">
+                </div>
                 <h3>Book your appointment</h3>
                 <p>Select available date and time directly with the artist.</p>
             </div>
             <div class="step" data-step="step3">
-                <div class="step-number">3</div>
+                <div class="step-number">
+                    <img src="images/360.png" alt="Step 3" class="step-icon">
+                </div>
                 <h3>Enjoy your tattoo</h3>
                 <p>Attend your appointment and show off your new artwork.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explore In Your Area -->
+    <section class="explore-area">
+        <div class="explore-area-background">
+            <div class="bg-image bg-bottom-right">
+                <img src="images/hilosAbaj.png" alt="Background Threads" class="hilos-abaj-image">
+            </div>
+        </div>
+        <div class="explore-container">
+            <div class="explore-header">
+                <h2>Explore In Your Area</h2>
+                <p>Discover some of our most talented and popular artists</p>
+            </div>
+            
+            <div class="explore-content">
+                <div class="map-section">
+                    <div class="map-card">
+                        <div class="map-placeholder">
+                            <div class="map-placeholder-text">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <p>Map will be integrated here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filters-section">
+                    <div class="filters-card">
+                        <h3>Filters :</h3>
+                        <div class="filters-list">
+                            <div class="filter-dropdown">
+                                <span>Styles</span>
+                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                    <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="filter-dropdown">
+                                <span>Countries</span>
+                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                    <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="filter-dropdown">
+                                <span>Regions</span>
+                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                    <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="filter-dropdown">
+                                <span>Cities</span>
+                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                    <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

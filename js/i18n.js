@@ -545,7 +545,29 @@ class I18n {
                 'verify.details-title': 'Verification Details',
                 'verify.email-label': 'Email:',
                 'verify.token-label': 'Token:',
-                'verify.status-label': 'Status:'
+                'verify.status-label': 'Status:',
+                
+                // Map
+                'map.search-placeholder': 'Search by city, country...',
+                'map.search': 'Search',
+                'map.filters': 'Filters',
+                'map.filters-text': 'Filters',
+                'map.filter-style': 'Style',
+                'map.filter-rating': 'Rating',
+                'map.filter-availability': 'Availability',
+                'map.all-styles': 'All Styles',
+                'map.all-ratings': 'All Ratings',
+                'map.availability-all': 'All',
+                'map.availability-available': 'Available',
+                'map.availability-busy': 'Busy',
+                'map.availability-this-week': 'This Week',
+                'map.availability-this-month': 'This Month',
+                'map.availability-offline': 'Offline',
+                'map.clear-filters': 'Clear Filters',
+                'map.apply-filters': 'Apply Filters',
+                'map.view-profile': 'View Profile',
+                'map.contact': 'Contact',
+                'map.loading': 'Loading map...'
             },
             es: {
                 // Navigation
@@ -1087,7 +1109,29 @@ class I18n {
                 'verify.details-title': 'Detalles de Verificación',
                 'verify.email-label': 'Correo:',
                 'verify.token-label': 'Token:',
-                'verify.status-label': 'Estado:'
+                'verify.status-label': 'Estado:',
+                
+                // Map
+                'map.search-placeholder': 'Buscar por ciudad, país...',
+                'map.search': 'Buscar',
+                'map.filters': 'Filtros',
+                'map.filters-text': 'Filtros',
+                'map.filter-style': 'Estilo',
+                'map.filter-rating': 'Valoración',
+                'map.filter-availability': 'Disponibilidad',
+                'map.all-styles': 'Todos los Estilos',
+                'map.all-ratings': 'Todas las Valoraciones',
+                'map.availability-all': 'Todos',
+                'map.availability-available': 'Disponible',
+                'map.availability-busy': 'Ocupado',
+                'map.availability-this-week': 'Esta Semana',
+                'map.availability-this-month': 'Este Mes',
+                'map.availability-offline': 'Sin Conexión',
+                'map.clear-filters': 'Limpiar Filtros',
+                'map.apply-filters': 'Aplicar Filtros',
+                'map.view-profile': 'Ver Perfil',
+                'map.contact': 'Contactar',
+                'map.loading': 'Cargando mapa...'
             }
         };
         

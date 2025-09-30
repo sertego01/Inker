@@ -107,7 +107,7 @@
 .filters-dropdown-content {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: -330%;
     right: 0;
     background: white;
     border-radius: 8px;
@@ -120,12 +120,15 @@
     transition: all 0.3s ease;
     z-index: 1001;
     min-width: 300px;
+    max-height: 0;
+    overflow: hidden;
 }
 
 .filters-dropdown-content.show {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    max-height: 500px;
 }
 
 .filter-group {
@@ -229,15 +232,24 @@
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
-.custom-marker.available {
+.custom-marker .marker-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.custom-marker .marker-content.available {
     background: linear-gradient(135deg, #10b981, #059669);
 }
 
-.custom-marker.busy {
+.custom-marker .marker-content.busy {
     background: linear-gradient(135deg, #f59e0b, #d97706);
 }
 
-.custom-marker.offline {
+.custom-marker .marker-content.offline {
     background: linear-gradient(135deg, #6b7280, #4b5563);
 }
 

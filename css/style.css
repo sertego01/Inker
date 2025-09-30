@@ -26,23 +26,30 @@ ul {
 
 /* Navbar */
 .navbar {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: fixed;
-    width: 100%;
-    top: 0;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 100px);
+    max-width: 95%;
     z-index: 1000;
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+    background: rgba(31, 41, 55, 0.7);
 }
 
 .nav-container {
     position: relative;
     width: 100%;
-    padding: 0 20px;
+    padding: 0 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 70px;
-    background-color: #1F2937;
+    background-color: transparent;
     color: white;
+    border-radius: 15px;
 }
 
 /* Language Selector */
@@ -90,8 +97,14 @@ ul {
     align-items: center;
     font-weight: 700;
     font-size: 1.5rem;
-    color: #8b5cf6;
     margin-left: 100px;
+    gap: 10px;
+}
+
+.nav-logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
 }
 
 
@@ -155,15 +168,62 @@ body.index-page .nav-link:hover {
 .hero {
     width: 100%;
     margin: 0;
-    padding: 100px 20px 80px;
+    padding: 120px 20px 80px; /* Aumentado para el header flotante */
     text-align: center;
-    background: linear-gradient(to bottom right, #111827, #581c87, #111827);
+    background-color: black;
     border-radius: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Asegurar que las tarjetas de features sean sólidas */
+.hero .feature-card {
+    background: #374151 !important;
+    background-color: #374151 !important;
+    opacity: 1 !important;
+}
+
+/* Hero Background Images */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.bg-image {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: auto 150%;
+}
+
+.bg-left {
+    background-image: url('../images/hilosIzq.png');
+    background-position: left center;
+    top: 0;
+    left: -20%;
+    width: 100%;
+    height: 100%;
+}
+
+.bg-right {
+    background-image: url('../images/hilosDcha.png');
+    background-position: right center;
+    bottom: -40%;
+    right: -15%;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
 }
 
 .hero-content {
     max-width: 800px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-content h1 {
@@ -242,22 +302,25 @@ body.index-page .nav-link:hover {
 
 /* Features Container */
 .features-container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 60px auto 0;
     padding: 0 20px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 35px;
+    gap: 150px;
+    position: relative;
+    z-index: 5; /* asegura que esté por encima del fondo */
 }
 
 .feature-card {
-    background: #374151;
-    border-radius: 12px;
+    background: #374151 !important; /* sólido forzado */
+    background-color: #374151 !important; /* color de fondo sólido */
+    opacity: 1 !important; /* asegura sin transparencia */
+    border-radius: 40px;
     padding: 25px 20px;
     text-align: center;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
-    border: 1px solid #4b5563;
     aspect-ratio: 1.2;
     display: flex;
     flex-direction: column;
@@ -267,32 +330,24 @@ body.index-page .nav-link:hover {
     overflow: hidden;
     max-width: 280px;
     margin: 0 auto;
+    z-index: 10; /* asegura que esté por encima */
 }
 
-.feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
-    transition: left 0.5s ease;
-}
-
-.feature-card:hover::before {
-    left: 100%;
-}
 
 .feature-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-    border-color: #8b5cf6;
+    background: #374151 !important; /* mantener sólido en hover */
+    background-color: #374151 !important;
+    opacity: 1 !important;
 }
 
 .feature-card:active {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: #374151 !important; /* mantener sólido en active */
+    background-color: #374151 !important;
+    opacity: 1 !important;
 }
 
 .feature-icon {
@@ -415,9 +470,37 @@ body.index-page .nav-link:hover {
 /* Tatuadores en Tendencia */
 .trending-artists {
     width: 100%;
-    background-color: #111827;
+    background-color: black;
     padding: 80px 20px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.trending-artists-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 220%;
+    height: 220%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.bg-left-med {
+    position: absolute;
+    top: 25%;
+    left: -10%;
+    transform: translateY(-50%);
+    width: 30%;
+    height: 100%;
+}
+
+.hilos-med-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0.8;
 }
 
 .trending-artists h2 {
@@ -436,13 +519,15 @@ body.index-page .nav-link:hover {
 .trending-artists .container {
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
 .artists-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    max-width: 1200px;
+    gap: 15px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -452,10 +537,11 @@ body.index-page .nav-link:hover {
     overflow: hidden;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    border-radius: 50px;
     position: relative;
     text-align: center;
-    height: 400px;
+    height: 250px;
+    width: 200px;
 }
 
 .artist-card:hover {
@@ -485,9 +571,8 @@ body.index-page .nav-link:hover {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 15px;
     text-align: center;
-    background: linear-gradient(to top, rgba(139, 92, 246, 0.98) 0%, rgba(139, 92, 246, 0.95) 15%, rgba(139, 92, 246, 0.9) 30%, rgba(139, 92, 246, 0.8) 60%, rgba(139, 92, 246, 0.5) 85%, transparent 100%);
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.7) 15%, rgba(255, 255, 255, 0.6) 30%, transparent 100%);
     z-index: 2;
     height: 120px;
     display: flex;
@@ -518,70 +603,185 @@ body.index-page .nav-link:hover {
 
 .artist-name {
     font-size: 1.2rem;
-    font-weight: 700;
     margin-bottom: 4px;
-    color: white;
+    color: black;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .artist-style {
-    color: white !important;
+    color: black !important;
     margin-bottom: 10px!important;
     font-size: 0.9rem !important;
-    font-weight: 500;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
-
-.artist-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 15px 15px 15px;
-}
-
-.artist-location {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 4px;
-    margin-bottom: 0;
-    color: #e5e7eb;
-    font-size: 0.85rem;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.artist-location svg {
-    width: 16px;
-    height: 16px;
-    color: #e5e7eb;
-    flex-shrink: 0;
-}
-
-.artist-rating {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-bottom: 0;
-    gap: 4px;
-    color: #e5e7eb;
-    font-size: 0.85rem;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.stars {
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-
-.star-icon {
-    font-size: 0.8rem;
-}
-
 
 /* Cómo funciona */
 .how-it-works {
     background-color: #1F2937;
     padding: 80px 20px;
+    color: white;
+}
+
+/* Explore In Your Area */
+.explore-area {
+    background-color: black;
+    padding: 80px 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.explore-area-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.bg-bottom-right {
+    position: absolute;
+    bottom: -83%;
+    right: -60%;
+    width: 160%;
+    height: 200%;
+}
+
+.hilos-abaj-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0.8;
+}
+
+.explore-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.explore-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.explore-header h2 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.explore-header p {
+    color: #d1d5db;
+    font-size: 1.1rem;
+}
+
+.explore-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.map-section {
+    position: relative;
+}
+
+.map-card {
+    background-color: #1f2937;
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 360px;
+    background-color: #374151;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-placeholder-text {
+    text-align: center;
+    color: #9ca3af;
+}
+
+.map-placeholder-text svg {
+    color: #6b7280;
+    margin-bottom: 16px;
+}
+
+.map-placeholder-text p {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.filters-section {
+    position: relative;
+}
+
+.filters-card {
+    background-color: #374151;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.filters-card h3 {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.filters-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex: 1;
+    padding: 20px 0;
+}
+
+.filter-dropdown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4b5563;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 1;
+    max-height: 60px;
+}
+
+.filter-dropdown:hover {
+    background-color: #6b7280;
+}
+
+.filter-dropdown span {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.filter-dropdown svg {
     color: white;
 }
 
@@ -608,10 +808,10 @@ body.index-page .nav-link:hover {
 }
 
 .step-number {
-    width: 50px;
-    height: 50px;
-    background-color: #8b5cf6;
-    color: white;
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    color: black;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -619,6 +819,12 @@ body.index-page .nav-link:hover {
     margin: 0 auto 20px;
     font-size: 1.5rem;
     font-weight: 500;
+}
+
+.step-icon {
+    width: 50px;
+    height: 50px;
+    object-fit: contain; /* Hace la imagen blanca */
 }
 
 .step h3 {
@@ -876,6 +1082,21 @@ body.index-page .nav-link:hover {
 
 /* Responsive */
 @media screen and (max-width: 768px) {
+    .navbar {
+        top: 15px;
+        width: calc(100% - 40px);
+        border-radius: 12px;
+    }
+    
+    .nav-container {
+        padding: 0 20px;
+    }
+    
+    .nav-logo-img {
+        width: 28px;
+        height: 28px;
+    }
+
     .hamburger {
         display: flex;
     }
@@ -883,18 +1104,24 @@ body.index-page .nav-link:hover {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 70px;
+        top: 90px; /* Ajustado para el header flotante */
         flex-direction: column;
-        background-color: #fff;
-        width: 100%;
+        background-color: rgba(31, 41, 55, 0.8);
+        backdrop-filter: blur(10px);
+        width: calc(100% - 40px);
+        left: 50%;
+        transform: translateX(-50%);
         text-align: center;
         transition: 0.3s;
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         padding: 20px 0;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .nav-menu.active {
-        left: 0;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .nav-item {
@@ -937,7 +1164,21 @@ body.index-page .nav-link:hover {
     }
     
     .hero {
-        padding: 80px 15px 60px;
+        padding: 100px 15px 60px; /* Ajustado para el header flotante en móviles */
+    }
+    
+    .bg-image {
+        background-size: auto 60%;
+    }
+    
+    .bg-left {
+        background-position: left 20% center;
+    }
+    
+    .bg-right {
+        background-position: right 20% center;
+        bottom: 5%;
+        right: -10%;
     }
     
     .features-container {
@@ -970,10 +1211,69 @@ body.index-page .nav-link:hover {
         gap: 20px;
         max-width: 400px;
     }
+    
+    .bg-left-med {
+        width: 50%;
+        height: 60%;
+        left: -20%;
+    }
+    
+    .hilos-med-image {
+        opacity: 0.6;
+    }
+    
+    .explore-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .map-placeholder {
+        height: 300px;
+    }
+    
+    .filters-card {
+        padding: 20px;
+        height: 300px;
+    }
+    
+    .filters-list {
+        padding: 15px 0;
+    }
+    
+    .filter-dropdown {
+        padding: 12px 16px;
+        margin-bottom: 12px;
+        max-height: 50px;
+    }
+    
+    .bg-bottom-right {
+        width: 200%;
+        height: 160%;
+        bottom: -70%;
+        right: -60%;
+    }
+    
+    .hilos-abaj-image {
+        opacity: 0.6;
+    }
 }
 
 /* Tablet responsive */
 @media screen and (max-width: 968px) and (min-width: 769px) {
+    .bg-image {
+        background-size: auto 70%;
+    }
+    
+    .bg-left {
+        background-position: left 10% center;
+    }
+    
+    .bg-right {
+        background-position: right 10% center;
+        bottom: 8%;
+        right: -12%;
+    }
+    
     .features-container {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;

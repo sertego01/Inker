@@ -334,7 +334,7 @@ class MapManager {
         // Create custom marker icon
         const markerIcon = L.divIcon({
             className: 'custom-marker',
-            html: `<div class="custom-marker ${artist.availability}">${artist.name.charAt(0)}</div>`,
+            html: `<div class="marker-content ${artist.availability}">${artist.name.charAt(0)}</div>`,
             iconSize: [40, 40],
             iconAnchor: [20, 20],
             popupAnchor: [0, -20]
@@ -421,103 +421,24 @@ class MapManager {
 
 
     setupEventListeners() {
-        // Search functionality
-        const searchBtn = document.getElementById('searchBtn');
-        const locationSearch = document.getElementById('locationSearch');
-
-        if (searchBtn) {
-            searchBtn.addEventListener('click', () => {
-                this.searchLocation();
-            });
-        }
-
-        if (locationSearch) {
-            locationSearch.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    this.searchLocation();
-                }
-            });
-        }
-
         // Filter functionality
         const styleFilter = document.getElementById('mapStyleFilter');
-        const ratingFilter = document.getElementById('mapRatingFilter');
-        const availabilityFilter = document.getElementById('mapAvailabilityFilter');
 
         if (styleFilter) {
             styleFilter.addEventListener('change', () => {
                 this.applyFilters();
             });
         }
-
-        if (ratingFilter) {
-            ratingFilter.addEventListener('change', () => {
-                this.applyFilters();
-            });
-        }
-
-        if (availabilityFilter) {
-            availabilityFilter.addEventListener('change', () => {
-                this.applyFilters();
-            });
-        }
     }
 
-    searchLocation() {
-        const query = document.getElementById('locationSearch').value.trim();
-        if (!query) return;
-
-        // Simple geocoding - in a real app, you'd use a proper geocoding service
-        const locations = {
-            'oviedo': [43.3603, -5.8448],
-            'gijón': [43.5453, -5.6619],
-            'gijon': [43.5453, -5.6619],
-            'avilés': [43.5556, -5.9244],
-            'aviles': [43.5556, -5.9244],
-            'mieres': [43.2500, -5.7667],
-            'langreo': [43.3000, -5.6833],
-            'siero': [43.4000, -5.6667],
-            'asturias': [43.3603, -5.8448],
-            'london': [51.5074, -0.1278],
-            'paris': [48.8566, 2.3522],
-            'berlin': [52.5200, 13.4050],
-            'madrid': [40.4168, -3.7038],
-            'barcelona': [41.3851, 2.1734]
-        };
-
-        const normalizedQuery = query.toLowerCase();
-        const coordinates = locations[normalizedQuery];
-
-        if (coordinates) {
-            this.map.setView(coordinates, 10);
-        } else {
-            // Fallback: try to find artists by name or style
-            this.searchArtists(query);
-        }
-    }
-
-    searchArtists(query) {
-        const filtered = this.artists.filter(artist => 
-            artist.name.toLowerCase().includes(query.toLowerCase()) ||
-            artist.style.toLowerCase().includes(query.toLowerCase()) ||
-            artist.location.toLowerCase().includes(query.toLowerCase())
-        );
-
-        this.filteredArtists = filtered;
-        this.addMarkersToMap();
-    }
 
     applyFilters() {
         const styleFilter = document.getElementById('mapStyleFilter').value;
-        const ratingFilter = parseFloat(document.getElementById('mapRatingFilter').value);
-        const availabilityFilter = document.getElementById('mapAvailabilityFilter').value;
 
         this.filteredArtists = this.artists.filter(artist => {
             const matchesStyle = !styleFilter || artist.style === styleFilter || artist.specialties.includes(styleFilter);
-            const matchesRating = artist.rating >= ratingFilter;
-            const matchesAvailability = availabilityFilter === 'all' || artist.availability === availabilityFilter;
 
-            return matchesStyle && matchesRating && matchesAvailability;
+            return matchesStyle;
         });
 
         this.addMarkersToMap();
@@ -525,8 +446,6 @@ class MapManager {
 
     clearFilters() {
         document.getElementById('mapStyleFilter').value = '';
-        document.getElementById('mapRatingFilter').value = '0';
-        document.getElementById('mapAvailabilityFilter').value = 'all';
         
         this.filteredArtists = [...this.artists];
         this.addMarkersToMap();
