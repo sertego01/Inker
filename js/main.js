@@ -35,7 +35,6 @@ searchBtn.addEventListener('click', () => {
     const searchTerm = searchInput.value.trim();
     if (searchTerm) {
         // Redirect to search page (to be implemented)
-        alert(`Searching for: ${searchTerm}`);
         // window.location.href = `search.html?q=${encodeURIComponent(searchTerm)}`;
     }
 });

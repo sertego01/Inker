@@ -132,28 +132,28 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
 });
 
-// Check for style parameter after page is fully loaded
+// Check for URL parameters after page is loaded
 window.addEventListener('load', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const styleParam = urlParams.get('style');
-    
-    console.log('URL params:', window.location.search);
-    console.log('Style param:', styleParam);
+    const searchParam = urlParams.get('search');
     
     if (styleParam) {
         // Find the style with the matching ID
         const targetStyle = allStyles.find(style => style.id === styleParam);
-        console.log('Target style found:', targetStyle);
         
         if (targetStyle) {
             // Wait a bit for the page to load, then show the modal
             setTimeout(() => {
-                console.log('Opening modal for style:', targetStyle.name);
                 showStyleDetails(targetStyle);
             }, 500);
-        } else {
-            console.log('Style not found for ID:', styleParam);
         }
+    } else if (searchParam) {
+        // Apply search filter
+        // Wait a bit for the page to load, then apply search
+        setTimeout(() => {
+            applySearchFromURL(searchParam);
+        }, 200);
     }
 });
 
@@ -561,5 +561,40 @@ function closeStyleModal() {
     if (modal) {
         modal.remove();
     }
+}
+
+// Apply search from URL parameter
+function applySearchFromURL(searchTerm) {
+    if (!searchTerm) {
+        filteredStyles = [...allStyles];
+        loadStyles();
+        return;
+    }
+    
+    if (!allStyles || allStyles.length === 0) {
+        setTimeout(() => {
+            applySearchFromURL(searchTerm);
+        }, 100);
+        return;
+    }
+    
+    // Set the search input value
+    const searchInput = document.getElementById('styleSearch');
+    if (searchInput) {
+        searchInput.value = searchTerm;
+    }
+    
+    // Apply the search filter
+    filteredStyles = allStyles.filter(style => {
+        const matchesSearch = 
+            style.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            style.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            style.characteristics.some(char => char.toLowerCase().includes(searchTerm.toLowerCase()));
+        
+        return matchesSearch;
+    });
+    
+    // Reload the styles with the search applied
+    loadStyles();
 }
 

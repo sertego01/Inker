@@ -42,21 +42,21 @@
             <h1>Find Your Perfect <br><span class="gradient-text">Tattoo Artist</span></h1>
             <p>Connect with talented tattoo artists in your area. Browse styles, read reviews and book your next piece with confidence.</p>
             <div class="search-bar">
-                <input type="text" placeholder="Search by artist name, style, or location...">
-                <button class="search-btn">Search</button>
+                <input type="text" id="mainSearchInput" placeholder="Search by artist name, style, or location...">
+                <button class="search-btn" onclick="performMainSearch()">Search</button>
             </div>
         </div>
         
         <!-- Features Section -->
         <div class="features-container">
-            <div class="feature-card" data-feature="browse-styles">
+            <div class="feature-card" data-feature="browse-styles" onclick="goToStyles()">
                 <div class="feature-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette h-12 w-12 text-purple-500 mx-auto mb-4"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>
                 </div>
                 <h3>Browse Styles</h3>
                 <p>Explore different tattoo styles and find artists who specialize in them</p>
             </div>
-            <div class="feature-card" data-feature="find-near">
+            <div class="feature-card" data-feature="find-near" onclick="goToMap()">
                 <div class="feature-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-12 w-12 text-pink-500 mx-auto mb-4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </div>
@@ -104,7 +104,7 @@
             <h2>Featured Artists</h2>
             <p>Discover some of our most talented and popular artists</p>
         <div class="artists-grid">
-                <div class="artist-card">
+                <div class="artist-card" onclick="goToArtistProfile('elena-martinez')">
                     <div class="artist-image">
                         <img src="images/artist3.jpg" alt="Elena Martínez">
                     </div>
@@ -113,7 +113,7 @@
                         <p class="artist-style">Blackwork</p>
                     </div>
                 </div>
-                <div class="artist-card">
+                <div class="artist-card" onclick="goToArtistProfile('carmen-garcia')">
                     <div class="artist-image">
                         <img src="images/artist1.jpg" alt="Carmen García">
                     </div>
@@ -122,7 +122,7 @@
                         <p class="artist-style">Watercolor</p>
                     </div>
                 </div>
-                <div class="artist-card">
+                <div class="artist-card" onclick="goToArtistProfile('sofia-martinez')">
                     <div class="artist-image">
                         <img src="images/artist4.jpg" alt="Sofía Martínez">
                     </div>
@@ -131,7 +131,7 @@
                         <p class="artist-style">Biomechanical</p>
                     </div>
                 </div>
-                <div class="artist-card">
+                <div class="artist-card" onclick="goToArtistProfile('marie-dubois')">
                     <div class="artist-image">
                         <img src="images/artist2.jpg" alt="Marie Dubois">
                     </div>
@@ -410,6 +410,68 @@
                     window.location.href = `pages/find-styles.html?style=${styleId}`;
                 });
             });
+    });
+
+    // Function to navigate to artist profile
+    function goToArtistProfile(artistId) {
+        window.location.href = `pages/artist-profile.html?id=${artistId}`;
+    }
+
+    // Function to navigate to styles page
+    function goToStyles() {
+        window.location.href = 'pages/find-styles.html';
+    }
+
+    // Function to navigate to map page
+    function goToMap() {
+        window.location.href = 'pages/map.html';
+    }
+
+    // Function to perform main search
+    function performMainSearch() {
+        const searchTerm = document.getElementById('mainSearchInput').value.toLowerCase().trim();
+        
+        if (!searchTerm) {
+            return;
+        }
+
+        // Define tattoo styles to detect if search is for a style
+        const tattooStyles = [
+            'traditional', 'realistic', 'japanese', 'blackwork', 'watercolor', 
+            'geometric', 'tribal', 'neo-traditional', 'minimalist', 'biomechanical',
+            'dotwork', 'puntillismo', 'henna', 'portraits', 'american', 'cultural',
+            'temporary', 'sci-fi', 'mandalas', 'sacred', 'realista', 'tradicional',
+            'japonés', 'acuarela', 'geométrico', 'neo-tradicional', 'minimalista',
+            'biomecánico', 'puntillismo', 'retratos', 'americano', 'cultural',
+            'temporal', 'ciencia ficción', 'mandalas', 'sagrado'
+        ];
+
+        // Check if search term matches a tattoo style
+        const isStyleSearch = tattooStyles.some(style => 
+            searchTerm.includes(style) || style.includes(searchTerm)
+        );
+
+        if (isStyleSearch) {
+            // Navigate to styles page with the search term
+            const url = `pages/find-styles.html?search=${encodeURIComponent(searchTerm)}`;
+            window.location.href = url;
+        } else {
+            // Navigate to artists page with the search term
+            const url = `pages/find-artists.html?search=${encodeURIComponent(searchTerm)}`;
+            window.location.href = url;
+        }
+    }
+
+    // Add Enter key support for search
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('mainSearchInput');
+        if (searchInput) {
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performMainSearch();
+                }
+            });
+        }
     });
 </script>
 </body>

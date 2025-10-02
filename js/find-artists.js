@@ -277,15 +277,10 @@ let filteredArtists = [...allArtists];
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('=== DOM CONTENT LOADED ===');
-    console.log('Current URL:', window.location.href);
-    console.log('Search params:', window.location.search);
-    
     // Set default sort to name
     const sortBySelect = document.getElementById('sortBy');
     if (sortBySelect) {
         sortBySelect.value = 'name';
-        console.log('Set default sort to name');
     }
     
     setupEventListeners();
@@ -293,17 +288,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check if there's a style parameter in the URL
     const urlParams = new URLSearchParams(window.location.search);
     const styleParam = urlParams.get('style');
-    
-    console.log('URL params:', window.location.search);
-    console.log('Style param:', styleParam);
-    console.log('Style param type:', typeof styleParam);
+    const searchParam = urlParams.get('search');
     
     if (styleParam) {
-        console.log('Calling applyStyleFilterFromURL with:', styleParam);
         // Apply style filter from URL
         applyStyleFilterFromURL(styleParam);
+    } else if (searchParam) {
+        // Wait a bit for the page to load, then apply search
+        setTimeout(() => {
+            applySearchFromURL(searchParam);
+        }, 200);
     } else {
-        console.log('No style parameter found, applying default sort');
         // Sort artists by name by default only if no URL filter
         sortArtists();
     }
@@ -671,10 +666,6 @@ function searchArtists() {
     const styleFilter = document.getElementById('styleFilter').value;
     const locationFilter = document.getElementById('locationFilter').value;
     
-    console.log('=== SEARCH ARTISTS ===');
-    console.log('Search term:', searchTerm);
-    console.log('Style filter:', styleFilter);
-    console.log('Location filter:', locationFilter);
     
     filteredArtists = allArtists.filter(artist => {
         const matchesSearch = !searchTerm || 
@@ -687,12 +678,8 @@ function searchArtists() {
         const matchesStyle = !styleFilter || artist.styles[0] === styleFilter;
         const matchesLocation = !locationFilter || artist.location.includes(locationFilter);
         
-        console.log(`Artist: ${artist.name}, Search: ${matchesSearch}, Style: ${matchesStyle}, Location: ${matchesLocation}`);
-        
         return matchesSearch && matchesStyle && matchesLocation;
     });
-    
-    console.log('Final filtered count:', filteredArtists.length);
     
     // Apply current sorting after filtering
     sortArtists();
@@ -734,9 +721,6 @@ function filterByStyle() {
     const styleFilter = document.getElementById('styleFilter');
     const selectedStyle = styleFilter ? styleFilter.value : '';
     
-    console.log('=== FILTER BY STYLE ===');
-    console.log('Selected style:', selectedStyle);
-    console.log('All artists count:', allArtists.length);
     
     if (selectedStyle) {
         // Filter artists based on their primary style (first in the array)
@@ -784,7 +768,6 @@ function clearFilters() {
 function sortArtists() {
     const sortBy = document.getElementById('sortBy').value;
     
-    console.log('Sorting artists by:', sortBy);
     
     filteredArtists.sort((a, b) => {
         switch (sortBy) {
@@ -804,16 +787,11 @@ function sortArtists() {
         }
     });
     
-    console.log('Sorted artists:', filteredArtists.map(a => a.name));
     loadArtists();
 }
 
 // Apply style filter from URL parameter
 function applyStyleFilterFromURL(styleId) {
-    console.log('=== APPLY STYLE FILTER FROM URL ===');
-    console.log('Style ID received:', styleId);
-    console.log('Style ID type:', typeof styleId);
-    console.log('All artists count:', allArtists.length);
     
     // Check if styleId is valid
     if (!styleId || styleId === 'undefined') {
@@ -841,34 +819,57 @@ function applyStyleFilterFromURL(styleId) {
     };
     
     const styleName = styleMap[styleId] || styleId;
-    console.log('Mapped style name:', styleName);
-    
     // Update the style filter select
     const styleFilter = document.getElementById('styleFilter');
-    console.log('Style filter element found:', !!styleFilter);
     if (styleFilter) {
         styleFilter.value = styleName;
-        console.log('Set style filter to:', styleName);
-        console.log('Style filter value after setting:', styleFilter.value);
     }
     
     // Filter artists based on their primary style (first in the array)
-    console.log('Filtering artists with style:', styleName);
     filteredArtists = allArtists.filter(artist => {
         const primaryStyle = artist.styles[0];
         const match = primaryStyle === styleName;
-        console.log(`Artist ${artist.name} primary style: ${primaryStyle}, looking for: ${styleName}, match: ${match}`);
         return match;
     });
     
-    console.log('Filtered artists count:', filteredArtists.length);
-    console.log('Filtered artists:', filteredArtists.map(a => a.name));
-    
-    
     // Reload the artists with the filter applied
-    console.log('Calling loadArtists()...');
     loadArtists();
-    console.log('=== END APPLY STYLE FILTER FROM URL ===');
+}
+
+// Apply search from URL parameter
+function applySearchFromURL(searchTerm) {
+    if (!searchTerm) {
+        filteredArtists = [...allArtists];
+        loadArtists();
+        return;
+    }
+    
+    if (!allArtists || allArtists.length === 0) {
+        setTimeout(() => {
+            applySearchFromURL(searchTerm);
+        }, 100);
+        return;
+    }
+    
+    // Set the search input value
+    const searchInput = document.getElementById('artistSearch');
+    if (searchInput) {
+        searchInput.value = searchTerm;
+    }
+    
+    // Apply the search filter
+    filteredArtists = allArtists.filter(artist => {
+        const matchesSearch = 
+            artist.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            artist.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            artist.style.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            artist.styles.some(style => style.toLowerCase().includes(searchTerm.toLowerCase()));
+        
+        return matchesSearch;
+    });
+    
+    // Reload the artists with the search applied
+    loadArtists();
 }
 
 // Logout function
