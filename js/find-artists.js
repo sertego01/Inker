@@ -127,7 +127,7 @@ const allArtists = [
         city: 'Langreo',
         rating: 3.5,
         reviewCount: 756,
-        image: '../images/artist2.jpg',
+        image: '../images/artist5.jpg',
         styles: ['Japanese', 'Watercolor', 'Traditional'],
         bio: 'Experta en técnicas tradicionales japonesas y de acuarela.'
     },
@@ -141,7 +141,7 @@ const allArtists = [
         city: 'Siero',
         rating: 3.8,
         reviewCount: 634,
-        image: '../images/artist4.jpg',
+        image: '../images/artist6.jpg',
         styles: ['Blackwork', 'Tribal', 'Geometric'],
         bio: 'Especializado en diseños de blackwork y tribales con estética audaz.'
     },
@@ -155,7 +155,7 @@ const allArtists = [
         city: 'Oviedo',
         rating: 3.5,
         reviewCount: 523,
-        image: '../images/artist1.jpg',
+        image: '../images/artist7.jpg',
         styles: ['Puntillismo', 'Dotwork', 'Geometric'],
         bio: 'Maestra de técnicas de dotwork y puntillismo creando diseños intrincados.'
     },
@@ -169,7 +169,7 @@ const allArtists = [
         city: 'Gijón',
         rating: 4.1,
         reviewCount: 445,
-        image: '../images/artist2.jpg',
+        image: '../images/artist8.jpg',
         styles: ['Henna', 'Cultural', 'Temporary'],
         bio: 'Especializada en diseños inspirados en henna y arte cultural.'
     },
@@ -183,7 +183,7 @@ const allArtists = [
         city: 'Avilés',
         rating: 3.2,
         reviewCount: 378,
-        image: '../images/artist4.jpg',
+        image: '../images/artist9.jpg',
         styles: ['Minimalist', 'Tribal', 'Geometric'],
         bio: 'Experto en diseños minimalistas y tribales con estética limpia.'
     },
@@ -197,7 +197,7 @@ const allArtists = [
         city: 'Mieres',
         rating: 4.6,
         reviewCount: 1123,
-        image: '../images/artist1.jpg',
+        image: '../images/artist10.jpg',
         styles: ['Biomechanical', 'Realistic', 'Sci-fi'],
         bio: 'Especializada en diseños biomecánicos y realistas de ciencia ficción.'
     },
@@ -211,7 +211,7 @@ const allArtists = [
         city: 'Langreo',
         rating: 3.8,
         reviewCount: 567,
-        image: '../images/artist2.jpg',
+        image: '../images/artist6.jpg',
         styles: ['Geometric', 'Mandalas', 'Sacred'],
         bio: 'Experto en patrones geométricos y diseños de mandalas sagradas.'
     },
@@ -225,7 +225,7 @@ const allArtists = [
         city: 'Siero',
         rating: 3.5,
         reviewCount: 789,
-        image: '../images/artist3.jpg',
+        image: '../images/artist7.jpg',
         styles: ['Japanese', 'Blackwork', 'Traditional'],
         bio: 'Maestra de técnicas tradicionales japonesas y blackwork.'
     },
@@ -239,7 +239,7 @@ const allArtists = [
         city: 'London',
         rating: 4.1,
         reviewCount: 892,
-        image: '../images/artist4.jpg',
+        image: '../images/artist8.jpg',
         styles: ['Traditional', 'Realistic', 'Portraits'],
         bio: 'Expert in traditional British and realistic tattoo styles.'
     },
@@ -253,7 +253,7 @@ const allArtists = [
         city: 'Paris',
         rating: 4.2,
         reviewCount: 1123,
-        image: '../images/artist2.jpg',
+        image: '../images/artist9.jpg',
         styles: ['Watercolor', 'Geometric', 'Minimalist'],
         bio: 'Specialized in watercolor and geometric tattoo designs.'
     },
@@ -267,7 +267,7 @@ const allArtists = [
         city: 'Berlin',
         rating: 3.8,
         reviewCount: 567,
-        image: '../images/artist3.jpg',
+        image: '../images/artist10.jpg',
         styles: ['Blackwork', 'Dotwork', 'Geometric'],
         bio: 'Master of blackwork and dotwork techniques with German precision.'
     }
