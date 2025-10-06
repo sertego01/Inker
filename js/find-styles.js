@@ -1,159 +1,100 @@
 // Find Styles Page JavaScript
 
-// Sample styles data
-const allStyles = [
-    {
-        id: 'traditional',
-        name: 'Traditional',
-        description: 'Classic American tattoo style with bold lines and vibrant colors',
-        difficulty: 'Beginner',
-        popularity: 'Classic',
-        image: '../images/traditional.jpg',
-        characteristics: ['Bold lines', 'Vibrant colors', 'Simple designs', 'American classic'],
-        history: 'Originated in the early 1900s in American tattoo shops'
-    },
-    {
-        id: 'realistic',
-        name: 'Realistic',
-        description: 'Photorealistic tattoos that look like photographs',
-        difficulty: 'Expert',
-        popularity: 'Trending',
-        image: '../images/realistic.jpg',
-        characteristics: ['Photorealistic', 'Detailed shading', 'Portrait work', 'High contrast'],
-        history: 'Modern style focusing on photographic accuracy'
-    },
-    {
-        id: 'japanese',
-        name: 'Japanese',
-        description: 'Traditional Japanese art with dragons, koi fish, and cherry blossoms',
-        difficulty: 'Advanced',
-        popularity: 'Popular',
-        image: '../images/japanese.jpg',
-        characteristics: ['Dragons', 'Koi fish', 'Cherry blossoms', 'Traditional motifs'],
-        history: 'Based on traditional Japanese art and mythology'
-    },
-    {
-        id: 'blackwork',
-        name: 'Blackwork',
-        description: 'Bold black ink designs with strong contrast and geometric patterns',
-        difficulty: 'Intermediate',
-        popularity: 'Trending',
-        image: '../images/blackwork.jpg',
-        characteristics: ['Black ink only', 'Bold contrast', 'Geometric patterns', 'Strong lines'],
-        history: 'Modern style emphasizing black ink and contrast'
-    },
-    {
-        id: 'watercolor',
-        name: 'Watercolor',
-        description: 'Soft, flowing designs that mimic watercolor paintings',
-        difficulty: 'Advanced',
-        popularity: 'Popular',
-        image: '../images/watercolor.jpg',
-        characteristics: ['Soft edges', 'Flowing colors', 'Painterly effect', 'Abstract forms'],
-        history: 'Contemporary style inspired by watercolor painting'
-    },
-    {
-        id: 'geometric',
-        name: 'Geometric',
-        description: 'Mathematical patterns and shapes with precise lines',
-        difficulty: 'Intermediate',
-        popularity: 'Trending',
-        image: '../images/geometric.jpg',
-        characteristics: ['Mathematical patterns', 'Precise lines', 'Sacred geometry', 'Symmetrical designs'],
-        history: 'Modern style based on mathematical principles'
-    },
-    {
-        id: 'tribal',
-        name: 'Tribal',
-        description: 'Bold black patterns inspired by indigenous cultures',
-        difficulty: 'Beginner',
-        popularity: 'Classic',
-        image: '../images/tribal.jpg',
-        characteristics: ['Bold patterns', 'Black ink', 'Cultural motifs', 'Strong lines'],
-        history: 'Inspired by indigenous tattoo traditions worldwide'
-    },
-    {
-        id: 'neo-traditional',
-        name: 'Neo-traditional',
-        description: 'Modern take on traditional style with more detail and depth',
-        difficulty: 'Intermediate',
-        popularity: 'Popular',
-        image: '../images/neo-traditional.jpg',
-        characteristics: ['Traditional base', 'Modern details', 'Enhanced shading', 'Contemporary colors'],
-        history: 'Evolution of traditional American tattoo style'
-    },
-    {
-        id: 'minimalist',
-        name: 'Minimalist',
-        description: 'Simple, clean designs with minimal detail',
-        difficulty: 'Beginner',
-        popularity: 'Trending',
-        image: '../images/minimalist.jpg',
-        characteristics: ['Simple lines', 'Minimal detail', 'Clean design', 'Subtle shading'],
-        history: 'Contemporary style emphasizing simplicity'
-    },
-    {
-        id: 'biomechanical',
-        name: 'Biomechanical',
-        description: 'Fusion of organic and mechanical elements',
-        difficulty: 'Expert',
-        popularity: 'Rare',
-        image: '../images/biomechanical.jpg',
-        characteristics: ['Mechanical elements', 'Organic fusion', 'Complex details', 'Sci-fi inspired'],
-        history: 'Inspired by science fiction and mechanical design'
-    },
-    {
-        id: 'puntillismo',
-        name: 'Dotwork',
-        description: 'Dotwork technique creating images through thousands of dots',
-        difficulty: 'Advanced',
-        popularity: 'Rare',
-        image: '../images/dotwork.jpg',
-        characteristics: ['Dotwork technique', 'Intricate patterns', 'Black ink', 'Time intensive'],
-        history: 'Traditional technique adapted for modern tattoo art'
-    },
-    {
-        id: 'henna',
-        name: 'Henna',
-        description: 'Inspired by traditional henna designs with flowing patterns',
-        difficulty: 'Intermediate',
-        popularity: 'Popular',
-        image: '../images/henna.jpg',
-        characteristics: ['Flowing patterns', 'Cultural inspiration', 'Delicate lines', 'Temporary style'],
-        history: 'Inspired by traditional henna body art'
-    }
-];
+// Load styles from Firestore
+let allStyles = [];
+let filteredStyles = [];
+let styleModalHandled = false;
 
-let filteredStyles = [...allStyles];
+async function loadStylesFromDB(limit = 100) {
+    const snapshot = await getAllStyles(limit);
+    allStyles = snapshot.docs.map(doc => {
+        const d = doc.data();
+        return {
+            id: d.id || doc.id,
+            name: d.name || '',
+            description: d.description || '',
+            image: d.imageData || d.image || '../images/traditional.jpg',
+            characteristics: Array.isArray(d.characteristics) ? d.characteristics : [],
+            history: d.history || ''
+        };
+    });
+    filteredStyles = [...allStyles];
+}
 
 // Initialize page
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const seedParam = urlParams.get('seed');
+    const styleParam = urlParams.get('style');
+    const searchParam = urlParams.get('search');
+
+    if (seedParam === '1') {
+        await seedStylesToDB();
+    }
+
+    await loadStylesFromDB();
     loadStyles();
     setupEventListeners();
+
+    // Handle URL params AFTER data is loaded
+    if (!styleModalHandled) {
+        if (styleParam) {
+            const targetStyle = allStyles.find(s => s.id === styleParam);
+            if (targetStyle) {
+                styleModalHandled = true;
+                setTimeout(() => showStyleDetails(targetStyle), 200);
+            }
+        } else if (searchParam) {
+            styleModalHandled = true;
+            setTimeout(() => applySearchFromURL(searchParam), 200);
+        }
+    }
 });
+
+// Si no hay datos en Firestore, puedes poblarlos accediendo a find-styles.html?seed=1
+async function seedStylesToDB() {
+    const sampleStyles = [
+        { id: 'traditional', name: 'Traditional', description: 'Classic American tattoo style with bold lines and vibrant colors', image: '../images/traditional.jpg', characteristics: ['Bold lines', 'Vibrant colors', 'Simple designs', 'American classic'], history: 'Originated in the early 1900s in American tattoo shops' },
+        { id: 'realistic', name: 'Realistic', description: 'Photorealistic tattoos that look like photographs', image: '../images/realistic.jpg', characteristics: ['Photorealistic', 'Detailed shading', 'Portrait work', 'High contrast'], history: 'Modern style focusing on photographic accuracy' },
+        { id: 'japanese', name: 'Japanese', description: 'Traditional Japanese art with dragons, koi fish, and cherry blossoms', image: '../images/japanese.jpg', characteristics: ['Dragons', 'Koi fish', 'Cherry blossoms', 'Traditional motifs'], history: 'Based on traditional Japanese art and mythology' },
+        { id: 'blackwork', name: 'Blackwork', description: 'Bold black ink designs with strong contrast and geometric patterns', image: '../images/blackwork.jpg', characteristics: ['Black ink only', 'Bold contrast', 'Geometric patterns', 'Strong lines'], history: 'Modern style emphasizing black ink and contrast' },
+        { id: 'watercolor', name: 'Watercolor', description: 'Soft, flowing designs that mimic watercolor paintings', image: '../images/watercolor.jpg', characteristics: ['Soft edges', 'Flowing colors', 'Painterly effect', 'Abstract forms'], history: 'Contemporary style inspired by watercolor painting' },
+        { id: 'geometric', name: 'Geometric', description: 'Mathematical patterns and shapes with precise lines', image: '../images/geometric.jpg', characteristics: ['Mathematical patterns', 'Precise lines', 'Sacred geometry', 'Symmetrical designs'], history: 'Modern style based on mathematical principles' },
+        { id: 'tribal', name: 'Tribal', description: 'Bold black patterns inspired by indigenous cultures', image: '../images/tribal.jpg', characteristics: ['Bold patterns', 'Black ink', 'Cultural motifs', 'Strong lines'], history: 'Inspired by indigenous tattoo traditions worldwide' },
+        { id: 'neo-traditional', name: 'Neo-traditional', description: 'Modern take on traditional style with more detail and depth', image: '../images/neo-traditional.jpg', characteristics: ['Traditional base', 'Modern details', 'Enhanced shading', 'Contemporary colors'], history: 'Evolution of traditional American tattoo style' },
+        { id: 'minimalist', name: 'Minimalist', description: 'Simple, clean designs with minimal detail', image: '../images/minimalist.jpg', characteristics: ['Simple lines', 'Minimal detail', 'Clean design', 'Subtle shading'], history: 'Contemporary style emphasizing simplicity' },
+        { id: 'biomechanical', name: 'Biomechanical', description: 'Fusion of organic and mechanical elements', image: '../images/biomechanical.jpg', characteristics: ['Mechanical elements', 'Organic fusion', 'Complex details', 'Sci-fi inspired'], history: 'Inspired by science fiction and mechanical design' },
+        { id: 'puntillismo', name: 'Dotwork', description: 'Dotwork technique creating images through thousands of dots', image: '../images/dotwork.jpg', characteristics: ['Dotwork technique', 'Intricate patterns', 'Black ink', 'Time intensive'], history: 'Traditional technique adapted for modern tattoo art' },
+        { id: 'henna', name: 'Henna', description: 'Inspired by traditional henna designs with flowing patterns', image: '../images/henna.jpg', characteristics: ['Flowing patterns', 'Cultural inspiration', 'Delicate lines', 'Temporary style'], history: 'Inspired by traditional henna body art' }
+    ];
+
+    try {
+        const writes = sampleStyles.map(style => {
+            const { id, ...data } = style;
+            return saveStyleData(id, data);
+        });
+        await Promise.all(writes);
+        console.log('Styles seeded successfully');
+    } catch (error) {
+        console.error('Error seeding styles:', error);
+    }
+}
 
 // Check for URL parameters after page is loaded
 window.addEventListener('load', () => {
+    if (styleModalHandled) return;
     const urlParams = new URLSearchParams(window.location.search);
     const styleParam = urlParams.get('style');
     const searchParam = urlParams.get('search');
-    
     if (styleParam) {
-        // Find the style with the matching ID
         const targetStyle = allStyles.find(style => style.id === styleParam);
-        
         if (targetStyle) {
-            // Wait a bit for the page to load, then show the modal
-            setTimeout(() => {
-                showStyleDetails(targetStyle);
-            }, 500);
+            styleModalHandled = true;
+            setTimeout(() => showStyleDetails(targetStyle), 300);
         }
     } else if (searchParam) {
-        // Apply search filter
-        // Wait a bit for the page to load, then apply search
-        setTimeout(() => {
-            applySearchFromURL(searchParam);
-        }, 200);
+        styleModalHandled = true;
+        setTimeout(() => applySearchFromURL(searchParam), 200);
     }
 });
 

@@ -35,18 +35,11 @@
             <div class="artist-header-card">
                 <div class="artist-profile-info">
                     <div class="artist-avatar">
-                        <img src="../images/artist1.jpg" alt="Sarah Chen" id="artistAvatar">
+                        <img src="../images/invisible.png" alt="Artist Avatar" id="artistAvatar">
                     </div>
                     <div class="artist-details">
-                        <h1 class="artist-name" id="artistName">Sarah Chen</h1>
-                        <div class="rating">
-                            <span class="star-icon">⭐</span>
-                            <span id="artistRating">4.9 (89 reviews)</span>
-                        </div>
-                        <p class="artist-bio" id="artistBio" data-i18n="artist-profile.bio">
-                            Specialized in watercolor and realistic tattoos with over 8 years of experience. 
-                            I love creating unique, custom pieces that tell your story.
-                        </p>
+                        <h1 class="artist-name" id="artistName"></h1>
+                        <p class="artist-bio" id="artistBio" data-i18n="artist-profile.bio"></p>
                     </div>
                     <div class="artist-actions">
                         <div class="social-actions">
@@ -69,20 +62,17 @@
                 <!-- Artist Statistics -->
                 <div class="artist-stats">
                     <div class="stat-card">
-                        <div class="stat-number" id="yearsExperience">8</div>
+                        <div class="stat-number" id="yearsExperience"></div>
                         <div class="stat-label" data-i18n="artist-profile.years-experience">Years Experience</div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="likes">1245</div>
-                        <div class="stat-label" data-i18n="artist-profile.likes">Likes</div>
+                    <div class="stat-card likes-card">
+                        <div class="stat-number" id="likes"></div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="hourlyRate">$150-300/hr</div>
-                        <div class="stat-label" data-i18n="artist-profile.hourly-rate">Hourly Rate</div>
+                    <div class="stat-card rating-card">
+                        <div class="stat-number" id="ratingStat"></div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="availability">Available</div>
-                        <div class="stat-label" data-i18n="artist-profile.availability">March 15, 2024</div>
+                    <div class="stat-card availability-card">
+                        <div class="stat-number" id="availability"></div>
                     </div>
                 </div>
             </div>
@@ -90,12 +80,7 @@
             <!-- Specialties Section -->
             <section class="specialties-section">
                 <h2 class="section-title-2" data-i18n="artist-profile.specialties">Specialties</h2>
-                <div class="specialties-grid" id="specialtiesGrid">
-                    <span class="specialty-tag watercolor" data-i18n="artist-profile.specialty-watercolor">Watercolor</span>
-                    <span class="specialty-tag realistic" data-i18n="artist-profile.specialty-realistic">Realistic</span>
-                    <span class="specialty-tag traditional" data-i18n="artist-profile.specialty-traditional">Traditional</span>
-                    <span class="specialty-tag japanese" data-i18n="artist-profile.specialty-japanese">Japanese</span>
-                </div>
+                <div class="specialties-grid" id="specialtiesGrid"></div>
             </section>
 
             <!-- Location & Contact Section -->
@@ -103,8 +88,8 @@
                 <div class="location-contact-grid">
                     <div class="studio-card">
                         <h2 class="section-title" data-i18n="artist-profile.location">Ubicación</h2>
-                        <h3 class="studio-name" id="studioName" data-i18n="artist-profile.studio-name">Ink & Canvas Studio</h3>
-                        <p class="studio-address" id="studioAddress">123 Art District, Los Angeles, CA 90013</p>
+                        <h3 class="studio-name" id="studioName" data-i18n="artist-profile.studio-name"></h3>
+                        <p class="studio-address" id="studioAddress"></p>
                         <div class="map-container">
                             <div class="map-placeholder">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -125,7 +110,7 @@
                                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                                 </svg>
-                                <span id="instagramHandle" data-i18n="artist-profile.instagram">@sarahchen_tattoo</span>
+                                <span id="instagramHandle" data-i18n="artist-profile.instagram"></span>
                             </a>
                             <a href="#" class="social-link website">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -133,7 +118,7 @@
                                     <path d="M2 12h20"></path>
                                     <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                                 </svg>
-                                <span id="website" data-i18n="artist-profile.website">www.sarahchentattoo.com</span>
+                                <span id="website" data-i18n="artist-profile.website"></span>
                             </a>
                         </div>
                     </div>
@@ -145,123 +130,17 @@
                 <div class="section-header">
                     <div class="section-tabs">
                         <button class="tab-button active" data-tab="portfolio" data-i18n="artist-profile.portfolio">Portfolio</button>
-                        <button class="tab-button" data-tab="reviews" data-i18n="artist-profile.reviews">Reviews (89)</button>
+                        <button class="tab-button" data-tab="reviews" data-i18n="artist-profile.reviews">Reviews</button>
                     </div>
                 </div>
                 
                 <div class="tab-content">
                     <div class="tab-panel active" id="portfolioPanel">
-                        <div class="portfolio-grid" id="portfolioGrid">
-                            <div class="portfolio-item">
-                                <img src="../images/watercolor.jpg" alt="Watercolor Tattoo">
-                                <div class="portfolio-overlay">
-                                    <button class="btn-view" data-i18n="artist-profile.view">View</button>
-                                </div>
-                            </div>
-                            <div class="portfolio-item">
-                                <img src="../images/realistic.jpg" alt="Realistic Tattoo">
-                                <div class="portfolio-overlay">
-                                    <button class="btn-view" data-i18n="artist-profile.view">View</button>
-                                </div>
-                            </div>
-                            <div class="portfolio-item">
-                                <img src="../images/traditional.jpg" alt="Traditional Tattoo">
-                                <div class="portfolio-overlay">
-                                    <button class="btn-view" data-i18n="artist-profile.view">View</button>
-                                </div>
-                            </div>
-                            <div class="portfolio-item">
-                                <img src="../images/japanese.jpg" alt="Japanese Tattoo">
-                                <div class="portfolio-overlay">
-                                    <button class="btn-view" data-i18n="artist-profile.view">View</button>
-                                </div>
-                            </div>
-                            <div class="portfolio-item">
-                                <img src="../images/geometric.jpg" alt="Geometric Tattoo">
-                                <div class="portfolio-overlay">
-                                    <button class="btn-view" data-i18n="artist-profile.view">View</button>
-                                </div>
-                            </div>
-                            <div class="portfolio-item">
-                                <img src="../images/minimalist.jpg" alt="Minimalist Tattoo">
-                                <div class="portfolio-overlay">
-                                    <button class="btn-view" data-i18n="artist-profile.view">View</button>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="portfolio-grid" id="portfolioGrid"></div>
                     </div>
                     
                     <div class="tab-panel" id="reviewsPanel">
-                        <div class="reviews-list" id="reviewsList">
-                            <div class="review-item">
-                                <div class="review-header">
-                                    <div class="reviewer-info">
-                                        <div class="reviewer-avatar">JM</div>
-                                        <div class="reviewer-details">
-                                            <div class="reviewer-name">Jessica Martinez</div>
-                                            <div class="review-date">February 15, 2024</div>
-                                        </div>
-                                    </div>
-                                    <div class="review-rating">
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                    </div>
-                                </div>
-                                <div class="review-text">
-                                    Sarah is absolutely amazing! She created the most beautiful watercolor tattoo for me. 
-                                    Her attention to detail and artistic vision is incredible.
-                                </div>
-                            </div>
-                            
-                            <div class="review-item">
-                                <div class="review-header">
-                                    <div class="reviewer-info">
-                                        <div class="reviewer-avatar">MJ</div>
-                                        <div class="reviewer-details">
-                                            <div class="reviewer-name">Michael Johnson</div>
-                                            <div class="review-date">February 10, 2024</div>
-                                        </div>
-                                    </div>
-                                    <div class="review-rating">
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                    </div>
-                                </div>
-                                <div class="review-text">
-                                    Professional, clean, and incredibly talented. Sarah made me feel comfortable throughout 
-                                    the entire process. Highly recommend!
-                                </div>
-                            </div>
-                            
-                            <div class="review-item">
-                                <div class="review-header">
-                                    <div class="reviewer-info">
-                                        <div class="reviewer-avatar">ED</div>
-                                        <div class="reviewer-details">
-                                            <div class="reviewer-name">Emily Davis</div>
-                                            <div class="review-date">February 5, 2024</div>
-                                        </div>
-                                    </div>
-                                    <div class="review-rating">
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">☆</span>
-                                    </div>
-                                </div>
-                                <div class="review-text">
-                                    Great experience overall. The tattoo turned out exactly as I envisioned. 
-                                    Sarah is very skilled and the studio is beautiful.
-                                </div>
-                            </div>
-                        </div>
+                        <div class="reviews-list" id="reviewsList"></div>
                     </div>
                 </div>
             </section>

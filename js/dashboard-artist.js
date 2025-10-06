@@ -188,22 +188,34 @@ function setupEventListeners() {
     // Upload avatar image
     document.getElementById('avatarUpload').addEventListener('change', function(e) {
         const file = e.target.files[0];
-        if (file) {
-            const userId = getCurrentUser().uid;
-            const path = `avatars/${userId}/${file.name}`;
-            
-            uploadImage(file, path)
+        if (!file) return;
+        const userId = getCurrentUser().uid;
+
+        // Leer el archivo como Data URL (base64) y guardarlo directamente en Firestore
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+            const dataUrl = evt.target && evt.target.result ? evt.target.result : null;
+            if (!dataUrl) {
+                alert('No se pudo leer la imagen.');
+                return;
+            }
+            // Actualizar preview inmediata
+            const avatarEl = document.getElementById('artistAvatar');
+            if (avatarEl) avatarEl.src = dataUrl;
+
+            // Guardar en Firestore: imageData (base64 en Data URL)
+            saveArtistData(userId, { imageData: dataUrl, updatedAt: new Date() })
                 .then(() => {
-                    return getImageURL(path);
-                })
-                .then(url => {
-                    document.getElementById('artistAvatar').src = url;
-                    alert('Avatar updated successfully');
+                    alert('Avatar actualizado y guardado en la base de datos');
                 })
                 .catch(error => {
-                    alert('Error uploading avatar: ' + error.message);
+                    alert('Error guardando avatar: ' + error.message);
                 });
-        }
+        };
+        reader.onerror = function() {
+            alert('Error leyendo el archivo de imagen.');
+        };
+        reader.readAsDataURL(file);
     });
     
     // Upload images to portfolio

@@ -278,9 +278,12 @@
 .artists-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
+    gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 /* Artist Card Styles */
@@ -294,6 +297,7 @@
     position: relative;
     text-align: center;
     height: 400px;
+    width: auto;
 }
 
 .artist-card:hover {

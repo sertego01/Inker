@@ -196,6 +196,19 @@
     gap: 1.5rem;
     margin-top: 2rem;
 }
+.rating-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 82px;
+}
+
+.likes-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 82px;
+}
 
 .stat-card {
     background: rgba(255, 255, 255, 0.05);
@@ -213,8 +226,21 @@
 .stat-number {
     font-size: 2rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
     line-height: 1;
+}
+
+/* Rating stat appearance */
+#ratingStat {
+    color: #fbbf24; /* yellow */
+    text-align: center;
+}
+
+/* Center availability text vertically and horizontally */
+.availability-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 82px; /* ensure height for perfect centering similar to others */
 }
 
 .stat-card:nth-child(1) .stat-number {

@@ -25,6 +25,12 @@ function getArtistData(userId) {
     return db.collection('artists').doc(userId).get();
 }
 
+// Actualizar disponibilidad del artista (boolean isAvailable)
+function updateArtistAvailability(artistId, isAvailable) {
+    // Usar set con merge para crear/actualizar el campo sin fallar si no existe el doc
+    return db.collection('artists').doc(artistId).set({ isAvailable }, { merge: true });
+}
+
 // Obtener todos los tatuadores
 function getAllArtists(limit = 10) {
     return db.collection('artists').limit(limit).get();
@@ -78,4 +84,17 @@ function uploadImage(file, path) {
 // Obtener URL de imagen
 function getImageURL(path) {
     return storage.ref(path).getDownloadURL();
+}
+
+// ===== Styles (tattoo styles) =====
+function saveStyleData(styleId, styleData) {
+    return db.collection('styles').doc(styleId).set(styleData, { merge: true });
+}
+
+function getStyleData(styleId) {
+    return db.collection('styles').doc(styleId).get();
+}
+
+function getAllStyles(limit = 50) {
+    return db.collection('styles').limit(limit).get();
 }

@@ -1,338 +1,104 @@
 // Artist Profile Page JavaScript
 
-// Sample artist data
-const sampleArtist = {
-    id: 'sarah-chen',
-    name: 'Sarah Chen',
-    avatar: '../images/artist1.jpg',
-    rating: 4.9,
-    reviewCount: 89,
-    location: 'Los Angeles, CA',
-    bio: 'Specialized in watercolor and realistic tattoos with over 8 years of experience. I love creating unique, custom pieces that tell your story.',
-    specialties: ['Watercolor', 'Realistic', 'Traditional', 'Japanese'],
-    stats: {
-        yearsExperience: 8,
-        likes: 1245,
-        hourlyRate: '$150-300/hr',
-        availability: 'Available'
-    },
-    studio: {
-        name: 'Ink & Canvas Studio',
-        address: '123 Art District, Los Angeles, CA 90013'
-    },
-    social: {
-        instagram: '@sarahchen_tattoo',
-        website: 'www.sarahchentattoo.com'
-    },
-    portfolio: [
-        '../images/watercolor.jpg',
-        '../images/realistic.jpg',
-        '../images/traditional.jpg',
-        '../images/japanese.jpg',
-        '../images/geometric.jpg',
-        '../images/minimalist.jpg'
-    ],
-    reviews: [
-        {
-            id: 1,
-            name: 'Jessica Martinez',
-            initials: 'JM',
-            rating: 5,
-            text: 'Sarah is absolutely amazing! She created the most beautiful watercolor tattoo for me. Her attention to detail and artistic vision is incredible.',
-            date: 'February 15, 2024'
-        },
-        {
-            id: 2,
-            name: 'Michael Johnson',
-            initials: 'MJ',
-            rating: 5,
-            text: 'Professional, clean, and incredibly talented. Sarah made me feel comfortable throughout the entire process. Highly recommend!',
-            date: 'February 10, 2024'
-        },
-        {
-            id: 3,
-            name: 'Emily Davis',
-            initials: 'ED',
-            rating: 4,
-            text: 'Great experience overall. The tattoo turned out exactly as I envisioned. Sarah is very skilled and the studio is beautiful.',
-            date: 'February 5, 2024'
-        }
-    ]
-};
+// Todos los datos del perfil se cargarán desde la DB
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Artist Profile Page Loaded');
-    
-    // Get artist ID from URL parameters
+    // Obtener ID desde la URL y cargar desde DB
     const urlParams = new URLSearchParams(window.location.search);
     const artistId = urlParams.get('id');
     
-    console.log('URL:', window.location.href);
-    console.log('Artist ID from URL:', artistId);
-    console.log('Available artists:', Object.keys(artistDataMap));
-    
-    if (artistId && artistDataMap[artistId]) {
-        console.log('Loading artist:', artistId);
-        loadArtistProfile(artistId);
+    if (artistId) {
+        // Pintar de inmediato si hay caché en sessionStorage
+        try {
+            const cached = sessionStorage.getItem('selectedArtist');
+            if (cached) {
+                const artist = convertArtistData(JSON.parse(cached));
+                updateArtistInfo(artist);
+                updateArtistStats(artist.stats);
+                updateSpecialties(artist.specialties);
+                updateStudioInfo(artist.studio);
+                updateSocialMedia(artist.social);
+                updatePortfolio(artist.portfolio);
+                updateReviews(artist.reviews);
+                setAvailabilityToggle(artist);
+            }
+        } catch (_) {}
+        // Actualizar en segundo plano desde la DB
+        loadArtistProfileFromDB(artistId);
     } else {
-        console.log('Artist not found, loading default');
-        // Load sample artist if no ID provided
-        loadArtistProfile('sarah-chen');
+        // Si no hay id, mostrar estado vacío
+        showArtistNotFound();
     }
     
-    // Setup event listeners
+    // Eventos
     setupEventListeners();
 });
 
-// Artist data mapping - populated from find-artists.js data
-const artistDataMap = {};
-
-// Function to convert find-artists data to artist-profile format
+// Convertir documento de DB a formato del perfil
 function convertArtistData(artist) {
     return {
         id: artist.id,
         name: artist.name,
-        avatar: artist.image,
-        rating: artist.rating,
-        reviewCount: artist.reviewCount,
-        location: artist.location,
-        bio: artist.bio,
-        specialties: artist.styles,
+        avatar: artist.imageData || artist.image || artist.avatar || '../images/artist-avatar.png',
+        rating: artist.rating || 0,
+        reviewCount: artist.reviewCount || artist.reviews || 0,
+        location: artist.location || [artist.city, artist.region || artist.country].filter(Boolean).join(', '),
+        bio: artist.bio || '',
+        specialties: Array.isArray(artist.styles) ? artist.styles : (artist.style ? [artist.style] : []),
         stats: {
-            yearsExperience: Math.floor(Math.random() * 10) + 3, // Random 3-12 years
-            likes: artist.reviewCount * 2, // Estimate likes based on reviews
-            hourlyRate: artist.country === 'España' ? `€${Math.floor(Math.random() * 100) + 80}-${Math.floor(Math.random() * 100) + 200}/hora` : `$${Math.floor(Math.random() * 100) + 100}-${Math.floor(Math.random() * 100) + 300}/hr`,
-            availability: artist.country === 'España' ? 'Disponible' : 'Available'
+            yearsExperience: artist.yearsExperience || 0,
+            likes: artist.likes || 0,
+            hourlyRate: artist.hourlyRate || '',
+            availability: artist.isAvailable === true ? 'Available' : 'Not available',
+            rating: typeof artist.rating === 'number' ? artist.rating : 0,
+            reviewCount: typeof artist.reviewCount === 'number' ? artist.reviewCount : (typeof artist.reviews === 'number' ? artist.reviews : 0)
         },
         studio: {
-            name: artist.country === 'España' ? `Estudio ${artist.name.split(' ')[0]}` : `${artist.name.split(' ')[0]}'s Studio`,
-            address: artist.location,
-            phone: artist.country === 'España' ? `+34 ${Math.floor(Math.random() * 900) + 100} ${Math.floor(Math.random() * 900) + 100} ${Math.floor(Math.random() * 900) + 100}` : `+1 (${Math.floor(Math.random() * 900) + 100}) ${Math.floor(Math.random() * 900) + 100}-${Math.floor(Math.random() * 900) + 100}`,
-            email: `${artist.id.replace('-', '')}@studio.com`
+            name: artist.studio?.name || '',
+            address: artist.studio?.address || artist.location || '',
+            phone: artist.studio?.phone || '',
+            email: artist.studio?.email || ''
         },
         social: {
-            instagram: `@${artist.id.replace('-', '_')}_tattoo`,
-            website: `www.${artist.id.replace('-', '')}tattoo.com`
+            instagram: artist.social?.instagram || '',
+            website: artist.social?.website || ''
         },
-        portfolio: [
-            '../images/watercolor.jpg',
-            '../images/realistic.jpg',
-            '../images/traditional.jpg',
-            '../images/japanese.jpg',
-            '../images/geometric.jpg',
-            '../images/minimalist.jpg'
-        ],
-        reviews: [
-            {
-                id: 1,
-                name: artist.country === 'España' ? 'Ana López' : 'Jessica Martinez',
-                initials: artist.country === 'España' ? 'AL' : 'JM',
-                rating: 5,
-                comment: artist.country === 'España' ? `${artist.name} es una artista excepcional. Su trabajo es simplemente hermoso.` : `${artist.name} is absolutely amazing! Her work is stunning and she made me feel so comfortable throughout the entire process.`,
-                date: '2024-01-15'
-            }
-        ]
+        portfolio: Array.isArray(artist.portfolio) ? artist.portfolio : [],
+        reviews: Array.isArray(artist.reviews) ? artist.reviews : []
     };
 }
 
-// Populate artistDataMap with all artists from find-artists.js
-// This would normally be imported, but for now we'll define the data here
-const allArtistsData = [
-    {
-        id: 'carmen-garcia',
-        name: 'Carmen García',
-        image: '../images/artist1.jpg',
-        rating: 4.7,
-        reviewCount: 1245,
-        location: 'Oviedo, Asturias',
-        country: 'España',
-        styles: ['Watercolor', 'Realistic', 'Portraits'],
-        bio: 'Especializada en tatuajes de acuarela y realistas con más de 8 años de experiencia.'
-    },
-    {
-        id: 'marcos-rodriguez',
-        name: 'Marcos Rodríguez',
-        image: '../images/artist2.jpg',
-        rating: 3.5,
-        reviewCount: 987,
-        location: 'Gijón, Asturias',
-        country: 'España',
-        styles: ['Traditional', 'Neo-traditional', 'American'],
-        bio: 'Experto en estilos tradicionales y neo-tradicionales con diseños audaces y vibrantes.'
-    },
-    {
-        id: 'elena-martinez',
-        name: 'Elena Martínez',
-        image: '../images/artist3.jpg',
-        rating: 4.8,
-        reviewCount: 1456,
-        location: 'Avilés, Asturias',
-        country: 'España',
-        styles: ['Blackwork', 'Geometric', 'Minimalist'],
-        bio: 'Maestra del blackwork y diseños geométricos con patrones intrincados.'
-    },
-    {
-        id: 'alejandro-rivera',
-        name: 'Alejandro Rivera',
-        image: '../images/artist4.jpg',
-        rating: 4.1,
-        reviewCount: 892,
-        location: 'Mieres, Asturias',
-        country: 'España',
-        styles: ['Traditional', 'Realistic', 'Portraits'],
-        bio: 'Artista versátil especializado en estilos tradicionales y realistas.'
-    },
-    {
-        id: 'maria-lopez',
-        name: 'María López',
-        image: '../images/artist2.jpg',
-        rating: 3.5,
-        reviewCount: 756,
-        location: 'Langreo, Asturias',
-        country: 'España',
-        styles: ['Japanese', 'Watercolor', 'Traditional'],
-        bio: 'Experta en técnicas tradicionales japonesas y de acuarela.'
-    },
-    {
-        id: 'javier-thompson',
-        name: 'Javier Thompson',
-        image: '../images/artist4.jpg',
-        rating: 3.8,
-        reviewCount: 634,
-        location: 'Siero, Asturias',
-        country: 'España',
-        styles: ['Blackwork', 'Tribal', 'Geometric'],
-        bio: 'Especializado en diseños de blackwork y tribales con estética audaz.'
-    },
-    {
-        id: 'luna-rodriguez',
-        name: 'Luna Rodríguez',
-        image: '../images/artist1.jpg',
-        rating: 3.5,
-        reviewCount: 523,
-        location: 'Oviedo, Asturias',
-        country: 'España',
-        styles: ['Puntillismo', 'Dotwork', 'Geometric'],
-        bio: 'Maestra de técnicas de dotwork y puntillismo creando diseños intrincados.'
-    },
-    {
-        id: 'patricia-patel',
-        name: 'Patricia Patel',
-        image: '../images/artist2.jpg',
-        rating: 4.1,
-        reviewCount: 445,
-        location: 'Gijón, Asturias',
-        country: 'España',
-        styles: ['Henna', 'Cultural', 'Temporary'],
-        bio: 'Especializada en diseños inspirados en henna y arte cultural.'
-    },
-    {
-        id: 'david-garcia',
-        name: 'David García',
-        image: '../images/artist4.jpg',
-        rating: 3.2,
-        reviewCount: 378,
-        location: 'Avilés, Asturias',
-        country: 'España',
-        styles: ['Minimalist', 'Tribal', 'Geometric'],
-        bio: 'Experto en diseños minimalistas y tribales con estética limpia.'
-    },
-    {
-        id: 'sofia-martinez',
-        name: 'Sofía Martínez',
-        image: '../images/artist1.jpg',
-        rating: 4.6,
-        reviewCount: 1123,
-        location: 'Mieres, Asturias',
-        country: 'España',
-        styles: ['Biomechanical', 'Realistic', 'Sci-fi'],
-        bio: 'Especializada en diseños biomecánicos y realistas de ciencia ficción.'
-    },
-    {
-        id: 'carlos-vega',
-        name: 'Carlos Vega',
-        image: '../images/artist2.jpg',
-        rating: 3.8,
-        reviewCount: 567,
-        location: 'Langreo, Asturias',
-        country: 'España',
-        styles: ['Geometric', 'Mandalas', 'Sacred'],
-        bio: 'Experto en patrones geométricos y diseños de mandalas sagradas.'
-    },
-    {
-        id: 'emma-wilson',
-        name: 'Emma Wilson',
-        image: '../images/artist3.jpg',
-        rating: 3.5,
-        reviewCount: 789,
-        location: 'Siero, Asturias',
-        country: 'España',
-        styles: ['Japanese', 'Blackwork', 'Traditional'],
-        bio: 'Maestra de técnicas tradicionales japonesas y blackwork.'
-    },
-    {
-        id: 'john-smith',
-        name: 'John Smith',
-        image: '../images/artist4.jpg',
-        rating: 4.1,
-        reviewCount: 892,
-        location: 'London, England',
-        country: 'United Kingdom',
-        styles: ['Traditional', 'Realistic', 'Portraits'],
-        bio: 'Expert in traditional British and realistic tattoo styles.'
-    },
-    {
-        id: 'marie-dubois',
-        name: 'Marie Dubois',
-        image: '../images/artist2.jpg',
-        rating: 4.2,
-        reviewCount: 1123,
-        location: 'Paris, Île-de-France',
-        country: 'France',
-        styles: ['Watercolor', 'Geometric', 'Minimalist'],
-        bio: 'Specialized in watercolor and geometric tattoo designs.'
-    },
-    {
-        id: 'hans-muller',
-        name: 'Hans Müller',
-        image: '../images/artist1.jpg',
-        rating: 4.0,
-        reviewCount: 678,
-        location: 'Berlin, Germany',
-        country: 'Germany',
-        styles: ['Traditional', 'Blackwork', 'Geometric'],
-        bio: 'Specialized in traditional German and blackwork tattoo styles.'
+// Cargar perfil desde DB
+async function loadArtistProfileFromDB(artistId) {
+    try {
+        const doc = await getArtistData(artistId);
+        if (doc && doc.exists) {
+            const data = doc.data();
+            const artist = convertArtistData({ id: artistId, ...data });
+            updateArtistInfo(artist);
+            updateArtistStats(artist.stats);
+            updateSpecialties(artist.specialties);
+            updateStudioInfo(artist.studio);
+            updateSocialMedia(artist.social);
+            updatePortfolio(artist.portfolio);
+            updateReviews(artist.reviews);
+            setAvailabilityToggle(artist);
+        } else {
+            showArtistNotFound();
+        }
+    } catch (_) {
+        showArtistNotFound();
     }
-];
+}
 
-// Convert all artists to the required format
-allArtistsData.forEach(artist => {
-    artistDataMap[artist.id] = convertArtistData(artist);
-});
-
-// Load artist profile data
-function loadArtistProfile(artistId) {
-    console.log('Loading artist profile for ID:', artistId);
-    
-    // Get artist data from mapping or fallback to sample
-    const artist = artistDataMap[artistId] || sampleArtist;
-    console.log('Artist data loaded:', artist);
-    
-    // Update all sections
-    updateArtistInfo(artist);
-    updateArtistStats(artist.stats);
-    updateSpecialties(artist.specialties);
-    updateStudioInfo(artist.studio);
-    updateSocialMedia(artist.social);
-    updatePortfolio(artist.portfolio);
-    updateReviews(artist.reviews);
+function showArtistNotFound() {
+    const nameEl = document.getElementById('artistName');
+    if (nameEl) nameEl.textContent = 'Artist not found';
 }
 
 // Update artist basic information
 function updateArtistInfo(artist) {
-    console.log('Updating artist info for:', artist.name);
-    
     const elements = {
         avatar: document.getElementById('artistAvatar'),
         name: document.getElementById('artistName'),
@@ -340,25 +106,19 @@ function updateArtistInfo(artist) {
         location: document.getElementById('artistLocation'),
         bio: document.getElementById('artistBio')
     };
-    
-    console.log('Elements found:', elements);
-    
+
     if (elements.avatar) {
         elements.avatar.src = artist.avatar;
-        console.log('Updated avatar to:', artist.avatar);
     }
     if (elements.name) {
         elements.name.textContent = artist.name;
-        console.log('Updated name to:', artist.name);
     }
     if (elements.rating) {
         elements.rating.textContent = `${artist.rating} (${artist.reviewCount} reviews)`;
-        console.log('Updated rating to:', `${artist.rating} (${artist.reviewCount} reviews)`);
     }
     if (elements.location) elements.location.textContent = artist.location;
     if (elements.bio) {
         elements.bio.textContent = artist.bio;
-        console.log('Updated bio to:', artist.bio);
     }
 }
 
@@ -367,19 +127,52 @@ function updateArtistStats(stats) {
     const elements = {
         yearsExperience: document.getElementById('yearsExperience'),
         likes: document.getElementById('likes'),
-        hourlyRate: document.getElementById('hourlyRate'),
+        ratingStat: document.getElementById('ratingStat'),
         availability: document.getElementById('availability')
     };
     
     if (elements.yearsExperience) elements.yearsExperience.textContent = stats.yearsExperience;
-    if (elements.likes) elements.likes.textContent = stats.likes;
-    if (elements.hourlyRate) elements.hourlyRate.textContent = stats.hourlyRate;
-    if (elements.availability) elements.availability.textContent = stats.availability;
+    if (elements.likes) elements.likes.textContent = formatLikes(stats);
+    if (elements.ratingStat) elements.ratingStat.textContent = formatRating(stats);
+    if (elements.availability) {
+        elements.availability.textContent = stats.availability;
+        elements.availability.style.color = stats.availability === 'Available' ? '#10b981' : '#ef4444';
+    }
+}
+
+function formatRating(stats) {
+    const rating = typeof stats.rating === 'number' ? stats.rating : 0;
+    return `${rating.toFixed(1)} ★`;
+}
+
+function formatLikes(stats) {
+    const likes = typeof stats.likes === 'number' ? stats.likes : 0;
+    return `${likes} ♥`;
+}
+
+// Setup availability toggle state and handler
+function setAvailabilityToggle(artist) {
+    const toggle = document.getElementById('availabilityToggle');
+    if (!toggle) return;
+    toggle.checked = artist.stats.availability === 'Available';
+    toggle.onchange = async function() {
+        const isAvailable = !!toggle.checked;
+        const urlParams = new URLSearchParams(window.location.search);
+        const artistId = urlParams.get('id');
+        try {
+            await updateArtistAvailability(artistId, isAvailable);
+            // Refrescar etiqueta
+            const availabilityEl = document.getElementById('availability');
+            if (availabilityEl) availabilityEl.textContent = isAvailable ? 'Available' : 'Not available';
+        } catch (e) {
+            toggle.checked = !isAvailable; // revertir si falla
+            alert('No se pudo actualizar la disponibilidad');
+        }
+    };
 }
 
 // Update specialties tags
 function updateSpecialties(specialties) {
-    console.log('Updating specialties:', specialties);
     const container = document.getElementById('specialtiesGrid');
     if (!container) return;
     
@@ -392,6 +185,14 @@ function updateSpecialties(specialties) {
         // Add translation attribute
         const translationKey = `artist-profile.specialty-${specialty.toLowerCase()}`;
         tag.setAttribute('data-i18n', translationKey);
+        // Navegar a find-styles con el modal de este estilo abierto
+        const styleId = mapStyleNameToId(specialty);
+        tag.style.cursor = 'pointer';
+        tag.addEventListener('click', () => {
+            const isInPagesFolder = window.location.pathname.includes('/pages/');
+            const basePath = isInPagesFolder ? '' : 'pages/';
+            window.location.href = `${basePath}find-styles.html?style=${encodeURIComponent(styleId)}`;
+        });
         container.appendChild(tag);
     });
     
@@ -399,6 +200,42 @@ function updateSpecialties(specialties) {
     if (window.i18n) {
         window.i18n.updateLanguage();
     }
+}
+
+// Mapear nombres visibles a IDs canónicos usados en find-styles
+function mapStyleNameToId(name) {
+    const n = (name || '').toLowerCase();
+    const map = {
+        'traditional': 'traditional',
+        'tradicional': 'traditional',
+        'realistic': 'realistic',
+        'realista': 'realistic',
+        'japanese': 'japanese',
+        'japonés': 'japanese',
+        'blackwork': 'blackwork',
+        'watercolor': 'watercolor',
+        'acuarela': 'watercolor',
+        'geometric': 'geometric',
+        'geométrico': 'geometric',
+        'tribal': 'tribal',
+        'neo-traditional': 'neo-traditional',
+        'neo-tradicional': 'neo-traditional',
+        'minimalist': 'minimalist',
+        'minimalista': 'minimalist',
+        'biomechanical': 'biomechanical',
+        'biomecánico': 'biomechanical',
+        'dotwork': 'puntillismo',
+        'puntillismo': 'puntillismo',
+        'henna': 'henna',
+        'portraits': 'realistic',
+        'american': 'traditional',
+        'cultural': 'tribal',
+        'temporary': 'henna',
+        'sci-fi': 'biomechanical',
+        'mandalas': 'geometric',
+        'sacred': 'geometric'
+    };
+    return map[n] || n;
 }
 
 // Update studio information
@@ -614,7 +451,6 @@ function handleMore() {
 }
 
 function viewPortfolioItem(index) {
-    console.log('Viewing portfolio item:', index);
     const modal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
     

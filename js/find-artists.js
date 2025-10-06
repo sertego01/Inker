@@ -59,224 +59,49 @@ function getStyleTranslation(style) {
         : style;
 }
 
-// Sample artists data
-const allArtists = [
-    {
-        id: 'carmen-garcia',
-        name: 'Carmen García',
-        style: 'Watercolor & Realistic',
-        location: 'Oviedo, Asturias',
-        country: 'España',
-        region: 'Asturias',
-        city: 'Oviedo',
-        rating: 4.7,
-        reviewCount: 1245,
-        image: '../images/artist1.jpg',
-        styles: ['Watercolor', 'Realistic', 'Portraits'],
-        bio: 'Especializada en tatuajes de acuarela y realistas con más de 8 años de experiencia.'
-    },
-    {
-        id: 'marcos-rodriguez',
-        name: 'Marcos Rodríguez',
-        style: 'Traditional & Neo-traditional',
-        location: 'Gijón, Asturias',
-        country: 'España',
-        region: 'Asturias',
-        city: 'Gijón',
-        rating: 3.5,
-        reviewCount: 987,
-        image: '../images/artist2.jpg',
-        styles: ['Traditional', 'Neo-traditional', 'American'],
-        bio: 'Experto en estilos tradicionales y neo-tradicionales con diseños audaces y vibrantes.'
-    },
-    {
-        id: 'elena-martinez',
-        name: 'Elena Martínez',
-        style: 'Blackwork & Geometric',
-        location: 'Avilés, Asturias',
-        country: 'España',
-        region: 'Asturias',
-        city: 'Avilés',
-        rating: 4.8,
-        reviewCount: 1456,
-        image: '../images/artist3.jpg',
-        styles: ['Blackwork', 'Geometric', 'Minimalist'],
-        bio: 'Maestra del blackwork y diseños geométricos con patrones intrincados.'
-    },
-    {
-        id: 'alejandro-rivera',
-        name: 'Alejandro Rivera',
-        style: 'Traditional & Realistic',
-        location: 'Mieres, Asturias',
-        country: 'España',
-        region: 'Asturias',
-        city: 'Mieres',
-        rating: 4.1,
-        reviewCount: 892,
-        image: '../images/artist4.jpg',
-        styles: ['Traditional', 'Realistic', 'Portraits'],
-        bio: 'Artista versátil especializado en estilos tradicionales y realistas.'
-    },
-    {
-        id: 'maria-lopez',
-        name: 'María López',
-        style: 'Japanese & Watercolor',
-        location: 'Langreo, Asturias',
-        country: 'España',
-        region: 'Asturias',
-        city: 'Langreo',
-        rating: 3.5,
-        reviewCount: 756,
-        image: '../images/artist5.jpg',
-        styles: ['Japanese', 'Watercolor', 'Traditional'],
-        bio: 'Experta en técnicas tradicionales japonesas y de acuarela.'
-    },
-    {
-        id: 'javier-thompson',
-        name: 'Javier Thompson',
-        style: 'Blackwork & Tribal',
-        location: 'Siero, Asturias',
-        country: 'España',
-        region: 'Asturias',
-        city: 'Siero',
-        rating: 3.8,
-        reviewCount: 634,
-        image: '../images/artist6.jpg',
-        styles: ['Blackwork', 'Tribal', 'Geometric'],
-        bio: 'Especializado en diseños de blackwork y tribales con estética audaz.'
-    },
-    {
-        id: 'luna-rodriguez',
-        name: 'Luna Rodríguez',
-        style: 'Puntillismo & Dotwork',
-        location: 'Oviedo, Asturias',
-        country: 'España',
-        region: 'Asturias',
-        city: 'Oviedo',
-        rating: 3.5,
-        reviewCount: 523,
-        image: '../images/artist7.jpg',
-        styles: ['Puntillismo', 'Dotwork', 'Geometric'],
-        bio: 'Maestra de técnicas de dotwork y puntillismo creando diseños intrincados.'
-    },
-    {
-        id: 'patricia-patel',
-        name: 'Patricia Patel',
-        style: 'Henna & Cultural',
-        location: 'Gijón, Asturias',
-        country: 'España',
-        region: 'Asturias',
-        city: 'Gijón',
-        rating: 4.1,
-        reviewCount: 445,
-        image: '../images/artist8.jpg',
-        styles: ['Henna', 'Cultural', 'Temporary'],
-        bio: 'Especializada en diseños inspirados en henna y arte cultural.'
-    },
-    {
-        id: 'david-garcia',
-        name: 'David García',
-        style: 'Minimalist & Tribal',
-        location: 'Avilés, Asturias',
-        country: 'España',
-        region: 'Asturias',
-        city: 'Avilés',
-        rating: 3.2,
-        reviewCount: 378,
-        image: '../images/artist9.jpg',
-        styles: ['Minimalist', 'Tribal', 'Geometric'],
-        bio: 'Experto en diseños minimalistas y tribales con estética limpia.'
-    },
-    {
-        id: 'sofia-martinez',
-        name: 'Sofía Martínez',
-        style: 'Biomechanical & Realistic',
-        location: 'Mieres, Asturias',
-        country: 'España',
-        region: 'Asturias',
-        city: 'Mieres',
-        rating: 4.6,
-        reviewCount: 1123,
-        image: '../images/artist10.jpg',
-        styles: ['Biomechanical', 'Realistic', 'Sci-fi'],
-        bio: 'Especializada en diseños biomecánicos y realistas de ciencia ficción.'
-    },
-    {
-        id: 'carlos-vega',
-        name: 'Carlos Vega',
-        style: 'Geometric & Mandalas',
-        location: 'Langreo, Asturias',
-        country: 'España',
-        region: 'Asturias',
-        city: 'Langreo',
-        rating: 3.8,
-        reviewCount: 567,
-        image: '../images/artist6.jpg',
-        styles: ['Geometric', 'Mandalas', 'Sacred'],
-        bio: 'Experto en patrones geométricos y diseños de mandalas sagradas.'
-    },
-    {
-        id: 'emma-wilson',
-        name: 'Emma Wilson',
-        style: 'Japanese & Blackwork',
-        location: 'Siero, Asturias',
-        country: 'España',
-        region: 'Asturias',
-        city: 'Siero',
-        rating: 3.5,
-        reviewCount: 789,
-        image: '../images/artist7.jpg',
-        styles: ['Japanese', 'Blackwork', 'Traditional'],
-        bio: 'Maestra de técnicas tradicionales japonesas y blackwork.'
-    },
-    {
-        id: 'john-smith',
-        name: 'John Smith',
-        style: 'Traditional & Realistic',
-        location: 'London, England',
-        country: 'United Kingdom',
-        region: 'England',
-        city: 'London',
-        rating: 4.1,
-        reviewCount: 892,
-        image: '../images/artist8.jpg',
-        styles: ['Traditional', 'Realistic', 'Portraits'],
-        bio: 'Expert in traditional British and realistic tattoo styles.'
-    },
-    {
-        id: 'marie-dubois',
-        name: 'Marie Dubois',
-        style: 'Watercolor & Geometric',
-        location: 'Paris, Île-de-France',
-        country: 'France',
-        region: 'Île-de-France',
-        city: 'Paris',
-        rating: 4.2,
-        reviewCount: 1123,
-        image: '../images/artist9.jpg',
-        styles: ['Watercolor', 'Geometric', 'Minimalist'],
-        bio: 'Specialized in watercolor and geometric tattoo designs.'
-    },
-    {
-        id: 'hans-muller',
-        name: 'Hans Müller',
-        style: 'Blackwork & Dotwork',
-        location: 'Berlin, Brandenburg',
-        country: 'Germany',
-        region: 'Brandenburg',
-        city: 'Berlin',
-        rating: 3.8,
-        reviewCount: 567,
-        image: '../images/artist10.jpg',
-        styles: ['Blackwork', 'Dotwork', 'Geometric'],
-        bio: 'Master of blackwork and dotwork techniques with German precision.'
-    }
-];
+// Datos desde DB
+let allArtists = [];
+let filteredArtists = [];
 
-let filteredArtists = [...allArtists];
+// Cargar artistas desde Firestore
+async function loadArtistsFromDB(limit = 100) {
+    try {
+        const snapshot = await getAllArtists(limit);
+        allArtists = snapshot.docs.map(doc => {
+            const d = doc.data();
+            const locationText = d.location || [d.city, d.region || d.country].filter(Boolean).join(', ');
+            return {
+                id: d.id || doc.id,
+                name: d.name || '',
+                style: d.style || (Array.isArray(d.styles) && d.styles.length ? d.styles.join(' & ') : ''),
+                location: locationText || '',
+                country: d.country || '',
+                region: d.region || '',
+                city: d.city || '',
+                rating: d.rating || 0,
+                reviewCount: d.reviewCount || d.reviews || 0,
+                image: d.image || d.avatar || '../images/artist-avatar.png',
+                styles: Array.isArray(d.styles) ? d.styles : (d.style ? [d.style] : []),
+            bio: d.bio || '',
+            isAvailable: d.isAvailable === true
+            };
+        });
+        filteredArtists = [...allArtists];
+        
+        // Actualizar la interfaz después de cargar los datos
+        loadArtists();
+        
+        console.log('Artists loaded from DB:', allArtists.length);
+    } catch (error) {
+        console.error('Error loading artists from DB:', error);
+        allArtists = [];
+        filteredArtists = [];
+        loadArtists();
+    }
+}
 
 // Initialize page
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     // Set default sort to name
     const sortBySelect = document.getElementById('sortBy');
     if (sortBySelect) {
@@ -285,36 +110,77 @@ document.addEventListener('DOMContentLoaded', () => {
     
     setupEventListeners();
     
-    // Check if there's a style parameter in the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const styleParam = urlParams.get('style');
-    const searchParam = urlParams.get('search');
-    
-    if (styleParam) {
-        // Apply style filter from URL
-        applyStyleFilterFromURL(styleParam);
-    } else if (searchParam) {
-        // Wait a bit for the page to load, then apply search
-        setTimeout(() => {
-            applySearchFromURL(searchParam);
-        }, 200);
-    } else {
-        // Sort artists by name by default only if no URL filter
-        sortArtists();
+    // Cargar artistas desde DB y aplicar filtros iniciales
+    try {
+        await loadArtistsFromDB();
+        
+        // Check if there's a style or search parameter in the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const styleParam = urlParams.get('style');
+        const searchParam = urlParams.get('search');
+        const seedParam = urlParams.get('seed');
+        
+        // Sembrar datos de ejemplo si se solicita explícitamente con ?seed=1
+        if (seedParam === '1') {
+            await seedArtistsToDB();
+            await loadArtistsFromDB();
+        }
+        
+        if (styleParam) {
+            applyStyleFilterFromURL(styleParam);
+        } else if (searchParam) {
+            setTimeout(() => {
+                applySearchFromURL(searchParam);
+            }, 200);
+        } else {
+            sortArtists();
+        }
+    } catch (_) {
+        // En caso de error cargando desde DB, dejar listas vacías visibles
+        filteredArtists = [];
+        loadArtists();
     }
     
 });
 
+// Si no hay datos en Firestore, puedes poblarlos accediendo a find-artists.html?seed=1
+async function seedArtistsToDB() {
+    const sample = [
+        { id: 'carmen-garcia', name: 'Carmen García', country: 'España', region: 'Asturias', city: 'Oviedo', location: 'Oviedo, Asturias', rating: 4.7, reviewCount: 1245, image: '../images/artist1.jpg', styles: ['Watercolor', 'Realistic', 'Portraits'], bio: 'Especializada en tatuajes de acuarela y realistas con más de 8 años de experiencia.' },
+        { id: 'marcos-rodriguez', name: 'Marcos Rodríguez', country: 'España', region: 'Asturias', city: 'Gijón', location: 'Gijón, Asturias', rating: 3.5, reviewCount: 987, image: '../images/artist2.jpg', styles: ['Traditional', 'Neo-traditional', 'American'], bio: 'Experto en estilos tradicionales y neo-tradicionales con diseños audaces y vibrantes.' },
+        { id: 'elena-martinez', name: 'Elena Martínez', country: 'España', region: 'Asturias', city: 'Avilés', location: 'Avilés, Asturias', rating: 4.8, reviewCount: 1456, image: '../images/artist3.jpg', styles: ['Blackwork', 'Geometric', 'Minimalist'], bio: 'Maestra del blackwork y diseños geométricos con patrones intrincados.' },
+        { id: 'alejandro-rivera', name: 'Alejandro Rivera', country: 'España', region: 'Asturias', city: 'Mieres', location: 'Mieres, Asturias', rating: 4.1, reviewCount: 892, image: '../images/artist4.jpg', styles: ['Traditional', 'Realistic', 'Portraits'], bio: 'Artista versátil especializado en estilos tradicionales y realistas.' },
+        { id: 'maria-lopez', name: 'María López', country: 'España', region: 'Asturias', city: 'Langreo', location: 'Langreo, Asturias', rating: 3.5, reviewCount: 756, image: '../images/artist5.jpg', styles: ['Japanese', 'Watercolor', 'Traditional'], bio: 'Experta en técnicas tradicionales japonesas y de acuarela.' },
+        { id: 'javier-thompson', name: 'Javier Thompson', country: 'España', region: 'Asturias', city: 'Siero', location: 'Siero, Asturias', rating: 3.8, reviewCount: 634, image: '../images/artist6.jpg', styles: ['Blackwork', 'Tribal', 'Geometric'], bio: 'Especializado en diseños de blackwork y tribales con estética audaz.' },
+        { id: 'luna-rodriguez', name: 'Luna Rodríguez', country: 'España', region: 'Asturias', city: 'Oviedo', location: 'Oviedo, Asturias', rating: 3.5, reviewCount: 523, image: '../images/artist7.jpg', styles: ['Puntillismo', 'Dotwork', 'Geometric'], bio: 'Maestra de técnicas de dotwork y puntillismo creando diseños intrincados.' },
+        { id: 'patricia-patel', name: 'Patricia Patel', country: 'España', region: 'Asturias', city: 'Gijón', location: 'Gijón, Asturias', rating: 4.1, reviewCount: 445, image: '../images/artist8.jpg', styles: ['Henna', 'Cultural', 'Temporary'], bio: 'Especializada en diseños inspirados en henna y arte cultural.' },
+        { id: 'david-garcia', name: 'David García', country: 'España', region: 'Asturias', city: 'Avilés', location: 'Avilés, Asturias', rating: 3.2, reviewCount: 378, image: '../images/artist9.jpg', styles: ['Minimalist', 'Tribal', 'Geometric'], bio: 'Experto en diseños minimalistas y tribales con estética limpia.' },
+        { id: 'sofia-martinez', name: 'Sofía Martínez', country: 'España', region: 'Asturias', city: 'Mieres', location: 'Mieres, Asturias', rating: 4.6, reviewCount: 1123, image: '../images/artist10.jpg', styles: ['Biomechanical', 'Realistic', 'Sci-fi'], bio: 'Especializada en diseños biomecánicos y realistas de ciencia ficción.' }
+    ];
+    
+    try {
+        const writes = sample.map(artist => {
+            const { id, ...data } = artist;
+            return saveArtistData(id, data);
+        });
+        await Promise.all(writes);
+        console.log('Artists seeded successfully');
+    } catch (error) {
+        console.error('Error seeding artists:', error);
+    }
+}
+
 // Setup event listeners
 function setupEventListeners() {
     const searchInput = document.getElementById('artistSearch');
-    searchInput.addEventListener('input', debounce(searchArtists, 300));
-    
-    searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            searchArtists();
-        }
-    });
+    if (searchInput) {
+        searchInput.addEventListener('input', debounce(searchArtists, 300));
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchArtists();
+            }
+        });
+    }
 }
 
 // Debounce function for search
@@ -335,11 +201,13 @@ function loadArtists() {
     const artistsGrid = document.getElementById('artistsGrid');
     const artistsCount = document.getElementById('artistsCount');
     
+    if (!artistsGrid) return; // Evitar error si no existe el contenedor
+    
     artistsGrid.innerHTML = '';
     
     if (filteredArtists.length === 0) {
         artistsGrid.innerHTML = '<div class="no-results">No artists found matching your criteria.</div>';
-        artistsCount.textContent = 'Found 0 artists';
+        if (artistsCount) artistsCount.textContent = 'Found 0 artists';
         return;
     }
     
@@ -348,7 +216,7 @@ function loadArtists() {
         artistsGrid.appendChild(artistCard);
     });
     
-    artistsCount.textContent = `Found ${filteredArtists.length} artists`;
+    if (artistsCount) artistsCount.textContent = `Found ${filteredArtists.length} artists`;
     
     // Update style translations after cards are created
     updateStyleTranslations();
@@ -654,6 +522,9 @@ function createArtistCard(artist) {
         // Only add pages/ if we're not already in the pages folder
         const isInPagesFolder = window.location.pathname.includes('/pages/');
         const basePath = isInPagesFolder ? '' : 'pages/';
+        try {
+            sessionStorage.setItem('selectedArtist', JSON.stringify(artist));
+        } catch (_) {}
         window.location.href = `${basePath}artist-profile.html?id=${artist.id}`;
     });
     

@@ -85,237 +85,37 @@ class MapManager {
         }, 3000);
     }
 
-    loadArtists() {
-        // Sample artist data - in a real app, this would come from Firebase
-        this.artists = [
-            {
-                id: 'carmen-garcia',
-                name: 'Carmen García',
-                email: 'carmen@example.com',
-                location: 'Oviedo, Asturias',
-                coordinates: [43.3603, -5.8448], // Oviedo, Asturias
-                rating: 4.7,
-                reviews: 1245,
-                style: 'Watercolor',
-                specialties: ['Watercolor', 'Realistic', 'Portraits'],
-                avatar: '../images/artist1.jpg',
-                availability: 'available',
-                hourlyRate: '€80-150/hr',
-                bio: 'Especializada en tatuajes de acuarela y realistas con más de 8 años de experiencia.'
-            },
-            {
-                id: 'marcos-rodriguez',
-                name: 'Marcos Rodríguez',
-                email: 'marcos@example.com',
-                location: 'Gijón, Asturias',
-                coordinates: [43.5453, -5.6619], // Gijón, Asturias
-                rating: 3.5,
-                reviews: 987,
-                style: 'Traditional',
-                specialties: ['Traditional', 'Neo-traditional', 'American'],
-                avatar: '../images/artist2.jpg',
-                availability: 'busy',
-                hourlyRate: '€60-120/hr',
-                bio: 'Experto en estilos tradicionales y neo-tradicionales con diseños audaces y vibrantes.'
-            },
-            {
-                id: 'elena-martinez',
-                name: 'Elena Martínez',
-                email: 'elena@example.com',
-                location: 'Avilés, Asturias',
-                coordinates: [43.5556, -5.9244], // Avilés, Asturias
-                rating: 4.8,
-                reviews: 1456,
-                style: 'Blackwork',
-                specialties: ['Blackwork', 'Geometric', 'Minimalist'],
-                avatar: '../images/artist3.jpg',
-                availability: 'available',
-                hourlyRate: '€100-200/hr',
-                bio: 'Maestra del blackwork y diseños geométricos con patrones intrincados.'
-            },
-            {
-                id: 'alejandro-rivera',
-                name: 'Alejandro Rivera',
-                email: 'alejandro@example.com',
-                location: 'Mieres, Asturias',
-                coordinates: [43.2500, -5.7667], // Mieres, Asturias
-                rating: 4.1,
-                reviews: 892,
-                style: 'Traditional',
-                specialties: ['Traditional', 'Realistic', 'Portraits'],
-                avatar: '../images/artist4.jpg',
-                availability: 'this-week',
-                hourlyRate: '€70-140/hr',
-                bio: 'Artista versátil especializado en estilos tradicionales y realistas.'
-            },
-            {
-                id: 'maria-lopez',
-                name: 'María López',
-                email: 'maria@example.com',
-                location: 'Langreo, Asturias',
-                coordinates: [43.3000, -5.6833], // Langreo, Asturias
-                rating: 3.5,
-                reviews: 756,
-                style: 'Japanese',
-                specialties: ['Japanese', 'Watercolor', 'Traditional'],
-                avatar: '../images/artist2.jpg',
-                availability: 'available',
-                hourlyRate: '€90-180/hr',
-                bio: 'Experta en técnicas tradicionales japonesas y de acuarela.'
-            },
-            {
-                id: 'javier-thompson',
-                name: 'Javier Thompson',
-                email: 'javier@example.com',
-                location: 'Siero, Asturias',
-                coordinates: [43.4000, -5.6667], // Siero, Asturias
-                rating: 3.8,
-                reviews: 634,
-                style: 'Blackwork',
-                specialties: ['Blackwork', 'Tribal', 'Geometric'],
-                avatar: '../images/artist4.jpg',
-                availability: 'this-month',
-                hourlyRate: '€80-160/hr',
-                bio: 'Especializado en diseños de blackwork y tribales con estética audaz.'
-            },
-            {
-                id: 'luna-rodriguez',
-                name: 'Luna Rodríguez',
-                email: 'luna@example.com',
-                location: 'Oviedo, Asturias',
-                coordinates: [43.3603, -5.8448], // Oviedo, Asturias
-                rating: 3.5,
-                reviews: 523,
-                style: 'Puntillismo',
-                specialties: ['Puntillismo', 'Dotwork', 'Geometric'],
-                avatar: '../images/artist1.jpg',
-                availability: 'available',
-                hourlyRate: '€100-200/hr',
-                bio: 'Maestra de técnicas de dotwork y puntillismo creando diseños intrincados.'
-            },
-            {
-                id: 'patricia-patel',
-                name: 'Patricia Patel',
-                email: 'patricia@example.com',
-                location: 'Gijón, Asturias',
-                coordinates: [43.5453, -5.6619], // Gijón, Asturias
-                rating: 4.1,
-                reviews: 445,
-                style: 'Henna',
-                specialties: ['Henna', 'Cultural', 'Temporary'],
-                avatar: '../images/artist2.jpg',
-                availability: 'this-week',
-                hourlyRate: '€50-100/hr',
-                bio: 'Especializada en diseños inspirados en henna y arte cultural.'
-            },
-            {
-                id: 'david-garcia',
-                name: 'David García',
-                email: 'david@example.com',
-                location: 'Avilés, Asturias',
-                coordinates: [43.5556, -5.9244], // Avilés, Asturias
-                rating: 3.2,
-                reviews: 378,
-                style: 'Minimalist',
-                specialties: ['Minimalist', 'Tribal', 'Geometric'],
-                avatar: '../images/artist4.jpg',
-                availability: 'offline',
-                hourlyRate: '€60-120/hr',
-                bio: 'Experto en diseños minimalistas y tribales con estética limpia.'
-            },
-            {
-                id: 'sofia-martinez',
-                name: 'Sofía Martínez',
-                email: 'sofia@example.com',
-                location: 'Mieres, Asturias',
-                coordinates: [43.2500, -5.7667], // Mieres, Asturias
-                rating: 4.6,
-                reviews: 1123,
-                style: 'Biomechanical',
-                specialties: ['Biomechanical', 'Realistic', 'Sci-fi'],
-                avatar: '../images/artist1.jpg',
-                availability: 'available',
-                hourlyRate: '€120-250/hr',
-                bio: 'Especializada en diseños biomecánicos y realistas de ciencia ficción.'
-            },
-            {
-                id: 'carlos-vega',
-                name: 'Carlos Vega',
-                email: 'carlos@example.com',
-                location: 'Langreo, Asturias',
-                coordinates: [43.3000, -5.6833], // Langreo, Asturias
-                rating: 3.8,
-                reviews: 567,
-                style: 'Geometric',
-                specialties: ['Geometric', 'Mandalas', 'Sacred'],
-                avatar: '../images/artist2.jpg',
-                availability: 'busy',
-                hourlyRate: '€90-180/hr',
-                bio: 'Experto en patrones geométricos y diseños de mandalas sagradas.'
-            },
-            {
-                id: 'emma-wilson',
-                name: 'Emma Wilson',
-                email: 'emma@example.com',
-                location: 'Siero, Asturias',
-                coordinates: [43.4000, -5.6667], // Siero, Asturias
-                rating: 3.5,
-                reviews: 789,
-                style: 'Japanese',
-                specialties: ['Japanese', 'Blackwork', 'Traditional'],
-                avatar: '../images/artist3.jpg',
-                availability: 'this-month',
-                hourlyRate: '€100-200/hr',
-                bio: 'Maestra de técnicas tradicionales japonesas y blackwork.'
-            },
-            {
-                id: 'john-smith',
-                name: 'John Smith',
-                email: 'john@example.com',
-                location: 'London, England',
-                coordinates: [51.5074, -0.1278], // London, England
-                rating: 4.1,
-                reviews: 892,
-                style: 'Traditional',
-                specialties: ['Traditional', 'Realistic', 'Portraits'],
-                avatar: '../images/artist4.jpg',
-                availability: 'available',
-                hourlyRate: '£80-160/hr',
-                bio: 'Expert in traditional British and realistic tattoo styles.'
-            },
-            {
-                id: 'marie-dubois',
-                name: 'Marie Dubois',
-                email: 'marie@example.com',
-                location: 'Paris, Île-de-France',
-                coordinates: [48.8566, 2.3522], // Paris, France
-                rating: 4.2,
-                reviews: 1123,
-                style: 'Watercolor',
-                specialties: ['Watercolor', 'Geometric', 'Minimalist'],
-                avatar: '../images/artist2.jpg',
-                availability: 'this-week',
-                hourlyRate: '€100-200/hr',
-                bio: 'Specialized in watercolor and geometric tattoo designs.'
-            },
-            {
-                id: 'hans-muller',
-                name: 'Hans Müller',
-                email: 'hans@example.com',
-                location: 'Berlin, Brandenburg',
-                coordinates: [52.5200, 13.4050], // Berlin, Germany
-                rating: 3.8,
-                reviews: 567,
-                style: 'Blackwork',
-                specialties: ['Blackwork', 'Dotwork', 'Geometric'],
-                avatar: '../images/artist3.jpg',
-                availability: 'available',
-                hourlyRate: '€90-180/hr',
-                bio: 'Master of blackwork and dotwork techniques with German precision.'
-            }
-        ];
+    async loadArtists() {
+        try {
+            const snapshot = await getAllArtists(500);
+            this.artists = snapshot.docs.map(doc => {
+                const d = doc.data();
+                const lat = d.latitude || (d.coordinates && d.coordinates[0]);
+                const lng = d.longitude || (d.coordinates && d.coordinates[1]);
+                const coords = (typeof lat === 'number' && typeof lng === 'number') ? [lat, lng] : null;
+                const locationText = d.location || [d.city, d.region || d.country].filter(Boolean).join(', ');
+                return {
+                    id: d.id || doc.id,
+                    name: d.name || '',
+                    email: d.email || '',
+                    location: locationText || '',
+                    coordinates: coords,
+                    rating: d.rating || 0,
+                    reviews: d.reviewCount || d.reviews || 0,
+                    style: d.style || (Array.isArray(d.styles) && d.styles.length ? d.styles[0] : ''),
+                    specialties: Array.isArray(d.styles) ? d.styles : (d.style ? [d.style] : []),
+                    avatar: d.image || d.avatar || '../images/artist-avatar.png',
+                    availability: d.isAvailable === true ? 'available' : 'offline',
+                    hourlyRate: d.hourlyRate || '',
+                    bio: d.bio || ''
+                };
+            }).filter(a => Array.isArray(a.coordinates));
 
-        this.filteredArtists = [...this.artists];
+            this.filteredArtists = [...this.artists];
+        } catch (_) {
+            this.artists = [];
+            this.filteredArtists = [];
+        }
     }
 
     addMarkersToMap() {
