@@ -25,6 +25,13 @@ function getArtistData(userId) {
     return db.collection('artists').doc(userId).get();
 }
 
+// Incrementar likes de artista (atómico)
+function incrementArtistLikes(artistId, delta) {
+    return db.collection('artists').doc(artistId).set({
+        likes: firebase.firestore.FieldValue.increment(delta),
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge: true });
+}
 // Actualizar disponibilidad del artista (boolean isAvailable)
 function updateArtistAvailability(artistId, isAvailable) {
     // Usar set con merge para crear/actualizar el campo sin fallar si no existe el doc

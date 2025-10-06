@@ -417,15 +417,27 @@ function handleLike() {
         // Change to red heart
         likeImage.style.filter = 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%)'; // Red color
         if (likesElement) {
-            const currentLikes = parseInt(likesElement.textContent);
-            likesElement.textContent = currentLikes + 1;
+            const currentLikes = parseInt(likesElement.textContent) || 0;
+            const newLikes = currentLikes + 1;
+            likesElement.textContent = `${newLikes} \u2665`;
+            // Persist to DB
+            const artistId = new URLSearchParams(window.location.search).get('id');
+            if (artistId && typeof incrementArtistLikes === 'function') {
+                incrementArtistLikes(artistId, 1).catch(() => {});
+            }
         }
     } else {
         // Change back to white
         likeImage.style.filter = 'brightness(0) invert(1)'; // White color
         if (likesElement) {
-            const currentLikes = parseInt(likesElement.textContent);
-            likesElement.textContent = currentLikes - 1;
+            const currentLikes = parseInt(likesElement.textContent) || 0;
+            const newLikes = Math.max(0, currentLikes - 1);
+            likesElement.textContent = `${newLikes} \u2665`;
+            // Persist to DB
+            const artistId = new URLSearchParams(window.location.search).get('id');
+            if (artistId && typeof incrementArtistLikes === 'function') {
+                incrementArtistLikes(artistId, -1).catch(() => {});
+            }
         }
     }
 }
