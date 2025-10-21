@@ -41,43 +41,43 @@
 
     <div class="auth-container">
         <div class="auth-card">
-            <h2 data-i18n="auth.create-account">Create your account</h2>
-            <p class="auth-subtitle" data-i18n="auth.signup-subtitle">Join the Inker community today</p>
+            <h2>Crea tu cuenta</h2>
+            <p class="auth-subtitle">Únete a la comunidad Inker hoy</p>
             
             <form id="registerForm">
                 <!-- User Type Selection -->
                 <div class="user-type-selection">
-                    <label class="user-type-label" data-i18n="auth.user-type-label">I want to join as a...</label>
+                    <label class="user-type-label">Quiero unirme como...</label>
                     <div class="user-type-buttons">
                         <button type="button" class="user-type-btn active" data-type="user">
                             <div class="user-type-content">
-                                <div class="user-type-title" data-i18n="auth.user-type-client">Client</div>
-                                <div class="user-type-description" data-i18n="auth.user-type-client-desc">Looking for a tattoo artist</div>
+                                <div class="user-type-title">Cliente</div>
+                                <div class="user-type-description">Buscando un tatuador</div>
                             </div>
                         </button>
                         <button type="button" class="user-type-btn" data-type="artist">
                             <div class="user-type-content">
-                                <div class="user-type-title" data-i18n="auth.user-type-artist">Artist</div>
-                                <div class="user-type-description" data-i18n="auth.user-type-artist-desc">Showcase my work</div>
+                                <div class="user-type-title">Artista</div>
+                                <div class="user-type-description">Mostrar mi trabajo</div>
                             </div>
                         </button>
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="name" data-i18n="auth.full-name">Full name</label>
-                    <input type="text" id="name" placeholder="Enter your full name" data-i18n="auth.full-name-placeholder" required>
+                    <label for="name">Nombre completo</label>
+                    <input type="text" id="name" placeholder="Introduce tu nombre completo" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="email" data-i18n="auth.email">Email address</label>
-                    <input type="email" id="email" placeholder="Enter your email" data-i18n="auth.email-placeholder" required>
+                    <label for="email">Dirección de email</label>
+                    <input type="email" id="email" placeholder="Introduce tu email" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password" data-i18n="auth.password">Password</label>
+                    <label for="password">Contraseña</label>
                     <div class="password-input-container">
-                        <input type="password" id="password" placeholder="Create a password" data-i18n="auth.password-placeholder" minlength="6" required>
+                        <input type="password" id="password" placeholder="Crea una contraseña" minlength="6" required>
                         <button type="button" class="password-toggle" onclick="togglePassword()">
                             <img src="../images/ojo.png" alt="Show password" class="eye-icon">
                         </button>
@@ -85,9 +85,9 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="confirmPassword" data-i18n="auth.confirm-password">Confirm password</label>
+                    <label for="confirmPassword">Confirmar contraseña</label>
                     <div class="password-input-container">
-                        <input type="password" id="confirmPassword" placeholder="Confirm your password" data-i18n="auth.confirm-password-placeholder" minlength="6" required>
+                        <input type="password" id="confirmPassword" placeholder="Confirma tu contraseña" minlength="6" required>
                         <button type="button" class="password-toggle" onclick="toggleConfirmPassword()">
                             <img src="../images/ojo.png" alt="Show password" class="eye-icon">
                         </button>
@@ -103,11 +103,11 @@
                 </div>
                 
                 <button type="submit" class="auth-btn">
-                    <span data-i18n="auth.create-account-button">Create account</span>
+                    <span>Crear cuenta</span>
                 </button>
             </form>
             
-            <p class="auth-switch"><span data-i18n="auth.have-account">Already have an account?</span> <a href="login.html" data-i18n="auth.signin-link">Sign in</a></p>
+            <p class="auth-switch"><span>¿Ya tienes cuenta?</span> <a href="login.html">Iniciar sesión</a></p>
         </div>
     </div>
 
@@ -115,12 +115,12 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-left">
-                <a href="pages/terms-conditions.html" data-footer="terms">Terms and Conditions</a>
+                <a href="pages/terms-conditions.html">Términos y Condiciones</a>
                 <span class="separator">|</span>
-                <a href="pages/privacy-policy.html" data-footer="privacy">Privacy Policy</a>
+                <a href="pages/privacy-policy.html">Política de Privacidad</a>
             </div>
             <div class="footer-center">
-                <p data-footer="copyright">&copy; 2025 Inker. All rights reserved.</p>
+                <p>&copy; 2025 Inker. Todos los derechos reservados.</p>
             </div>
             <div class="footer-right">
                 <div class="social-icons">
@@ -163,8 +163,11 @@
                 this.classList.add('active');
                 // Update selected user type
                 selectedUserType = this.dataset.type;
-                // Show/hide artist fields
-                document.getElementById('artistFields').style.display = selectedUserType === 'artist' ? 'block' : 'none';
+                // Show/hide artist fields (safe check)
+                const artistFieldsEl = document.getElementById('artistFields');
+                if (artistFieldsEl) {
+                    artistFieldsEl.style.display = selectedUserType === 'artist' ? 'block' : 'none';
+                }
             });
         });
 
@@ -303,7 +306,7 @@
         addValidationListeners();
 
         // Handle registration
-        document.getElementById('registerForm').addEventListener('submit', function(e) {
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const name = document.getElementById('name').value;
@@ -333,6 +336,14 @@
                 return;
             }
             
+            // Si hay una sesión activa, cerrar sesión antes de registrar para evitar conflictos de permisos
+            try {
+                const current = await getCurrentUser();
+                if (current) {
+                    await logoutUser();
+                }
+            } catch (_) {}
+
             // Register user
             registerUser(email, password, {
                 name: name,
@@ -352,7 +363,36 @@
         });
         }); // End DOMContentLoaded
     </script>
-    <script src="../js/i18n.js"></script>
+    <script src="../js/contact-widget.js"></script>
+    <script src="../js/cookie-consent.js"></script>
+    <script src="../js/global-cookie-banner.js"></script>
+</body>
+</html>
+                window.ErrorMessages.showErrorNotification(error, 'Registration Error');
+            });
+        });
+        }); // End DOMContentLoaded
+    </script>
+    <script src="../js/contact-widget.js"></script>
+    <script src="../js/cookie-consent.js"></script>
+    <script src="../js/global-cookie-banner.js"></script>
+</body>
+</html>
+                window.ErrorMessages.showErrorNotification(error, 'Registration Error');
+            });
+        });
+        }); // End DOMContentLoaded
+    </script>
+    <script src="../js/contact-widget.js"></script>
+    <script src="../js/cookie-consent.js"></script>
+    <script src="../js/global-cookie-banner.js"></script>
+</body>
+</html>
+                window.ErrorMessages.showErrorNotification(error, 'Registration Error');
+            });
+        });
+        }); // End DOMContentLoaded
+    </script>
     <script src="../js/contact-widget.js"></script>
     <script src="../js/cookie-consent.js"></script>
     <script src="../js/global-cookie-banner.js"></script>

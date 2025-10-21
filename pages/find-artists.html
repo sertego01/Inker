@@ -31,76 +31,75 @@
     <!-- Search and Filter Section -->
     <section class="search-section">
         <div class="container">
-            <h1 data-nav="find-artist-title">Find Your Perfect Tattoo Artist</h1>
-            <p data-nav="find-artist-subtitle">Discover talented artists in your area and find the perfect match for your next tattoo</p>
+            <h1 data-nav="find-artist-title">Encuentra a tu <br><span class="gradient-text">tatuador perfecto</span></h1>
+            <p data-nav="find-artist-subtitle">Descubre artistas con talento en tu zona y encuentra la mejor opción para tu próximo tatuaje</p>
             
             <div class="search-filters">
                 <div class="search-bar">
-                    <input type="text" id="artistSearch" placeholder="Search artists, styles, or locations..." data-nav="search-artists-placeholder">
-                    <button class="search-btn" onclick="searchArtists()" data-nav="search-btn">Search</button>
+                    <input type="text" id="artistSearch" placeholder="Buscar artistas, estilos o ubicaciones..." data-nav="search-artists-placeholder">
+                    <button class="search-btn" onclick="searchArtists()" data-nav="search-btn">Buscar</button>
                 </div>
                 
                 <div class="filter-controls">
                     <div class="filters-left">
                         <div class="filters-dropdown">
                             <button class="filters-btn" onclick="toggleFilters()" data-nav="filters-btn">
-                                <span data-nav="filters-text">Filters</span>
+                                <span data-nav="filters-text">Filtros</span>
                                 <span class="dropdown-arrow">▼</span>
                             </button>
                             <div class="filters-dropdown-content" id="filterDropdown">
                                 <div class="filter-group">
-                                    <label data-i18n="filters.style">Style</label>
+                                    <label>Estilo</label>
                                     <select id="styleFilter" onchange="filterByStyle()">
-                                        <option value="" data-i18n="filters.all-styles">All Styles</option>
-                                        <option value="Traditional" data-i18n="styles.traditional">Traditional</option>
-                                        <option value="Realistic" data-i18n="styles.realistic">Realistic</option>
-                                        <option value="Japanese" data-i18n="styles.japanese">Japanese</option>
-                                        <option value="Blackwork" data-i18n="styles.blackwork">Blackwork</option>
-                                        <option value="Watercolor" data-i18n="styles.watercolor">Watercolor</option>
-                                        <option value="Geometric" data-i18n="styles.geometric">Geometric</option>
-                                        <option value="Tribal" data-i18n="styles.tribal">Tribal</option>
-                                        <option value="Neo-traditional" data-i18n="styles.neotraditional">Neo-traditional</option>
-                                        <option value="Minimalist" data-i18n="styles.minimalist">Minimalist</option>
-                                        <option value="Biomechanical" data-i18n="styles.biomechanical">Biomechanical</option>
-                                        <option value="Puntillismo" data-i18n="styles.puntillismo">Puntillismo</option>
-                                        <option value="Henna" data-i18n="styles.henna">Henna</option>
+                                        <option value="">Todos los estilos</option>
+                                        <option value="Traditional">Tradicional</option>
+                                        <option value="Realistic">Realista</option>
+                                        <option value="Japanese">Japonés</option>
+                                        <option value="Blackwork">Blackwork</option>
+                                        <option value="Watercolor">Acuarela</option>
+                                        <option value="Geometric">Geométrico</option>
+                                        <option value="Tribal">Tribal</option>
+                                        <option value="Neo-traditional">Neo-tradicional</option>
+                                        <option value="Minimalist">Minimalista</option>
+                                        <option value="Biomechanical">Biomecánico</option>
+                                        <option value="Puntillismo">Puntillismo</option>
+                                        <option value="Henna">Henna</option>
                                     </select>
                                 </div>
                                 
                                 <div class="filter-group">
-                                    <label data-i18n="filters.country">Country</label>
+                                    <label>País</label>
                                     <select id="countryFilter" onchange="filterByCountry()">
-                                        <option value="" data-i18n="filters.all-countries">All Countries</option>
+                                        <option value="">Todos los países</option>
                                     </select>
                                 </div>
                                 
                                 <div class="filter-group">
-                                    <label data-i18n="filters.region">Region/State</label>
+                                    <label>Región/Estado</label>
                                     <select id="regionFilter" onchange="filterByRegion()">
-                                        <option value="" data-i18n="filters.all-regions">All Regions</option>
+                                        <option value="">Todas las regiones</option>
                                     </select>
                                 </div>
                                 
                                 <div class="filter-group">
-                                    <label data-i18n="filters.city">City</label>
+                                    <label>Ciudad</label>
                                     <select id="cityFilter" onchange="filterByCity()">
-                                        <option value="" data-i18n="filters.all-cities">All Cities</option>
+                                        <option value="">Todas las ciudades</option>
                                     </select>
                                 </div>
                                 
                                 <div class="filter-actions">
-                                    <button class="clear-filters-btn" onclick="clearFilters()" data-i18n="filters.clear-all">Clear All</button>
+                                    <button class="clear-filters-btn" onclick="clearFilters()">Limpiar filtros</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
                     <div class="sort-controls">
-                        <span data-i18n="filters.sort-by">Sort by:</span>
+                        <span>Ordenar por:</span>
                         <select id="sortBy" onchange="sortArtists()">
-                            <option value="name" selected data-i18n="filters.sort-name">Name</option>
-                            <option value="rating" data-i18n="filters.sort-rating">Rating</option>
-                            <option value="location" data-i18n="filters.sort-location">Location</option>
+                            <option value="name" selected>Nombre</option>
+                            <option value="rating">Valoración</option>
                         </select>
                     </div>
                 </div>
@@ -121,12 +120,12 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-left">
-                <a href="terms-conditions.html" data-footer="terms">Terms and Conditions</a>
+                <a href="terms-conditions.html" data-footer="terms">Términos y Condiciones</a>
                 <span class="separator">|</span>
-                <a href="privacy-policy.html" data-footer="privacy">Privacy Policy</a>
+                <a href="privacy-policy.html" data-footer="privacy">Política de Privacidad</a>
             </div>
             <div class="footer-center">
-                <p data-footer="copyright">&copy; 2025 Inker. All rights reserved.</p>
+                <p data-footer="copyright">&copy; 2025 Inker. Todos los derechos reservados.</p>
             </div>
             <div class="footer-right">
                 <div class="social-icons">
@@ -151,7 +150,6 @@
     <script src="../js/email-config.js"></script>
     <script src="../js/find-artists.js"></script>
     <script src="../js/contact-widget.js"></script>
-    <script src="../js/i18n.js"></script>
     <script src="../js/cookie-consent.js"></script>
     <script src="../js/global-cookie-banner.js"></script>
     <script src="../js/header-manager.js"></script>

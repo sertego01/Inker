@@ -75,9 +75,9 @@ class HeaderManager {
         // Common menu items for both states
         const commonItems = [
             { href: '#', dataNav: 'blog', text: 'Blog' },
-            { href: `${basePath}pages/find-styles.html`, dataNav: 'find-styles', text: 'Styles' },
-            { href: `${basePath}pages/find-artists.html`, dataNav: 'find-artist', text: 'Artist' },
-            { href: `${basePath}pages/map.html`, dataNav: 'map', text: 'Map' }
+            { href: `${basePath}pages/find-styles.html`, dataNav: 'find-styles', text: 'Estilos' },
+            { href: `${basePath}pages/find-artists.html`, dataNav: 'find-artist', text: 'Tatuadores' },
+            { href: `${basePath}pages/map.html`, dataNav: 'map', text: 'Mapa' }
         ];
 
         // Add common items
@@ -98,9 +98,9 @@ class HeaderManager {
         if (this.currentUser) {
             // Logged in state: Blog Styles Artist Map Messages Dashboard Logout
             const loggedInItems = [
-                { href: '#', dataNav: 'messages', text: 'Messages' },
-                { href: this.getDashboardUrl(), dataNav: 'dashboard', text: 'Dashboard' },
-                { href: '#', dataNav: 'logout', text: 'Logout', isButton: true, id: 'logoutBtn' }
+                { href: '#', dataNav: 'messages', text: 'Mensajes' },
+                { href: this.getDashboardUrl(), dataNav: 'dashboard', text: 'Perfil' },
+                { href: '#', dataNav: 'logout', text: 'Salir', isButton: true, id: 'logoutBtn' }
             ];
 
             loggedInItems.forEach(item => {
@@ -132,7 +132,7 @@ class HeaderManager {
         } else {
             // Not logged in state: Blog Styles Artist Map Login
             const notLoggedInItems = [
-                { href: `${basePath}pages/login.html`, dataNav: 'login', text: 'Login', isButton: true }
+                { href: `${basePath}pages/login.html`, dataNav: 'login', text: 'Entrar', isButton: true }
             ];
 
             notLoggedInItems.forEach(item => {
@@ -150,10 +150,7 @@ class HeaderManager {
             });
         }
 
-        // Update translations
-        if (window.i18n) {
-            window.i18n.updateNavigation();
-        }
+        // i18n eliminado - ya no se actualizan traducciones
     }
 
     getDashboardUrl() {

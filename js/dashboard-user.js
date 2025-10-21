@@ -225,25 +225,38 @@ function setupNavigation() {
 
 function setupEventListeners() {
     // Save profile
-    document.getElementById('saveProfileBtn').addEventListener('click', function() {
-        const userId = getCurrentUser().uid;
-        const updatedData = {
-            name: document.getElementById('profileName').value,
-            email: document.getElementById('profileEmail').value,
-            preferredStyles: document.getElementById('profileStyles').value.split(',').map(s => s.trim()),
-            location: document.getElementById('profileLocation').value,
-            updatedAt: new Date()
-        };
-        
-        updateUserData(userId, updatedData)
-            .then(() => {
-                alert('Profile updated successfully');
-                // Update sidebar
-                document.getElementById('userName').textContent = updatedData.name;
-            })
-            .catch(error => {
-                alert('Error updating profile: ' + error.message);
-            });
+    document.getElementById('saveProfileBtn').addEventListener('click', async function() {
+        try {
+            const currentUser = await getCurrentUser();
+            if (!currentUser) {
+                alert('Not authenticated');
+                return;
+            }
+            const userId = currentUser.uid;
+            const updatedData = {
+                name: document.getElementById('profileName').value,
+                email: document.getElementById('profileEmail').value,
+                preferredStyles: document.getElementById('profileStyles').value
+                    ? document.getElementById('profileStyles').value.split(',').map(s => s.trim()).filter(Boolean)
+                    : [],
+                location: document.getElementById('profileLocation').value,
+                updatedAt: new Date()
+            };
+
+            await updateUserData(userId, updatedData);
+
+            // Refresh UI from Firestore to reflect persisted data
+            const userDoc = await getUserData(userId);
+            if (userDoc.exists) {
+                const fresh = userDoc.data();
+                displayUserProfile(fresh);
+                loadUserProfile(fresh);
+            }
+
+            alert('Profile updated successfully');
+        } catch (error) {
+            alert('Error updating profile: ' + (error && error.message ? error.message : error));
+        }
     });
     
     // Upload avatar image
@@ -285,6 +298,45 @@ function viewArtistProfile(artistId) {
 function removeFavorite(artistId) {
     if (confirm('Are you sure you want to remove this artist from your favorites?')) {
         alert(`Artist ${artistId} removed from favorites`);
+        // Here would go the logic to remove from Firebase
+        loadFavorites(getCurrentUser().uid); // Reload the list
+    }
+}
+
+function bookAppointment(artistId) {
+    alert(`Booking appointment with artist: ${artistId}. This feature will be implemented soon.`);
+}
+
+// Make functions globally available
+window.viewArtistProfile = viewArtistProfile;
+window.removeFavorite = removeFavorite;
+window.bookAppointment = bookAppointment;
+        // Here would go the logic to remove from Firebase
+        loadFavorites(getCurrentUser().uid); // Reload the list
+    }
+}
+
+function bookAppointment(artistId) {
+    alert(`Booking appointment with artist: ${artistId}. This feature will be implemented soon.`);
+}
+
+// Make functions globally available
+window.viewArtistProfile = viewArtistProfile;
+window.removeFavorite = removeFavorite;
+window.bookAppointment = bookAppointment;
+        // Here would go the logic to remove from Firebase
+        loadFavorites(getCurrentUser().uid); // Reload the list
+    }
+}
+
+function bookAppointment(artistId) {
+    alert(`Booking appointment with artist: ${artistId}. This feature will be implemented soon.`);
+}
+
+// Make functions globally available
+window.viewArtistProfile = viewArtistProfile;
+window.removeFavorite = removeFavorite;
+window.bookAppointment = bookAppointment;
         // Here would go the logic to remove from Firebase
         loadFavorites(getCurrentUser().uid); // Reload the list
     }

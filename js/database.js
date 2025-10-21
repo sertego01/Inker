@@ -43,6 +43,22 @@ function getAllArtists(limit = 10) {
     return db.collection('artists').limit(limit).get();
 }
 
+// Obtener artistas destacados (por likes descendente)
+function getTopArtists(limit = 4) {
+    return db.collection('artists')
+        .orderBy('likes', 'desc')
+        .limit(limit)
+        .get();
+}
+
+// Obtener artistas destacados (por rating descendente)
+function getTopArtistsByRating(limit = 4) {
+    return db.collection('artists')
+        .orderBy('rating', 'desc')
+        .limit(limit)
+        .get();
+}
+
 // Tatuadoreses por estilo
 function getArtistsByStyle(style, limit = 10) {
     return db.collection('artists')
@@ -96,6 +112,30 @@ function getImageURL(path) {
 // ===== Styles (tattoo styles) =====
 function saveStyleData(styleId, styleData) {
     return db.collection('styles').doc(styleId).set(styleData, { merge: true });
+}
+
+function getStyleData(styleId) {
+    return db.collection('styles').doc(styleId).get();
+}
+
+function getAllStyles(limit = 50) {
+    return db.collection('styles').limit(limit).get();
+}
+
+function getStyleData(styleId) {
+    return db.collection('styles').doc(styleId).get();
+}
+
+function getAllStyles(limit = 50) {
+    return db.collection('styles').limit(limit).get();
+}
+
+function getStyleData(styleId) {
+    return db.collection('styles').doc(styleId).get();
+}
+
+function getAllStyles(limit = 50) {
+    return db.collection('styles').limit(limit).get();
 }
 
 function getStyleData(styleId) {

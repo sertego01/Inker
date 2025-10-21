@@ -137,7 +137,7 @@ function loadStyles() {
     stylesGrid.innerHTML = '';
     
     if (filteredStyles.length === 0) {
-        stylesGrid.innerHTML = '<div class="no-results">No styles found matching your criteria.</div>';
+        stylesGrid.innerHTML = '<div class="no-results">No se encontraron estilos que coincidan con tus criterios.</div>';
         return;
     }
     
@@ -161,7 +161,6 @@ function createStyleCard(style) {
         </div>
         <div class="style-info">
             <h3 class="style-name">${style.name}</h3>
-            <p class="style-description">${style.description}</p>
         </div>
     `;
     
@@ -226,7 +225,7 @@ function showStyleDetails(style) {
                 
                 <h2 style="
                     color: white; 
-                    margin: 0 0 10px 0; 
+                    margin: 0; 
                     font-size: 2.5rem; 
                     text-align: center;
                     font-weight: 800;
@@ -234,19 +233,51 @@ function showStyleDetails(style) {
                     position: relative;
                     z-index: 1;
                 ">${style.name}</h2>
-                
-                <p style="
-                    color: rgba(255, 255, 255, 0.9); 
-                    margin: 0; 
-                    font-size: 1.2rem;
-                    text-align: center;
-                    position: relative;
-                    z-index: 1;
-                ">${style.description}</p>
             </div>
             
             <!-- Content -->
             <div style="padding: 30px; max-height: 60vh; overflow-y: auto;">
+                <!-- Description Section -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="
+                        color: #8b5cf6; 
+                        margin-bottom: 15px; 
+                        font-size: 1.4rem;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    ">
+                        <span style="
+                            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+                            color: white;
+                            padding: 5px 12px;
+                            border-radius: 20px;
+                            font-size: 0.9rem;
+                        ">📚</span>
+                        Descripción
+                    </h3>
+                    <div style="
+                        background: linear-gradient(135deg, #374151, #4b5563);
+                        padding: 20px;
+                        border-radius: 12px;
+                        border-left: 4px solid #ec4899;
+                    ">
+                        <p style="
+                            color: #d1d5db; 
+                            line-height: 1.6;
+                            font-size: 1.1rem;
+                            margin: 0 0 15px 0;
+                        ">${style.description}</p>
+                        <p style="
+                            color: #d1d5db; 
+                            line-height: 1.6;
+                            font-size: 1.1rem;
+                            margin: 0;
+                        ">${style.history}</p>
+                    </div>
+                </div>
+                
                 <!-- Characteristics Section -->
                 <div style="margin-bottom: 30px;">
                     <h3 style="
@@ -265,12 +296,13 @@ function showStyleDetails(style) {
                             border-radius: 20px;
                             font-size: 0.9rem;
                         ">✨</span>
-                        Key Characteristics
+                        Características clave
                     </h3>
                     <div style="
-                        display: grid;
-                        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                        display: flex;
+                        flex-wrap: wrap;
                         gap: 12px;
+                        justify-content: space-around;
                     ">
                         ${style.characteristics.map(char => `
                             <div style="
@@ -281,42 +313,13 @@ function showStyleDetails(style) {
                                 font-weight: 500;
                                 border-left: 4px solid #8b5cf6;
                                 transition: transform 0.2s ease;
+                                white-space: nowrap;
+                                flex-shrink: 0;
                             " onmouseover="this.style.transform='translateX(5px)'" onmouseout="this.style.transform='translateX(0)'">
                                 ${char}
                             </div>
                         `).join('')}
                     </div>
-                </div>
-                
-                <!-- History Section -->
-                <div style="margin-bottom: 30px;">
-                    <h3 style="
-                        color: #8b5cf6; 
-                        margin-bottom: 15px; 
-                        font-size: 1.4rem;
-                        font-weight: 700;
-                        display: flex;
-                        align-items: center;
-                        gap: 10px;
-                    ">
-                        <span style="
-                            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-                            color: white;
-                            padding: 5px 12px;
-                            border-radius: 20px;
-                            font-size: 0.9rem;
-                        ">📚</span>
-                        History & Origins
-                    </h3>
-                    <p style="
-                        color: #d1d5db; 
-                        line-height: 1.6;
-                        font-size: 1.1rem;
-                        background: linear-gradient(135deg, #374151, #4b5563);
-                        padding: 20px;
-                        border-radius: 12px;
-                        border-left: 4px solid #ec4899;
-                    ">${style.history}</p>
                 </div>
                 
                 <!-- Action Buttons -->
@@ -338,7 +341,7 @@ function showStyleDetails(style) {
                         flex: 1;
                         max-width: 200px;
                     " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                        Close
+                        Cerrar
                     </button>
                     
                     <button onclick="
@@ -361,7 +364,7 @@ function showStyleDetails(style) {
                         max-width: 200px;
                         box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
                     " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                        Find Artists
+                        Encontrar tatuadores
                     </button>
                 </div>
             </div>

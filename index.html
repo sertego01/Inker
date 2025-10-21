@@ -34,11 +34,11 @@
     <section class="hero">
         
         <div class="hero-content">
-            <h1>Find Your Perfect <br><span class="gradient-text">Tattoo Artist</span></h1>
-            <p>Connect with talented tattoo artists in your area. Browse styles, read reviews and book your next piece with confidence.</p>
+            <h1>Encuentra a tu <br><span class="gradient-text">tatuador ideal</span></h1>
+            <p>Conecta con tatuadores con talento en tu zona. Explora estilos, lee reseñas y reserva tu próximo proyecto con confianza.</p>
             <div class="search-bar">
-                <input type="text" id="mainSearchInput" placeholder="Search by artist name, style, or location...">
-                <button class="search-btn" onclick="performMainSearch()">Search</button>
+                <input type="text" id="mainSearchInput" placeholder="Buscar por nombre, estilo o ubicación...">
+                <button class="search-btn" onclick="performMainSearch()">Buscar</button>
             </div>
         </div>
         
@@ -48,22 +48,22 @@
                 <div class="feature-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette h-12 w-12 text-purple-500 mx-auto mb-4"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>
                 </div>
-                <h3>Browse Styles</h3>
-                <p>Explore different tattoo styles and find artists who specialize in them</p>
+                <h3>Explorar estilos</h3>
+                <p>Descubre estilos de tatuaje y encuentra artistas especializados</p>
             </div>
             <div class="feature-card" data-feature="find-near" onclick="goToMap()">
                 <div class="feature-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-12 w-12 text-pink-500 mx-auto mb-4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </div>
-                <h3>Find Near You</h3>
-                <p>Discover talented artists in your local area or search by city</p>
+                <h3>Encuentra cerca de ti</h3>
+                <p>Descubre artistas en tu zona o busca por ciudad</p>
             </div>
             <div class="feature-card" data-feature="most-popular">
                 <div class="feature-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-12 w-12 text-blue-500 mx-auto mb-4"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
                 </div>
-                <h3>Most Popular</h3>
-                <p>Check out the most liked and highly-rated artists</p>
+                <h3>Más populares</h3>
+                <p>Descubre los artistas más valorados y con más me gusta</p>
             </div>
         </div>
     </section>
@@ -71,8 +71,8 @@
     <!-- Popular Tattoo Styles -->
     <section id="browse-styles" class="popular-styles">
         <div class="container">
-            <h2>Popular Tattoo Styles</h2>
-            <p>Explore different artistic styles and find your perfect match</p>
+            <h2>Estilos de tatuaje populares</h2>
+            <p>Explora diferentes estilos y encuentra tu mejor opción</p>
             <div class="styles-grid">
                 <button class="style-button" data-style="traditional">Traditional</button>
                 <button class="style-button" data-style="realistic">Realistic</button>
@@ -92,73 +92,36 @@
     <section id="most-popular" class="trending-artists">
         
         <div class="container">
-            <h2>Featured Artists</h2>
-            <p>Discover some of our most talented and popular artists</p>
-        <div class="artists-grid">
-                <div class="artist-card" onclick="goToArtistProfile('elena-martinez')">
-                    <div class="artist-image">
-                        <img src="images/artist3.jpg" alt="Elena Martínez">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">Elena Martínez</h3>
-                        <p class="artist-style">Blackwork</p>
-                    </div>
-                </div>
-                <div class="artist-card" onclick="goToArtistProfile('carmen-garcia')">
-                    <div class="artist-image">
-                        <img src="images/artist1.jpg" alt="Carmen García">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">Carmen García</h3>
-                        <p class="artist-style">Watercolor</p>
-                    </div>
-                </div>
-                <div class="artist-card" onclick="goToArtistProfile('sofia-martinez')">
-                    <div class="artist-image">
-                        <img src="images/artist4.jpg" alt="Sofía Martínez">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">Sofía Martínez</h3>
-                        <p class="artist-style">Biomechanical</p>
-                    </div>
-                </div>
-                <div class="artist-card" onclick="goToArtistProfile('marie-dubois')">
-                    <div class="artist-image">
-                        <img src="images/artist2.jpg" alt="Marie Dubois">
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">Marie Dubois</h3>
-                        <p class="artist-style">Watercolor</p>
-                    </div>
-                </div>
-            </div>
+            <h2>Artistas destacados</h2>
+            <p>Descubre algunos de nuestros artistas más talentosos y populares</p>
+            <div class="artists-grid" id="featuredArtistsGrid"></div>
         </div>
     </section>
 
     <!-- How it works -->
     <section id="find-near" class="how-it-works">
-        <h2>How it works</h2>
+        <h2>Cómo funciona</h2>
         <div class="steps">
             <div class="step" data-step="step1">
                 <div class="step-number">
                     <img src="images/lupa.png" alt="Step 1" class="step-icon">
                 </div>
-                <h3>Explore artists</h3>
-                <p>Find tattoo artists by style, location and ratings.</p>
+                <h3>Explora artistas</h3>
+                <p>Encuentra tatuadores por estilo, ubicación y valoraciones.</p>
             </div>
             <div class="step" data-step="step2">
                 <div class="step-number">
                     <img src="images/idea.png" alt="Step 2" class="step-icon">
                 </div>
-                <h3>Book your appointment</h3>
-                <p>Select available date and time directly with the artist.</p>
+                <h3>Reserva tu cita</h3>
+                <p>Selecciona fecha y hora disponibles directamente con el tatuador.</p>
             </div>
             <div class="step" data-step="step3">
                 <div class="step-number">
                     <img src="images/360.png" alt="Step 3" class="step-icon">
                 </div>
-                <h3>Enjoy your tattoo</h3>
-                <p>Attend your appointment and show off your new artwork.</p>
+                <h3>Disfruta tu tatuaje</h3>
+                <p>Acude a tu cita y presume tu nueva obra de arte.</p>
             </div>
         </div>
     </section>
@@ -189,28 +152,28 @@
                 
                 <div class="filters-section">
                     <div class="filters-card">
-                        <h3>Filters :</h3>
-                        <div class="filters-list">
-                            <div class="filter-dropdown">
-                                <span>Styles</span>
+                <h3>Filtros :</h3>
+                <div class="filters-list">
+                    <div class="filter-dropdown">
+                        <span>Estilos</span>
                                 <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
                                     <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
-                            <div class="filter-dropdown">
-                                <span>Countries</span>
+                    <div class="filter-dropdown">
+                        <span>Países</span>
                                 <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
                                     <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
-                            <div class="filter-dropdown">
-                                <span>Regions</span>
+                    <div class="filter-dropdown">
+                        <span>Regiones</span>
                                 <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
                                     <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
-                            <div class="filter-dropdown">
-                                <span>Cities</span>
+                    <div class="filter-dropdown">
+                        <span>Ciudades</span>
                                 <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
                                     <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -226,12 +189,12 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-left">
-                <a href="pages/terms-conditions.html" data-footer="terms">Terms and Conditions</a>
+                <a href="pages/terms-conditions.html" data-footer="terms">Términos y Condiciones</a>
                 <span class="separator">|</span>
-                <a href="pages/privacy-policy.html" data-footer="privacy">Privacy Policy</a>
+                <a href="pages/privacy-policy.html" data-footer="privacy">Política de Privacidad</a>
             </div>
             <div class="footer-center">
-                <p data-footer="copyright">&copy; 2025 Inker. All rights reserved.</p>
+                <p>&copy; 2025 Inker. Todos los derechos reservados.</p>
             </div>
             <div class="footer-right">
                 <div class="social-icons">
@@ -247,14 +210,14 @@
     <div id="cookieConsent" class="cookie-consent">
         <div class="cookie-consent-content">
             <div class="cookie-consent-text">
-                <h3 data-i18n="cookies.title">Cookie Policy</h3>
-                <p data-i18n="cookies.message">We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
+                <h3>Política de Cookies</h3>
+                <p>Usamos cookies para mejorar tu experiencia de navegación, ofrecer contenido personalizado y analizar el tráfico. Al hacer clic en "Aceptar todas", consientes el uso de cookies.</p>
             </div>
             <div class="cookie-consent-buttons">
-                <button id="acceptAllCookies" class="cookie-btn cookie-btn-primary" data-i18n="cookies.accept-all">Accept All</button>
-                <button id="acceptNecessaryCookies" class="cookie-btn cookie-btn-secondary" data-i18n="cookies.accept-necessary">Accept Necessary Only</button>
-                <button id="cookieSettings" class="cookie-btn cookie-btn-tertiary" data-i18n="cookies.settings">Cookie Settings</button>
-                <button id="learnMoreCookies" class="cookie-btn cookie-btn-tertiary" data-i18n="cookies.learn-more">Learn More</button>
+                <button id="acceptAllCookies" class="cookie-btn cookie-btn-primary">Aceptar todas</button>
+                <button id="acceptNecessaryCookies" class="cookie-btn cookie-btn-secondary">Aceptar solo necesarias</button>
+                <button id="cookieSettings" class="cookie-btn cookie-btn-tertiary" data-i18n="cookies.settings">Configuración de cookies</button>
+                <button id="learnMoreCookies" class="cookie-btn cookie-btn-tertiary" data-i18n="cookies.learn-more">Saber más</button>
             </div>
         </div>
     </div>
@@ -263,61 +226,61 @@
     <div id="cookieSettingsModal" class="cookie-settings-modal">
         <div class="cookie-settings-content">
             <div class="cookie-settings-header">
-                <h2 data-i18n="cookies.title">Cookie Settings</h2>
+                <h2>Configuración de cookies</h2>
                 <button id="closeCookieSettings" class="cookie-settings-close" data-i18n="cookies.close">&times;</button>
             </div>
             
             <div class="cookie-settings-description">
-                <p data-i18n="cookies.message">We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. You can customize your cookie preferences below.</p>
+                <p>Usamos cookies para mejorar tu experiencia, ofrecer contenido personalizado y analizar el tráfico. Puedes personalizar tus preferencias abajo.</p>
             </div>
             
             <div class="cookie-category">
                 <div class="cookie-category-header">
-                    <h3 class="cookie-category-title" data-i18n="cookies.necessary">Necessary Cookies</h3>
+                    <h3 class="cookie-category-title" data-i18n="cookies.necessary">Cookies necesarias</h3>
                     <label class="cookie-toggle">
                         <input type="checkbox" id="cookie-necessary" checked disabled>
                         <span class="cookie-slider"></span>
                     </label>
                 </div>
-                <p class="cookie-category-description" data-i18n="cookies.necessary-desc">These cookies are essential for the website to function properly. They cannot be disabled.</p>
+                <p class="cookie-category-description" data-i18n="cookies.necessary-desc">Estas cookies son esenciales para el funcionamiento del sitio. No se pueden desactivar.</p>
             </div>
             
             <div class="cookie-category">
                 <div class="cookie-category-header">
-                    <h3 class="cookie-category-title" data-i18n="cookies.analytics">Analytics Cookies</h3>
+                    <h3 class="cookie-category-title" data-i18n="cookies.analytics">Cookies de analítica</h3>
                     <label class="cookie-toggle">
                         <input type="checkbox" id="cookie-analytics">
                         <span class="cookie-slider"></span>
                     </label>
                 </div>
-                <p class="cookie-category-description" data-i18n="cookies.analytics-desc">These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously.</p>
+                <p class="cookie-category-description" data-i18n="cookies.analytics-desc">Ayudan a entender cómo interactúan los usuarios recopilando información de forma anónima.</p>
             </div>
             
             <div class="cookie-category">
                 <div class="cookie-category-header">
-                    <h3 class="cookie-category-title" data-i18n="cookies.functional">Functional Cookies</h3>
+                    <h3 class="cookie-category-title" data-i18n="cookies.functional">Cookies funcionales</h3>
                     <label class="cookie-toggle">
                         <input type="checkbox" id="cookie-functional">
                         <span class="cookie-slider"></span>
                     </label>
                 </div>
-                <p class="cookie-category-description" data-i18n="cookies.functional-desc">These cookies enable enhanced functionality and personalization, such as remembering your preferences.</p>
+                <p class="cookie-category-description" data-i18n="cookies.functional-desc">Habilitan funcionalidades mejoradas y personalización, como recordar tus preferencias.</p>
             </div>
             
             <div class="cookie-category">
                 <div class="cookie-category-header">
-                    <h3 class="cookie-category-title" data-i18n="cookies.marketing">Marketing Cookies</h3>
+                    <h3 class="cookie-category-title" data-i18n="cookies.marketing">Cookies de marketing</h3>
                     <label class="cookie-toggle">
                         <input type="checkbox" id="cookie-marketing">
                         <span class="cookie-slider"></span>
                     </label>
                 </div>
-                <p class="cookie-category-description" data-i18n="cookies.marketing-desc">These cookies are used to track visitors across websites to display relevant and engaging advertisements.</p>
+                <p class="cookie-category-description" data-i18n="cookies.marketing-desc">Se usan para rastrear visitantes y mostrar publicidad relevante.</p>
             </div>
             
             <div class="cookie-settings-footer">
-                <button id="saveCookiePreferences" class="cookie-btn cookie-btn-primary" data-i18n="cookies.save-preferences">Save Preferences</button>
-                <button id="closeCookieSettings" class="cookie-btn cookie-btn-secondary" data-i18n="cookies.close">Close</button>
+                <button id="saveCookiePreferences" class="cookie-btn cookie-btn-primary" data-i18n="cookies.save-preferences">Guardar preferencias</button>
+                <button id="closeCookieSettings" class="cookie-btn cookie-btn-secondary" data-i18n="cookies.close">Cerrar</button>
             </div>
         </div>
     </div>
@@ -342,7 +305,7 @@
     <script src="js/email-config.js"></script>
     <script src="js/contact-widget.js"></script>
     <script src="js/notifications.js"></script>
-    <script src="js/i18n.js"></script>
+    
     <script src="js/cookie-consent.js"></script>
     <script src="js/header-manager.js"></script>
     <script src="js/init.js"></script>

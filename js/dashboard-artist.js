@@ -152,8 +152,13 @@ function setupNavigation() {
 
 function setupEventListeners() {
     // Save artist profile
-    document.getElementById('saveArtistProfileBtn').addEventListener('click', function() {
-        const userId = getCurrentUser().uid;
+    document.getElementById('saveArtistProfileBtn').addEventListener('click', async function() {
+        const current = await getCurrentUser();
+        if (!current) {
+            alert('Not authenticated');
+            return;
+        }
+        const userId = current.uid;
         const instagram = document.getElementById('profileInstagram').value;
         
         // Validar Instagram
@@ -173,16 +178,18 @@ function setupEventListeners() {
         };
         
         // Guardar en la colección de artists
-        saveArtistData(userId, updatedData)
-            .then(() => {
-                alert('Artist profile updated successfully');
-                // Update sidebar
-                document.getElementById('artistName').textContent = updatedData.name;
-                document.getElementById('artistStudio').textContent = updatedData.studio;
-            })
-            .catch(error => {
-                alert('Error updating profile: ' + error.message);
-            });
+        try {
+            await saveArtistData(userId, updatedData);
+            // Refresh from Firestore
+            const artistDoc = await getArtistData(userId);
+            const userDoc = await getUserData(userId);
+            if (artistDoc.exists && userDoc.exists) {
+                displayArtistProfile(userDoc.data(), artistDoc.data());
+            }
+            alert('Artist profile updated successfully');
+        } catch (error) {
+            alert('Error updating profile: ' + (error && error.message ? error.message : error));
+        }
     });
     
     // Upload avatar image
@@ -492,6 +499,27 @@ function validateInstagram(instagram) {
         return false;
     }
     
+    return true;
+}
+
+// Make functions globally available
+window.deletePortfolioItem = deletePortfolioItem;
+window.editPortfolioItem = editPortfolioItem;
+window.saveAvailability = saveAvailability;
+    return true;
+}
+
+// Make functions globally available
+window.deletePortfolioItem = deletePortfolioItem;
+window.editPortfolioItem = editPortfolioItem;
+window.saveAvailability = saveAvailability;
+    return true;
+}
+
+// Make functions globally available
+window.deletePortfolioItem = deletePortfolioItem;
+window.editPortfolioItem = editPortfolioItem;
+window.saveAvailability = saveAvailability;
     return true;
 }
 

@@ -94,7 +94,7 @@ async function loadArtistProfileFromDB(artistId) {
 
 function showArtistNotFound() {
     const nameEl = document.getElementById('artistName');
-    if (nameEl) nameEl.textContent = 'Artist not found';
+    if (nameEl) nameEl.textContent = 'Artista no encontrado';
 }
 
 // Update artist basic information
@@ -114,7 +114,7 @@ function updateArtistInfo(artist) {
         elements.name.textContent = artist.name;
     }
     if (elements.rating) {
-        elements.rating.textContent = `${artist.rating} (${artist.reviewCount} reviews)`;
+        elements.rating.textContent = `${artist.rating} (${artist.reviewCount} reseñas)`;
     }
     if (elements.location) elements.location.textContent = artist.location;
     if (elements.bio) {

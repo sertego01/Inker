@@ -206,8 +206,8 @@ function loadArtists() {
     artistsGrid.innerHTML = '';
     
     if (filteredArtists.length === 0) {
-        artistsGrid.innerHTML = '<div class="no-results">No artists found matching your criteria.</div>';
-        if (artistsCount) artistsCount.textContent = 'Found 0 artists';
+        artistsGrid.innerHTML = '<div class="no-results">No se encontraron artistas que coincidan con tus criterios.</div>';
+        if (artistsCount) artistsCount.textContent = 'Se encontraron 0 artistas';
         return;
     }
     
@@ -216,7 +216,7 @@ function loadArtists() {
         artistsGrid.appendChild(artistCard);
     });
     
-    if (artistsCount) artistsCount.textContent = `Found ${filteredArtists.length} artists`;
+    if (artistsCount) artistsCount.textContent = `Se encontraron ${filteredArtists.length} artistas`;
     
     // Update style translations after cards are created
     updateStyleTranslations();
@@ -248,7 +248,7 @@ function updateStyleTranslations() {
 
 // Get country translation
 function getCountryTranslation(country) {
-    if (!window.i18n) return country;
+    // i18n system removed
     
     const countryTranslations = {
         'España': 'countries.spain',
@@ -260,7 +260,7 @@ function getCountryTranslation(country) {
     
     const translationKey = countryTranslations[country];
     if (translationKey) {
-        return window.i18n.translate(translationKey);
+        return translationKey; // i18n system removed
     }
     
     return country; // Fallback to original name if no translation found
@@ -268,7 +268,7 @@ function getCountryTranslation(country) {
 
 // Get location translation (city, country)
 function getLocationTranslation(location) {
-    if (!window.i18n) return location;
+    // i18n system removed
     
     // Split location into city and country parts
     const parts = location.split(', ');
@@ -317,7 +317,7 @@ function updateCountryFilter() {
     const uniqueCountries = [...new Set(allArtists.map(artist => artist.country))];
     uniqueCountries.sort();
     
-    countryFilter.innerHTML = '<option value="" data-i18n="filters.all-countries">All Countries</option>';
+    countryFilter.innerHTML = '<option value="">Todos los países</option>';
     uniqueCountries.forEach(country => {
         const option = document.createElement('option');
         option.value = country;
@@ -325,11 +325,7 @@ function updateCountryFilter() {
         countryFilter.appendChild(option);
     });
     
-    // Traducir la opción "All Countries"
-    const allCountriesOption = countryFilter.querySelector('option[data-i18n="filters.all-countries"]');
-    if (allCountriesOption && window.i18n) {
-        allCountriesOption.textContent = window.i18n.translate('filters.all-countries');
-    }
+    // Translation system removed
 }
 
 // Update region filter options based on selected country
@@ -351,7 +347,7 @@ function updateRegionFilter() {
     
     regions.sort();
     
-    regionFilter.innerHTML = '<option value="" data-i18n="filters.all-regions">All Regions</option>';
+    regionFilter.innerHTML = '<option value="">Todas las regiones</option>';
     regions.forEach(region => {
         const option = document.createElement('option');
         option.value = region;
@@ -359,11 +355,7 @@ function updateRegionFilter() {
         regionFilter.appendChild(option);
     });
     
-    // Traducir la opción "All Regions"
-    const allRegionsOption = regionFilter.querySelector('option[data-i18n="filters.all-regions"]');
-    if (allRegionsOption && window.i18n) {
-        allRegionsOption.textContent = window.i18n.translate('filters.all-regions');
-    }
+    // Translation system removed
     
     // Clear city filter when region changes
     updateCityFilter();
@@ -398,7 +390,7 @@ function updateCityFilter() {
     
     cities.sort();
     
-    cityFilter.innerHTML = '<option value="" data-i18n="filters.all-cities">All Cities</option>';
+    cityFilter.innerHTML = '<option value="">Todas las ciudades</option>';
     cities.forEach(city => {
         const option = document.createElement('option');
         option.value = city;
@@ -406,11 +398,7 @@ function updateCityFilter() {
         cityFilter.appendChild(option);
     });
     
-    // Traducir la opción "All Cities"
-    const allCitiesOption = cityFilter.querySelector('option[data-i18n="filters.all-cities"]');
-    if (allCitiesOption && window.i18n) {
-        allCitiesOption.textContent = window.i18n.translate('filters.all-cities');
-    }
+    // Translation system removed
 }
 
 // Filter functions for hierarchical location filters
@@ -764,7 +752,7 @@ document.addEventListener('DOMContentLoaded', function() {
         languageSelect.addEventListener('change', function() {
             setTimeout(() => {
                 updateStyleTranslations();
-            }, 100); // Small delay to ensure i18n system is updated
+            }, 100); // Small delay to ensure system is updated
         });
     }
     

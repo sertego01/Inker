@@ -13,14 +13,14 @@
         <div id="cookieConsent" class="cookie-consent">
             <div class="cookie-consent-content">
                 <div class="cookie-consent-text">
-                    <h3 data-i18n="cookies.title">Cookie Policy</h3>
-                    <p data-i18n="cookies.message">We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
+                    <h3>Política de Cookies</h3>
+                    <p>Usamos cookies para mejorar tu experiencia de navegación, ofrecer contenido personalizado y analizar el tráfico. Al hacer clic en "Aceptar todas", consientes el uso de cookies.</p>
                 </div>
                 <div class="cookie-consent-buttons">
-                    <button id="acceptAllCookies" class="cookie-btn cookie-btn-primary" data-i18n="cookies.accept-all">Accept All</button>
-                    <button id="acceptNecessaryCookies" class="cookie-btn cookie-btn-secondary" data-i18n="cookies.accept-necessary">Accept Necessary Only</button>
-                    <button id="cookieSettings" class="cookie-btn cookie-btn-tertiary" data-i18n="cookies.settings">Cookie Settings</button>
-                    <a href="cookie-policy.html" class="cookie-btn cookie-btn-tertiary" data-i18n="cookies.learn-more">Learn More</a>
+                    <button id="acceptAllCookies" class="cookie-btn cookie-btn-primary">Aceptar todas</button>
+                    <button id="acceptNecessaryCookies" class="cookie-btn cookie-btn-secondary">Aceptar solo necesarias</button>
+                    <button id="cookieSettings" class="cookie-btn cookie-btn-tertiary">Configuración de cookies</button>
+                    <a href="cookie-policy.html" class="cookie-btn cookie-btn-tertiary">Saber más</a>
                 </div>
             </div>
         </div>
@@ -29,61 +29,61 @@
         <div id="cookieSettingsModal" class="cookie-settings-modal">
             <div class="cookie-settings-content">
                 <div class="cookie-settings-header">
-                    <h2 data-i18n="cookies.title">Cookie Settings</h2>
-                    <button id="closeCookieSettings" class="cookie-settings-close" data-i18n="cookies.close">&times;</button>
+                    <h2>Configuración de cookies</h2>
+                    <button id="closeCookieSettings" class="cookie-settings-close">&times;</button>
                 </div>
                 
                 <div class="cookie-settings-description">
-                    <p data-i18n="cookies.message">We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. You can customize your cookie preferences below.</p>
+                    <p>Usamos cookies para mejorar tu experiencia, ofrecer contenido personalizado y analizar el tráfico. Puedes personalizar tus preferencias abajo.</p>
                 </div>
                 
                 <div class="cookie-category">
                     <div class="cookie-category-header">
-                        <h3 class="cookie-category-title" data-i18n="cookies.necessary">Necessary Cookies</h3>
+                        <h3 class="cookie-category-title">Cookies necesarias</h3>
                         <label class="cookie-toggle">
                             <input type="checkbox" id="cookie-necessary" checked disabled>
                             <span class="cookie-slider"></span>
                         </label>
                     </div>
-                    <p class="cookie-category-description" data-i18n="cookies.necessary-desc">These cookies are essential for the website to function properly. They cannot be disabled.</p>
+                    <p class="cookie-category-description">Estas cookies son esenciales para el funcionamiento del sitio. No se pueden desactivar.</p>
                 </div>
                 
                 <div class="cookie-category">
                     <div class="cookie-category-header">
-                        <h3 class="cookie-category-title" data-i18n="cookies.analytics">Analytics Cookies</h3>
+                        <h3 class="cookie-category-title">Cookies de analítica</h3>
                         <label class="cookie-toggle">
                             <input type="checkbox" id="cookie-analytics">
                             <span class="cookie-slider"></span>
                         </label>
                     </div>
-                    <p class="cookie-category-description" data-i18n="cookies.analytics-desc">These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously.</p>
+                    <p class="cookie-category-description">Ayudan a entender cómo interactúan los usuarios recopilando información de forma anónima.</p>
                 </div>
                 
                 <div class="cookie-category">
                     <div class="cookie-category-header">
-                        <h3 class="cookie-category-title" data-i18n="cookies.functional">Functional Cookies</h3>
+                        <h3 class="cookie-category-title">Cookies funcionales</h3>
                         <label class="cookie-toggle">
                             <input type="checkbox" id="cookie-functional">
                             <span class="cookie-slider"></span>
                         </label>
                     </div>
-                    <p class="cookie-category-description" data-i18n="cookies.functional-desc">These cookies enable enhanced functionality and personalization, such as remembering your preferences.</p>
+                    <p class="cookie-category-description">Habilitan funcionalidades mejoradas y personalización, como recordar tus preferencias.</p>
                 </div>
                 
                 <div class="cookie-category">
                     <div class="cookie-category-header">
-                        <h3 class="cookie-category-title" data-i18n="cookies.marketing">Marketing Cookies</h3>
+                        <h3 class="cookie-category-title">Cookies de marketing</h3>
                         <label class="cookie-toggle">
                             <input type="checkbox" id="cookie-marketing">
                             <span class="cookie-slider"></span>
                         </label>
                     </div>
-                    <p class="cookie-category-description" data-i18n="cookies.marketing-desc">These cookies are used to track visitors across websites to display relevant and engaging advertisements.</p>
+                    <p class="cookie-category-description">Se usan para rastrear visitantes y mostrar publicidad relevante.</p>
                 </div>
                 
                 <div class="cookie-settings-footer">
-                    <button id="saveCookiePreferences" class="cookie-btn cookie-btn-primary" data-i18n="cookies.save-preferences">Save Preferences</button>
-                    <button id="closeCookieSettings" class="cookie-btn cookie-btn-secondary" data-i18n="cookies.close">Close</button>
+                    <button id="saveCookiePreferences" class="cookie-btn cookie-btn-primary">Guardar preferencias</button>
+                    <button id="closeCookieSettings" class="cookie-btn cookie-btn-secondary">Cerrar</button>
                 </div>
             </div>
         </div>
