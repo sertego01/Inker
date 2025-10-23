@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Tatuadores - Inker</title>
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/map.css">
+    <link rel="stylesheet" href="../css/cookie-consent.css">
+    
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span>Inker</span>
+            </a>
+            <ul class="nav-menu">
+                <!-- Header will be populated by header-manager.js -->
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="map-main">
+        <!-- Left Sidebar - Artists List -->
+        <div class="map-sidebar left-sidebar">
+            <div class="sidebar-header">
+                <h2>Tatuadores</h2>
+                <div class="search-box">
+                    <input type="text" id="artistSearchInput" placeholder="Buscar tatuador...">
+                </div>
+            </div>
+            <div class="artists-list" id="artistsList">
+                <div id="loadingMessage" style="color: white; text-align: center; padding: 20px;">
+                    Cargando tatuadores...
+                </div>
+                <div id="geocodingMessage" style="color: #4ade80; text-align: center; padding: 10px; font-size: 0.8rem; display: none;">
+                    🔄 Actualizando ubicaciones...
+                </div>
+            </div>
+        </div>
+
+        <!-- Center - Map -->
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+
+        <!-- Right Sidebar - Filters -->
+        <div class="map-sidebar right-sidebar">
+            <div class="sidebar-header">
+                <h2>Filtros</h2>
+            </div>
+            <div class="filters-section">
+                        <div class="filter-group">
+                            <h3>Estilo</h3>
+                            <div class="search-box">
+                                <select id="styleFilter" class="filter-select">
+                                    <option value="all">Todos los estilos</option>
+                                </select>
+                            </div>
+                        </div>
+                
+                <div class="filter-group">
+                    <h3>Ubicación</h3>
+                    <div class="search-box">
+                        <input type="text" id="locationSearchInput" placeholder="Buscar ubicación...">
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <h3>Valoración</h3>
+                    <div class="rating-filter">
+                        <label>
+                            <input type="checkbox" id="rating4plus" value="4">
+                            ⭐⭐⭐⭐+ (4+ estrellas)
+                        </label>
+                        <label>
+                            <input type="checkbox" id="rating3plus" value="3">
+                            ⭐⭐⭐+ (3+ estrellas)
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="terms-conditions.html" data-footer="terms">Términos y Condiciones</a>
+                <span class="separator">|</span>
+                <a href="privacy-policy.html" data-footer="privacy">Política de Privacidad</a>
+            </div>
+            <div class="footer-center">
+                <p data-footer="copyright">&copy; 2025 Inker. Todos los derechos reservados.</p>
+            </div>
+            <div class="footer-right">
+                <div class="social-icons">
+                    <a href="#"><img src="../images/facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="../images/instagram-icon.png" alt="Instagram"></a>
+                    <a href="#"><img src="../images/twitter-icon.png" alt="Twitter"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    
+    <!-- Scripts -->
+    <script src="../js/config.js"></script>
+    <script src="../js/google-maps-config.js"></script>
+    <script src="../js/database.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/global-cookie-banner.js"></script>
+    <script src="../js/header-manager.js"></script>
+    
+    <!-- Google Maps API -->
+    <script>
+        // Load Google Maps API with the configured key
+        const apiKey = getGoogleMapsApiKey();
+        if (isApiKeyConfigured()) {
+            const script = document.createElement('script');
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initMap`;
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
+        } else {
+            console.error('Google Maps API key not configured');
+            document.getElementById('map').innerHTML = 
+                '<div style="display: flex; justify-content: center; align-items: center; height: 100%; background: #f0f0f0; color: #666;">' +
+                '<div style="text-align: center; padding: 20px;">' +
+                '<h3>⚠️ API Key no configurada</h3>' +
+                '<p>Para usar Google Maps, necesitas configurar tu API key en el archivo <code>js/google-maps-config.js</code></p>' +
+                '<p>Reemplaza <code>TU_API_KEY</code> con tu API key de Google Maps</p>' +
+                '</div>' +
+                '</div>';
+        }
+    </script>
+    
+    <script src="../js/map.js"></script>
+    
+    <script>
+        // Header is now managed by header-manager.js
+        // Force header update after a delay to ensure it loads
+        setTimeout(() => {
+            if (window.headerManager) {
+                window.headerManager.forceUpdate();
+            } else {
+                console.log('Header manager not found, retrying...');
+                setTimeout(() => {
+                    if (window.headerManager) {
+                        window.headerManager.forceUpdate();
+                    }
+                }, 500);
+            }
+        }, 200);
+    </script>
+</body>
+</html>
