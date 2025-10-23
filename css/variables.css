@@ -1,0 +1,58 @@
+/* CSS Variables - Sistema de colores centralizado */
+
+:root {
+    /* Colores principales */
+    --bg-primary: #121212;
+    --bg-secondary: #2b2b2b;
+    --text-primary: #ffffff;
+    --text-secondary: #d1d5db;
+    --text-muted: rgba(255, 255, 255, 0.7);
+    
+    /* Gradiente primario */
+    --gradient-primary: linear-gradient(135deg, #8b5cf6, #ec4899);
+    --gradient-primary-reverse: linear-gradient(135deg, #ec4899, #8b5cf6);
+    
+    /* Colores de acento */
+    --accent-purple: #8b5cf6;
+    --accent-pink: #ec4899;
+    
+    /* Fondos con transparencia */
+    --bg-overlay: rgba(0, 0, 0, 0.7);
+    --bg-overlay-light: rgba(0, 0, 0, 0.5);
+    --bg-overlay-dark: rgba(0, 0, 0, 0.8);
+    
+    /* Header con transparencia */
+    --header-bg: rgba(43, 43, 43, 0.7);
+    --header-bg-solid: #2b2b2b;
+    
+    /* Elementos de búsqueda */
+    --search-bg: #2b2b2b;
+    --search-border: rgba(255, 255, 255, 0.2);
+    --search-focus: rgba(236, 72, 153, 0.2);
+    
+    /* Tarjetas y elementos */
+    --card-bg: rgba(55, 65, 81, 0.9);
+    --card-bg-solid: #374151;
+    --card-border: rgba(255, 255, 255, 0.1);
+    
+    /* Sombras */
+    --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-heavy: 0 8px 25px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 15px 35px rgba(139, 92, 246, 0.3);
+    
+    /* Efectos glassmorphism */
+    --glass-bg: rgba(26, 26, 26, 0.9);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: blur(10px);
+    --glass-blur-heavy: blur(15px);
+    
+    /* Estados de hover */
+    --hover-scale: scale(1.02);
+    --hover-translate: translateY(-8px);
+    
+    /* Transiciones */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}

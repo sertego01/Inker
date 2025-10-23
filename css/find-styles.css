@@ -1,23 +1,25 @@
 /* Find Styles Page Styles */
+@import url('variables.css');
 
 /* Search Section */
 .search-section {
-    background: #111827;
+    background: var(--bg-primary);
     padding: 120px 20px 40px;
-    color: white;
+    color: var(--text-primary);
 }
 
 .search-section h1 {
-    font-size: 5rem;
+    font-size: 6rem;
     font-weight: 700;
     margin-bottom: 15px;
-    color: white;
+    color: var(--text-primary);
     text-align: center;
+    line-height: 1.2;
 }
 
 .search-section p {
     font-size: 1rem;
-    color: #9ca3af;
+    color: var(--text-secondary);
     margin-bottom: 40px;
     text-align: center;
     max-width: 600px;
@@ -37,11 +39,11 @@
     display: flex;
     width: 100%;
     max-width: 700px;
-    background: #2D2D44;
+    background: var(--search-bg);
     border-radius: 12px;
     padding: 12px 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    border: 1px solid #3A3A5C;
+    box-shadow: var(--shadow-medium);
+    border: 1px solid var(--search-border);
 }
 
 .search-bar input {
@@ -49,7 +51,7 @@
     padding: 0;
     border: none;
     background: transparent;
-    color: white;
+    color: var(--text-primary);
     font-size: 1rem;
     outline: none;
     font-family: inherit;
@@ -57,30 +59,30 @@
 
 .search-bar input:focus {
     background: transparent;
-    color: white;
+    color: var(--text-primary);
 }
 
 .search-bar input::placeholder {
-    color: #9ca3af;
+    color: var(--text-muted);
 }
 
 .search-btn {
-    background: linear-gradient(135deg, #8b5cf6, #ec4899);
-    color: white;
+    background: var(--gradient-primary);
+    color: var(--text-primary);
     border: none;
     padding: 12px 24px;
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: var(--transition-normal);
     white-space: nowrap;
     font-size: 0.9rem;
 }
 
 .search-btn:hover {
-    background: linear-gradient(135deg, #7c3aed, #db2777);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+    background: var(--gradient-primary-reverse);
+    transform: var(--hover-translate);
+    box-shadow: var(--shadow-glow);
 }
 
 .filter-controls {
@@ -110,20 +112,21 @@
     align-items: center;
     gap: 8px;
     padding: 12px 20px;
-    background: #2D2D44;
-    border: 1px solid #3A3A5C;
+    background: var(--search-bg);
+    border: 1px solid var(--search-border);
     border-radius: 8px;
-    color: white;
+    color: var(--text-primary);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition-normal);
     font-size: 0.9rem;
     font-weight: 500;
     position: relative;
 }
 
 .filters-btn:hover {
-    background: #3A3A5C;
-    border-color: #8b5cf6;
+    background: var(--bg-secondary);
+    border-color: var(--accent-pink);
+    transform: var(--hover-translate);
 }
 
 .filters-btn::before {
@@ -146,10 +149,10 @@
     position: absolute;
     top: 100%;
     left: 0;
-    background: #2D2D44;
-    border: 1px solid #3A3A5C;
+    background: var(--search-bg);
+    border: 1px solid var(--search-border);
     border-radius: 8px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-heavy);
     z-index: 1000;
     min-width: 280px;
     padding: 20px;
@@ -202,42 +205,42 @@
 
 .filter-group select:focus {
     outline: none;
-    border-color: #8b5cf6;
-    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1);
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 0 2px var(--search-focus);
 }
 
 .filter-group select:hover {
-    border-color: #8b5cf6;
+    border-color: var(--accent-pink);
 }
 
 .filter-actions {
-    border-top: 1px solid #3A3A5C;
+    border-top: 1px solid var(--search-border);
     padding-top: 15px;
     text-align: center;
 }
 
 .clear-filters-btn {
     background: transparent;
-    border: 1px solid #8b5cf6;
-    color: #8b5cf6;
+    border: 1px solid var(--accent-pink);
+    color: var(--accent-pink);
     padding: 8px 16px;
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.85rem;
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: var(--transition-normal);
 }
 
 .clear-filters-btn:hover {
-    background: #8b5cf6;
-    color: white;
+    background: var(--accent-pink);
+    color: var(--text-primary);
 }
 
 
 
 /* Styles Section */
 .styles-section {
-    background-color: #111827;
+    background-color: var(--bg-primary);
     padding: 40px 20px;
     min-height: 100vh;
 }
@@ -245,18 +248,18 @@
 .styles-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+    gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 /* Style Card Styles */
 .style-card {
-    background-color: #374151;
+    background-color: var(--bg-secondary);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
+    box-shadow: var(--shadow-heavy);
+    transition: var(--transition-normal);
     border: 2px solid transparent;
     position: relative;
     text-align: center;
@@ -264,9 +267,9 @@
 }
 
 .style-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 15px 35px rgba(236, 72, 153, 0.4);
-    border-color: #ec4899;
+    transform: var(--hover-translate) var(--hover-scale);
+    box-shadow: var(--shadow-glow);
+    border-color: var(--accent-pink);
 }
 
 .style-image {
@@ -291,27 +294,27 @@
     left: 0;
     right: 0;
     text-align: center;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 15%, rgba(255, 255, 255, 0.9) 30%, rgba(255, 255, 255, 0.8) 60%, rgba(255, 255, 255, 0.5) 85%, transparent 100%);
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.95) 15%, rgba(255, 255, 255, 0.9) 30%, rgba(255, 255, 255, 0.8) 60%, rgba(255, 255, 255, 0.5) 85%, transparent 100%);
     z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100px;
+    height: 60px;
 }
 
 .style-name {
     font-size: 1.3rem;
     font-weight: 700;
     color: #000000;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    text-shadow: var(--shadow-light);
 }
 
 .style-description {
-    color: white !important;
+    color: var(--text-primary) !important;
     margin-bottom: 0;
     font-size: 1rem !important;
     font-weight: 500;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    text-shadow: var(--shadow-light);
     line-height: 1.4;
 }
 
@@ -319,7 +322,7 @@
 /* No Results Message */
 .no-results {
     text-align: center;
-    color: #9ca3af;
+    color: var(--text-secondary);
     font-size: 1.2rem;
     margin-top: 50px;
     grid-column: 1 / -1;

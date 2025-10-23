@@ -8,16 +8,35 @@ let artists = [];
 let filteredArtists = [];
 let currentActiveArtist = null;
 
+// Check if we're on the index page
+function isIndexPage() {
+    return document.body.classList.contains('index-page');
+}
+
 // Initialize Google Map
 function initMap() {
     console.log('Initializing Google Map...');
+    
+    const mapElement = document.getElementById('map');
+    if (!mapElement) {
+        console.error('Map element not found!');
+        return;
+    }
+    
+    // Verificar que Google Maps esté disponible
+    if (typeof google === 'undefined' || !google.maps) {
+        console.error('Google Maps API not loaded!');
+        return;
+    }
+    
+    console.log('Google Maps API loaded successfully');
     
     // Default location (Asturias, Spain)
     const defaultLocation = { lat: 43.3619, lng: -5.8493 };
     
     // Create map
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
+    map = new google.maps.Map(mapElement, {
+        zoom: isIndexPage() ? 10 : 12, // Different zoom for index vs map page
         center: defaultLocation,
         styles: [
             {
@@ -31,17 +50,20 @@ function initMap() {
     // Create info window
     infoWindow = new google.maps.InfoWindow();
     
-    // Initialize search box for location
-    initLocationSearchBox();
+    // Initialize search box for location (only if element exists)
+    if (document.getElementById('locationSearchInput')) {
+        initLocationSearchBox();
+    }
     
-    // Set up style filter
-    setupStyleFilter();
+    // Set up style filter (only if element exists)
+    if (document.getElementById('styleFilter')) {
+        setupStyleFilter();
+    }
     
-    // Set up artist search
-    setupArtistSearch();
-    
-    // Set up rating filters
-    setupRatingFilters();
+    // Set up artist search (only if element exists)
+    if (document.getElementById('artistSearchInput')) {
+        setupArtistSearch();
+    }
     
     // Wait for Firebase to be ready before loading artists
     waitForFirebase().then(() => {
@@ -82,6 +104,8 @@ function showErrorMessage(message) {
     const artistsList = document.getElementById('artistsList');
     if (artistsList) {
         artistsList.innerHTML = `<div style="color: white; text-align: center; padding: 20px;">${message}</div>`;
+    } else {
+        console.error('Error (no artists list):', message);
     }
 }
 
@@ -466,7 +490,7 @@ function displayArtistsInList() {
     
     const artistsList = document.getElementById('artistsList');
     if (!artistsList) {
-        console.error('Artists list element not found');
+        console.log('Artists list element not found - skipping list display (likely on index page)');
         return;
     }
     
@@ -667,17 +691,6 @@ function setupArtistSearch() {
     });
 }
 
-// Setup rating filters
-function setupRatingFilters() {
-    const ratingCheckboxes = document.querySelectorAll('.rating-filter input[type="checkbox"]');
-    
-    ratingCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
-            applyAllFilters();
-        });
-    });
-}
-
 // Apply all filters
 function applyAllFilters() {
     let filtered = [...filteredArtists]; // Use the already filtered artists from style filter
@@ -693,16 +706,6 @@ function applyAllFilters() {
             artist.location.toLowerCase().includes(searchTerm) ||
             (artist.style && artist.style.toLowerCase().includes(searchTerm))
         );
-    }
-    
-    // Apply rating filter
-    const rating4Plus = document.getElementById('rating4plus');
-    const rating3Plus = document.getElementById('rating3plus');
-    
-    if (rating4Plus && rating4Plus.checked) {
-        filtered = filtered.filter(artist => artist.rating >= 4);
-    } else if (rating3Plus && rating3Plus.checked) {
-        filtered = filtered.filter(artist => artist.rating >= 3);
     }
     
     filteredArtists = filtered;

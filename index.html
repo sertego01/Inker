@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/contact-widget.css">
     <link rel="stylesheet" href="css/notifications.css">
     <link rel="stylesheet" href="css/cookie-consent.css">
+    <link rel="stylesheet" href="css/map.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body class="index-page">
@@ -34,8 +35,7 @@
     <section class="hero">
         
         <div class="hero-content">
-            <h1>Encuentra a tu <br><span class="gradient-text">tatuador ideal</span></h1>
-            <p>Conecta con tatuadores con talento en tu zona. Explora estilos, lee reseñas y reserva tu próximo proyecto con confianza.</p>
+            <h1><span class="left-text">Encuentra a tu</span> <br><span class="gradient-text right-text">tatuador ideal</span></h1>
             <div class="search-bar">
                 <input type="text" id="mainSearchInput" placeholder="Buscar por nombre, estilo o ubicación...">
                 <button class="search-btn" onclick="performMainSearch()">Buscar</button>
@@ -49,21 +49,21 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette h-12 w-12 text-purple-500 mx-auto mb-4"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>
                 </div>
                 <h3>Explorar estilos</h3>
-                <p>Descubre estilos de tatuaje y encuentra artistas especializados</p>
+                <p>Descubre estilos de tatuaje y encuentra tatuadores especializados</p>
             </div>
             <div class="feature-card" data-feature="find-near" onclick="goToMap()">
                 <div class="feature-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-12 w-12 text-pink-500 mx-auto mb-4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </div>
                 <h3>Encuentra cerca de ti</h3>
-                <p>Descubre artistas en tu zona o busca por ciudad</p>
+                <p>Descubre tatuadores en tu zona o busca por ciudad</p>
             </div>
             <div class="feature-card" data-feature="most-popular">
                 <div class="feature-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-12 w-12 text-blue-500 mx-auto mb-4"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
                 </div>
                 <h3>Más populares</h3>
-                <p>Descubre los artistas más valorados y con más me gusta</p>
+                <p>Descubre los tatuadores más valorados y con más me gusta</p>
             </div>
         </div>
     </section>
@@ -74,16 +74,16 @@
             <h2>Estilos de tatuaje populares</h2>
             <p>Explora diferentes estilos y encuentra tu mejor opción</p>
             <div class="styles-grid">
-                <button class="style-button" data-style="traditional">Traditional</button>
-                <button class="style-button" data-style="realistic">Realistic</button>
-                <button class="style-button" data-style="japanese">Japanese</button>
+                <button class="style-button" data-style="traditional">Tradicional</button>
+                <button class="style-button" data-style="realistic">Realista</button>
+                <button class="style-button" data-style="japanese">Japonés</button>
                 <button class="style-button" data-style="blackwork">Blackwork</button>
-                <button class="style-button" data-style="watercolor">Watercolor</button>
-                <button class="style-button" data-style="geometric">Geometric</button>
+                <button class="style-button" data-style="watercolor">Acuarela</button>
+                <button class="style-button" data-style="geometric">Geométrico</button>
                 <button class="style-button" data-style="tribal">Tribal</button>
-                <button class="style-button" data-style="neotraditional">Neo-traditional</button>
-                <button class="style-button" data-style="minimalist">Minimalist</button>
-                <button class="style-button" data-style="biomechanical">Biomechanical</button>
+                <button class="style-button" data-style="neotraditional">Neo-tradicional</button>
+                <button class="style-button" data-style="minimalist">Minimalista</button>
+                <button class="style-button" data-style="biomechanical">Biomecánico</button>
             </div>
         </div>
     </section>
@@ -92,8 +92,8 @@
     <section id="most-popular" class="trending-artists">
         
         <div class="container">
-            <h2>Artistas destacados</h2>
-            <p>Descubre algunos de nuestros artistas más talentosos y populares</p>
+            <h2>Tatuadores destacados</h2>
+            <p>Descubre algunos de nuestros tatuadores más talentosos y populares</p>
             <div class="artists-grid" id="featuredArtistsGrid"></div>
         </div>
     </section>
@@ -106,7 +106,7 @@
                 <div class="step-number">
                     <img src="images/lupa.png" alt="Step 1" class="step-icon">
                 </div>
-                <h3>Explora artistas</h3>
+                <h3>Explora tatuadores</h3>
                 <p>Encuentra tatuadores por estilo, ubicación y valoraciones.</p>
             </div>
             <div class="step" data-step="step2">
@@ -128,57 +128,37 @@
 
     <!-- Explore In Your Area -->
     <section class="explore-area">
-        
         <div class="explore-container">
             <div class="explore-header">
-                <h2>Explore In Your Area</h2>
-                <p>Discover some of our most talented and popular artists</p>
+                <h2>Explora en tu zona</h2>
+                <p>Descubre tatuadores cerca de ti con nuestro mapa interactivo</p>
             </div>
             
-            <div class="explore-content">
-                <div class="map-section">
-                    <div class="map-card">
-                        <div class="map-placeholder">
-                            <div class="map-placeholder-text">
-                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
-                                </svg>
-                                <p>Map will be integrated here</p>
-                            </div>
-                        </div>
+            <div class="map-main">
+                <!-- Mapa -->
+                <div class="map-container">
+                    <div id="map"></div>
+                    <div class="geocoding-message" id="geocodingMessage" style="display: none;">
+                        Obteniendo ubicaciones precisas...
                     </div>
                 </div>
                 
-                <div class="filters-section">
-                    <div class="filters-card">
-                <h3>Filtros :</h3>
-                <div class="filters-list">
-                    <div class="filter-dropdown">
-                        <span>Estilos</span>
-                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                                    <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                    <div class="filter-dropdown">
-                        <span>Países</span>
-                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                                    <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                    <div class="filter-dropdown">
-                        <span>Regiones</span>
-                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                                    <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                    <div class="filter-dropdown">
-                        <span>Ciudades</span>
-                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                                    <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                        </div>
+                <!-- Filtros -->
+                <div class="map-sidebar filters-section">
+                    <h3>Filtros</h3>
+                    
+                    <!-- Filtro de estilos -->
+                    <div class="filter-group">
+                        <label for="styleFilter">Estilo:</label>
+                        <select id="styleFilter" class="filter-select">
+                            <option value="all">Todos los estilos</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Búsqueda de ubicación -->
+                    <div class="filter-group">
+                        <label for="locationSearchInput">Buscar ubicación:</label>
+                        <input type="text" id="locationSearchInput" class="filter-input" placeholder="Buscar ubicación...">
                     </div>
                 </div>
             </div>
@@ -309,6 +289,11 @@
     <script src="js/cookie-consent.js"></script>
     <script src="js/header-manager.js"></script>
     <script src="js/init.js"></script>
+    
+    <!-- Google Maps API -->
+    <script src="js/google-maps-config.js"></script>
+    <script src="js/map.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSRNa474aLCqhgojwJzcF6Dk4kSmtsDVg&libraries=places&callback=initMap"></script>
 <script>
         // Header is now managed by header-manager.js
 
