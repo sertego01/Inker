@@ -168,16 +168,18 @@ function loadFavorites(userId) {
 // Load user profile data
 function loadUserProfile(userData) {
     // Populate profile form with user data
-    document.getElementById('userProfileName').value = userData.name || '';
-    document.getElementById('userEmail').value = userData.email || '';
-    document.getElementById('userLocation').value = userData.location || '';
-    document.getElementById('userBio').value = userData.bio || '';
-    document.getElementById('userPhone').value = userData.phone || '';
-    document.getElementById('userSocial').value = userData.socialMedia ? userData.socialMedia.join(', ') : '';
+    const profileNameEl = document.getElementById('profileName');
+    const profileEmailEl = document.getElementById('profileEmail');
+    const profileLocationEl = document.getElementById('profileLocation');
+    
+    if (profileNameEl) profileNameEl.value = userData.name || '';
+    if (profileEmailEl) profileEmailEl.value = userData.email || '';
+    if (profileLocationEl) profileLocationEl.value = userData.location || '';
     
     // Set avatar if available
-    if (userData.avatar) {
-        document.getElementById('userAvatar').src = userData.avatar;
+    const avatarEl = document.getElementById('userAvatar');
+    if (userData.avatar && avatarEl) {
+        avatarEl.src = userData.avatar;
     }
 }
 
@@ -298,45 +300,6 @@ function viewArtistProfile(artistId) {
 function removeFavorite(artistId) {
     if (confirm('Are you sure you want to remove this artist from your favorites?')) {
         alert(`Artist ${artistId} removed from favorites`);
-        // Here would go the logic to remove from Firebase
-        loadFavorites(getCurrentUser().uid); // Reload the list
-    }
-}
-
-function bookAppointment(artistId) {
-    alert(`Booking appointment with artist: ${artistId}. This feature will be implemented soon.`);
-}
-
-// Make functions globally available
-window.viewArtistProfile = viewArtistProfile;
-window.removeFavorite = removeFavorite;
-window.bookAppointment = bookAppointment;
-        // Here would go the logic to remove from Firebase
-        loadFavorites(getCurrentUser().uid); // Reload the list
-    }
-}
-
-function bookAppointment(artistId) {
-    alert(`Booking appointment with artist: ${artistId}. This feature will be implemented soon.`);
-}
-
-// Make functions globally available
-window.viewArtistProfile = viewArtistProfile;
-window.removeFavorite = removeFavorite;
-window.bookAppointment = bookAppointment;
-        // Here would go the logic to remove from Firebase
-        loadFavorites(getCurrentUser().uid); // Reload the list
-    }
-}
-
-function bookAppointment(artistId) {
-    alert(`Booking appointment with artist: ${artistId}. This feature will be implemented soon.`);
-}
-
-// Make functions globally available
-window.viewArtistProfile = viewArtistProfile;
-window.removeFavorite = removeFavorite;
-window.bookAppointment = bookAppointment;
         // Here would go the logic to remove from Firebase
         loadFavorites(getCurrentUser().uid); // Reload the list
     }

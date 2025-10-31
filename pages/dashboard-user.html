@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inker</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/contact-widget.css">
+    <link rel="stylesheet" href="../css/notifications.css">
+    <link rel="stylesheet" href="../css/cookie-consent.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span>Inker</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="find-styles.html" class="nav-link" data-nav="find-styles">Estilos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="find-artists.html" class="nav-link" data-nav="find-artist">Tatuadores</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-nav="messages">Mensajes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="dashboard-user.html" class="nav-link" data-nav="dashboard">Panel</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" id="logoutBtn" class="nav-button" data-nav="logout">Cerrar sesión</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Left Side - Welcome Block and Navigation -->
+        <div class="dashboard-left">
+            <!-- Welcome Block -->
+            <div class="welcome-block">
+                <div class="user-avatar">
+                    <img src="../images/user-avatar.png" alt="User Avatar" id="userAvatar">
+                </div>
+                <div class="welcome-text">
+                    <h1 id="welcomeMessage">¡Bienvenido de nuevo!</h1>
+                    <p id="welcomeSubtext">¿Listo para encontrar tu próximo tatuador?</p>
+                </div>
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="dashboard-sidebar">
+                <ul class="sidebar-nav">
+                    <li class="nav-item active">
+                        <a href="#appointments" class="nav-link" data-section="appointments">
+                            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            <span>Citas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#favorites" class="nav-link" data-section="favorites">
+                            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                            <span>Artistas Favoritos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#saved-designs" class="nav-link" data-section="saved-designs">
+                            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            <span>Diseños Guardados</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#profile" class="nav-link" data-section="profile">
+                            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <span>Perfil</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#settings" class="nav-link" data-section="settings">
+                            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                            </svg>
+                            <span>Configuración</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Right Side - Main Content -->
+        <div class="dashboard-main">
+            <!-- Appointments Section (Default Active) -->
+            <section id="appointments" class="content-section active">
+                <div class="section-header">
+                    <h2 class="section-title">Tus Citas</h2>
+                    <select id="appointmentFilter" class="filter-select">
+                        <option value="all">Todos los Estados</option>
+                        <option value="pending">Pendientes</option>
+                        <option value="confirmed">Confirmadas</option>
+                        <option value="completed">Completadas</option>
+                        <option value="cancelled">Canceladas</option>
+                    </select>
+                </div>
+                <div class="appointments-list">
+                    <!-- Appointment cards will be loaded dynamically -->
+                </div>
+            </section>
+
+            <!-- Favorites Section -->
+            <section id="favorites" class="content-section">
+                <h2 class="section-title">Artistas Favoritos</h2>
+                <div class="favorites-grid">
+                    <!-- Favorites will be loaded dynamically -->
+                </div>
+            </section>
+
+            <!-- Saved Designs Section -->
+            <section id="saved-designs" class="content-section">
+                <h2 class="section-title">Diseños Guardados</h2>
+                <div class="designs-grid">
+                    <!-- Designs will be loaded dynamically -->
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile" class="content-section">
+                <h2 class="section-title">Configuración del Perfil</h2>
+                <div class="profile-form">
+                    <div class="form-group">
+                        <label for="profileName">Nombre Completo</label>
+                        <input type="text" id="profileName" placeholder="Introduce tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileLocation">Ubicación</label>
+                        <input type="text" id="profileLocation" placeholder="Tu ciudad">
+                    </div>
+                    <div class="form-group">
+                        <label>Estilos Preferidos</label>
+                        <div class="styles-checkboxes">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="style-watercolor" value="Watercolor">
+                                <label for="style-watercolor">Acuarela</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="style-traditional" value="Traditional">
+                                <label for="style-traditional">Tradicional</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="style-geometric" value="Geometric">
+                                <label for="style-geometric">Geométrico</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="style-japanese" value="Japanese">
+                                <label for="style-japanese">Japonés</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="style-realistic" value="Realistic">
+                                <label for="style-realistic">Realista</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="style-minimalist" value="Minimalist">
+                                <label for="style-minimalist">Minimalista</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="style-neo-traditional" value="Neo-Traditional">
+                                <label for="style-neo-traditional">Neo-Tradicional</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="style-dotwork" value="Dotwork">
+                                <label for="style-dotwork">Dotwork</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="style-blackwork" value="Blackwork">
+                                <label for="style-blackwork">Blackwork</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="style-biomechanical" value="Biomechanical">
+                                <label for="style-biomechanical">Biomecánico</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="style-tribal" value="Tribal">
+                                <label for="style-tribal">Tribal</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="style-henna" value="Henna">
+                                <label for="style-henna">Henna</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-save" id="saveProfileBtn">Guardar Cambios</button>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="content-section">
+                <h2 class="section-title">Configuración</h2>
+                <div class="settings-form">
+                    <div class="setting-item">
+                        <label for="notifications">Notificaciones por Email</label>
+                        <input type="checkbox" id="notifications" checked>
+                    </div>
+                    <div class="setting-item">
+                        <label for="language">Idioma</label>
+                        <select id="language">
+                            <option value="en">English</option>
+                            <option value="es" selected>Español</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="theme">Tema</label>
+                        <select id="theme">
+                            <option value="dark" selected>Oscuro</option>
+                            <option value="light">Claro</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="terms-conditions.html">Términos y Condiciones</a>
+                <span class="separator">|</span>
+                <a href="privacy-policy.html">Política de Privacidad</a>
+            </div>
+            <div class="footer-center">
+                <p>&copy; 2025 Inker. Todos los derechos reservados.</p>
+            </div>
+            <div class="footer-right">
+                <div class="social-icons">
+                    <a href="#"><img src="../images/facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="../images/instagram-icon.png" alt="Instagram"></a>
+                    <a href="#"><img src="../images/twitter-icon.png" alt="Twitter"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/database.js"></script>
+    <script src="../js/dashboard-user.js"></script>
+    <script src="../js/contact-widget.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/cookie-consent.js"></script>
+    <script src="../js/global-cookie-banner.js"></script>
+    
+    <script>
+        // Dashboard functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+
+                // Close mobile menu when clicking on a link
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
+
+            // Logout functionality
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (confirm('¿Estás seguro de que quieres cerrar sesión?')) {
+                        logoutUser().then(() => {
+                            window.location.href = '../index.html';
+                        }).catch(error => {
+                            console.error('Logout error:', error);
+                        });
+                    }
+                });
+            }
+
+            // Sidebar navigation (dashboard sections)
+            const dashboardNavLinks = document.querySelectorAll('.dashboard-sidebar .nav-link');
+            const sections = document.querySelectorAll('.content-section');
+
+            dashboardNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all nav items and sections
+                    dashboardNavLinks.forEach(l => l.parentElement.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+                    
+                    // Add active class to clicked nav item
+                    this.parentElement.classList.add('active');
+                    
+                    // Show corresponding section
+                    const targetSection = this.getAttribute('data-section');
+                    const targetElement = document.getElementById(targetSection);
+                    if (targetElement) {
+                        targetElement.classList.add('active');
+                    }
+                });
+            });
+
+            // Appointment filter functionality
+            const appointmentFilter = document.getElementById('appointmentFilter');
+            if (appointmentFilter) {
+                appointmentFilter.addEventListener('change', function() {
+                    const selectedStatus = this.value;
+                    const appointmentCards = document.querySelectorAll('.appointment-card');
+                    
+                    appointmentCards.forEach(card => {
+                        const statusBadge = card.querySelector('.status-badge span');
+                        const cardStatus = statusBadge ? statusBadge.textContent.toLowerCase() : '';
+                        
+                        if (selectedStatus === 'all' || cardStatus === selectedStatus) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // Profile save button
+            const saveBtn = document.getElementById('saveProfileBtn');
+            if (saveBtn) {
+                saveBtn.addEventListener('click', async function() {
+                    try {
+                        const currentUser = await getCurrentUser();
+                        if (currentUser) {
+                            // Get form data
+                            const name = document.getElementById('profileName').value.trim();
+                            const location = document.getElementById('profileLocation').value.trim();
+                            
+                            // Get selected styles
+                            const selectedStyles = [];
+                            const styleCheckboxes = document.querySelectorAll('.styles-checkboxes input[type="checkbox"]:checked');
+                            styleCheckboxes.forEach(checkbox => {
+                                selectedStyles.push(checkbox.value);
+                            });
+                            
+                            // Update user data in database
+                            await updateUserData(currentUser.uid, {
+                                name: name,
+                                location: location,
+                                preferredStyles: selectedStyles
+                            });
+                            
+                            // Update welcome message
+                            const welcomeMessage = document.getElementById('welcomeMessage');
+                            if (welcomeMessage) {
+                                const displayName = name || 'Usuario';
+                                welcomeMessage.textContent = `¡Bienvenido de nuevo, ${displayName}!`;
+                            }
+                            
+                            alert('¡Perfil actualizado con éxito!');
+                        }
+                    } catch (error) {
+                        console.error('Error updating profile:', error);
+                        alert('Error al actualizar el perfil. Por favor, intenta de nuevo.');
+                    }
+                });
+            }
+
+            // Load user data from database
+            async function loadUserData() {
+                try {
+                    const currentUser = await getCurrentUser();
+                    
+                    if (currentUser) {
+                        const userDoc = await getUserData(currentUser.uid);
+                        
+                        if (userDoc.exists()) {
+                            const userData = userDoc.data();
+                            
+                            // Update profile form
+                            const profileNameInput = document.getElementById('profileName');
+                            const profileLocationInput = document.getElementById('profileLocation');
+                            
+                            if (profileNameInput && userData.name) {
+                                profileNameInput.value = userData.name;
+                            }
+                            
+                            if (profileLocationInput && userData.location) {
+                                profileLocationInput.value = userData.location;
+                            }
+                            
+                            // Update welcome message
+                            const welcomeMessage = document.getElementById('welcomeMessage');
+                            if (welcomeMessage) {
+                                const displayName = userData.name || userData.email || 'Usuario';
+                                welcomeMessage.textContent = `¡Bienvenido de nuevo, ${displayName}!`;
+                            }
+                            
+                            // Update preferred styles checkboxes
+                            if (userData.preferredStyles && Array.isArray(userData.preferredStyles)) {
+                                userData.preferredStyles.forEach(style => {
+                                    const checkbox = document.getElementById(`style-${style.toLowerCase()}`);
+                                    if (checkbox) {
+                                        checkbox.checked = true;
+                                    }
+                                });
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error loading user data:', error);
+                }
+            }
+
+            // Load user data on page load
+            loadUserData();
+        });
+    </script>
+</body>
+</html>

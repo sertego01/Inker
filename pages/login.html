@@ -116,40 +116,21 @@
 
         // Wait for notifications to load
         document.addEventListener('DOMContentLoaded', async function() {
+            // Check if email was verified
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('verified') === 'true') {
+                alert('¡Correo verificado exitosamente! Ya puedes iniciar sesión.');
+                // Clean URL
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+            
             // Ensure notifications are loaded
             if (typeof window.Notifications === 'undefined') {
                 console.error('Notifications not loaded');
                 return;
             }
 
-            // Check if this is an email verification link
-            const urlParams = new URLSearchParams(window.location.search);
-            const isVerification = urlParams.get('verify');
-            const token = urlParams.get('token');
-            const email = urlParams.get('email');
-
-            if (isVerification === 'true' && token && email) {
-                try {
-                    // Initialize Firebase first
-                    await initializeFirebase();
-                    
-                    // Verify the email
-                    const isVerified = await window.emailVerification.verifyEmailToken(token, email);
-                    
-                    if (isVerified) {
-                        // Show success notification
-                        showVerificationSuccess();
-                        
-                        // Clean URL parameters
-                        window.history.replaceState({}, document.title, window.location.pathname);
-                    } else {
-                        showVerificationError();
-                    }
-                } catch (error) {
-                    console.error('Error verifying email:', error);
-                    showVerificationError();
-                }
-            }
+            // Old verification code removed - now handled by verify-email.html
 
 
         // Password toggle function (global scope)
@@ -246,7 +227,7 @@
             const password = document.getElementById('password').value;
             
             if (!email || !password) {
-                window.Notifications.warning('Missing Information', 'Please fill in all fields');
+                window.Notifications.warning('Información Faltante', 'Por favor, completa todos los campos');
                 return;
             }
             
@@ -296,27 +277,27 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: rgba(0, 0, 0, 0.8);
+                background: var(--bg-overlay-dark);
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 z-index: 10000;
-                backdrop-filter: blur(10px);
+                backdrop-filter: var(--glass-blur);
             `;
 
             modal.innerHTML = `
                 <div style="
-                    background: linear-gradient(135deg, #1f2937, #374151);
+                    background: var(--bg-secondary);
                     border-radius: 20px;
                     padding: 40px;
                     max-width: 500px;
                     width: 90%;
                     text-align: center;
-                    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-                    border: 1px solid rgba(139, 92, 246, 0.3);
+                    box-shadow: var(--shadow-heavy);
+                    border: 1px solid var(--card-border);
                 ">
                     <div style="
-                        background: linear-gradient(135deg, #8b5cf6, #ec4899);
+                        background: var(--gradient-primary);
                         width: 80px;
                         height: 80px;
                         border-radius: 50%;
@@ -327,46 +308,48 @@
                         font-size: 2.5rem;
                     ">📧</div>
                     
-                    <h2 style="color: white; margin-bottom: 15px; font-size: 1.8rem;">Email Verification Required</h2>
+                    <h2 style="color: var(--text-primary); margin-bottom: 15px; font-size: 1.8rem;">Verificación de Correo Requerida</h2>
                     
-                    <p style="color: #d1d5db; margin-bottom: 25px; line-height: 1.6;">
-                        Please check your email <strong style="color: #8b5cf6;">${email}</strong> and click the verification link to activate your account before logging in.
+                    <p style="color: var(--text-secondary); margin-bottom: 25px; line-height: 1.6;">
+                        Por favor, revisa tu correo electrónico <strong style="color: var(--accent-purple);">${email}</strong> y haz clic en el enlace de verificación para activar tu cuenta antes de iniciar sesión.
                     </p>
                     
                     <div style="
-                        background: rgba(139, 92, 246, 0.1);
-                        border: 1px solid rgba(139, 92, 246, 0.3);
+                        background: var(--search-focus);
+                        border: 1px solid var(--accent-purple);
                         border-radius: 10px;
                         padding: 15px;
                         margin-bottom: 25px;
                     ">
-                        <p style="color: #e5e7eb; margin: 0; font-size: 0.9rem;">
-                            💡 <strong>Tip:</strong> Check your spam folder if you don't see the email in your inbox.
+                        <p style="color: var(--text-primary); margin: 0; font-size: 0.9rem;">
+                            💡 <strong>Consejo:</strong> Revisa tu carpeta de spam si no ves el correo en tu bandeja de entrada.
                         </p>
                     </div>
                     
                     <div style="display: flex; gap: 10px; justify-content: center;">
                         <button onclick="resendVerificationEmail('${email}')" style="
-                            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-                            color: white;
+                            background: var(--gradient-primary);
+                            color: var(--text-primary);
                             border: none;
                             padding: 12px 24px;
                             border-radius: 8px;
                             cursor: pointer;
                             font-weight: 600;
                             flex: 1;
-                        ">Resend Email</button>
+                            transition: var(--transition-normal);
+                        " onmouseover="this.style.boxShadow='var(--shadow-glow)'" onmouseout="this.style.boxShadow='none'">Reenviar Correo</button>
                         
                         <button onclick="this.closest('.modal').remove()" style="
-                            background: #6b7280;
-                            color: white;
-                            border: none;
+                            background: var(--search-bg);
+                            color: var(--text-primary);
+                            border: 1px solid var(--card-border);
                             padding: 12px 24px;
                             border-radius: 8px;
                             cursor: pointer;
                             font-weight: 600;
                             flex: 1;
-                        ">Close</button>
+                            transition: var(--transition-normal);
+                        " onmouseover="this.style.background='var(--bg-primary)'" onmouseout="this.style.background='var(--search-bg)'">Cerrar</button>
                     </div>
                 </div>
             `;
@@ -392,7 +375,7 @@
                 const userQuery = await db.collection('users').where('email', '==', email).get();
                 
                 if (userQuery.empty) {
-                    window.ErrorMessages.showErrorNotification('USER_NOT_FOUND', 'User Not Found');
+                    window.ErrorMessages.showErrorNotification('USER_NOT_FOUND', 'Usuario No Encontrado');
                     return;
                 }
 
@@ -402,14 +385,14 @@
                 // Resend verification email
                 await window.emailVerification.resendVerificationEmail(userId, email, userData.name);
                 
-                window.Notifications.success('Email Sent', 'Verification email sent successfully! Please check your inbox.');
+                window.Notifications.success('Correo Enviado', '¡Correo de verificación enviado con éxito! Por favor, revisa tu bandeja de entrada.');
                 
                 // Close modal
                 document.querySelector('.modal').remove();
                 
             } catch (error) {
                 console.error('Error resending verification:', error);
-                window.ErrorMessages.showErrorNotification('NETWORK_ERROR', 'Email Error');
+                window.ErrorMessages.showErrorNotification('NETWORK_ERROR', 'Error de Correo');
             }
         }
 

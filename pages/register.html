@@ -98,7 +98,7 @@
                     <label class="checkbox-container">
                         <input type="checkbox" id="termsAgreement" required>
                         <span class="checkmark"></span>
-                        I agree to the <a href="terms-conditions.html" class="terms-link">&nbsp;Terms of Service&nbsp;</a>&nbsp;and&nbsp;<a href="privacy-policy.html" class="terms-link"> Privacy Policy</a>
+                        Acepto los <a href="terms-conditions.html" class="terms-link">&nbsp;Términos y Condiciones&nbsp;</a>&nbsp;y la&nbsp;<a href="privacy-policy.html" class="terms-link"> Política de Privacidad</a>
                     </label>
                 </div>
                 
@@ -171,36 +171,39 @@
             });
         });
 
-        // Password toggle function (global scope)
-        window.togglePassword = function() {
+        // Function to toggle both password fields together
+        function toggleBothPasswords() {
             const passwordInput = document.getElementById('password');
-            const eyeIcon = passwordInput.parentElement.querySelector('.eye-icon');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const passwordEyeIcon = passwordInput.parentElement.querySelector('.eye-icon');
+            const confirmEyeIcon = confirmPasswordInput.parentElement.querySelector('.eye-icon');
             
+            // Toggle both fields based on password field state
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                eyeIcon.src = '../images/invisible.png';
-                eyeIcon.alt = 'Hide password';
+                confirmPasswordInput.type = 'text';
+                passwordEyeIcon.src = '../images/invisible.png';
+                passwordEyeIcon.alt = 'Hide password';
+                confirmEyeIcon.src = '../images/invisible.png';
+                confirmEyeIcon.alt = 'Hide password';
             } else {
                 passwordInput.type = 'password';
-                eyeIcon.src = '../images/ojo.png';
-                eyeIcon.alt = 'Show password';
+                confirmPasswordInput.type = 'password';
+                passwordEyeIcon.src = '../images/ojo.png';
+                passwordEyeIcon.alt = 'Show password';
+                confirmEyeIcon.src = '../images/ojo.png';
+                confirmEyeIcon.alt = 'Show password';
             }
+        }
+
+        // Password toggle function (global scope) - now toggles both
+        window.togglePassword = function() {
+            toggleBothPasswords();
         };
 
-        // Confirm password toggle function (global scope)
+        // Confirm password toggle function (global scope) - now toggles both
         window.toggleConfirmPassword = function() {
-            const confirmPasswordInput = document.getElementById('confirmPassword');
-            const eyeIcon = confirmPasswordInput.parentElement.querySelector('.eye-icon');
-            
-            if (confirmPasswordInput.type === 'password') {
-                confirmPasswordInput.type = 'text';
-                eyeIcon.src = '../images/invisible.png';
-                eyeIcon.alt = 'Hide password';
-            } else {
-                confirmPasswordInput.type = 'password';
-                eyeIcon.src = '../images/ojo.png';
-                eyeIcon.alt = 'Show password';
-            }
+            toggleBothPasswords();
         };
 
         // Add validation listeners for real-time feedback
@@ -332,7 +335,7 @@
             }
             
             if (!termsAgreed) {
-                window.Notifications.warning('Terms Required', 'Please agree to the Terms of Service and Privacy Policy');
+                window.Notifications.warning('Términos requeridos', 'Por favor acepta los Términos y Condiciones y la Política de Privacidad');
                 return;
             }
             
@@ -358,36 +361,6 @@
             })
             .catch(error => {
                 console.error("Registration error:", error);
-                window.ErrorMessages.showErrorNotification(error, 'Registration Error');
-            });
-        });
-        }); // End DOMContentLoaded
-    </script>
-    <script src="../js/contact-widget.js"></script>
-    <script src="../js/cookie-consent.js"></script>
-    <script src="../js/global-cookie-banner.js"></script>
-</body>
-</html>
-                window.ErrorMessages.showErrorNotification(error, 'Registration Error');
-            });
-        });
-        }); // End DOMContentLoaded
-    </script>
-    <script src="../js/contact-widget.js"></script>
-    <script src="../js/cookie-consent.js"></script>
-    <script src="../js/global-cookie-banner.js"></script>
-</body>
-</html>
-                window.ErrorMessages.showErrorNotification(error, 'Registration Error');
-            });
-        });
-        }); // End DOMContentLoaded
-    </script>
-    <script src="../js/contact-widget.js"></script>
-    <script src="../js/cookie-consent.js"></script>
-    <script src="../js/global-cookie-banner.js"></script>
-</body>
-</html>
                 window.ErrorMessages.showErrorNotification(error, 'Registration Error');
             });
         });

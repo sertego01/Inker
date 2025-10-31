@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Email - Inker</title>
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <link rel="stylesheet" href="../css/notifications.css">
+    <style>
+        .verification-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .verification-card {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: var(--shadow-heavy);
+            border: 1px solid var(--card-border);
+        }
+        
+        .verification-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .verification-card h2 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .verification-card p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .loading-spinner {
+            border: 4px solid var(--search-bg);
+            border-top: 4px solid var(--accent-purple);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .success-icon {
+            color: #10b981;
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .error-icon {
+            color: #ef4444;
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .auth-btn {
+            background: var(--gradient-primary);
+            color: var(--text-primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition-normal);
+            margin-top: 20px;
+        }
+        
+        .auth-btn:hover {
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span>Inker</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="find-styles.html" class="nav-link" data-nav="find-styles">Estilos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="find-artists.html" class="nav-link" data-nav="find-artist">Tatuadores</a>
+                </li>
+                <li class="nav-item">
+                    <a href="map.html" class="nav-link" data-nav="map">Mapa</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-button" data-nav="login">Iniciar Sesión</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="verification-container">
+        <div class="verification-card" id="verificationCard">
+            <div id="loadingState">
+                <div class="loading-spinner"></div>
+                <h2>Verificando correo electrónico...</h2>
+                <p>Por favor espera mientras verificamos tu correo.</p>
+            </div>
+            
+            <div id="successState" style="display: none;">
+                <div class="success-icon">✅</div>
+                <h2>¡Correo Verificado!</h2>
+                <p>Tu correo electrónico ha sido verificado correctamente. Ya puedes iniciar sesión.</p>
+                <button class="auth-btn" onclick="window.location.href='login.html?verified=true'">Ir a Iniciar Sesión</button>
+            </div>
+            
+            <div id="errorState" style="display: none;">
+                <div class="error-icon">❌</div>
+                <h2>Error en la Verificación</h2>
+                <p id="errorMessage">Ha ocurrido un error al verificar tu correo electrónico.</p>
+                <button class="auth-btn" onclick="window.location.href='login.html'">Volver al Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/database.js"></script>
+    <script src="../js/email-verification.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('userId');
+            const code = urlParams.get('code');
+            
+            const loadingState = document.getElementById('loadingState');
+            const successState = document.getElementById('successState');
+            const errorState = document.getElementById('errorState');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Check if parameters are present
+            if (!userId || !code) {
+                loadingState.style.display = 'none';
+                errorState.style.display = 'block';
+                errorMessage.textContent = 'Enlace de verificación inválido. Por favor, solicita un nuevo correo de verificación.';
+                return;
+            }
+            
+            try {
+                // Wait for Firebase to be ready
+                let attempts = 0;
+                while ((typeof db === 'undefined' || !db) && attempts < 50) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    attempts++;
+                }
+                
+                if (typeof db === 'undefined' || !db) {
+                    throw new Error('Firebase no está disponible');
+                }
+                
+                // Verify email code
+                if (typeof window.emailVerification === 'undefined' || !window.emailVerification.verifyEmailCode) {
+                    throw new Error('Servicio de verificación no disponible');
+                }
+                
+                const verified = await window.emailVerification.verifyEmailCode(userId, code);
+                
+                if (verified) {
+                    // Show success state
+                    loadingState.style.display = 'none';
+                    successState.style.display = 'block';
+                    
+                    // Redirect to login after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'login.html?verified=true';
+                    }, 2000);
+                } else {
+                    throw new Error('La verificación falló');
+                }
+            } catch (error) {
+                console.error('Verification error:', error);
+                
+                // Show error state
+                loadingState.style.display = 'none';
+                errorState.style.display = 'block';
+                
+                // Set appropriate error message
+                if (error.message.includes('expired')) {
+                    errorMessage.textContent = 'El código de verificación ha expirado. Por favor, solicita un nuevo correo de verificación.';
+                } else if (error.message.includes('Invalid') || error.message.includes('invalid')) {
+                    errorMessage.textContent = 'El código de verificación es inválido. Por favor, verifica que el enlace sea correcto.';
+                } else if (error.message.includes('not found')) {
+                    errorMessage.textContent = 'No se encontró el código de verificación. Por favor, solicita un nuevo correo de verificación.';
+                } else {
+                    errorMessage.textContent = error.message || 'Ha ocurrido un error al verificar tu correo electrónico. Por favor, intenta de nuevo más tarde.';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

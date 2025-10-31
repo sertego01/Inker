@@ -525,9 +525,6 @@ function createArtistListItem(artist) {
                 <strong>Estilo:</strong> ${getArtistStyles(artist)}
                 </div>
             <div class="artist-detail-item">
-                <strong>Valoración:</strong> ${artist.rating || 'N/A'} ⭐
-                        </div>
-            <div class="artist-detail-item">
                 <strong>Ubicación:</strong> ${artist.location || artist.city || 'No especificada'}
             </div>
             ${artist.hasRandomLocation ? '<div class="location-indicator approximate">📍 Ubicación aproximada</div>' : ''}
@@ -731,9 +728,6 @@ function createArtistInfoContent(artist) {
             <div style="margin-bottom: 10px;">
                 <p style="margin: 0; font-size: 14px; color: #333;">
                     <strong>Estilo:</strong> ${getArtistStyles(artist)}
-                </p>
-                <p style="margin: 0; font-size: 14px; color: #333;">
-                    <strong>Valoración:</strong> ${artist.rating || 'N/A'} ⭐
                 </p>
                 ${artist.hasRandomLocation ? '<p style="margin: 0; font-size: 12px; color: #ffa500;">📍 Ubicación aproximada</p>' : ''}
             </div>
