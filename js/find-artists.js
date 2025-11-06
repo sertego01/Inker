@@ -284,22 +284,90 @@ function getLocationTranslation(location) {
 
 // Get tattoo image based on artist's style
 function getTattooImageForStyle(style) {
+    if (!style) return '../images/traditional.jpg';
+    
+    // Normalize style name (trim, lowercase for comparison)
+    const normalizedStyle = String(style).trim();
+    
+    // Comprehensive style mapping with all variations
     const styleToImage = {
-        'Traditional': '../images/traditional.jpg',
-        'Realistic': '../images/realistic.jpg',
-        'Japanese': '../images/japanese.jpg',
-        'Blackwork': '../images/blackwork.jpg',
-        'Watercolor': '../images/watercolor.jpg',
-        'Geometric': '../images/geometric.jpg',
-        'Tribal': '../images/tribal.jpg',
-        'Neo-traditional': '../images/neotraditional.jpg',
-        'Minimalist': '../images/minimalist.jpg',
-        'Biomechanical': '../images/biomechanical.jpg',
-        'Puntillismo': '../images/dotwork.jpg',
-        'Henna': '../images/henna.jpg'
+        // Traditional variations
+        'traditional': '../images/traditional.jpg',
+        'tradicional': '../images/traditional.jpg',
+        'american': '../images/traditional.jpg',
+        'americano': '../images/traditional.jpg',
+        
+        // Realistic variations
+        'realistic': '../images/realistic.jpg',
+        'realista': '../images/realistic.jpg',
+        'portraits': '../images/realistic.jpg',
+        'retratos': '../images/realistic.jpg',
+        
+        // Japanese variations
+        'japanese': '../images/japanese.jpg',
+        'japonés': '../images/japanese.jpg',
+        'japones': '../images/japanese.jpg',
+        
+        // Blackwork
+        'blackwork': '../images/blackwork.jpg',
+        
+        // Watercolor variations
+        'watercolor': '../images/watercolor.jpg',
+        'acuarela': '../images/watercolor.jpg',
+        
+        // Geometric variations
+        'geometric': '../images/geometric.jpg',
+        'geometrico': '../images/geometric.jpg',
+        'geométrico': '../images/geometric.jpg',
+        'mandalas': '../images/geometric.jpg',
+        'sacred': '../images/geometric.jpg',
+        
+        // Tribal
+        'tribal': '../images/tribal.jpg',
+        'cultural': '../images/tribal.jpg',
+        
+        // Neo-traditional variations
+        'neo-traditional': '../images/neotraditional.jpg',
+        'neotraditional': '../images/neotraditional.jpg',
+        'neo-tradicional': '../images/neotraditional.jpg',
+        'neotradicional': '../images/neotraditional.jpg',
+        
+        // Minimalist variations
+        'minimalist': '../images/minimalist.jpg',
+        'minimalista': '../images/minimalist.jpg',
+        
+        // Biomechanical variations
+        'biomechanical': '../images/biomechanical.jpg',
+        'biomecanico': '../images/biomechanical.jpg',
+        'biomecánico': '../images/biomechanical.jpg',
+        'sci-fi': '../images/biomechanical.jpg',
+        'scifi': '../images/biomechanical.jpg',
+        
+        // Dotwork/Puntillismo variations
+        'dotwork': '../images/dotwork.jpg',
+        'puntillismo': '../images/dotwork.jpg',
+        
+        // Henna variations
+        'henna': '../images/henna.jpg',
+        'temporary': '../images/henna.jpg',
+        'temporal': '../images/henna.jpg'
     };
     
-    return styleToImage[style] || '../images/traditional.jpg'; // Default fallback
+    // Try exact match first (case-insensitive)
+    const lowerStyle = normalizedStyle.toLowerCase();
+    if (styleToImage[lowerStyle]) {
+        return styleToImage[lowerStyle];
+    }
+    
+    // Try partial match for compound styles (e.g., "Neo-traditional" -> "neo-traditional")
+    for (const key in styleToImage) {
+        if (lowerStyle.includes(key) || key.includes(lowerStyle)) {
+            return styleToImage[key];
+        }
+    }
+    
+    // Default fallback
+    return '../images/traditional.jpg';
 }
 
 // Update hierarchical location filters
@@ -481,7 +549,10 @@ function createArtistCard(artist) {
     card.classList.add('artist-card');
     
     // Get tattoo image based on artist's primary style
-    const tattooImage = getTattooImageForStyle(artist.styles[0]);
+    const primaryStyle = Array.isArray(artist.styles) && artist.styles.length > 0 
+        ? artist.styles[0] 
+        : (artist.style || 'Traditional');
+    const tattooImage = getTattooImageForStyle(primaryStyle);
     
     card.innerHTML = `
         <div class="artist-image" style="background-image: url('${tattooImage}');">

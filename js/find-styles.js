@@ -176,24 +176,25 @@ function createStyleCard(style) {
 function showStyleDetails(style) {
     // Create modal
     const modal = document.createElement('div');
+    modal.className = 'style-modal-overlay';
     modal.style.cssText = `
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.9);
+        background: var(--bg-overlay-dark);
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 10000;
-        backdrop-filter: blur(10px);
+        backdrop-filter: var(--glass-blur);
         animation: fadeIn 0.3s ease-out;
     `;
     
     modal.innerHTML = `
-        <div style="
-            background: linear-gradient(135deg, #1f2937, #374151);
+        <div class="style-modal-content" style="
+            background: var(--bg-secondary);
             border-radius: 20px;
             padding: 0;
             max-width: 800px;
@@ -201,13 +202,13 @@ function showStyleDetails(style) {
             max-height: 90vh;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            box-shadow: var(--shadow-heavy);
+            border: 1px solid var(--card-border);
             animation: slideIn 0.4s ease-out;
         ">
             <!-- Header with gradient background -->
             <div style="
-                background: linear-gradient(135deg, #8b5cf6, #ec4899);
+                background: var(--gradient-primary);
                 padding: 30px;
                 position: relative;
                 overflow: hidden;
@@ -224,23 +225,23 @@ function showStyleDetails(style) {
                 
                 
                 <h2 style="
-                    color: white; 
+                    color: var(--text-primary); 
                     margin: 0; 
                     font-size: 2.5rem; 
                     text-align: center;
                     font-weight: 800;
-                    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+                    text-shadow: var(--shadow-light);
                     position: relative;
                     z-index: 1;
                 ">${style.name}</h2>
             </div>
             
             <!-- Content -->
-            <div style="padding: 30px; max-height: 60vh; overflow-y: auto;">
+            <div style="padding: 30px; max-height: 60vh; overflow-y: auto; background: var(--bg-secondary);">
                 <!-- Description Section -->
                 <div style="margin-bottom: 30px;">
                     <h3 style="
-                        color: #8b5cf6; 
+                        color: var(--accent-purple); 
                         margin-bottom: 15px; 
                         font-size: 1.4rem;
                         font-weight: 700;
@@ -249,8 +250,8 @@ function showStyleDetails(style) {
                         gap: 10px;
                     ">
                         <span style="
-                            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-                            color: white;
+                            background: var(--gradient-primary);
+                            color: var(--text-primary);
                             padding: 5px 12px;
                             border-radius: 20px;
                             font-size: 0.9rem;
@@ -258,19 +259,20 @@ function showStyleDetails(style) {
                         Descripción
                     </h3>
                     <div style="
-                        background: linear-gradient(135deg, #374151, #4b5563);
+                        background: var(--search-bg);
                         padding: 20px;
                         border-radius: 12px;
-                        border-left: 4px solid #ec4899;
+                        border-left: 4px solid var(--accent-pink);
+                        border: 1px solid var(--card-border);
                     ">
                         <p style="
-                            color: #d1d5db; 
+                            color: var(--text-secondary); 
                             line-height: 1.6;
                             font-size: 1.1rem;
                             margin: 0 0 15px 0;
                         ">${style.description}</p>
                         <p style="
-                            color: #d1d5db; 
+                            color: var(--text-secondary); 
                             line-height: 1.6;
                             font-size: 1.1rem;
                             margin: 0;
@@ -281,7 +283,7 @@ function showStyleDetails(style) {
                 <!-- Characteristics Section -->
                 <div style="margin-bottom: 30px;">
                     <h3 style="
-                        color: #8b5cf6; 
+                        color: var(--accent-purple); 
                         margin-bottom: 15px; 
                         font-size: 1.4rem;
                         font-weight: 700;
@@ -290,8 +292,8 @@ function showStyleDetails(style) {
                         gap: 10px;
                     ">
                         <span style="
-                            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-                            color: white;
+                            background: var(--gradient-primary);
+                            color: var(--text-primary);
                             padding: 5px 12px;
                             border-radius: 20px;
                             font-size: 0.9rem;
@@ -306,16 +308,17 @@ function showStyleDetails(style) {
                     ">
                         ${style.characteristics.map(char => `
                             <div style="
-                                background: linear-gradient(135deg, #374151, #4b5563);
+                                background: var(--search-bg);
                                 padding: 12px 16px;
                                 border-radius: 12px;
-                                color: #e5e7eb;
+                                color: var(--text-primary);
                                 font-weight: 500;
-                                border-left: 4px solid #8b5cf6;
-                                transition: transform 0.2s ease;
+                                border-left: 4px solid var(--accent-purple);
+                                border: 1px solid var(--card-border);
+                                transition: var(--transition-normal);
                                 white-space: nowrap;
                                 flex-shrink: 0;
-                            " onmouseover="this.style.transform='translateX(5px)'" onmouseout="this.style.transform='translateX(0)'">
+                            " onmouseover="this.style.transform='translateX(5px)'; this.style.borderColor='var(--accent-purple)'" onmouseout="this.style.transform='translateX(0)'; this.style.borderColor='var(--card-border)'">
                                 ${char}
                             </div>
                         `).join('')}
@@ -328,19 +331,19 @@ function showStyleDetails(style) {
                     gap: 15px;
                     justify-content: center;
                 ">
-                    <button onclick="closeStyleModal()" style="
-                        background: linear-gradient(135deg, #6b7280, #4b5563);
-                        color: white;
-                        border: none;
+                    <button onclick="closeStyleModal()" class="style-modal-btn-close" style="
+                        background: var(--bg-primary);
+                        color: var(--text-primary);
+                        border: 1px solid var(--card-border);
                         padding: 15px 30px;
                         border-radius: 12px;
                         cursor: pointer;
                         font-weight: 600;
                         font-size: 1rem;
-                        transition: all 0.3s ease;
+                        transition: var(--transition-normal);
                         flex: 1;
                         max-width: 200px;
-                    " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                    ">
                         Cerrar
                     </button>
                     
@@ -350,20 +353,20 @@ function showStyleDetails(style) {
                         const isInPagesFolder = window.location.pathname.includes('/pages/');
                         const basePath = isInPagesFolder ? '' : 'pages/';
                         window.location.href = basePath + 'find-artists.html?style=${style.id}';
-                    " style="
-                        background: linear-gradient(135deg, #8b5cf6, #ec4899);
-                        color: white;
+                    " class="style-modal-btn-primary" style="
+                        background: var(--gradient-primary);
+                        color: var(--text-primary);
                         border: none;
                         padding: 15px 30px;
                         border-radius: 12px;
                         cursor: pointer;
                         font-weight: 600;
                         font-size: 1rem;
-                        transition: all 0.3s ease;
+                        transition: var(--transition-normal);
                         flex: 1;
                         max-width: 200px;
-                        box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
-                    " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                        box-shadow: var(--shadow-medium);
+                    ">
                         Encontrar tatuadores
                     </button>
                 </div>
@@ -390,6 +393,19 @@ function showStyleDetails(style) {
             @keyframes rotate {
                 from { transform: rotate(0deg); }
                 to { transform: rotate(360deg); }
+            }
+            
+            .style-modal-btn-close:hover {
+                background: var(--search-bg) !important;
+                border-color: var(--accent-pink) !important;
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-light);
+            }
+            
+            .style-modal-btn-primary:hover {
+                background: var(--gradient-primary-reverse) !important;
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-glow);
             }
         </style>
     `;

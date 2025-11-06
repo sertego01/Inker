@@ -50,7 +50,7 @@ function convertArtistData(artist) {
             yearsExperience: artist.yearsExperience || 0,
             likes: artist.likes || 0,
             hourlyRate: artist.hourlyRate || '',
-            availability: artist.isAvailable === true ? 'Available' : 'Not available',
+            availability: artist.isAvailable === true ? 'Disponible' : 'No disponible',
             rating: typeof artist.rating === 'number' ? artist.rating : 0,
             reviewCount: typeof artist.reviewCount === 'number' ? artist.reviewCount : (typeof artist.reviews === 'number' ? artist.reviews : 0)
         },
@@ -120,6 +120,10 @@ function updateArtistInfo(artist) {
     if (elements.bio) {
         elements.bio.textContent = artist.bio;
     }
+    
+    // Store artist name for map
+    if (!currentArtistData) currentArtistData = {};
+    currentArtistData.artistName = artist.name || '';
 }
 
 // Update artist statistics
@@ -136,7 +140,7 @@ function updateArtistStats(stats) {
     if (elements.ratingStat) elements.ratingStat.textContent = formatRating(stats);
     if (elements.availability) {
         elements.availability.textContent = stats.availability;
-        elements.availability.style.color = stats.availability === 'Available' ? '#10b981' : '#ef4444';
+        elements.availability.style.color = stats.availability === 'Disponible' ? '#10b981' : '#ef4444';
     }
 }
 
@@ -154,7 +158,7 @@ function formatLikes(stats) {
 function setAvailabilityToggle(artist) {
     const toggle = document.getElementById('availabilityToggle');
     if (!toggle) return;
-    toggle.checked = artist.stats.availability === 'Available';
+    toggle.checked = artist.stats.availability === 'Disponible';
     toggle.onchange = async function() {
         const isAvailable = !!toggle.checked;
         const urlParams = new URLSearchParams(window.location.search);
@@ -163,7 +167,7 @@ function setAvailabilityToggle(artist) {
             await updateArtistAvailability(artistId, isAvailable);
             // Refrescar etiqueta
             const availabilityEl = document.getElementById('availability');
-            if (availabilityEl) availabilityEl.textContent = isAvailable ? 'Available' : 'Not available';
+            if (availabilityEl) availabilityEl.textContent = isAvailable ? 'Disponible' : 'No disponible';
         } catch (e) {
             toggle.checked = !isAvailable; // revertir si falla
             alert('No se pudo actualizar la disponibilidad');
@@ -238,6 +242,9 @@ function mapStyleNameToId(name) {
     return map[n] || n;
 }
 
+// Store artist data for map
+let currentArtistData = null;
+
 // Update studio information
 function updateStudioInfo(studio) {
     const elements = {
@@ -247,17 +254,211 @@ function updateStudioInfo(studio) {
     
     if (elements.studioName) elements.studioName.textContent = studio.name;
     if (elements.studioAddress) elements.studioAddress.textContent = studio.address;
+    
+    // Store studio data for map
+    currentArtistData = {
+        studioName: studio.name || '',
+        address: studio.address || studio.location || '',
+        artistName: currentArtistData?.artistName || ''
+    };
+    
+    // Initialize map with artist location (use studio address or general location)
+    const locationToUse = studio.address || studio.location || '';
+    if (locationToUse) {
+        initializeMap(locationToUse, studio.name || '');
+    }
+}
+
+// Initialize Google Map for artist location
+let artistMap = null;
+let artistMarker = null;
+let artistInfoWindow = null;
+let mapInitialized = false;
+
+// Initialize Google Map (called by Google Maps API callback)
+function initArtistMap() {
+    console.log('Initializing Google Map for artist profile...');
+    
+    const mapElement = document.getElementById('artistMap');
+    if (!mapElement) {
+        console.error('Artist map element not found!');
+        return;
+    }
+    
+    // Verificar que Google Maps esté disponible
+    if (typeof google === 'undefined' || !google.maps) {
+        console.error('Google Maps API not loaded!');
+        return;
+    }
+    
+    // Default location (Asturias, Spain)
+    const defaultLocation = { lat: 43.3619, lng: -5.8493 };
+    
+    // Create map
+    artistMap = new google.maps.Map(mapElement, {
+        zoom: 15,
+        center: defaultLocation,
+        styles: [
+            {
+                featureType: 'poi',
+                elementType: 'labels',
+                stylers: [{ visibility: 'off' }]
+            }
+        ],
+        disableDefaultUI: false,
+        zoomControl: true,
+        mapTypeControl: false,
+        scaleControl: true,
+        streetViewControl: false,
+        rotateControl: false,
+        fullscreenControl: true
+    });
+    
+    // Create info window
+    artistInfoWindow = new google.maps.InfoWindow();
+    
+    mapInitialized = true;
+    
+    // If we already have address data, geocode it now
+    const address = mapElement.dataset.address;
+    const studioName = mapElement.dataset.studioName;
+    if (address) {
+        geocodeAddress(address, studioName);
+    }
+}
+
+function initializeMap(address, studioName) {
+    const mapElement = document.getElementById('artistMap');
+    if (!mapElement) return;
+    
+    // Store address data in dataset for when map is ready
+    if (mapElement) {
+        mapElement.dataset.address = address || '';
+        mapElement.dataset.studioName = studioName || '';
+    }
+    
+    // If map is already initialized, geocode immediately
+    if (mapInitialized && artistMap) {
+        geocodeAddress(address, studioName);
+    }
+    // Otherwise, initArtistMap will handle it when Google Maps loads
+}
+
+function geocodeAddress(address, studioName) {
+    if (!address || !artistMap) {
+        console.warn('No se puede geocodificar: address o artistMap no disponible', { address, artistMap: !!artistMap });
+        return;
+    }
+    
+    console.log('Geocodificando dirección:', address);
+    
+    const geocoder = new google.maps.Geocoder();
+    
+    geocoder.geocode({ address: address }, (results, status) => {
+        console.log('Resultado del geocoding:', { status, results: results?.length });
+        
+        if (status === 'OK' && results && results[0]) {
+            const location = results[0].geometry.location;
+            
+            // Center map on location
+            artistMap.setCenter(location);
+            artistMap.setZoom(15);
+            
+            // Remove existing marker if any
+            if (artistMarker) {
+                artistMarker.setMap(null);
+            }
+            
+            // Get artist name from stored data
+            const artistName = currentArtistData?.artistName || '';
+            const displayStudioName = studioName || '';
+            const displayAddress = address || '';
+            
+            // Create marker with custom icon (red pin)
+            artistMarker = new google.maps.Marker({
+                position: location,
+                map: artistMap,
+                title: displayStudioName || artistName || displayAddress,
+                animation: google.maps.Animation.DROP
+            });
+            
+            // Create info window content with proper styling
+            let infoContent = '<div style="padding: 10px; min-width: 200px; color: #121212; font-family: Arial, sans-serif;">';
+            
+            if (artistName) {
+                infoContent += `<div style="font-size: 16px; font-weight: bold; margin-bottom: 8px; color: #8b5cf6;">${artistName}</div>`;
+            }
+            
+            if (displayStudioName) {
+                infoContent += `<div style="font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #333;">${displayStudioName}</div>`;
+            }
+            
+            if (displayAddress) {
+                infoContent += `<div style="font-size: 12px; color: #666; margin-top: 4px;">📍 ${displayAddress}</div>`;
+            }
+            
+            infoContent += '</div>';
+            
+            // Add info window
+            artistMarker.addListener('click', () => {
+                artistInfoWindow.setContent(infoContent);
+                artistInfoWindow.open(artistMap, artistMarker);
+            });
+            
+            // Open info window automatically after a short delay
+            setTimeout(() => {
+                artistInfoWindow.setContent(infoContent);
+                artistInfoWindow.open(artistMap, artistMarker);
+            }, 500);
+            
+            console.log('Marcador creado y InfoWindow abierto');
+        } else {
+            console.warn('No se pudo geocodificar la dirección:', address, status);
+            // Show error message in map
+            if (artistMap) {
+                const errorContent = `<div style="padding: 10px; color: #ef4444;">No se pudo encontrar la ubicación: ${address}</div>`;
+                artistInfoWindow.setContent(errorContent);
+                artistInfoWindow.setPosition(artistMap.getCenter());
+                artistInfoWindow.open(artistMap);
+            }
+        }
+    });
 }
 
 // Update social media links
 function updateSocialMedia(social) {
-    const elements = {
-        instagramHandle: document.getElementById('instagramHandle'),
-        website: document.getElementById('website')
-    };
+    const instagramCard = document.getElementById('instagramCard');
+    const instagramHandle = document.getElementById('instagramHandle');
     
-    if (elements.instagramHandle) elements.instagramHandle.textContent = social.instagram;
-    if (elements.website) elements.website.textContent = social.website;
+    if (!instagramCard) return;
+    
+    // Asegurar que el elemento siempre esté visible
+    instagramCard.style.display = '';
+    
+    if (social && social.instagram) {
+        // Construir URL de Instagram
+        const instagramUrl = social.instagram.startsWith('http') 
+            ? social.instagram 
+            : `https://instagram.com/${social.instagram.replace('@', '')}`;
+        instagramCard.href = instagramUrl;
+        
+        // Mostrar el nombre de usuario de Instagram
+        if (instagramHandle) {
+            const username = social.instagram.replace('@', '');
+            instagramHandle.textContent = username || 'Instagram';
+        }
+    } else {
+        // Si no hay Instagram, mostrar texto por defecto pero mantener visible
+        if (instagramHandle) {
+            instagramHandle.textContent = 'Instagram';
+        }
+        // Deshabilitar el enlace si no hay URL
+        instagramCard.href = '#';
+        instagramCard.onclick = function(e) {
+            e.preventDefault();
+            return false;
+        };
+    }
 }
 
 // Update portfolio grid

@@ -63,7 +63,7 @@
                 <div class="artist-stats">
                     <div class="stat-card">
                         <div class="stat-number" id="yearsExperience"></div>
-                        <div class="stat-label" data-i18n="artist-profile.years-experience">Years Experience</div>
+                        <div class="stat-label" data-i18n="artist-profile.years-experience">Años de Experiencia</div>
                     </div>
                     <div class="stat-card likes-card">
                         <div class="stat-number" id="likes"></div>
@@ -71,16 +71,26 @@
                     <div class="stat-card availability-card">
                         <div class="stat-number" id="availability"></div>
                     </div>
+                    <a href="#" class="stat-card social-card" id="instagramCard" target="_blank" rel="noopener noreferrer">
+                        <div class="stat-number social-stat">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </div>
+                        <div class="stat-label" id="instagramHandle">Instagram</div>
+                    </a>
                 </div>
             </div>
 
             <!-- Specialties Section -->
             <section class="specialties-section">
-                <h2 class="section-title-2" data-i18n="artist-profile.specialties">Specialties</h2>
+                <h2 class="section-title-2" data-i18n="artist-profile.specialties">Especialidades</h2>
                 <div class="specialties-grid" id="specialtiesGrid"></div>
             </section>
 
-            <!-- Location & Contact Section -->
+            <!-- Location Section -->
             <section class="location-contact-section">
                 <div class="location-contact-grid">
                     <div class="studio-card">
@@ -88,35 +98,7 @@
                         <h3 class="studio-name" id="studioName" data-i18n="artist-profile.studio-name"></h3>
                         <p class="studio-address" id="studioAddress"></p>
                         <div class="map-container">
-                            <div class="map-placeholder">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
-                                </svg>
-                                <p data-i18n="artist-profile.map-placeholder">Map would be integrated here</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="social-card">
-                        <h2 class="section-title" data-i18n="artist-profile.contact">Contacto</h2>
-                        <h3 class="social-title" data-i18n="artist-profile.social-media">Social Media & Website</h3>
-                        <div class="social-links">
-                            <a href="#" class="social-link instagram">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                                </svg>
-                                <span id="instagramHandle" data-i18n="artist-profile.instagram"></span>
-                            </a>
-                            <a href="#" class="social-link website">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <path d="M2 12h20"></path>
-                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                                </svg>
-                                <span id="website" data-i18n="artist-profile.website"></span>
-                            </a>
+                            <div id="artistMap" class="artist-map"></div>
                         </div>
                     </div>
                 </div>
@@ -126,8 +108,8 @@
             <section class="portfolio-reviews-section">
                 <div class="section-header">
                     <div class="section-tabs">
-                        <button class="tab-button active" data-tab="portfolio" data-i18n="artist-profile.portfolio">Portfolio</button>
-                        <button class="tab-button" data-tab="reviews" data-i18n="artist-profile.reviews">Reviews</button>
+                        <button class="tab-button active" data-tab="portfolio" data-i18n="artist-profile.portfolio">Portafolio</button>
+                        <button class="tab-button" data-tab="reviews" data-i18n="artist-profile.reviews">Reseñas</button>
                     </div>
                 </div>
                 
@@ -148,12 +130,12 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-left">
-                <a href="terms-conditions.html" data-footer="terms">Terms and Conditions</a>
+                <a href="terms-conditions.html" data-footer="terms">Términos y Condiciones</a>
                 <span class="separator">|</span>
-                <a href="privacy-policy.html" data-footer="privacy">Privacy Policy</a>
+                <a href="privacy-policy.html" data-footer="privacy">Política de Privacidad</a>
             </div>
             <div class="footer-center">
-                <p data-footer="copyright">&copy; 2025 Inker. All rights reserved.</p>
+                <p data-footer="copyright">&copy; 2025 Inker. Todos los derechos reservados.</p>
             </div>
             <div class="footer-right">
                 <div class="social-icons">
@@ -187,9 +169,26 @@
     
     <!-- Scripts -->
     <script src="../js/config.js"></script>
+    <script src="../js/google-maps-config.js"></script>
     <script src="../js/database.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/email-config.js"></script>
+    
+    <!-- Google Maps API -->
+    <script>
+        // Load Google Maps API with the configured key
+        const apiKey = getGoogleMapsApiKey();
+        if (isApiKeyConfigured()) {
+            const script = document.createElement('script');
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initArtistMap`;
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
+        } else {
+            console.error('Google Maps API key not configured');
+        }
+    </script>
+    
     <script src="../js/artist-profile.js"></script>
     <script src="../js/contact-widget.js"></script>
     <script src="../js/cookie-consent.js"></script>
